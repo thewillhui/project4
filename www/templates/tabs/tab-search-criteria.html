@@ -1,35 +1,41 @@
 <ion-view view-title="New enquiry">
-  <ion-nav-buttons side="right">
-    <button class="button" ng-click="doSomething()">
-      Next
-    </button>
-  </ion-nav-buttons>
   <ion-content class="padding">
-    <p>{{bedrooms}}</p>
     <p>{{enquiry}}</p>
     <h4>Bedrooms</h4>
     <div class="button-bar bar-dark" >
-      <a ng-repeat="room in bedroomsBtns"
-         ng-click="setActive('{{room.number}}')"
-         class="button button-block"
-         ng-class= "{'button-light': isActive('{{room.number}}')}" ng-model="enquiry.bedrooms[number]"
-      >{{room.number}}</a>
+      <button ng-repeat="room in bedroomsBtns"
+              ng-click="setActive('bed{{room.number}}'); enquiry.bedrooms = room.number"
+              ng-class= "{'button-light': isActive('bed{{room.number}}')}"
+              class="button button-block"
+      >{{room.number}}</button>
     </div>
-
-
-
-
-
     <h4>Bathrooms</h4>
-    <div id="enquiryCriteria-button-bar2" class=" button-bar ">
-      <button id="enquiryCriteria-button6" class=" button button-dark  button-block ">Any</button>
-      <button id="enquiryCriteria-button9" class=" button button-dark  button-block ">1</button>
-      <button id="enquiryCriteria-button7" class=" button button-dark  button-block ">2</button>
-      <button id="enquiryCriteria-button8" class=" button button-dark  button-block ">3</button>
+    <div class="button-bar bar-dark" >
+      <button ng-repeat="room in bathroomsBtns"
+         ng-click="setActive('bath{{room.number}}'); enquiry.bathrooms = room.number"
+         class="button button-block"
+         ng-class= "{'button-light': isActive('bath{{room.number}}')}"
+         ng-model="enquiry.bathrooms[room.number]"
+      >{{room.number}}</button>
     </div>
-    <ion-item class="range range-balanced " id="enquiryCriteria-range1">Price
-      <input type="range" value="1000" min="0" max="100000" name="Price range">{{value}}
+
+
+
+
+    <ion-item class="range">Min &nbsp;&nbsp;
+      <i class="ion-social-usd-outline"></i>
+      <input type="range" step="1000" min="0" max="100000" name="Price range" ng-model="minPrice">
+      <i class="ion-social-usd">{{minPrice}}</i>
     </ion-item>
+
+    <ion-item class="range">Max &nbsp;
+      <i class="ion-social-usd-outline"></i>
+      <input type="range" step="1000" min="0" max="100000" name="Price range" ng-model="maxPrice">
+      <i class="ion-social-usd">{{maxPrice}}</i>
+    </ion-item>
+
+
+
     <ion-item class="range range-balanced " id="enquiryCriteria-range2">Size (net sq.ft)
       <input type="range" value="500" min="0" max="20000">{{value}}
     </ion-item>

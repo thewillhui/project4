@@ -1,6 +1,6 @@
 <ion-view view-title="New enquiry">
   <ion-nav-buttons side="right">
-    <a class="button" ui-sref="tab.search.criteria">
+    <a class="button" ui-sref="tab.enquiry.criteria">
         Next
       </a>
   </ion-nav-buttons>
@@ -18,7 +18,7 @@
           </i> &nbsp; {{key}}
         </ion-item>
         <ion-checkbox
-        class="item-accordion"
+        class="item-accordion item-checkbox-right"
         ng-repeat="area in region[key] | orderBy"
         ng-show="isGroupShown(key)"
         ng-model="enquiry.area[area]">

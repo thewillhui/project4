@@ -117,23 +117,23 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
 
   // Each tab has its own nav history stack:
 
-    .state('tab.search', {
-      url: '/search',
+    .state('tab.enquiry', {
+      url: '/enquiry',
       abstract: true,
       views: {
-        'tab-search': {
+        'tab-enquiry': {
           templateUrl: 'templates/tabs/enquiry.html',
-          controller: 'SearchCtrl'
+          controller: 'EnquiryCtrl'
         }
       }
     })
 
-      .state('tab.search.location', {
+      .state('tab.enquiry.location', {
         url: '/location',
         templateUrl: 'templates/tabs/tab-search.html'
       })
 
-      .state('tab.search.criteria', {
+      .state('tab.enquiry.criteria', {
         url: '/criteria',
         templateUrl: 'templates/tabs/tab-search-criteria.html'
       })
@@ -168,6 +168,6 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/renter/search/location');
+  $urlRouterProvider.otherwise('/renter/enquiry/location');
 
 });
