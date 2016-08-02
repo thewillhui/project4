@@ -88,14 +88,50 @@ angular.module('simplyHome.controllers', [])
 
 .controller('SearchCtrl', function($scope, HkIsland, Kowloon, NewTerritories) {
 
-  $scope.hkIsland = HkIsland.all();
-  $scope.kowloon = Kowloon.all();
-  $scope.newTerritories = NewTerritories.all();
 
-  $scope.isChecked = {};
-  $scope.nextBtn = function(){
-    $state.go('tab.search.criteria');
-  }
+  $scope.bedroomsBtns = [
+    {number:'1'},
+    {number:'2'},
+    {number:'3'},
+    {number:'4'},
+    {number:'5+'}
+    ]
+
+ $scope.region = {
+  'Hong Kong Island':
+  ['Aberdeen', 'Wan Chai', 'Tin Hau','Tai Hang','Tai Koo', 'Shau Kei Wan', 'Heng Fa Chuen', 'Sai Wan Ho', 'Quarry Bay', 'North Point', 'Fortress Hill', 'Mid-Levels', 'Island West', 'Island South', 'Chai Wan', 'Shek O', 'Central', 'Sheung Wan', 'Causeway Bay' ],
+  'Kowloon':
+  ['Yau Tong','Lam Tin','Tsim Sha Tsui','Jordon','To Kwa Wan','Kowloon City','Tai Kok Tsui','Olympic','Kowloon Station','Sham Shui Po','Shek Kip Mei','San Po Kong','Wong Tai Sin','Prince Edward','Mong Kok','Yau Ma Tei','Lai Chi Kok','Cheung Sha Wan','Mei Foo','Lai King','Kwun Tong','Ngau Tau Kok','Kowloon Tong','Ho Man Tin','Yau Yat Tsuen','Kowloon Bay','Ngau Chi Wan','Hung Hom','Whampoa','Diamond Hill','Lok Fu'],
+  'New Territories':
+  ['Yuen Long','Tin Shui Wai','Tuen Mun','Tsuen Wan','Tai Wo Hau','Tsing Yi','Tseung Kwan O','Tai Po','Tai Wo','Sha Tin','Tai Wai','Fo Tan','Sham Tseng','Sai Kung','Clear Water Bay','Ma On Shan','Kwai Chung','Kwai Fong','Fan Ling','Sheung Shui','Tung Chung','Ma Wan','Discovery Bay','Lantau Island','Peng Chau','Lamma Island','Cheung Chau','Other Islands']
+}
+//saves which locations the user has selected into the isChecked object
+  $scope.bedrooms = {};
+  $scope.enquiry = {};
+
+
+   $scope.active = '';
+    $scope.setActive = function(type) {
+        $scope.active = type;
+    };
+    $scope.isActive = function(type) {
+        return type === $scope.active;
+    };
+
+  /*
+   * if given group is the selected group, deselect it
+   * else, select the given group
+   */
+  $scope.toggleGroup = function(key) {
+    if ($scope.isGroupShown(key)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = key;
+    }
+  };
+  $scope.isGroupShown = function(key) {
+    return $scope.shownGroup === key;
+  };
 
 })
 

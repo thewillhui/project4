@@ -3,6 +3,8 @@ angular.module('simplyHome.services', [])
 
 .factory('HkIsland', function() {
 
+
+
   var hkIsland = [
     { district: 'Aberdeen' },
     { district: 'Wan Chai' },
@@ -15,7 +17,7 @@ angular.module('simplyHome.services', [])
     { district: 'Quarry Bay' },
     { district: 'North Point' },
     { district: 'Fortress Hill' },
-    { district: 'Mid-Level' },
+    { district: 'Mid-Levels'},
     { district: 'Island West' },
     { district: 'Island South' },
     { district: 'Chai Wan' },

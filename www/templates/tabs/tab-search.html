@@ -1,24 +1,30 @@
 <ion-view view-title="New enquiry">
-    <ion-nav-buttons side="right">
-      <a class="button" ui-sref="tab.search.criteria">
+  <ion-nav-buttons side="right">
+    <a class="button" ui-sref="tab.search.criteria">
         Next
       </a>
-    </ion-nav-buttons>
-  <ion-content class="padding">
-    <p>{{isChecked}}</p>
-    <div>
-      <h2>Hong Kong Island</h2>
-      <ion-list>
-        <ion-checkbox ng-model="isChecked[location.district]" value="{{location.district}}" ng-repeat="location in hkIsland | orderBy: 'district'">{{location.district}}</ion-checkbox>
-      </ion-list>
-    </div>
-    <div>
-      <h2>Kowloon</h2>
-      <ion-checkbox ng-model="isChecked[location.district]" ng-repeat="location in kowloon | orderBy: 'district' ">{{location.district}}</ion-checkbox>
-    </div>
-    <div>
-      <h2>New Territories</h2>
-      <ion-checkbox ng-model="isChecked[location.district]" ng-repeat="location in newTerritories | orderBy: 'district' ">{{location.district}}</ion-checkbox>
-    </div>
+  </ion-nav-buttons>
+  <ion-content>
+  <p>{{enquiry}}</p>
+    <ion-list>
+      <div ng-repeat="(key,value) in region">
+        <ion-item
+        class="item-dark"
+        ng-click="toggleGroup(key)"
+        ng-class="{active: isGroupShown(key)}">
+          <i
+          class="icon"
+          ng-class="isGroupShown(key) ? 'ion-minus' : 'ion-plus'">
+          </i> &nbsp; {{key}}
+        </ion-item>
+        <ion-checkbox
+        class="item-accordion"
+        ng-repeat="area in region[key] | orderBy"
+        ng-show="isGroupShown(key)"
+        ng-model="enquiry.area[area]">
+          {{area}}
+        </ion-checkbox>
+      </div>
+    </ion-list>
   </ion-content>
 </ion-view>

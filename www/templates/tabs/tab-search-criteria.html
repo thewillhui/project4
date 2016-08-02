@@ -5,41 +5,46 @@
     </button>
   </ion-nav-buttons>
   <ion-content class="padding">
-    <p>{{isChecked}}</p>
-    <form id="enquiryCriteria-form" class="list ">
-      <div id="enquiryCriteria-button-bar1" class=" button-bar ">
-        <button id="enquiryCriteria-button1" class=" button button-dark  button-block ">1</button>
-        <button id="enquiryCriteria-button4" class=" button button-dark  button-block ">2</button>
-        <button id="enquiryCriteria-button5" class=" button button-dark  button-block ">3</button>
-        <button id="enquiryCriteria-button2" class=" button button-dark  button-block ">4</button>
-        <button id="enquiryCriteria-button3" class=" button button-dark  button-block ">5+</button>
-      </div>
-      <h4>Bathrooms</h4>
-      <div id="enquiryCriteria-button-bar2" class=" button-bar ">
-        <button id="enquiryCriteria-button6" class=" button button-dark  button-block ">Any</button>
-        <button id="enquiryCriteria-button9" class=" button button-dark  button-block ">1</button>
-        <button id="enquiryCriteria-button7" class=" button button-dark  button-block ">2</button>
-        <button id="enquiryCriteria-button8" class=" button button-dark  button-block ">3</button>
-      </div>
-      <ion-item class="range range-balanced " id="enquiryCriteria-range1">Price
-        <input type="range" value="1000" min="0" max="100000" name="Price range">{{value}}
-      </ion-item>
-      <ion-item class="range range-balanced " id="enquiryCriteria-range2">Size (net sq.ft)
-        <input type="range" value="500" min="0" max="20000">{{value}}
-      </ion-item>
-      <h4 id="enquiryCriteria-heading3">Availability for viewings</h4>
-      <label class="item item-input " id="enquiryCriteria-input2">
-        <span class="input-label">Day</span>
-        <input type="date" placeholder="">
-      </label>
-      <label class="item item-input " id="enquiryCriteria-input1">
-        <span class="input-label">Time</span>
-        <input type="time" placeholder="">
-      </label>
-      <div style="margin-right:-20px;">
-        <button id="enquiryCriteria-button10" style="left:-10px;color:#222222;" class=" button button-dark button-small button-full button-icon icon ion-ios-plus ">Add additional date</button>
-      </div>
-      <a ui-sref="signup" id="enquiryCriteria-button11" class=" button button-dark button-large button-block ">Send enquiry</a>
-    </form>
+    <p>{{bedrooms}}</p>
+    <p>{{enquiry}}</p>
+    <h4>Bedrooms</h4>
+    <div class="button-bar bar-dark" >
+      <a ng-repeat="room in bedroomsBtns"
+         ng-click="setActive('{{room.number}}')"
+         class="button button-block"
+         ng-class= "{'button-light': isActive('{{room.number}}')}" ng-model="enquiry.bedrooms[number]"
+      >{{room.number}}</a>
+    </div>
+
+
+
+
+
+    <h4>Bathrooms</h4>
+    <div id="enquiryCriteria-button-bar2" class=" button-bar ">
+      <button id="enquiryCriteria-button6" class=" button button-dark  button-block ">Any</button>
+      <button id="enquiryCriteria-button9" class=" button button-dark  button-block ">1</button>
+      <button id="enquiryCriteria-button7" class=" button button-dark  button-block ">2</button>
+      <button id="enquiryCriteria-button8" class=" button button-dark  button-block ">3</button>
+    </div>
+    <ion-item class="range range-balanced " id="enquiryCriteria-range1">Price
+      <input type="range" value="1000" min="0" max="100000" name="Price range">{{value}}
+    </ion-item>
+    <ion-item class="range range-balanced " id="enquiryCriteria-range2">Size (net sq.ft)
+      <input type="range" value="500" min="0" max="20000">{{value}}
+    </ion-item>
+    <h4 id="enquiryCriteria-heading3">Availability for viewings</h4>
+    <label class="item item-input " id="enquiryCriteria-input2">
+      <span class="input-label">Day</span>
+      <input type="date" placeholder="">
+    </label>
+    <label class="item item-input " id="enquiryCriteria-input1">
+      <span class="input-label">Time</span>
+      <input type="time" placeholder="">
+    </label>
+    <div style="margin-right:-20px;">
+      <button id="enquiryCriteria-button10" style="left:-10px;color:#222222;" class=" button button-dark button-small button-full button-icon icon ion-ios-plus ">Add additional date</button>
+    </div>
+    <a ui-sref="signup" id="enquiryCriteria-button11" class=" button button-dark button-large button-block ">Send enquiry</a>
   </ion-content>
 </ion-view>
