@@ -1,20 +1,24 @@
 <ion-view view-title="Search">
+    <ion-nav-buttons side="right">
+      <button class="button" ng-click="doSomething()">
+        Next
+      </button>
+    </ion-nav-buttons>
   <ion-content class="padding">
+    <p>{{isChecked}}</p>
     <div>
-      <ul class="list"> <h2>Hong Kong Island</h2>
-        <li class="item" ng-repeat="location in hkIsland | orderBy: 'district' ">{{location.district}}</li>
-      </ul>
+      <h2>Hong Kong Island</h2>
+      <ion-list>
+        <ion-checkbox ng-model="isChecked[location.district]" value="{{location.district}}" ng-repeat="location in hkIsland | orderBy: 'district'">{{location.district}}</ion-checkbox>
+      </ion-list>
     </div>
     <div>
-      <ul class="list"> <h2>Kowloon</h2>
-        <li class="item" ng-repeat="location in kowloon | orderBy: 'district' ">{{location.district}}</li>
-      </ul>
+      <h2>Kowloon</h2>
+      <ion-checkbox ng-model="isChecked[location.district]" ng-repeat="location in kowloon | orderBy: 'district' ">{{location.district}}</ion-checkbox>
     </div>
     <div>
-      <ul class="list"> <h2>New Territories</h2>
-        <li class="item" ng-repeat="location in newTerritories | orderBy: 'district' ">{{location.district}}</li>
-      </ul>
+      <h2>New Territories</h2>
+      <ion-checkbox ng-model="isChecked[location.district]" ng-repeat="location in newTerritories | orderBy: 'district' ">{{location.district}}</ion-checkbox>
     </div>
-
   </ion-content>
 </ion-view>

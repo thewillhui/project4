@@ -117,10 +117,10 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.search', {
+    url: '/search',
     views: {
-      'tab-dash': {
+      'tab-search': {
         templateUrl: 'templates/tabs/tab-search.html',
         controller: 'SearchCtrl'
       }
@@ -157,6 +157,6 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/renter/dash');
+  $urlRouterProvider.otherwise('/renter/search');
 
 });

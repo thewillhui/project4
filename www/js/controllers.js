@@ -92,6 +92,8 @@ angular.module('simplyHome.controllers', [])
   $scope.kowloon = Kowloon.all();
   $scope.newTerritories = NewTerritories.all();
 
+  $scope.isChecked = {};
+
 })
 
 // .controller('ChatsCtrl', function($scope, Chats) {
