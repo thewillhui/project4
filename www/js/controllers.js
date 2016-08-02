@@ -93,6 +93,9 @@ angular.module('simplyHome.controllers', [])
   $scope.newTerritories = NewTerritories.all();
 
   $scope.isChecked = {};
+  $scope.nextBtn = function(){
+    $state.go('tab.search.criteria');
+  }
 
 })
 
