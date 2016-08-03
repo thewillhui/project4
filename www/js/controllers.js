@@ -1,5 +1,6 @@
 angular.module('simplyHome.controllers', [])
 
+
 .controller('AgentAuthCtrl', function($scope, $auth) {
 
   $scope.handleRegBtnClick = function(){
@@ -86,7 +87,7 @@ angular.module('simplyHome.controllers', [])
   };
 })
 
-.controller('SearchCtrl', function($scope, HkIsland, Kowloon, NewTerritories) {
+.controller('EnquiryCtrl', function($scope, $state, $http, ApiEndpoint) {
 
 
   $scope.bedroomsBtns = [
@@ -114,11 +115,7 @@ angular.module('simplyHome.controllers', [])
     }
 
   $scope.enquiry = {
-    region: {
-      'Hong Kong Island': [],
-      'Kowloon': [],
-      'New Territories': []
-    },
+    area: [],
     bedroom_num: '',
     bathroom_num: '',
     price_min: 0,
@@ -147,18 +144,28 @@ angular.module('simplyHome.controllers', [])
     }
   }
 
-//adds/removes the selected area according to the region
-  $scope.addAreaKey = function(area,regionName){
-    var region = regionName;
-    var regionObj = $scope.enquiry.region;
-    var regionObjArr = regionObj[regionName];
-    var areaIndex = regionObjArr.indexOf(area);
+  $scope.addAreaKey = function(area){
+    var areaArr = $scope.enquiry.area;
+    var areaIndex = areaArr.indexOf(area);
     if (areaIndex>=0){
-      regionObjArr.splice(areaIndex,1);
+      areaArr.splice(areaIndex,1);
     } else {
-      regionObjArr.push(area);
+      areaArr.push(area);
     }
   };
+
+//adds/removes the selected area according to the region
+  // $scope.addAreaKey = function(area,regionName){
+  //   var region = regionName;
+  //   var regionObj = $scope.enquiry.region;
+  //   var regionObjArr = regionObj[regionName];
+  //   var areaIndex = regionObjArr.indexOf(area);
+  //   if (areaIndex>=0){
+  //     regionObjArr.splice(areaIndex,1);
+  //   } else {
+  //     regionObjArr.push(area);
+  //   }
+  // };
 
 
 //for making the buttons in button bar act like radio buttons
@@ -197,13 +204,14 @@ angular.module('simplyHome.controllers', [])
   };
 
 
-  var sendEnquiry = function(){
-    parseDate();
-    parseTime();
+  $scope.sendEnquiry = function(){
+    // parseDate();
+    // parseTime();
     $http
-      .post('/api/renters/enquiries', $scope.enquiry)
+      .post(ApiEndpoint.url + '/enquiries', $scope.enquiry)
       .then(function(resp){
-        console.log(resp);
+        console.log(resp.status);
+        console.log(resp.data);
       })
   }
 
@@ -211,9 +219,10 @@ angular.module('simplyHome.controllers', [])
 
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+// .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+//   $scope.chat = Chats.get($stateParams.chatId);
+// })
+
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
@@ -263,3 +272,4 @@ angular.module('simplyHome.controllers', [])
       });
     };
 });
+

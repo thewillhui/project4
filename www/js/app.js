@@ -10,6 +10,10 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   url: 'http://localhost:8100/api'
 })
 
+.constant('ApiEndpoint', {
+  url: 'http://localhost:8100/api'
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
