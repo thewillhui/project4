@@ -19,7 +19,7 @@ angular.module('simplyHome.controllers', [])
 
   $scope.handleLoginBtnClick = function() {
 
-    $auth.submitLogin($scope.loginForm)
+    $auth.submitLogin($scope.loginForm, { config: 'agent' } )
       .then(function(resp) {
         console.log(resp);
         // handle success response
@@ -50,7 +50,7 @@ angular.module('simplyHome.controllers', [])
 
   $scope.handleLoginBtnClick = function() {
 
-    $auth.submitLogin($scope.loginForm)
+    $auth.submitLogin($scope.loginForm,{config: 'renter'})
       .then(function(resp) {
         console.log(resp);
         // handle success response

@@ -93,6 +93,26 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
+  .state('tab.testrenterLogin', {
+    url: '/renterLogin',
+    views: {
+      'tab-testRenterLogin': {
+        templateUrl: 'templates/test/test-renter-login.html',
+        controller: 'RenterAuthCtrl'
+      }
+    }
+  })
+
+  .state('tab.testagentLogin', {
+    url: '/agentLogin',
+    views: {
+      'tab-testAgentLogin': {
+        templateUrl: 'templates/test/test-agent-login.html',
+        controller: 'AgentAuthCtrl'
+      }
+    }
+  })
+
   //////////////////////////////////////////////////////////
 
   // Each tab has its own nav history stack:
