@@ -286,7 +286,7 @@ angular.module('simplyHome.controllers', [])
         // handle error response
       });
     };
-});
+})
 
 .controller('ChatsCtrl', ['$scope', 'Chats', function($scope, Chats) {
   console.log('ChatsCtrl');
@@ -302,12 +302,13 @@ angular.module('simplyHome.controllers', [])
   //   Chats.remove(chat);
 }])
 
-.controller('ChatDetailCtrl', ['$scope', '$stateParams', 'Chats', 'Messages', 'Agents', 'Renters', function($scope, $stateParams, Chats, Messages, Agents, Renters) {
+.controller('ChatDetailCtrl', ['$scope', '$stateParams', 'Chats', 'Messages', 'Agents', 'Renters', '$ionicScrollDelegate', function($scope, $stateParams, Chats, Messages, Agents, Renters, $ionicScrollDelegate) {
   // var init = function (){
     $scope.messages = {};
     $scope.chats = {};
     $scope.agents = {};
     $scope.renters = {};
+    $scope.input = {};
     // $scope.listings = {};
   // }
 
@@ -319,8 +320,16 @@ angular.module('simplyHome.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
   // init();
 
-  $scope.sendMessage = function (msg) {
-    console.log(msg)
+  $scope.sendMessage = function(msg) {
+    var message = {
+      chat_id: $stateParams.chatId,
+      body: $scope.input.message,
+      date: new Date(),
+      renter_id: 24 /* got to sort out param as well*/
+    }
+    $scope.messages.push(message);
+    $scope.input = {};
+    $ionicScrollDelegate.scrollBottom();
   }
 }])
 

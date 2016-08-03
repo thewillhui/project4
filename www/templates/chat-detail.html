@@ -5,8 +5,7 @@
     The Friends service returns an array of friend data
   -->
   <ion-view view-title="{{chat.name}}">
-    <ion-content class="padding">
-    <!-- delegate-handle="userMessageScroll" -->
+    <ion-content class="padding" delegate-handle="userMessageScroll">
       <div class="listings col">
         <a class="button button-dark" style="margin-left:auto; margin-right:auto; display:block" href="#/renter/chats/{{chat.id}}/listings" ng-click="click()">
           View Listings
@@ -20,20 +19,19 @@
         </p>
       </div>
       </ion-item>
-      <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)">
-          <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
-              <label class="item-input-wrapper">
-                  <textarea ng-model="msg.message" placeholder="Send message..." required minlength="1" maxlength="1500"></textarea>
-              </label>
-              <div class="footer-btn-wrap">
-                <button class="button button-icon icon ion-android-send footer-btn" type="submit"
-                    ng-disabled="!input.message || input.message === ''">
-                </button>
-              </div>
-          </ion-footer-bar>
-      </form>
-
     </ion-content>
+    <form name="msg" ng-submit="sendMessage(msg)">
+        <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+            <label class="item-input-wrapper">
+                <textarea ng-model="input.message" placeholder="Send message..." required minlength="1" maxlength="1500"></textarea>
+            </label>
+            <div class="footer-btn-wrap">
+              <button class="button button-icon icon ion-android-send footer-btn" type="submit"
+              ng-disabled="!input.message || input.message === ''">
+              </button>
+            </div>
+        </ion-footer-bar>
+    </form>
   </ion-view>
 
 <!-- ElastiChat item template -->
