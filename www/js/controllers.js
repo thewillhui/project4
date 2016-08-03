@@ -1,5 +1,32 @@
 angular.module('simplyHome.controllers', [])
 
+.controller('AuthCtrl', function($scope, $auth) {
+
+  $scope.handleRegBtnClick = function(){
+    $scope.registrationForm.config = 'renter'
+
+    $auth.submitRegistration($scope.registrationForm).then(function(resp){
+      console.log(resp);
+    }).catch(function(resp){
+      console.log(resp);
+    })
+  };
+
+  $scope.handleLoginBtnClick = function() {
+    $scope.loginForm.config = 'renter'
+
+    $auth.submitLogin($scope.loginForm)
+      .then(function(resp) {
+        console.log(resp);
+        // handle success response
+      })
+      .catch(function(resp) {
+        console.log(resp);
+        // handle error response
+      });
+    };
+})
+
 .controller('SearchCtrl', function($scope, HkIsland, Kowloon, NewTerritories) {
 
   $scope.hkIsland = HkIsland.all();
@@ -31,4 +58,47 @@ angular.module('simplyHome.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+})
+
+.controller('RenterCtrl', function($scope, $auth){
+  $scope.handleRegBtnClick = function(){
+    $auth.submitRegistration($scope.registrationForm).then(function(resp){
+      console.log(resp);
+    }).catch(function(resp){
+      console.log(resp);
+    })
+  };
+  $scope.handleLoginBtnClick = function() {
+    $auth.submitLogin($scope.loginForm)
+      .then(function(resp) {
+        console.log(resp);
+        // handle success response
+      })
+      .catch(function(resp) {
+        console.log(resp);
+        // handle error response
+      });
+    };
+})
+
+.controller('AgentCtrl', function($scope, $auth){
+  $scope.handleRegBtnClick = function(){
+    $auth.submitRegistration($scope.registrationForm).then(function(resp){
+      console.log(resp);
+    }).catch(function(resp){
+      console.log(resp);
+    })
+  };
+
+  $scope.handleLoginBtnClick = function() {
+    $auth.submitLogin($scope.loginForm)
+      .then(function(resp) {
+        console.log(resp);
+        // handle success response
+      })
+      .catch(function(resp) {
+        console.log(resp);
+        // handle error response
+      });
+    };
 });

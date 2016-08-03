@@ -1,0 +1,31 @@
+<ion-view view-title="Renter">
+  <ion-content>
+    <div class="list">
+      <section ng-app="simplyHome" ng-controller="AuthCtrl">
+        <h1>Renter Signup</h1>
+        <form ng-submit="handleRegBtnClick()" role="form" ng-init="registrationForm = {}">
+          <div class="form-group">
+            <label>email</label>
+            <input type="email" name="email" ng-model="registrationForm.email" required="required" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <label>password</label>
+            <input type="password" name="password" ng-model="registrationForm.password" required="required" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <label>password confirmation</label>
+            <input type="password" name="password_confirmation" ng-model="registrationForm.password_confirmation" required="required" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <input type="hidden" name="config" ng-model="registrationForm.config" class="form-control"/>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg">Register</button>
+        </form>
+      </section>
+    </div>
+  </ion-content>
+</ion-view>

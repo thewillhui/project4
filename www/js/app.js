@@ -5,7 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services'])
+angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie'])
+.constant('ApiEndpoint', {
+  url: 'http://localhost:8100/api'
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +26,38 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $authProvider) {
+  $authProvider.configure([
+      {
+      renter: {
+        apiUrl:                  'http://localhost:3000',
+        tokenValidationPath:     '/renter/validate_token',
+        signOutUrl:              '/renter/sign_out',
+        emailRegistrationPath:   '/renter',
+        accountUpdatePath:       '/renter',
+        accountDeletePath:       '/renter',
+        passwordResetPath:       '/renter/password',
+        passwordUpdatePath:      '/renter/password',
+        emailSignInPath:         '/renter/sign_in',
+        storage:                 'localStorage',
+        validateOnPageLoad: true
+      }
+    }, {
+      agent: {
+        apiUrl:                  'http://localhost:3000',
+        tokenValidationPath:     '/agent/validate_token',
+        signOutUrl:              '/agent/sign_out',
+        emailRegistrationPath:   '/agent',
+        accountUpdatePath:       '/agent',
+        accountDeletePath:       '/agent',
+        passwordResetPath:       '/agent/password',
+        passwordUpdatePath:      '/agent/password',
+        emailSignInPath:         '/agent/sign_in',
+        storage:                 'localStorage',
+        validateOnPageLoad: true
+      }
+    }
+  ])
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -37,6 +71,19 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     abstract: true,
     templateUrl: 'templates/tabs/tabs.html'
   })
+
+  //////////////////////////////////////////////////////////
+  .state('tab.test', {
+    url: '/agent',
+    views: {
+      'tab-testAgent': {
+        templateUrl: 'templates/test/test-agent-login.html',
+        controller: 'AuthCtrl'
+      }
+    }
+  })
+
+  //////////////////////////////////////////////////////////
 
   // Each tab has its own nav history stack:
 
