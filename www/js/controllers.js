@@ -124,10 +124,28 @@ angular.module('simplyHome.controllers', [])
     price_min: 0,
     price_max: 0,
     property_size_net_min: 0,
-    property_size_net_max: 0
+    property_size_net_max: 0,
+    availability: {}
   };
 
+  $scope.date = {};
+  $scope.time = {};
 
+
+//only need to parse when sending to the backend -- fix later
+  var parseDate = function(){
+    for (var date in $scope.date) {
+      var parsedDate = moment(date).format("DD/MM/YYYY");
+      $scope.enquiry.availability = parsedDate;
+    }
+  }
+
+  var parseTime = function(){
+    for (var time in $scope.time) {
+      var parsedTime = moment(time).format("hh:mm a");
+      $scope.enquiry.availability = parsedTime;
+    }
+  }
 
 //adds/removes the selected area according to the region
   $scope.addAreaKey = function(area,regionName){
@@ -152,6 +170,15 @@ angular.module('simplyHome.controllers', [])
     return type === $scope.active;
   };
 
+  $scope.activeB = '';
+  $scope.setActiveB = function(typeB) {
+    $scope.activeB = typeB;
+  };
+  $scope.isActiveB = function(typeB) {
+    return typeB === $scope.activeB;
+  };
+
+
   /*
    * if given group is the selected group, deselect it
    * else, select the given group
@@ -170,6 +197,15 @@ angular.module('simplyHome.controllers', [])
   };
 
 
+  var sendEnquiry = function(){
+    parseDate();
+    parseTime();
+    $http
+      .post('/api/renters/enquiries', $scope.enquiry)
+      .then(function(resp){
+        console.log(resp);
+      })
+  }
 
 
 

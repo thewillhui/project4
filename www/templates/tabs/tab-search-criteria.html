@@ -1,13 +1,19 @@
 <ion-view view-title="New enquiry">
   <ion-content class="padding">
     <p>{{enquiry}}</p>
+    <p>{{date}}</p>
     <h4>Bedrooms</h4>
     <div class="button-bar bar-dark">
-      <button ng-repeat="room in bedroomsBtns" ng-click="setActive('bed{{room.number}}'); enquiry.bedroom_num = room.number" ng-class="{'button-light': isActive('bed{{room.number}}')}" class="button button-block">{{room.number}}</button>
+      <button ng-repeat="room in bedroomsBtns"
+      ng-click="setActive('bed{{room.number}}'); enquiry.bedroom_num = room.number"
+      ng-class="{'button-light': isActive('bed{{room.number}}')}" class="button button-block">{{room.number}}</button>
     </div>
     <h4>Bathrooms</h4>
     <div class="button-bar bar-dark">
-      <button ng-repeat="room in bathroomsBtns" ng-click="setActive('bath{{room.number}}'); enquiry.bathroom_num = room.number" class="button button-block" ng-class="{'button-light': isActive('bath{{room.number}}')}">{{room.number}}</button>
+      <button ng-repeat="room in bathroomsBtns"
+      ng-click="setActiveB('bath{{room.number}}'); enquiry.bathroom_num = room.number"
+      class="button button-block"
+      ng-class="{'button-light': isActiveB('bath{{room.number}}')}">{{room.number}}</button>
     </div>
 
 
@@ -42,18 +48,17 @@
 
 
     <h4>Availability for viewings</h4>
+    <div> <h5>Timeslot 1</h5>
     <label class="item item-input">
       <span class="input-label">Day</span>
-      <input type="date">
+      <input type="date" ng-model="date.timeslot_1_date">
     </label>
 
-    <label class="item item-input " id="enquiryCriteria-input1">
+    <label class="item item-input">
       <span class="input-label">Time</span>
-      <input type="time" placeholder="">
+      <input type="time" ng-model="time.timeslot_1_time">
     </label>
-    <div style="margin-right:-20px;">
-      <button id="enquiryCriteria-button10" style="left:-10px;color:#222222;" class=" button button-dark button-small button-full button-icon icon ion-ios-plus ">Add additional date</button>
     </div>
-    <a class="button button-dark button-large button-block">Send enquiry</a>
+    <a class="button button-positive button-large button-block">Send enquiry</a>
   </ion-content>
 </ion-view>
