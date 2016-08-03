@@ -10,9 +10,6 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   url: 'http://localhost:8100/api'
 })
 
-.constant('ApiEndpoint', {
-  url: 'http://localhost:8100/api'
-})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -43,7 +40,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
         passwordResetPath:       '/renter/password',
         passwordUpdatePath:      '/renter/password',
         emailSignInPath:         '/renter/sign_in',
-        storage:                 'localStorage',
+        // storage:                 'localStorage',
         validateOnPageLoad: true
       }
     }, {
@@ -57,11 +54,11 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
         passwordResetPath:       '/agent/password',
         passwordUpdatePath:      '/agent/password',
         emailSignInPath:         '/agent/sign_in',
-        storage:                 'localStorage',
+        // storage:                 'localStorage',
         validateOnPageLoad: true
       }
     }
-  ])
+  ]);
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -70,7 +67,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/renter',
     abstract: true,
     templateUrl: 'templates/tabs/tabs.html'
@@ -78,7 +75,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
 
   //////////////////////////////////////////////////////////
   .state('tab.testrenter', {
-    url: '/renter',
+    url: '/renter-signup',
     views: {
       'tab-testRenter': {
         templateUrl: 'templates/test/test-renter-signup.html',

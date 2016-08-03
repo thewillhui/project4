@@ -115,13 +115,13 @@ angular.module('simplyHome.controllers', [])
     }
 
   $scope.enquiry = {
-    area: [],
+    areas: [],
     bedroom_num: '',
     bathroom_num: '',
     price_min: 0,
     price_max: 0,
-    property_size_net_min: 0,
-    property_size_net_max: 0,
+    property_size_min: 0,
+    property_size_max: 0,
     availability: {}
   };
 
@@ -131,21 +131,23 @@ angular.module('simplyHome.controllers', [])
 
 //only need to parse when sending to the backend -- fix later
   var parseDate = function(){
-    for (var date in $scope.date) {
-      var parsedDate = moment(date).format("DD/MM/YYYY");
-      $scope.enquiry.availability = parsedDate;
+    var dates = $scope.date;
+    for (var date in dates) {
+      var parsedDate = moment(dates[date]).format("DD/MM/YYYY");
+      $scope.enquiry.availability.date = parsedDate;
     }
   }
 
   var parseTime = function(){
-    for (var time in $scope.time) {
-      var parsedTime = moment(time).format("hh:mm a");
-      $scope.enquiry.availability = parsedTime;
+    var times = $scope.time;
+    for (var time in times) {
+      var parsedTime = moment(times[time]).format("hh:mm a");
+      $scope.enquiry.availability.time = parsedTime;
     }
   }
 
   $scope.addAreaKey = function(area){
-    var areaArr = $scope.enquiry.area;
+    var areaArr = $scope.enquiry.areas;
     var areaIndex = areaArr.indexOf(area);
     if (areaIndex>=0){
       areaArr.splice(areaIndex,1);
@@ -205,8 +207,9 @@ angular.module('simplyHome.controllers', [])
 
 
   $scope.sendEnquiry = function(){
-    // parseDate();
-    // parseTime();
+    parseDate();
+    parseTime();
+    console.log($scope.enquiry)
     $http
       .post(ApiEndpoint.url + '/enquiries', $scope.enquiry)
       .then(function(resp){
