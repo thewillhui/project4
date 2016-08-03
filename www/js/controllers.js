@@ -239,7 +239,6 @@ angular.module('simplyHome.controllers', [])
 //   $scope.chat = Chats.get($stateParams.chatId);
 // })
 
-
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
@@ -289,3 +288,44 @@ angular.module('simplyHome.controllers', [])
     };
 });
 
+.controller('ChatsCtrl', ['$scope', 'Chats', function($scope, Chats) {
+  console.log('ChatsCtrl');
+  // With the new view caching in Ionic, Controllers are only called
+  // when they are recreated or on app start, instead of every page change.
+  // To listen for when this page is active (for example, to refresh data),
+  // listen for the $ionicView.enter event:
+  //
+  //$scope.$on('$ionicView.enter', function(e) {
+  //});
+  $scope.chats = Chats.all();
+  // $scope.remove = function(chat) {
+  //   Chats.remove(chat);
+}])
+
+.controller('ChatDetailCtrl', ['$scope', '$stateParams', 'Chats', 'Messages', 'Agents', 'Renters', function($scope, $stateParams, Chats, Messages, Agents, Renters) {
+  // var init = function (){
+    $scope.messages = {};
+    $scope.chats = {};
+    $scope.agents = {};
+    $scope.renters = {};
+    // $scope.listings = {};
+  // }
+
+  // $scope.listings = Listings.all();
+  $scope.messages = Messages.all();
+  $scope.chats = Chats.all();
+  $scope.agentName = Agents.get($scope.messages[1].agent_id).name;
+  $scope.renterName = Renters.get($scope.messages[0].renter_id).name;
+  $scope.chat = Chats.get($stateParams.chatId);
+  // init();
+
+  $scope.sendMessage = function (msg) {
+    console.log(msg)
+  }
+}])
+
+.controller('ChatListingsCtrl', ['$scope', 'Agents', function($scope, Agents) {
+  $scope.agents = {};
+
+  $scope.agent = Agents.get()
+}])

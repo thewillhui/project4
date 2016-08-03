@@ -5,8 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services', 'ng-token-auth', 'ipCookie'])
-
+angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie', 'angularMoment'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -173,8 +172,21 @@ var app = angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simp
         }
       }
     })
+<<<<<<< 22da48e5ec235e2ee476fd17d23759ba92af1b13
 
   .state('tab.renter-account', {
+=======
+    .state('tab.chat-detail-listings', {
+      url: '/chats/:chatId/listings',
+      views: {
+        'tab-chats': {
+          templateUrl: 'templates/chat-listings.html',
+          controller: 'ChatListingsCtrl'
+        }
+      }
+    })
+  .state('tab.account', {
+>>>>>>> updated chatroom with dummy data
     url: '/account',
     views: {
       'tab-renter-account': {
@@ -187,4 +199,4 @@ var app = angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simp
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/renter/enquiry/location');
 
-});
+})
