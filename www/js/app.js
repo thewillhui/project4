@@ -73,12 +73,22 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   })
 
   //////////////////////////////////////////////////////////
-  .state('tab.test', {
+  .state('tab.testrenter', {
+    url: '/renter',
+    views: {
+      'tab-testRenter': {
+        templateUrl: 'templates/test/test-renter-signup.html',
+        controller: 'RenterAuthCtrl'
+      }
+    }
+  })
+
+  .state('tab.testagent', {
     url: '/agent',
     views: {
       'tab-testAgent': {
-        templateUrl: 'templates/test/test-agent-login.html',
-        controller: 'AuthCtrl'
+        templateUrl: 'templates/test/test-agent-signup.html',
+        controller: 'AgentAuthCtrl'
       }
     }
   })
