@@ -113,9 +113,35 @@ angular.module('simplyHome.controllers', [])
       ['Yuen Long', 'Tin Shui Wai', 'Tuen Mun', 'Tsuen Wan', 'Tai Wo Hau', 'Tsing Yi', 'Tseung Kwan O', 'Tai Po', 'Tai Wo', 'Sha Tin', 'Tai Wai', 'Fo Tan', 'Sham Tseng', 'Sai Kung', 'Clear Water Bay', 'Ma On Shan', 'Kwai Chung', 'Kwai Fong', 'Fan Ling', 'Sheung Shui', 'Tung Chung', 'Ma Wan', 'Discovery Bay', 'Lantau Island', 'Peng Chau', 'Lamma Island', 'Cheung Chau', 'Other Islands']
     }
 
-  $scope.enquiry = {};
-  $scope.minPrice = '0';
-  $scope.maxPrice = '0';
+  $scope.enquiry = {
+    region: {
+      'Hong Kong Island': [],
+      'Kowloon': [],
+      'New Territories': []
+    },
+    bedroom_num: '',
+    bathroom_num: '',
+    price_min: 0,
+    price_max: 0,
+    property_size_net_min: 0,
+    property_size_net_max: 0
+  };
+
+
+
+//adds/removes the selected area according to the region
+  $scope.addAreaKey = function(area,regionName){
+    var region = regionName;
+    var regionObj = $scope.enquiry.region;
+    var regionObjArr = regionObj[regionName];
+    var areaIndex = regionObjArr.indexOf(area);
+    if (areaIndex>=0){
+      regionObjArr.splice(areaIndex,1);
+    } else {
+      regionObjArr.push(area);
+    }
+  };
+
 
 //for making the buttons in button bar act like radio buttons
   $scope.active = '';
@@ -132,16 +158,20 @@ angular.module('simplyHome.controllers', [])
    */
 
   //key is from the ng-repeat. each ion-item must have unique directives or the accordion won't work
-  $scope.toggleGroup = function(key) {
-    if ($scope.isGroupShown(key)) {
+  $scope.toggleGroup = function(regionName) {
+    if ($scope.isGroupShown(regionName)) {
       $scope.shownGroup = null;
     } else {
-      $scope.shownGroup = key;
+      $scope.shownGroup = regionName;
     }
   };
-  $scope.isGroupShown = function(key) {
-    return $scope.shownGroup === key;
+  $scope.isGroupShown = function(regionName) {
+    return $scope.shownGroup === regionName;
   };
+
+
+
+
 
 })
 

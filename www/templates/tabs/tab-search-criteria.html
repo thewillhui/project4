@@ -2,48 +2,51 @@
   <ion-content class="padding">
     <p>{{enquiry}}</p>
     <h4>Bedrooms</h4>
-    <div class="button-bar bar-dark" >
-      <button ng-repeat="room in bedroomsBtns"
-              ng-click="setActive('bed{{room.number}}'); enquiry.bedrooms = room.number"
-              ng-class= "{'button-light': isActive('bed{{room.number}}')}"
-              class="button button-block"
-      >{{room.number}}</button>
+    <div class="button-bar bar-dark">
+      <button ng-repeat="room in bedroomsBtns" ng-click="setActive('bed{{room.number}}'); enquiry.bedroom_num = room.number" ng-class="{'button-light': isActive('bed{{room.number}}')}" class="button button-block">{{room.number}}</button>
     </div>
     <h4>Bathrooms</h4>
-    <div class="button-bar bar-dark" >
-      <button ng-repeat="room in bathroomsBtns"
-         ng-click="setActive('bath{{room.number}}'); enquiry.bathrooms = room.number"
-         class="button button-block"
-         ng-class= "{'button-light': isActive('bath{{room.number}}')}"
-         ng-model="enquiry.bathrooms[room.number]"
-      >{{room.number}}</button>
+    <div class="button-bar bar-dark">
+      <button ng-repeat="room in bathroomsBtns" ng-click="setActive('bath{{room.number}}'); enquiry.bathroom_num = room.number" class="button button-block" ng-class="{'button-light': isActive('bath{{room.number}}')}">{{room.number}}</button>
     </div>
 
 
+      <h4>Price</h4>
 
 
     <ion-item class="range">Min &nbsp;&nbsp;
       <i class="ion-social-usd-outline"></i>
-      <input type="range" step="1000" min="0" max="100000" name="Price range" ng-model="minPrice">
-      <i class="ion-social-usd">{{minPrice}}</i>
+      <input type="range" step="1000" min="0" max="100000" name="Price range" ng-model="enquiry.price_min">
+      <i class="ion-social-usd">{{enquiry.price_min}}</i>
     </ion-item>
 
     <ion-item class="range">Max &nbsp;
       <i class="ion-social-usd-outline"></i>
-      <input type="range" step="1000" min="0" max="100000" name="Price range" ng-model="maxPrice">
-      <i class="ion-social-usd">{{maxPrice}}</i>
+      <input type="range" step="1000" min="0" max="100000" name="Price range" ng-model="enquiry.price_max">
+      <i class="ion-social-usd">{{enquiry.price_max}}</i>
+    </ion-item>
+
+    <h4>Size</h4>
+
+
+
+    <ion-item class="range">Min size (net)&nbsp;
+      <i class="ion-arrow-expand"></i>
+      <input type="range" step="100" min="100" max="5000" name="Size net" ng-model="enquiry.property_size_net_min"> {{enquiry.property_size_net_min}} sq.ft
+    </ion-item>
+
+    <ion-item class="range">Max size (net) &nbsp;
+      <i class="ion-arrow-expand"></i>
+      <input type="range" step="100" min="100" max="5000" name="Size net" ng-model="enquiry.property_size_net_max"> {{enquiry.property_size_net_max}} sq.ft
     </ion-item>
 
 
-
-    <ion-item class="range range-balanced " id="enquiryCriteria-range2">Size (net sq.ft)
-      <input type="range" value="500" min="0" max="20000">{{value}}
-    </ion-item>
-    <h4 id="enquiryCriteria-heading3">Availability for viewings</h4>
-    <label class="item item-input " id="enquiryCriteria-input2">
+    <h4>Availability for viewings</h4>
+    <label class="item item-input">
       <span class="input-label">Day</span>
-      <input type="date" placeholder="">
+      <input type="date">
     </label>
+
     <label class="item item-input " id="enquiryCriteria-input1">
       <span class="input-label">Time</span>
       <input type="time" placeholder="">
@@ -51,6 +54,6 @@
     <div style="margin-right:-20px;">
       <button id="enquiryCriteria-button10" style="left:-10px;color:#222222;" class=" button button-dark button-small button-full button-icon icon ion-ios-plus ">Add additional date</button>
     </div>
-    <a ui-sref="signup" id="enquiryCriteria-button11" class=" button button-dark button-large button-block ">Send enquiry</a>
+    <a class="button button-dark button-large button-block">Send enquiry</a>
   </ion-content>
 </ion-view>

@@ -1,27 +1,30 @@
 <ion-view view-title="New enquiry">
-  <ion-nav-buttons side="right">
-    <a class="button" ui-sref="tab.enquiry.criteria">
+  <ion-nav-buttons side="secondary">
+    <a class="button button-clear button-dark" ui-sref="tab.enquiry.criteria">
         Next
+        <i class="icon ion-ios-arrow-forward"></i>
       </a>
   </ion-nav-buttons>
   <ion-content>
   <p>{{enquiry}}</p>
     <ion-list>
-      <div ng-repeat="(key,value) in region">
+      <div ng-repeat="(regionName,value) in region">
         <ion-item
         class="item-dark"
-        ng-click="toggleGroup(key)"
-        ng-class="{active: isGroupShown(key)}">
+        ng-click="toggleGroup(regionName)"
+        ng-class="{active: isGroupShown(regionName)}"
+        >
           <i
           class="icon"
-          ng-class="isGroupShown(key) ? 'ion-minus' : 'ion-plus'">
-          </i> &nbsp; {{key}}
+          ng-class="isGroupShown(regionName) ? 'ion-minus' : 'ion-plus'">
+          </i> &nbsp; {{regionName}}
         </ion-item>
         <ion-checkbox
         class="item-accordion item-checkbox-right"
-        ng-repeat="area in region[key] | orderBy"
-        ng-show="isGroupShown(key)"
-        ng-model="enquiry.area[area]">
+        ng-repeat="area in region[regionName] | orderBy"
+        ng-show="isGroupShown(regionName)"
+        ng-click="addAreaKey(area, regionName)"
+        >
           {{area}}
         </ion-checkbox>
       </div>
