@@ -28,7 +28,19 @@ angular.module('simplyHome.controllers', [])
         console.log(resp);
         // handle error response
       });
-    };
+  };
+
+  $scope.handleSignOutClick = function() {
+    $auth.signOut()
+      .then(function(resp) {
+        console.log(resp);
+        // handle success response
+      })
+      .catch(function(resp) {
+        console.log(resp);
+        // handle error response
+      });
+  }
 })
 
 .controller('RenterAuthCtrl', function($scope, $auth) {
@@ -59,7 +71,19 @@ angular.module('simplyHome.controllers', [])
         console.log(resp);
         // handle error response
       });
-    };
+  };
+
+  $scope.handleSignOutClick = function() {
+    $auth.signOut()
+      .then(function(resp) {
+        console.log(resp);
+        // handle success response
+      })
+      .catch(function(resp) {
+        console.log(resp);
+        // handle error response
+      });
+  };
 })
 
 .controller('SearchCtrl', function($scope, HkIsland, Kowloon, NewTerritories) {
