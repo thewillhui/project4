@@ -5,7 +5,10 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie', 'angularMoment'])
+angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie', 'ngFileUpload'])
+.constant('ApiEndpoint', {
+  url: 'http://localhost:8100/api'
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -62,7 +65,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
 
   // setup an abstract state for the tabs directive
     .state('tab', {
-    url: '/renter',
+    url: '/agent',
     abstract: true,
     templateUrl: 'templates/tabs-renter/tabs.html'
   })
@@ -196,5 +199,6 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/renter/enquiry/location');
+  $urlRouterProvider.otherwise('/agent/dash');
 
 })
