@@ -1,0 +1,32 @@
+<ion-view view-title="New enquiry">
+  <ion-nav-buttons side="secondary">
+    <a class="button button-clear button-dark" ui-sref="tab.renter-enquiry.criteria">
+        Next
+        <i class="icon ion-ios-arrow-forward"></i>
+      </a>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <div ng-repeat="(regionName,value) in region">
+        <ion-item
+        class="item-dark"
+        ng-click="toggleGroup(regionName)"
+        ng-class="{active: isGroupShown(regionName)}"
+        >
+          <i
+          class="icon"
+          ng-class="isGroupShown(regionName) ? 'ion-minus' : 'ion-plus'">
+          </i> &nbsp; {{regionName}}
+        </ion-item>
+        <ion-checkbox
+        class="item-accordion item-checkbox-right"
+        ng-repeat="area in region[regionName] | orderBy"
+        ng-show="isGroupShown(regionName)"
+        ng-click="addAreaKey(area, regionName)"
+        >
+          {{area}}
+        </ion-checkbox>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

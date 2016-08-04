@@ -5,10 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie'])
-.constant('ApiEndpoint', {
-  url: 'http://localhost:8100/api'
-})
+var app = angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services', 'ng-token-auth', 'ipCookie'])
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -27,37 +25,35 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
 })
 
 .config(function($stateProvider, $urlRouterProvider, $authProvider) {
-  $authProvider.configure([
-      {
-      renter: {
-        apiUrl:                  'http://localhost:3000',
-        tokenValidationPath:     '/renter/validate_token',
-        signOutUrl:              '/renter/sign_out',
-        emailRegistrationPath:   '/renter',
-        accountUpdatePath:       '/renter',
-        accountDeletePath:       '/renter',
-        passwordResetPath:       '/renter/password',
-        passwordUpdatePath:      '/renter/password',
-        emailSignInPath:         '/renter/sign_in',
-        storage:                 'localStorage',
-        validateOnPageLoad: true
-      }
-    }, {
-      agent: {
-        apiUrl:                  'http://localhost:3000',
-        tokenValidationPath:     '/agent/validate_token',
-        signOutUrl:              '/agent/sign_out',
-        emailRegistrationPath:   '/agent',
-        accountUpdatePath:       '/agent',
-        accountDeletePath:       '/agent',
-        passwordResetPath:       '/agent/password',
-        passwordUpdatePath:      '/agent/password',
-        emailSignInPath:         '/agent/sign_in',
-        storage:                 'localStorage',
-        validateOnPageLoad: true
-      }
+  $authProvider.configure([{
+    renter: {
+      apiUrl: 'http://localhost:3000',
+      tokenValidationPath: '/renter/validate_token',
+      signOutUrl: '/renter/sign_out',
+      emailRegistrationPath: '/renter',
+      accountUpdatePath: '/renter',
+      accountDeletePath: '/renter',
+      passwordResetPath: '/renter/password',
+      passwordUpdatePath: '/renter/password',
+      emailSignInPath: '/renter/sign_in',
+      storage: 'localStorage',
+      validateOnPageLoad: true
     }
-  ])
+  }, {
+    agent: {
+      apiUrl: 'http://localhost:3000',
+      tokenValidationPath: '/agent/validate_token',
+      signOutUrl: '/agent/sign_out',
+      emailRegistrationPath: '/agent',
+      accountUpdatePath: '/agent',
+      accountDeletePath: '/agent',
+      passwordResetPath: '/agent/password',
+      passwordUpdatePath: '/agent/password',
+      emailSignInPath: '/agent/sign_in',
+      storage: 'localStorage',
+      validateOnPageLoad: true
+    }
+  }]);
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -69,12 +65,12 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     .state('tab', {
     url: '/renter',
     abstract: true,
-    templateUrl: 'templates/tabs/tabs.html'
+    templateUrl: 'templates/tabs-renter/tabs.html'
   })
 
   //////////////////////////////////////////////////////////
   .state('tab.testrenter', {
-    url: '/renter',
+    url: '/rentersignup',
     views: {
       'tab-testRenter': {
         templateUrl: 'templates/test/test-renter-signup.html',
@@ -117,46 +113,78 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.renter-enquiry', {
+    url: '/enquiry',
+    abstract: true,
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tabs/tab-search.html',
-        controller: 'SearchCtrl'
+      'tab-renter-enquiry': {
+        templateUrl: 'templates/tabs-renter/enquiry.html',
+        controller: 'EnquiryCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
+  .state('tab.renter-enquiry.location', {
+    url: '/location',
+    templateUrl: 'templates/tabs-renter/tab-enquiry.html'
+  })
+
+  .state('tab.renter-enquiry.criteria', {
+    url: '/criteria',
+    templateUrl: 'templates/tabs-renter/tab-enquiry-criteria.html'
+  })
+
+//only show if not logged in
+  .state('tab.renter-signup', {
+    url: '/renter-signup',
+    views: {
+      'tab-renter-signup': {
+        templateUrl: 'templates/tabs-renter/tab-signup.html',
+        controller: 'RenterAuthCtrl'
+      }
+    }
+  })
+
+  .state('tab.renter-my-enquiries', {
+    url: '/renter-myenquiries',
+    views: {
+      'tab-renter-my-enquiries': {
+        templateUrl: 'templates/tabs-renter/tab-my-enquiries.html',
+        controller: 'RenterMyEnquiriesCtrl'
+      }
+    }
+  })
+
+  .state('tab.renter-chats', {
       url: '/chats',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tabs/tab-chats.html',
+        'tab-renter-chats': {
+          templateUrl: 'templates/tabs-renter/tab-chats.html',
           controller: 'ChatsCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
+    .state('tab.renter-chat-detail', {
       url: '/chats/:chatId',
       views: {
-        'tab-chats': {
+        'tab-renter-chats': {
           templateUrl: 'templates/chat-detail.html',
           controller: 'ChatDetailCtrl'
         }
       }
     })
 
-  .state('tab.account', {
+  .state('tab.renter-account', {
     url: '/account',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tabs/tab-account.html',
+      'tab-renter-account': {
+        templateUrl: 'templates/tabs-renter/tab-account.html',
         controller: 'AccountCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/renter/dash');
+  $urlRouterProvider.otherwise('/renter/enquiry/location');
 
 });
