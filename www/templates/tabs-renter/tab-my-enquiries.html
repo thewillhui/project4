@@ -1,0 +1,76 @@
+<ion-view view-title="My enquiries">
+  <ion-content class="padding">
+    <div class="card" ng-repeat="enquiry in myEnquiries">
+      <div class="item item-divider">
+      </div>
+        <div class="row">
+          <div class="col">
+            <ion-item class="item item-icon-left">
+              <i class="icon ion-ios-location-outline"></i>
+              <p ng-repeat="area in enquiry.areas"> {{area}}</p>
+          </ion-item>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon bed-icon"></i> {{enquiry.bedroom_num}}
+          </ion-item>
+        </div>
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon bath-icon"></i> {{enquiry.bathroom_num}}
+          </ion-item>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-arrow-expand"></i> {{enquiry.property_size_min}} sq.ft
+          </ion-item>
+        </div>
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-arrow-expand"></i> {{enquiry.property_size_max}} sq.ft
+          </ion-item>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left-sm">
+            <i class="icon ion-social-usd-outline"></i> {{enquiry.price_min}}
+          </ion-item>
+        </div>
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-social-usd"></i> {{enquiry.price_max}}
+          </ion-item>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-ios-box-outline"></i> {{enquiry.movein_date}}
+          </ion-item>
+        </div>
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon-sm ion-alert"></i> {{enquiry.urgent}}
+          </ion-item>
+        </div>
+      </div>
+      <div class="item item-divider" ng-init="dateTime = enquiry.created_at">
+        <h4>Your enquiry was sent {{parseDateTime(dateTime)}}</h4>
+        <button class="button button-block button-positive">
+          View matched agents
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+<!--  <div class="col-33">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-ios-home-outline"></i>
+            {{enquiry.building_type}} walk up
+          </ion-item>
+        </div> -->

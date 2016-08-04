@@ -1,0 +1,22 @@
+<ion-view view-title="Sign-up">
+  <ion-content class="padding">
+    <div class="list">
+      <form ng-submit="handleRegBtnClick()" role="form" ng-init="registrationForm = {}">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Mobile number</span>
+          <input type="number" name="mobile" ng-model="registrationForm.email" required="required" placeholder="Valid mobile number required for SMS verification" />
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Password</span>
+          <input type="password" name="password" ng-model="registrationForm.password" required="required" placeholder="Enter a password" />
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Confirm password</span>
+          <input type="password" name="password_confirmation" ng-model="registrationForm.password_confirmation" required="required" placeholder="Confirm password" />
+        </label>
+        <h5>Your number will not be shared with agents or any third party.</h5>
+        <button type="submit" class="button button-positive button-large button-block">Register</button>
+      </form>
+    </div>
+  </ion-content>
+</ion-view>

@@ -87,7 +87,7 @@ angular.module('simplyHome.controllers', [])
   };
 })
 
-.controller('EnquiryCtrl', function($scope, $state, $http, ApiEndpoint) {
+.controller('EnquiryCtrl', function($scope, $state, $http) {
 
 
   $scope.bedroomsBtns = [
@@ -122,7 +122,10 @@ angular.module('simplyHome.controllers', [])
     price_max: 0,
     property_size_min: 0,
     property_size_max: 0,
-    availability: {}
+    movein_date:'',
+    urgent: '',
+    availability: {},
+    remarks: ''
   };
 
   $scope.date = {};
@@ -146,6 +149,7 @@ angular.module('simplyHome.controllers', [])
     }
   }
 
+  //if an area is selected the function checks if it's in the enquiry object, if it is then remove it if not then add it. mimicks the checkbox functionality
   $scope.addAreaKey = function(area){
     var areaArr = $scope.enquiry.areas;
     var areaIndex = areaArr.indexOf(area);
@@ -155,20 +159,6 @@ angular.module('simplyHome.controllers', [])
       areaArr.push(area);
     }
   };
-
-//adds/removes the selected area according to the region
-  // $scope.addAreaKey = function(area,regionName){
-  //   var region = regionName;
-  //   var regionObj = $scope.enquiry.region;
-  //   var regionObjArr = regionObj[regionName];
-  //   var areaIndex = regionObjArr.indexOf(area);
-  //   if (areaIndex>=0){
-  //     regionObjArr.splice(areaIndex,1);
-  //   } else {
-  //     regionObjArr.push(area);
-  //   }
-  // };
-
 
 //for making the buttons in button bar act like radio buttons
   $scope.active = '';
@@ -211,7 +201,7 @@ angular.module('simplyHome.controllers', [])
     parseTime();
     console.log($scope.enquiry)
     $http
-      .post(ApiEndpoint.url + '/enquiries', $scope.enquiry)
+      .post('http://localhost:3000/api/enquiries', $scope.enquiry)
       .then(function(resp){
         console.log(resp.status);
         console.log(resp.data);
@@ -222,6 +212,29 @@ angular.module('simplyHome.controllers', [])
 
 })
 
+.controller('RenterMyEnquiriesCtrl', function($scope, $http) {
+
+  $scope.getEnquiries = function(){
+    $http
+      .get('http://localhost:3000/api/enquiries')
+      .then(function(resp){
+        console.log("got enquiries")
+        $scope.myEnquiries = resp.data;
+      })
+  };
+    $scope.getEnquiries();
+
+  $scope.dateTime = '';
+  var dateTime = $scope.dateTime;
+
+  $scope.parseDateTime = function(dateTime){
+
+   return moment(dateTime).startOf('day').fromNow();
+
+  }
+    // $scope.parseDateTime(dateTime);
+
+  })
 // .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
 //   $scope.chat = Chats.get($stateParams.chatId);
 // })

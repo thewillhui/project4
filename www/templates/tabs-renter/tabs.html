@@ -6,18 +6,28 @@ navigation history that also transitions its views in and out.
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
   <!-- Dashboard Tab -->
-  <ion-tab title="New enquiry" icon-off="ion-compose" icon-on="ion-compose" ui-sref="tab.enquiry.location">
-    <ion-nav-view name="tab-enquiry"></ion-nav-view>
+  <ion-tab title="New enquiry" icon-off="ion-compose" icon-on="ion-compose" ui-sref="tab.renter-enquiry.location">
+    <ion-nav-view name="tab-renter-enquiry"></ion-nav-view>
+  </ion-tab>
+
+<!-- renter signup -->
+  <ion-tab title="Sign-up" icon-off="ion-person-add" icon-on="ion-person-add" ui-sref="tab.renter-signup">
+    <ion-nav-view name="tab-renter-signup"></ion-nav-view>
   </ion-tab>
 
   <!-- Chats Tab -->
   <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/renter/chats">
-    <ion-nav-view name="tab-chats"></ion-nav-view>
+    <ion-nav-view name="tab-renter-chats"></ion-nav-view>
+  </ion-tab>
+
+  <!-- My Enquiries Tab -->
+  <ion-tab title="My Enquiries" icon-off="ion-ios-list-outline" icon-on="ion-ios-list-outline" ui-sref="tab.renter-my-enquiries">
+    <ion-nav-view name="tab-renter-my-enquiries"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->
   <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/renter/account">
-    <ion-nav-view name="tab-account"></ion-nav-view>
+    <ion-nav-view name="tab-renter-account"></ion-nav-view>
   </ion-tab>
 
   <!-- agent signup -->

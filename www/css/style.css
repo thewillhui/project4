@@ -13,3 +13,7 @@
 .list .item.item-accordion.ng-hide-remove {
   display: block !important;
 }
+
+.item-icon-left .icon-sm, .item-icon-right .icon-sm {
+  font-size: 24px;
+}
