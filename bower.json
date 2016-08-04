@@ -7,5 +7,6 @@
   "dependencies": {
     "ng-token-auth": "^0.0.29",
     "angular-cookie": "^4.1.0"
+    "angular-moment": "^0.10.3"
   }
 }
