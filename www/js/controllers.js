@@ -132,7 +132,7 @@ angular.module('simplyHome.controllers', [])
   $scope.time = {};
 
 
-//only need to parse when sending to the backend -- fix later
+//only need to parse when sending to the backend
   var parseDate = function(){
     var dates = $scope.date;
     for (var date in dates) {
@@ -199,7 +199,6 @@ angular.module('simplyHome.controllers', [])
   $scope.sendEnquiry = function(){
     parseDate();
     parseTime();
-    console.log($scope.enquiry)
     $http
       .post('http://localhost:3000/api/enquiries', $scope.enquiry)
       .then(function(resp){
@@ -212,13 +211,12 @@ angular.module('simplyHome.controllers', [])
 
 })
 
-.controller('RenterMyEnquiriesCtrl', function($scope, $http) {
+.controller('RenterMyEnquiriesCtrl', function($scope, $http, $ionicScrollDelegate) {
 
   $scope.getEnquiries = function(){
     $http
       .get('http://localhost:3000/api/enquiries')
       .then(function(resp){
-        console.log("got enquiries")
         $scope.myEnquiries = resp.data;
       })
   };
@@ -228,11 +226,13 @@ angular.module('simplyHome.controllers', [])
   var dateTime = $scope.dateTime;
 
   $scope.parseDateTime = function(dateTime){
+   return moment(dateTime).fromNow();
+  };
 
-   return moment(dateTime).startOf('day').fromNow();
+  $scope.scrollResize = function (){
+    $ionicScrollDelegate.resize();
+  };
 
-  }
-    // $scope.parseDateTime(dateTime);
 
   })
 // .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

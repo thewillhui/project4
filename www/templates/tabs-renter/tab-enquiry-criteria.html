@@ -14,22 +14,22 @@
     <ion-item class="range">Min &nbsp;&nbsp;
       <i class="ion-social-usd-outline"></i>
       <input type="range" step="2000" min="0" max="200000" name="Price range" ng-model="enquiry.price_min">
-      <i class="ion-social-usd">{{enquiry.price_min}}</i>
+      <i class="ion-social-usd"> {{enquiry.price_min | number:0}}</i>
     </ion-item>
     <ion-item class="range">Max &nbsp;
       <i class="ion-social-usd-outline"></i>
       <input type="range" step="2000" min="0" max="200000" name="Price range" ng-model="enquiry.price_max">
-      <i class="ion-social-usd">{{enquiry.price_max}}</i>
+      <i class="ion-social-usd"> {{enquiry.price_max | number:0}}</i>
     </ion-item>
 
     <h4>Size</h4>
     <ion-item class="range">Min size (net)&nbsp;
       <i class="ion-arrow-expand"></i>
-      <input type="range" step="100" min="100" max="5000" name="Size net" ng-model="enquiry.property_size_min"> {{enquiry.property_size_min}} sq.ft
+      <input type="range" step="100" min="100" max="5000" name="Size net" ng-model="enquiry.property_size_min"> {{enquiry.property_size_min | number:0}} sq.ft
     </ion-item>
     <ion-item class="range">Max size (net) &nbsp;
       <i class="ion-arrow-expand"></i>
-      <input type="range" step="100" min="100" max="5000" name="Size net" ng-model="enquiry.property_size_max"> {{enquiry.property_size_max}} sq.ft
+      <input type="range" step="100" min="100" max="5000" name="Size net" ng-model="enquiry.property_size_max"> {{enquiry.property_size_max | number:0}} sq.ft
     </ion-item>
 
     <h4>Expected move-in date</h4>
