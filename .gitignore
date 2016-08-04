@@ -6,4 +6,4 @@ platforms/
 plugins/
 
 lib
-**.*/DS_Store
+**/*.DS_Store
