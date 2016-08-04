@@ -20,48 +20,39 @@
       <div class="row">
         <div class="col-50">
           <ion-item class="item item-icon-left">
-            <i class="icon bed-icon"></i> {{enquiry.bedroom_num}}
+            <i class="icon icon-bed"></i> {{enquiry.bedroom_num}}
           </ion-item>
         </div>
         <div class="col-50">
           <ion-item class="item item-icon-left">
-            <i class="icon bath-icon"></i> {{enquiry.bathroom_num}}
+            <i class="icon icon-bathtub"></i> {{enquiry.bathroom_num}}
           </ion-item>
         </div>
       </div>
       <div class="row">
         <div class="col-50">
           <ion-item class="item item-icon-left">
-            <i class="icon ion-arrow-expand"></i> {{enquiry.property_size_min | number:0}} sq.ft
+            <i class="icon icon-scale"></i> {{enquiry.property_size_min | number:0}} ft<sup>2</sup> (net)<br/>
+            {{enquiry.property_size_max | number:0}} ft<sup>2</sup> (net)
           </ion-item>
         </div>
         <div class="col-50">
           <ion-item class="item item-icon-left">
-            <i class="icon ion-arrow-expand"></i> {{enquiry.property_size_max | number:0}} sq.ft
+              <i class="icon ion-social-usd-outline"></i>
+              {{enquiry.price_min | number:0}} <br/>
+              {{enquiry.price_max | number:0}}
           </ion-item>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-50">
-          <ion-item class="item item-icon-left-sm">
-            <i class="icon ion-social-usd-outline"></i> {{enquiry.price_min | number:0}}
-          </ion-item>
         </div>
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon ion-social-usd"></i> {{enquiry.price_max | number:0}}
-          </ion-item>
-        </div>
-      </div>
       <div class="row">
         <div class="col-50">
           <ion-item class="item item-icon-left">
-            <i class="icon ion-ios-box-outline"></i> {{enquiry.movein_date}}
+            <i class="icon icon-move"></i> {{enquiry.movein_date}}
           </ion-item>
         </div>
         <div class="col-50">
           <ion-item class="item item-icon-left">
-            <i class="icon-sm ion-alert"></i> {{enquiry.urgent}}
+            <i class="icon ion-ios-bolt-outline"></i> {{enquiry.urgent}}
           </ion-item>
         </div>
       </div>
