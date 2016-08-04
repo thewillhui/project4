@@ -6,9 +6,6 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie', 'ngFileUpload'])
-.constant('ApiEndpoint', {
-  url: 'http://localhost:8100/api'
-})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -67,7 +64,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     .state('tab', {
     url: '/agent',
     abstract: true,
-    templateUrl: 'templates/tabs-renter/tabs.html'
+    templateUrl: 'templates/tabs-agent/tabs.html'
   })
 
   //////////////////////////////////////////////////////////
@@ -126,6 +123,16 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
+  .state('tab.agent-newlisting', {
+    url: '/newlisting',
+    views: {
+      'tab-newlisting': {
+        templateUrl: 'templates/tabs-agent/tab-new.html',
+        controller: 'NewCtrl'
+      }
+    }
+  })
+
   .state('tab.renter-enquiry.location', {
     url: '/location',
     templateUrl: 'templates/tabs-renter/tab-enquiry.html'
@@ -153,6 +160,53 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
       'tab-renter-my-enquiries': {
         templateUrl: 'templates/tabs-renter/tab-my-enquiries.html',
         controller: 'RenterMyEnquiriesCtrl'
+
+  .state('tab.agent-listings', {
+    url: '/listings',
+    views: {
+      'tab-listings': {
+        templateUrl: 'templates/tabs-agent/tab-listings.html',
+        controller: 'ListingsCtrl'
+      }
+    }
+  })
+
+  .state('tab.agent-appointments', {
+    url: '/appointments',
+    views: {
+      'tab-appointments': {
+        templateUrl: 'templates/tabs-agent/tab-appointments.html',
+        controller: 'AppointmentsCtrl'
+      }
+    }
+  })
+
+  .state('tab.agent-enquiries', {
+    url: '/enquiries',
+    views: {
+      'tab-enquiries': {
+        templateUrl: 'templates/tabs-agent/tab-enquiries.html',
+        controller: 'EnquiriesCtrl'
+      }
+    }
+  })
+
+  .state('tab.agent-chats', {
+      url: '/chats',
+      views: {
+        'tab-agent-chats': {
+          templateUrl: 'templates/tabs-agent/tab-chats.html',
+          controller: 'ChatsCtrl'
+        }
+      }
+    })
+    .state('tab.agent-chat-detail', {
+      url: '/chats/:chatId',
+      views: {
+        'tab-agent-chats': {
+          templateUrl: 'templates/chat-detail.html',
+          controller: 'ChatDetailCtrl'
+        }
       }
     }
   })
@@ -187,18 +241,27 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
+
   .state('tab.renter-account', {
     url: '/account',
     views: {
       'tab-renter-account': {
         templateUrl: 'templates/tabs-renter/tab-account.html',
+      }
+    }
+  })
+
+  .state('tab.agent-account', {
+    url: '/account',
+    views: {
+      'tab-agent-account': {
+        templateUrl: 'templates/tabs-agent/tab-account.html',
         controller: 'AccountCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/renter/enquiry/location');
-  $urlRouterProvider.otherwise('/agent/dash');
 
-})
+  $urlRouterProvider.otherwise('/renter/enquiry/location');
+  $urlRouterProvider.otherwise('/agent/newlisting');
