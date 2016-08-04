@@ -288,21 +288,27 @@ angular.module('simplyHome.controllers', [])
     };
 })
 
-.controller('ChatsCtrl', ['$scope', 'Chats', function($scope, Chats) {
-  console.log('ChatsCtrl');
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-  $scope.chats = Chats.all();
-  // $scope.remove = function(chat) {
-  //   Chats.remove(chat);
+.controller('RenterChatsCtrl', ['$scope', '$http', 'Chats', function($scope, $http, Chats) {
+  $scope.chats = Chats.all;
+  // // For front-end testing
+  // $scope.chatsApi = {
+  //   getChats: function () {
+  //     $http ({
+  //       url: 'http://localhost:3000/renter-chat-detail',
+  //       method: 'get'
+  //     }).then(function (resp) {
+  //       console.log(resp.data)
+  //       // $scope.chats = resp.data.chats;
+  //     })
+  //   },
+  //   init: function () {
+  //     this.getChats();
+  //   }
+  // }
+  // $scope.chatsApi.init();
 }])
 
-.controller('ChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ionicScrollDelegate', 'Chats', 'Messages', 'Agents', 'Renters', 'Listings', function($scope, $http, $stateParams, $ionicScrollDelegate, Chats, Messages, Agents, Renters, Listings) {
+.controller('RenterChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ionicScrollDelegate', 'Chats', 'Messages', 'Agents', 'Renters', 'Listings', function($scope, $http, $stateParams, $ionicScrollDelegate, Chats, Messages, Agents, Renters, Listings) {
   // var ctrlInit = function (){
     $scope.messages = {};
     $scope.agents = {};
@@ -331,54 +337,54 @@ angular.module('simplyHome.controllers', [])
     // ctrlInit();
   }
 
-  // messages api
-  $scope.messagesApi = {
-    getMessages: function () {
-      console.log('getmessages')
-      $http ({
-        url: 'http://localhost:3000/chat-details',
-        method: 'get'
-      }).then(function (resp) {
-        $scope.messages = resp.data.messages;
-      })
-    },
-    createMessage: function () {
-      console.log('sendmessage')
-      $http({
-        url: 'http://localhost:3000/chat-details',
-        method: 'post',
-        data: $scope.input
-      }).then(function (res) {
-        console.log(res);
-        $scope.messages.push(res.data.input);
-      })
-    },
-    init: function () {
-      this.getMessages();
-    }
-  };
+  // // messages api
+  // $scope.messagesApi = {
+  //   getMessages: function () {
+  //     console.log('getmessages')
+  //     $http ({
+  //       url: 'http://localhost:3000/api/chats',
+  //       method: 'get'
+  //     }).then(function (resp) {
+  //       $scope.messages = resp.data.messages;
+  //     })
+  //   },
+  //   createMessage: function () {
+  //     console.log('sendmessage')
+  //     $http({
+  //       url: 'http://localhost:3000/renter-chat-details',
+  //       method: 'post',
+  //       data: $scope.input
+  //     }).then(function (res) {
+  //       console.log(res);
+  //       $scope.messages.push(res.data.input);
+  //     })
+  //   },
+  //   init: function () {
+  //     this.getMessages();
+  //   }
+  // };
   // ctrlInit();
-  $scope.messagesApi.init();
+  // $scope.messagesApi.init();
 }])
 
-.controller('ChatListingsCtrl', ['$scope', 'Agents', 'Listings', function($scope, Agents, Listings) {
+.controller('RenterChatListingsCtrl', ['$scope', 'Agents', 'Listings', function($scope, Agents, Listings) {
   $scope.agents = {};
 
-  // listings api
-  $scope.listingsApi = {
-    getListings: function () {
-      console.log('getlistings')
-      $http({
-        url: 'http://localhost:3000/listings',
-        method: 'get'
-      }).then(function (resp) {
-        $scope.listings = resp.data.listings;
-      })
-    },
-    init: function () {
-      this.getListings();
-    }
-  };
-  ctrlInit();
-  $scope.listingsApi.init();
+  // // listings api
+  // $scope.listingsApi = {
+  //   getListings: function () {
+  //     console.log('getlistings')
+  //     $http({
+  //       url: 'http://localhost:3000/listings',
+  //       method: 'get'
+  //     }).then(function (resp) {
+  //       $scope.listings = resp.data.listings;
+  //     })
+  //   },
+  //   init: function () {
+  //     this.getListings();
+  //   }
+  // };
+  // // ctrlInit();
+  // $scope.listingsApi.init();
 }])

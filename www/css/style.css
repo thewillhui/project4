@@ -129,7 +129,12 @@ at the bottom as the textarea resizes */
 }
 
 .listings {
-  border-color: black;
+  border: 0.5px solid #C3C3C3;
+  margin: 0px;
+  z-index: 1;
+  position: fixed;
+  top: 43px;
+  background-color: white;
 }
 
 .listings>.button {

@@ -157,15 +157,22 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   .state('tab.renter-chats', {
       url: '/chats',
       views: {
+<<<<<<< 1fae7f17824b6e773f3e7cb9685b81575acc71a9
         'tab-renter-chats': {
           templateUrl: 'templates/tabs-renter/tab-chats.html',
           controller: 'ChatsCtrl'
+=======
+        'tab-chats': {
+          templateUrl: 'templates/tabs/tab-chats.html',
+          controller: 'RenterChatsCtrl'
+>>>>>>> listing button fixed
         }
       }
     })
     .state('tab.renter-chat-detail', {
       url: '/chats/:chatId',
       views: {
+<<<<<<< 1fae7f17824b6e773f3e7cb9685b81575acc71a9
         'tab-renter-chats': {
           templateUrl: 'templates/chat-detail.html',
           controller: 'ChatDetailCtrl'
@@ -177,11 +184,20 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   .state('tab.renter-account', {
 =======
     .state('tab.chat-detail-listings', {
+=======
+        'tab-chats': {
+          templateUrl: 'templates/renter-chat-detail.html',
+          controller: 'RenterChatDetailCtrl'
+        }
+      }
+    })
+    .state('tab.renter-chat-detail-listings', {
+>>>>>>> listing button fixed
       url: '/chats/:chatId/listings',
       views: {
         'tab-chats': {
-          templateUrl: 'templates/chat-listings.html',
-          controller: 'ChatListingsCtrl'
+          templateUrl: 'templates/renter-chat-listings.html',
+          controller: 'RenterChatListingsCtrl'
         }
       }
     })

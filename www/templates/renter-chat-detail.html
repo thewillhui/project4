@@ -5,14 +5,16 @@
     The Friends service returns an array of friend data
   -->
   <ion-view view-title="{{chat.name}}">
+    <!-- when it's done, should add this ng-show="listings" to div  -->
+    <div class="listings col">
+      <a class="button button-dark"
+         href="#/renter/chats/{{chat.id}}/listings">
+        View Listings
+      </a>
+    </div>
     <ion-content class="padding" delegate-handle="userMessageScroll">
-      <!-- when it's done, should add this ng-show="listings" to div  -->
-      <div class="listings col">
-        <a class="button button-dark"
-           href="#/renter/chats/{{chat.id}}/listings">
-          View Listings
-        </a>
-      <ion-item ng-repeat="message in messages">
+      <!-- <div ng-if="" -->
+      <div class="chat-bubble left" ng-repeat="message in messages">
         <!-- <img ng-src="{{chat.face}}" style="width: 64px; height: 64px"> -->
         <p>
           <span> {{message.renter_id}} says:</span><br>
@@ -20,7 +22,11 @@
           <span am-time-ago="message.date"></span>
         </p>
       </div>
-      </ion-item>
+
+
+
+
+
     </ion-content>
     <form name="msg" ng-submit="sendMessage(msg)">
         <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
@@ -37,7 +43,7 @@
   </ion-view>
 
 <!-- ElastiChat item template -->
-<!--       <div ng-if="user._id == message.agent_id">
+<!--  <div ng-if="user._id == message.agent_id">
         <div class="chat-bubble left">
           <div class="message">{{message.body}}</div>
           <div class="message-detail">
