@@ -159,9 +159,12 @@ angular.module('simplyHome.controllers', [])
   };
 
 // New Listings controllers
-.controller('NewCtrl', ['Upload','$scope', function(Upload, $scope, $state, $http){
+.controller('NewCtrl', ['Upload','$scope', "$state", "$http", function(Upload, $scope, $state, $http){
+
+  $scope.files = ''
+ var files = $scope.files;
   $scope.upload = function(files){
-    console.log(files)
+
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
       Upload.upload({
@@ -191,32 +194,33 @@ angular.module('simplyHome.controllers', [])
     {number: '2'},
     {number: '3+'}
   ]
+
   $scope.newListing = {
+    apt_name: "",
+    street:"",
+    area: "",
+    price: "",
+    property_size_gross: "",
+    property_size_net: "",
+    description: "",
+    building_type: "",
+    pet_friendly: "",
     bedroom_num: '',
-    bathroom_num: '',
-  };
+    bathroom_num: ''
+  }
 
   $scope.createListings = function() {
     console.log($scope)
     $http({
       method: 'Post',
       url: 'http://localhost:3000/api/apartments', //backend api goes here.
-      data: {
-        building: $scope.newListing.building,
-        street: $scope.newListing.street,
-        area: $scope.newListing.area,
-        price: $scope.newListing.price,
-        gross: $scope.newListing.gross,
-        net: $scope.newListing.net,
-        buildingtype: $scope.btype
-      }
+      data: $scope.newListing
     }).then(function(resp){
       console.log(resp);
     }, function(resp){
       console.log(resp);
     })
   }
-
 //for making the buttons in button bar act like radio buttons
     $scope.active = '';
     $scope.setActive = function(type) {
@@ -233,33 +237,30 @@ angular.module('simplyHome.controllers', [])
     $scope.isActiveB = function(typeB) {
       return typeB === $scope.activeB;
   };
-  //  $scope.sendEnquiry = function(){
-  //     console.log($scope.enquiry)
-  //     $http
-  //       .post('/listings', $scope.newlisting)
-  //       .then(function(resp){
-  //         console.log(resp.status);
-  //         console.log(resp.data);
-  // }
+
+// //for making the buttons in button bar act like radio buttons
+//   $scope.active = '';
+//   $scope.setActive = function(type) {
+//     $scope.active = type;
+//   };
+//   $scope.isActive = function(type) {
+//     return type === $scope.active;
+//   };
+
+//   $scope.activeB = '';
+//   $scope.setActiveB = function(typeB) {
+//     $scope.activeB = typeB;
+//   };
+//   $scope.isActiveB = function(typeB) {
+//     return typeB === $scope.activeB;
+//   };
+
+//   $scope.chats = Chats.all();
+//   $scope.remove = function(chat) {
+//     Chats.remove(chat);
+//   };
 }])
 
-
-//for making the buttons in button bar act like radio buttons
-  $scope.active = '';
-  $scope.setActive = function(type) {
-    $scope.active = type;
-  };
-  $scope.isActive = function(type) {
-    return type === $scope.active;
-  };
-
-  $scope.activeB = '';
-  $scope.setActiveB = function(typeB) {
-    $scope.activeB = typeB;
-  };
-  $scope.isActiveB = function(typeB) {
-    return typeB === $scope.activeB;
-  };
 
 
   /*

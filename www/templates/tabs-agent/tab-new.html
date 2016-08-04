@@ -4,7 +4,7 @@
     <div class="list list-inset">
       <label class="item item-input">
         <input type="text" placeholder="Building Name, Block #"
-        ng-model="newListing.building">
+        ng-model="newListing.apt_name">
       </label>
     </div>
 
@@ -35,7 +35,7 @@
     <div class="list list-inset">
       <label class="item item-input">
         <input type="text" placeholder="Gross Sqft"
-        ng-model="newListing.gross">
+        ng-model="newListing.property_size_gross">
       </label>
     </div>
 
@@ -43,7 +43,7 @@
     <div class="list list-inset">
       <label class="item item-input">
         <input type="text" placeholder="Net Sqft"
-        ng-model="newListing.net">
+        ng-model="newListing.property_size_net">
       </label>
     </div>
 
@@ -51,7 +51,15 @@
     <div class="list list-inset">
       <label class="item item-input">
         <input type="text" placeholder="Building Type e.g. walk up, apartment"
-        ng-model="newListing.btype">
+        ng-model="newListing.building_type">
+      </label>
+    </div>
+
+
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="text" placeholder="Description"
+        ng-model="newListing.description">
       </label>
     </div>
 
@@ -60,7 +68,7 @@
     <div class="button-bar bar-positive">
       <button
         ng-repeat="room in bedroomsBtns"
-        ng-click="setActive('bed{{room.number}}'); newlisting.bedroom_num = room.number"
+        ng-click="setActive('bed{{room.number}}'); newListing.bedroom_num = room.number"
         ng-class="{'button-light': isActive('bed{{room.number}}')}"
         class="button button-block">{{room.number}}</button>
     </div>
@@ -70,14 +78,14 @@
     <div class="button-bar bar-positive">
       <button
         ng-repeat="room in bathroomsBtns"
-        ng-click="setActiveB('bath{{room.number}}'); newlisting.bathroom_num = room.number"
+        ng-click="setActiveB('bath{{room.number}}'); newListing.bathroom_num = room.number"
         class="button button-block"
         ng-class="{'button-light': isActiveB('bath{{room.number}}')}">{{room.number}}</button>
     </div>
 
     <div class="spacer" style="height: 30px;"></div>
 
-    <ion-checkbox ng-model="item.checked"
+    <ion-checkbox ng-model="newListing.pet_friendly"
                   ng-repeat="item in petList"
                   ng-checked="item.checked">
       {{item.text}}
@@ -86,8 +94,9 @@
     <div class="spacer" style="height: 30px;"></div>
 
     <!-- Choose File -->
-    <form ng-submit="Upload(files)" >
-      <input type="file" ng-model="file">
+    <form ng-submit="upload(files)" >
+      <input type="file" ng-model="files">
+    {{file}}
       <!-- Upload Button -->
       <button type="submit" class="button button-block button-positive"> Upload </button>
     </form>
