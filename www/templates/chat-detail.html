@@ -6,8 +6,10 @@
   -->
   <ion-view view-title="{{chat.name}}">
     <ion-content class="padding" delegate-handle="userMessageScroll">
+      <!-- when it's done, should add this ng-show="listings" to div  -->
       <div class="listings col">
-        <a class="button button-dark" style="margin-left:auto; margin-right:auto; display:block" href="#/renter/chats/{{chat.id}}/listings" ng-click="click()">
+        <a class="button button-dark"
+           href="#/renter/chats/{{chat.id}}/listings">
           View Listings
         </a>
       <ion-item ng-repeat="message in messages">
@@ -15,7 +17,7 @@
         <p>
           <span> {{message.renter_id}} says:</span><br>
           {{message.body}}<br>
-          <span am-time-ago="message.date | amDateFormat:'YYYY.MM.DD HH:mm:ss'"></span>
+          <span am-time-ago="message.date"></span>
         </p>
       </div>
       </ion-item>

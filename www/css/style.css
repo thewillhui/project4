@@ -127,3 +127,12 @@ at the bottom as the textarea resizes */
 .bar.item-input-inset .item-input-wrapper input {
   width: 100% !important;
 }
+
+.listings {
+  border-color: black;
+}
+
+.listings>.button {
+  margin: 10px;
+  display: block;
+}

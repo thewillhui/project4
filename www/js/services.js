@@ -253,5 +253,48 @@ angular.module('simplyHome.services', [])
       }
       return null;
     }
-  };
-});
+  }
+})
+.factory('Listings', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var listings = [{
+    apt_name: 'Island Crest Tower 1',
+    street: '8 First Street, Sai Ying Pun, Hong Kong',
+    area: 'Sai Ying Pun',
+    property_size_gross_max: 1036,
+    property_size_net_max: 764,
+    price: 38000,
+    bedroom_num: '3',
+    bathroom_num: '2',
+    pet_friendly: true
+  }, {
+    apt_name: 'Chung King Court',
+    street: '83 First Street, Sai Ying Pun, Hong Kong Island',
+    area: 'Sai Ying Pun',
+    property_size_gross_max: 1477,
+    property_size_net_max: 911,
+    price: 58000,
+    bedroom_num: '1',
+    bathroom_num: '1',
+    pet_friendly: false
+  }];
+
+  return {
+    all: function() {
+      return listings;
+    },
+    remove: function(listing) {
+      listings.splice(listings.indexOf(listing), 1);
+    },
+    get: function(listingId) {
+      for (var i = 0; i < listings.length; i++) {
+        if (listings[i].id === parseInt(listingId)) {
+          return listings[i];
+        }
+      }
+      return null;
+    }
+  }
+})

@@ -302,39 +302,83 @@ angular.module('simplyHome.controllers', [])
   //   Chats.remove(chat);
 }])
 
-.controller('ChatDetailCtrl', ['$scope', '$stateParams', 'Chats', 'Messages', 'Agents', 'Renters', '$ionicScrollDelegate', function($scope, $stateParams, Chats, Messages, Agents, Renters, $ionicScrollDelegate) {
-  // var init = function (){
+.controller('ChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ionicScrollDelegate', 'Chats', 'Messages', 'Agents', 'Renters', 'Listings', function($scope, $http, $stateParams, $ionicScrollDelegate, Chats, Messages, Agents, Renters, Listings) {
+  // var ctrlInit = function (){
     $scope.messages = {};
-    $scope.chats = {};
     $scope.agents = {};
     $scope.renters = {};
     $scope.input = {};
-    // $scope.listings = {};
+    $scope.listings = {};
   // }
 
-  // $scope.listings = Listings.all();
   $scope.messages = Messages.all();
-  $scope.chats = Chats.all();
   $scope.agentName = Agents.get($scope.messages[1].agent_id).name;
   $scope.renterName = Renters.get($scope.messages[0].renter_id).name;
   $scope.chat = Chats.get($stateParams.chatId);
-  // init();
+  // $scopet.listings = Listings.all();
 
+
+  // For front-end testing
   $scope.sendMessage = function(msg) {
     var message = {
       chat_id: $stateParams.chatId,
       body: $scope.input.message,
       date: new Date(),
-      renter_id: 24 /* got to sort out param as well*/
+      renter_id: 24 /* got to sort out this param to renter name as well*/
     }
     $scope.messages.push(message);
-    $scope.input = {};
     $ionicScrollDelegate.scrollBottom();
+    // ctrlInit();
   }
+
+  // messages api
+  $scope.messagesApi = {
+    getMessages: function () {
+      console.log('getmessages')
+      $http ({
+        url: 'http://localhost:3000/chat-details',
+        method: 'get'
+      }).then(function (resp) {
+        $scope.messages = resp.data.messages;
+      })
+    },
+    createMessage: function () {
+      console.log('sendmessage')
+      $http({
+        url: 'http://localhost:3000/chat-details',
+        method: 'post',
+        data: $scope.input
+      }).then(function (res) {
+        console.log(res);
+        $scope.messages.push(res.data.input);
+      })
+    },
+    init: function () {
+      this.getMessages();
+    }
+  };
+  // ctrlInit();
+  $scope.messagesApi.init();
 }])
 
-.controller('ChatListingsCtrl', ['$scope', 'Agents', function($scope, Agents) {
+.controller('ChatListingsCtrl', ['$scope', 'Agents', 'Listings', function($scope, Agents, Listings) {
   $scope.agents = {};
 
-  $scope.agent = Agents.get()
+  // listings api
+  $scope.listingsApi = {
+    getListings: function () {
+      console.log('getlistings')
+      $http({
+        url: 'http://localhost:3000/listings',
+        method: 'get'
+      }).then(function (resp) {
+        $scope.listings = resp.data.listings;
+      })
+    },
+    init: function () {
+      this.getListings();
+    }
+  };
+  ctrlInit();
+  $scope.listingsApi.init();
 }])
