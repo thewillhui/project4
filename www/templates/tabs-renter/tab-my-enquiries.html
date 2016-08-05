@@ -1,62 +1,81 @@
 <ion-view view-title="My enquiries">
   <ion-content class="padding">
-    <div class="card" ng-repeat="enquiry in myEnquiries">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="getEnquiries()">
+    </ion-refresher>
+    <div class="card" ng-repeat="enquiry in myEnquiries | orderBy: enquiry.created_at : true">
       <div class="item item-divider">
-      <h3>Enquiry {{$index+1}}</h3>
+        <h3>Enquiry {{enquiry.index}}</h3>
       </div>
+      <div class="row">
+        <div class="col-90" ng-click="scrollResize(); changeDisplay(enquiry);">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-ios-location-outline"></i>
+            <p ng-repeat="area in enquiry.areas | limitTo: enquiry.limitTo"> {{area}}</p>
+          </ion-item>
+        </div>
+        <div class="col-10 col-center">
+          <i class="ion-chevron-right" ng-hide="enquiry.showDetail"></i>
+          <i class="ion-chevron-down" ng-hide="!enquiry.showDetail"></i>
+        </div>
+      </div>
+      <div ng-hide="!enquiry.showDetail">
         <div class="row">
-          <div class="col-90" ng-click="show = !show; scrollResize()">
+          <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon ion-ios-location-outline"></i>
-              <p ng-repeat="area in enquiry.areas"> {{area}}</p>
-          </ion-item>
+              <i class="icon icon-bed"></i> {{enquiry.bedroom_num}}
+            </ion-item>
           </div>
-          <div class="col-10 col-center">
-            <i class="ion-chevron-right" ng-hide="show"></i>
-            <i class="ion-chevron-down" ng-hide="!show"></i>
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <i class="icon icon-bathtub"></i> {{enquiry.bathroom_num}}
+            </ion-item>
           </div>
         </div>
-<div ng-hide="!show" ng-show="show">
-      <div class="row">
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon icon-bed"></i> {{enquiry.bedroom_num}}
-          </ion-item>
+        <div class="row">
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <i class="icon icon-scale"></i> {{enquiry.property_size_min | number:0}} ft<sup>2</sup> (net)
+              <br/> {{enquiry.property_size_max | number:0}} ft<sup>2</sup> (net)
+            </ion-item>
+          </div>
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <i class="icon ion-social-usd-outline"></i> {{enquiry.price_min | number:0}}
+              <br/> {{enquiry.price_max | number:0}}
+            </ion-item>
+          </div>
         </div>
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon icon-bathtub"></i> {{enquiry.bathroom_num}}
-          </ion-item>
+        <div class="row">
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <i class="icon icon-move"></i> {{enquiry.movein_date}}
+            </ion-item>
+          </div>
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <i class="icon ion-ios-bolt-outline"></i> {{enquiry.urgent}}
+            </ion-item>
+          </div>
+        </div>
+        <!-- to be updated with new fields. -->
+        <div class="row">
+          <div class="col">
+            <ion-item class="item item-icon-left">
+              <i class="icon icon-calendar"></i>
+              <p ng-repeat="days in enquiry.available_days">{{days | limitTo : 3}}</p>
+              {{enquiry.timeslot}}
+            </ion-item>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <ion-item class="item">
+            <h4>Remarks</h4>
+              <p>{{enquiry.remarks}}</p>
+            </ion-item>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon icon-scale"></i> {{enquiry.property_size_min | number:0}} ft<sup>2</sup> (net)<br/>
-            {{enquiry.property_size_max | number:0}} ft<sup>2</sup> (net)
-          </ion-item>
-        </div>
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-              <i class="icon ion-social-usd-outline"></i>
-              {{enquiry.price_min | number:0}} <br/>
-              {{enquiry.price_max | number:0}}
-          </ion-item>
-        </div>
-        </div>
-      <div class="row">
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon icon-move"></i> {{enquiry.movein_date}}
-          </ion-item>
-        </div>
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon ion-ios-bolt-outline"></i> {{enquiry.urgent}}
-          </ion-item>
-        </div>
-      </div>
-</div>
       <div class="item item-divider" ng-init="dateTime = enquiry.created_at">
         <h4>Your enquiry was sent {{parseDateTime(dateTime)}}</h4>
         <button class="button button-block button-positive">
