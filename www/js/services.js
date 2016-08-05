@@ -1,7 +1,7 @@
 angular.module('simplyHome.services', [])
 
 
-// .factory('HkIsland', function() {
+.factory('HkIsland', function() {
 
 
   var hkIsland = [
@@ -26,12 +26,12 @@ angular.module('simplyHome.services', [])
     { district: 'Causeway Bay' }
   ]
 
-//   return {
-//     all: function() {
-//       return hkIsland;
-//     }
-//   };
-// })
+  return {
+    all: function() {
+      return hkIsland;
+    }
+  };
+})
 
 
 // .factory('Kowloon', function() {

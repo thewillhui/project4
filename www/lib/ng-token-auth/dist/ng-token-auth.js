@@ -786,7 +786,6 @@ angular.module('ng-token-auth', ['ipCookie']).provider('$auth', function() {
             $injector.invoke([
               '$http', '$auth', function($http, $auth) {
                 var key, val, _ref, _results;
-                console.log(req.url, $auth.apiUrl())
                 if (req.url.match($auth.apiUrl())) {
                   _ref = $auth.retrieveData('auth_headers');
                   _results = [];

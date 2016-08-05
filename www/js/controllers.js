@@ -146,7 +146,34 @@ angular.module('simplyHome.controllers', [])
       $scope.enquiry.availability.time = parsedTime;
     }
   }
+  /*
+   * if given group is the selected group, deselect it
+   * else, select the given group
+   */
 
+  //key is from the ng-repeat. each ion-item must have unique directives or the accordion won't work
+  $scope.toggleGroup = function(regionName) {
+    if ($scope.isGroupShown(regionName)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = regionName;
+    }
+  };
+  $scope.isGroupShown = function(regionName) {
+    return $scope.shownGroup === regionName;
+  };
+
+
+  $scope.sendEnquiry = function(){
+    parseDate();
+    parseTime();
+    $http
+      .post('http://localhost:3000/api/enquiries', $scope.enquiry)
+      .then(function(resp){
+        console.log(resp.status);
+        console.log(resp.data);
+      })
+  }
   //if an area is selected the function checks if it's in the enquiry object, if it is then remove it if not then add it. mimicks the checkbox functionality
   $scope.addAreaKey = function(area){
     var areaArr = $scope.enquiry.areas;
@@ -157,6 +184,7 @@ angular.module('simplyHome.controllers', [])
       areaArr.push(area);
     }
   };
+})
 
 // New Listings controllers
 .controller('NewCtrl', ['Upload','$scope', "$state", "$http", function(Upload, $scope, $state, $http){
@@ -236,7 +264,8 @@ angular.module('simplyHome.controllers', [])
     };
     $scope.isActiveB = function(typeB) {
       return typeB === $scope.activeB;
-  };
+    };
+}])
 
 // //for making the buttons in button bar act like radio buttons
 //   $scope.active = '';
@@ -259,38 +288,10 @@ angular.module('simplyHome.controllers', [])
 //   $scope.remove = function(chat) {
 //     Chats.remove(chat);
 //   };
-}])
+// }])
 
 
 
-  /*
-   * if given group is the selected group, deselect it
-   * else, select the given group
-   */
-
-  //key is from the ng-repeat. each ion-item must have unique directives or the accordion won't work
-  $scope.toggleGroup = function(regionName) {
-    if ($scope.isGroupShown(regionName)) {
-      $scope.shownGroup = null;
-    } else {
-      $scope.shownGroup = regionName;
-    }
-  };
-  $scope.isGroupShown = function(regionName) {
-    return $scope.shownGroup === regionName;
-  };
-
-
-  $scope.sendEnquiry = function(){
-    parseDate();
-    parseTime();
-    $http
-      .post('http://localhost:3000/api/enquiries', $scope.enquiry)
-      .then(function(resp){
-        console.log(resp.status);
-        console.log(resp.data);
-      })
-  }
 
 
 .controller('RenterMyEnquiriesCtrl', function($scope, $http, $ionicScrollDelegate) {
@@ -463,4 +464,6 @@ angular.module('simplyHome.controllers', [])
   // };
   // // ctrlInit();
   // $scope.listingsApi.init();
-}]);
+}])
+
+

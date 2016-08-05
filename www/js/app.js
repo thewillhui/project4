@@ -162,9 +162,11 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
       'tab-renter-my-enquiries': {
         templateUrl: 'templates/tabs-renter/tab-my-enquiries.html',
         controller: 'RenterMyEnquiriesCtrl'
+          }
+        }
+      })
 
-
-  .state('tab-a.agent-listings', {:
+  .state('tab-a.agent-listings', {
     url: '/listings',
     views: {
       'tab-listings': {
@@ -203,16 +205,15 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
         }
       }
     })
-    .state('tab-a.agent-chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-agent-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    }
-  })
+    // .state('tab-a.agent-chat-detail', {
+    //   url: '/chats/:chatId',
+    //   views: {
+    //     'tab-agent-chats': {
+    //       templateUrl: 'templates/chat-detail.html',
+    //       controller: 'ChatDetailCtrl'
+    //     }
+    //   }
+    // })
 
   .state('tab.renter-chats', {
     url: '/chats',
@@ -266,5 +267,6 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
 
   // if none of the above states are matched, use this as the fallback
 
-  $urlRouterProvider.otherwise('/renter/enquiry/location');
-  $urlRouterProvider.otherwise('/agent/newlisting');
+  // $urlRouterProvider.otherwise('/renter/enquiry/location');
+ $urlRouterProvider.otherwise('/agent/newlisting');
+})
