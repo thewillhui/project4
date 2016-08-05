@@ -113,6 +113,7 @@ angular.module('simplyHome.controllers', [])
     ['Yuen Long', 'Tin Shui Wai', 'Tuen Mun', 'Tsuen Wan', 'Tai Wo Hau', 'Tsing Yi', 'Tseung Kwan O', 'Tai Po', 'Tai Wo', 'Sha Tin', 'Tai Wai', 'Fo Tan', 'Sham Tseng', 'Sai Kung', 'Clear Water Bay', 'Ma On Shan', 'Kwai Chung', 'Kwai Fong', 'Fan Ling', 'Sheung Shui', 'Tung Chung', 'Ma Wan', 'Discovery Bay', 'Lantau Island', 'Peng Chau', 'Lamma Island', 'Cheung Chau', 'Other Islands']
   }
 
+//this gets set back to the backend
   $scope.enquiry = {
     areas: [],
     bedroom_num: '',
@@ -296,12 +297,36 @@ angular.module('simplyHome.controllers', [])
 
 .controller('RenterMyEnquiriesCtrl', function($scope, $http, $ionicScrollDelegate) {
 
+  $scope.changeDisplay = function (enquiry) {
+    var showDetail = enquiry.showDetail;
+
+    $scope.myEnquiries.map(function(x){
+      x.showDetail = false;
+      x.limitTo    = 3;
+    });
+
+    if (showDetail === false) {
+      enquiry.showDetail = !enquiry.showDetail;
+      enquiry.limitTo    = enquiry.areas.length;
+    }
+  };
+
   $scope.getEnquiries = function(){
     $http
       .get('http://localhost:3000/api/enquiries')
       .then(function(resp){
-        $scope.myEnquiries = resp.data;
+        // inject virtual attributes to control display in front-end
+        $scope.myEnquiries = resp.data.map(function(x, index){
+          x.index = index + 1;
+          x.limitTo = 3;
+          x.showDetail = false;
+          return x;
+        })
       })
+      .finally(function(){
+      // Stop the ion-refresher from spinning
+       $scope.$broadcast('scroll.refreshComplete');
+     })
   };
     $scope.getEnquiries();
 

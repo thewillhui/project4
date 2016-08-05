@@ -18,6 +18,33 @@
   font-size: 24px;
 }
 
+.bar-dark .button, .button-bar.bar-dark > .button {
+  border-color: none !important
+}
+
+/*index is based on locations object in controller.js*/
+.location-0 {
+  background-image: url("/img/hkisland.jpg");
+  background-size: auto 100%;
+}
+
+.location-1 {
+  background-image: url("/img/kowloon.jpg");
+  background-size: 100%;
+}
+
+.location-2 {
+  background-image: url("/img/nt.jpg");
+  background-size: auto 100%;
+}
+
+/*========================================*/
+
+.enquiryLocation {
+  color: white;
+  text-shadow: 1px 1px 2px #000;
+}
+
 /* =======simplyHome icon font ===========*/
 @font-face {
     font-family: 'simplyhome';
