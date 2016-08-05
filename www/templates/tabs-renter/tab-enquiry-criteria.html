@@ -46,17 +46,6 @@
       <div class="button-bar bar-dark">
         <button ng-repeat="time in timeOfDay" ng-click="select = !select; addTimeOfDay(time)" ng-class="select ? 'button-light' : 'button-dark' " class="button dow-btn button-block">{{time}}</button>
       </div>
-{{enquiry}}
-<!--       <div>
-        <label class="item item-input">
-          <span class="input-label">Day</span>
-          <input type="date" ng-model="date.timeslot_1_date">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Time</span>
-          <input type="time" ng-model="time.timeslot_1_time">
-        </label>
-      </div> -->
       <h4>Additional remarks</h4>
       <label class="item item-input">
         <textarea rows="5" ng-model="enquiry.remarks"></textarea>

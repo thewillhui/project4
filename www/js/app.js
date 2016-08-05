@@ -61,16 +61,16 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab-a', {
-    url: '/agent',
+    .state('tab', {
+    url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs-agent/tabs.html'
+    templateUrl: 'templates/tabs.html'
   })
 
   //////////////////////////////////////////////////////////
 
-  .state('tab-a.testrenter', {
-    url: '/renter',
+  .state('tab.testrenter', {
+    url: '/testrenter',
     views: {
       'tab-testRenter': {
         templateUrl: 'templates/test/test-renter-signup.html',
@@ -79,8 +79,8 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab-a.testagent', {
-    url: '/agent',
+  .state('tab.testagent', {
+    url: '/testagent',
     views: {
       'tab-testAgent': {
         templateUrl: 'templates/test/test-agent-signup.html',
@@ -89,7 +89,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab-a.testrenterLogin', {
+  .state('tab.testrenterLogin', {
     url: '/renterLogin',
     views: {
       'tab-testRenterLogin': {
@@ -99,7 +99,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab-a.testagentLogin', {
+  .state('tab.testagentLogin', {
     url: '/agentLogin',
     views: {
       'tab-testAgentLogin': {
@@ -109,28 +109,94 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  //////////////////////////////////////////////////////////
+// //============= Agent listings ===============================
 
-  // Each tab has its own nav history stack:
-
-  .state('tab.renter-enquiry', {
-    url: '/enquiry',
-    abstract: true,
-    views: {
-      'tab-renter-enquiry': {
-        templateUrl: 'templates/tabs-renter/enquiry.html',
-        controller: 'EnquiryCtrl'
-      }
-    }
-  })
-
-
-  .state('tab-a.agent-newlisting', {
+  .state('tab.agent-newlisting', {
     url: '/newlisting',
     views: {
       'tab-newlisting': {
         templateUrl: 'templates/tabs-agent/tab-new.html',
         controller: 'NewCtrl'
+      }
+    }
+  })
+
+  .state('tab.agent-listings', {
+    url: '/listings',
+    views: {
+      'tab-listings': {
+        templateUrl: 'templates/tabs-agent/tab-listings.html',
+        controller: 'ListingsCtrl'
+      }
+    }
+  })
+
+  .state('tab.agent-appointments', {
+    url: '/appointments',
+    views: {
+      'tab-appointments': {
+        templateUrl: 'templates/tabs-agent/tab-appointments.html',
+        controller: 'AppointmentsCtrl'
+      }
+    }
+  })
+
+  .state('tab.agent-enquiries', {
+    url: '/enquiries',
+    views: {
+      'tab-enquiries': {
+        templateUrl: 'templates/tabs-agent/tab-enquiries.html',
+        controller: 'EnquiriesCtrl'
+      }
+    }
+  })
+
+  .state('tab.agent-chats', {
+      url: '/chats',
+      views: {
+        'tab-agent-chats': {
+          templateUrl: 'templates/tabs-agent/tab-chats.html',
+          controller: 'ChatsCtrl'
+        }
+      }
+    })
+
+  .state('tab.agent-account', {
+    url: '/account',
+    views: {
+      'tab-agent-account': {
+        templateUrl: 'templates/tabs-agent/tab-account.html',
+        controller: 'AccountCtrl'
+      }
+    }
+  })
+
+    // .state('tab-a.agent-chat-detail', {
+    //   url: '/chats/:chatId',
+    //   views: {
+    //     'tab-agent-chats': {
+    //       templateUrl: 'templates/chat-detail.html',
+    //       controller: 'ChatDetailCtrl'
+    //     }
+    //   }
+    // })
+
+//============ Renter states ==========================================
+
+  // .state('tab', {
+  //   url: '/renter',
+  //   abstract: true,
+  //   templateUrl: 'templates/tabs-renter/tabs.html'
+  // })
+
+
+  .state('tab.renter-enquiry', {
+    url: '/renter-enquiry',
+    abstract: true,
+    views: {
+      'tab-renter-enquiry': {
+        templateUrl: 'templates/tabs-renter/enquiry.html',
+        controller: 'EnquiryCtrl'
       }
     }
   })
@@ -166,59 +232,10 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
         }
       })
 
-  .state('tab-a.agent-listings', {
-    url: '/listings',
+  .state('tab.renter-chat', {
+    url: '/renter-chat',
     views: {
-      'tab-listings': {
-        templateUrl: 'templates/tabs-agent/tab-listings.html',
-        controller: 'ListingsCtrl'
-      }
-    }
-  })
-
-  .state('tab-a.agent-appointments', {
-    url: '/appointments',
-    views: {
-      'tab-appointments': {
-        templateUrl: 'templates/tabs-agent/tab-appointments.html',
-        controller: 'AppointmentsCtrl'
-      }
-    }
-  })
-
-  .state('tab-a.agent-enquiries', {
-    url: '/enquiries',
-    views: {
-      'tab-enquiries': {
-        templateUrl: 'templates/tabs-agent/tab-enquiries.html',
-        controller: 'EnquiriesCtrl'
-      }
-    }
-  })
-
-  .state('tab-a.agent-chats', {
-      url: '/chats',
-      views: {
-        'tab-agent-chats': {
-          templateUrl: 'templates/tabs-agent/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    // .state('tab-a.agent-chat-detail', {
-    //   url: '/chats/:chatId',
-    //   views: {
-    //     'tab-agent-chats': {
-    //       templateUrl: 'templates/chat-detail.html',
-    //       controller: 'ChatDetailCtrl'
-    //     }
-    //   }
-    // })
-
-  .state('tab.renter-chats', {
-    url: '/chats',
-    views: {
-      'tab-chats': {
+      'tab-chat': {
         templateUrl: 'templates/tabs-renter/tab-chats.html',
         controller: 'RenterChatsCtrl'
       }
@@ -226,9 +243,9 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   })
 
   .state('tab.renter-chat-detail', {
-    url: '/chats/:chatId',
+    url: '/renter-chat/:chatId',
     views: {
-      'tab-chats': {
+      'tab-chat': {
         templateUrl: 'templates/tabs-renter/chat-detail.html',
         controller: 'RenterChatDetailCtrl'
       }
@@ -236,18 +253,17 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   })
 
   .state('tab.renter-chat-detail-listings', {
-    url: '/chats/:chatId/listings',
+    url: '/renter-chat/:chatId/listings',
     views: {
-      'tab-chats': {
+      'tab-chat': {
         templateUrl: 'templates/tabs-renter/chat-listings.html',
         controller: 'RenterChatListingsCtrl'
       }
     }
   })
 
-
   .state('tab.renter-account', {
-    url: '/account',
+    url: '/renter-account',
     views: {
       'tab-renter-account': {
         templateUrl: 'templates/tabs-renter/tab-account.html',
@@ -255,18 +271,9 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab-a.agent-account', {
-    url: '/account',
-    views: {
-      'tab-agent-account': {
-        templateUrl: 'templates/tabs-agent/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  });
 
   // if none of the above states are matched, use this as the fallback
 
   // $urlRouterProvider.otherwise('/renter/enquiry/location');
- $urlRouterProvider.otherwise('/agent/newlisting');
+ $urlRouterProvider.otherwise('/tab/newlisting');
 })
