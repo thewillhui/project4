@@ -155,54 +155,36 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   })
 
   .state('tab.renter-chats', {
-      url: '/chats',
-      views: {
-<<<<<<< 1fae7f17824b6e773f3e7cb9685b81575acc71a9
-        'tab-renter-chats': {
-          templateUrl: 'templates/tabs-renter/tab-chats.html',
-          controller: 'ChatsCtrl'
-=======
-        'tab-chats': {
-          templateUrl: 'templates/tabs/tab-chats.html',
-          controller: 'RenterChatsCtrl'
->>>>>>> listing button fixed
-        }
+    url: '/chats',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tabs-renter/tab-chats.html',
+        controller: 'RenterChatsCtrl'
       }
-    })
-    .state('tab.renter-chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-<<<<<<< 1fae7f17824b6e773f3e7cb9685b81575acc71a9
-        'tab-renter-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
+    }
+  })
+
+  .state('tab.renter-chat-detail', {
+    url: '/chats/:chatId',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tabs-renter/chat-detail.html',
+        controller: 'RenterChatDetailCtrl'
       }
-    })
-<<<<<<< 22da48e5ec235e2ee476fd17d23759ba92af1b13
+    }
+  })
+
+  .state('tab.renter-chat-detail-listings', {
+    url: '/chats/:chatId/listings',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tabs-renter/chat-listings.html',
+        controller: 'RenterChatListingsCtrl'
+      }
+    }
+  })
 
   .state('tab.renter-account', {
-=======
-    .state('tab.chat-detail-listings', {
-=======
-        'tab-chats': {
-          templateUrl: 'templates/renter-chat-detail.html',
-          controller: 'RenterChatDetailCtrl'
-        }
-      }
-    })
-    .state('tab.renter-chat-detail-listings', {
->>>>>>> listing button fixed
-      url: '/chats/:chatId/listings',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/renter-chat-listings.html',
-          controller: 'RenterChatListingsCtrl'
-        }
-      }
-    })
-  .state('tab.account', {
->>>>>>> updated chatroom with dummy data
     url: '/account',
     views: {
       'tab-renter-account': {

@@ -163,7 +163,7 @@ angular.module('simplyHome.services', [])
       }
       return null;
     }
-  };
+  }
 })
 
 .factory('Renters', function(){

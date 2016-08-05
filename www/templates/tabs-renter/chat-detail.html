@@ -4,6 +4,11 @@
     The FriendsCtrl pulls data from the Friends service (service.js)
     The Friends service returns an array of friend data
   -->
+<!-- <ion-popover-view> -->
+  <p class="dotmenu">
+    <button ng-click="openPopover($event)">Open Popover</button>
+  </p>
+
   <ion-view view-title="{{chat.name}}">
     <!-- when it's done, should add this ng-show="listings" to div  -->
     <div class="listings col">
@@ -12,7 +17,7 @@
         View Listings
       </a>
     </div>
-    <ion-content class="padding" delegate-handle="userMessageScroll">
+    <ion-content class="padding col" delegate-handle="userMessageScroll">
       <!-- <div ng-if="" -->
       <div class="chat-bubble left" ng-repeat="message in messages">
         <!-- <img ng-src="{{chat.face}}" style="width: 64px; height: 64px"> -->
@@ -22,25 +27,32 @@
           <span am-time-ago="message.date"></span>
         </p>
       </div>
-
-
-
-
-
     </ion-content>
     <form name="msg" ng-submit="sendMessage(msg)">
-        <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
-            <label class="item-input-wrapper">
-                <textarea ng-model="input.message" placeholder="Send message..." required minlength="1" maxlength="1500"></textarea>
-            </label>
-            <div class="footer-btn-wrap">
-              <button class="button button-icon icon ion-android-send footer-btn" type="submit"
-              ng-disabled="!input.message || input.message === ''">
-              </button>
-            </div>
-        </ion-footer-bar>
+      <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+        <label class="item-input-wrapper">
+            <textarea ng-model="input.message" placeholder="Send message..." required minlength="1" maxlength="1500"></textarea>
+        </label>
+        <div class="footer-btn-wrap">
+          <button class="button button-icon icon ion-android-send footer-btn" type="submit"
+          ng-disabled="!input.message || input.message === ''">
+          </button>
+        </div>
+      </ion-footer-bar>
     </form>
   </ion-view>
+
+<script id="my-popover.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h1 class="title">My Popover Title</h1>
+    </ion-header-bar>
+    <ion-content>
+      Hello!
+    </ion-content>
+  </ion-popover-view>
+</script>
+<!-- </ion-popover-view> -->
 
 <!-- ElastiChat item template -->
 <!--  <div ng-if="user._id == message.agent_id">

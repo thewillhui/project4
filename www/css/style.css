@@ -141,3 +141,8 @@ at the bottom as the textarea resizes */
   margin: 10px;
   display: block;
 }
+
+.dotmenu {
+  z-index: 1;
+  float: right;
+}

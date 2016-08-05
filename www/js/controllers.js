@@ -89,7 +89,6 @@ angular.module('simplyHome.controllers', [])
 
 .controller('EnquiryCtrl', function($scope, $state, $http) {
 
-
   $scope.bedroomsBtns = [
     { number: '1' },
     { number: '2' },
@@ -106,13 +105,13 @@ angular.module('simplyHome.controllers', [])
   ]
 
   $scope.region = {
-      'Hong Kong Island':
-      ['Aberdeen', 'Admiralty', 'Wan Chai', 'Tin Hau', 'Tai Hang', 'Tai Koo', 'Shau Kei Wan', 'Heng Fa Chuen', 'Sai Wan Ho', 'Quarry Bay', 'North Point', 'Fortress Hill', 'Mid-Levels', 'Island West', 'Island South', 'Chai Wan', 'Shek O', 'Central', 'Sheung Wan', 'Causeway Bay'],
-      'Kowloon':
-      ['Yau Tong', 'Lam Tin', 'Tsim Sha Tsui', 'Jordon', 'To Kwa Wan', 'Kowloon City', 'Tai Kok Tsui', 'Olympic', 'Kowloon Station', 'Sham Shui Po', 'Shek Kip Mei', 'San Po Kong', 'Wong Tai Sin', 'Prince Edward', 'Mong Kok', 'Yau Ma Tei', 'Lai Chi Kok', 'Cheung Sha Wan', 'Mei Foo', 'Lai King', 'Kwun Tong', 'Ngau Tau Kok', 'Kowloon Tong', 'Ho Man Tin', 'Yau Yat Tsuen', 'Kowloon Bay', 'Ngau Chi Wan', 'Hung Hom', 'Whampoa', 'Diamond Hill', 'Lok Fu'],
-      'New Territories':
-      ['Yuen Long', 'Tin Shui Wai', 'Tuen Mun', 'Tsuen Wan', 'Tai Wo Hau', 'Tsing Yi', 'Tseung Kwan O', 'Tai Po', 'Tai Wo', 'Sha Tin', 'Tai Wai', 'Fo Tan', 'Sham Tseng', 'Sai Kung', 'Clear Water Bay', 'Ma On Shan', 'Kwai Chung', 'Kwai Fong', 'Fan Ling', 'Sheung Shui', 'Tung Chung', 'Ma Wan', 'Discovery Bay', 'Lantau Island', 'Peng Chau', 'Lamma Island', 'Cheung Chau', 'Other Islands']
-    }
+    'Hong Kong Island':
+    ['Aberdeen', 'Admiralty', 'Wan Chai', 'Tin Hau', 'Tai Hang', 'Tai Koo', 'Shau Kei Wan', 'Heng Fa Chuen', 'Sai Wan Ho', 'Quarry Bay', 'North Point', 'Fortress Hill', 'Mid-Levels', 'Island West', 'Island South', 'Chai Wan', 'Shek O', 'Central', 'Sheung Wan', 'Causeway Bay'],
+    'Kowloon':
+    ['Yau Tong', 'Lam Tin', 'Tsim Sha Tsui', 'Jordon', 'To Kwa Wan', 'Kowloon City', 'Tai Kok Tsui', 'Olympic', 'Kowloon Station', 'Sham Shui Po', 'Shek Kip Mei', 'San Po Kong', 'Wong Tai Sin', 'Prince Edward', 'Mong Kok', 'Yau Ma Tei', 'Lai Chi Kok', 'Cheung Sha Wan', 'Mei Foo', 'Lai King', 'Kwun Tong', 'Ngau Tau Kok', 'Kowloon Tong', 'Ho Man Tin', 'Yau Yat Tsuen', 'Kowloon Bay', 'Ngau Chi Wan', 'Hung Hom', 'Whampoa', 'Diamond Hill', 'Lok Fu'],
+    'New Territories':
+    ['Yuen Long', 'Tin Shui Wai', 'Tuen Mun', 'Tsuen Wan', 'Tai Wo Hau', 'Tsing Yi', 'Tseung Kwan O', 'Tai Po', 'Tai Wo', 'Sha Tin', 'Tai Wai', 'Fo Tan', 'Sham Tseng', 'Sai Kung', 'Clear Water Bay', 'Ma On Shan', 'Kwai Chung', 'Kwai Fong', 'Fan Ling', 'Sheung Shui', 'Tung Chung', 'Ma Wan', 'Discovery Bay', 'Lantau Island', 'Peng Chau', 'Lamma Island', 'Cheung Chau', 'Other Islands']
+  }
 
   $scope.enquiry = {
     areas: [],
@@ -131,8 +130,7 @@ angular.module('simplyHome.controllers', [])
   $scope.date = {};
   $scope.time = {};
 
-
-//only need to parse when sending to the backend
+  //only need to parse when sending to the backend
   var parseDate = function(){
     var dates = $scope.date;
     for (var date in dates) {
@@ -206,9 +204,6 @@ angular.module('simplyHome.controllers', [])
         console.log(resp.data);
       })
   }
-
-
-
 })
 
 .controller('RenterMyEnquiriesCtrl', function($scope, $http, $ionicScrollDelegate) {
@@ -232,12 +227,7 @@ angular.module('simplyHome.controllers', [])
   $scope.scrollResize = function (){
     $ionicScrollDelegate.resize();
   };
-
-
-  })
-// .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-//   $scope.chat = Chats.get($stateParams.chatId);
-// })
+})
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
@@ -289,17 +279,20 @@ angular.module('simplyHome.controllers', [])
 })
 
 .controller('RenterChatsCtrl', ['$scope', '$http', 'Chats', function($scope, $http, Chats) {
+  // For front end
   $scope.chats = Chats.all;
-  // // For front-end testing
+  console.log($scope.chats);
+  // // For back-end testing
   // $scope.chatsApi = {
   //   getChats: function () {
-  //     $http ({
-  //       url: 'http://localhost:3000/renter-chat-detail',
-  //       method: 'get'
-  //     }).then(function (resp) {
-  //       console.log(resp.data)
-  //       // $scope.chats = resp.data.chats;
-  //     })
+  //     $scope.chats = Chats.all;
+  //     // $http ({
+  //     //   url: 'http://localhost:3000/api/chats',
+  //     //   method: 'get'
+  //     // }).then(function (resp) {
+  //     //   console.log(resp.data)
+  //     //   // $scope.chats = resp.data.chats;
+  //     // })
   //   },
   //   init: function () {
   //     this.getChats();
@@ -308,21 +301,15 @@ angular.module('simplyHome.controllers', [])
   // $scope.chatsApi.init();
 }])
 
-.controller('RenterChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ionicScrollDelegate', 'Chats', 'Messages', 'Agents', 'Renters', 'Listings', function($scope, $http, $stateParams, $ionicScrollDelegate, Chats, Messages, Agents, Renters, Listings) {
+.controller('RenterChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ionicScrollDelegate', 'Chats', 'Messages', 'Listings', function($scope, $http, $stateParams, $ionicScrollDelegate, Chats, Messages, Listings) {
   // var ctrlInit = function (){
     $scope.messages = {};
-    $scope.agents = {};
-    $scope.renters = {};
-    $scope.input = {};
     $scope.listings = {};
   // }
 
+  // For front-end testing
   $scope.messages = Messages.all();
-  $scope.agentName = Agents.get($scope.messages[1].agent_id).name;
-  $scope.renterName = Renters.get($scope.messages[0].renter_id).name;
   $scope.chat = Chats.get($stateParams.chatId);
-  // $scopet.listings = Listings.all();
-
 
   // For front-end testing
   $scope.sendMessage = function(msg) {
@@ -351,12 +338,12 @@ angular.module('simplyHome.controllers', [])
   //   createMessage: function () {
   //     console.log('sendmessage')
   //     $http({
-  //       url: 'http://localhost:3000/renter-chat-details',
+  //       url: 'http://localhost:3000/api/chats/create',
   //       method: 'post',
   //       data: $scope.input
   //     }).then(function (res) {
   //       console.log(res);
-  //       $scope.messages.push(res.data.input);
+  // //      $scope.messages.push(res.data.input);
   //     })
   //   },
   //   init: function () {
@@ -369,6 +356,7 @@ angular.module('simplyHome.controllers', [])
 
 .controller('RenterChatListingsCtrl', ['$scope', 'Agents', 'Listings', function($scope, Agents, Listings) {
   $scope.agents = {};
+  $scope.listings = Listings.all;
 
   // // listings api
   // $scope.listingsApi = {
@@ -378,7 +366,8 @@ angular.module('simplyHome.controllers', [])
   //       url: 'http://localhost:3000/listings',
   //       method: 'get'
   //     }).then(function (resp) {
-  //       $scope.listings = resp.data.listings;
+  //        console.log(resp)
+  // //      $scope.listings = resp.data.listings;
   //     })
   //   },
   //   init: function () {
