@@ -5,8 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services', 'ng-token-auth', 'ipCookie'])
-
+angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie', 'angularMoment'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -156,23 +155,34 @@ var app = angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simp
   })
 
   .state('tab.renter-chats', {
-      url: '/chats',
-      views: {
-        'tab-renter-chats': {
-          templateUrl: 'templates/tabs-renter/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+    url: '/chats',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tabs-renter/tab-chats.html',
+        controller: 'RenterChatsCtrl'
       }
-    })
-    .state('tab.renter-chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-renter-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
+    }
+  })
+
+  .state('tab.renter-chat-detail', {
+    url: '/chats/:chatId',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tabs-renter/chat-detail.html',
+        controller: 'RenterChatDetailCtrl'
       }
-    })
+    }
+  })
+
+  .state('tab.renter-chat-detail-listings', {
+    url: '/chats/:chatId/listings',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tabs-renter/chat-listings.html',
+        controller: 'RenterChatListingsCtrl'
+      }
+    }
+  })
 
   .state('tab.renter-account', {
     url: '/account',
@@ -187,4 +197,4 @@ var app = angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simp
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/renter/enquiry/location');
 
-});
+})
