@@ -18,10 +18,6 @@
   font-size: 24px;
 }
 
-.bar-dark .button, .button-bar.bar-dark > .button {
-  border-color: none !important
-}
-
 /*index is based on locations object in controller.js*/
 .location-0 {
   background-image: url("/img/hkisland.jpg");
@@ -36,6 +32,10 @@
 .location-2 {
   background-image: url("/img/nt.jpg");
   background-size: auto 100%;
+}
+
+.button-bar > .button.dow-btn {
+  min-width: 0 !important;
 }
 
 /*========================================*/

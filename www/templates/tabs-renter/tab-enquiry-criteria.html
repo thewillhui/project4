@@ -33,14 +33,21 @@
       <div>
         <label class="item item-input item-icon-left">
           <i class="icon icon-move"></i>
-          <input style="text-align: center;" type="date" ng-model="date.timeslot_1_date">
+          <input style="text-align: center;" type="date" ng-model="movein">
         </label>
         <ion-toggle class="item-icon-left" ng-model="enquiry.urgent" toggle-class="toggle-positive" ng-true-value="'Urgent'" ng-false-value="'Non-urgent'">
           <i class="icon ion-ios-bolt-outline"></i> Urgent enquiry (
           < 2 weeks) </ion-toggle>
       </div>
       <h4>Availability for viewings</h4>
-      <div>
+      <div class="button-bar bar-dark">
+        <button ng-repeat="day in daysOfWeek"  class="button dow-btn button-block" ng-click="select = !select; addDayOfWeek(day)" ng-class="select ? 'button-light' : 'button-dark' ">{{day | limitTo: 1}}</button>
+      </div>
+      <div class="button-bar bar-dark">
+        <button ng-repeat="time in timeOfDay" ng-click="select = !select; addTimeOfDay(time)" ng-class="select ? 'button-light' : 'button-dark' " class="button dow-btn button-block">{{time}}</button>
+      </div>
+{{enquiry}}
+<!--       <div>
         <label class="item item-input">
           <span class="input-label">Day</span>
           <input type="date" ng-model="date.timeslot_1_date">
@@ -49,7 +56,7 @@
           <span class="input-label">Time</span>
           <input type="time" ng-model="time.timeslot_1_time">
         </label>
-      </div>
+      </div> -->
       <h4>Additional remarks</h4>
       <label class="item item-input">
         <textarea rows="5" ng-model="enquiry.remarks"></textarea>
