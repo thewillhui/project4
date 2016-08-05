@@ -61,15 +61,16 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+    .state('tab-a', {
     url: '/agent',
     abstract: true,
     templateUrl: 'templates/tabs-agent/tabs.html'
   })
 
   //////////////////////////////////////////////////////////
-  .state('tab.testrenter', {
-    url: '/rentersignup',
+
+  .state('tab-a.testrenter', {
+    url: '/renter',
     views: {
       'tab-testRenter': {
         templateUrl: 'templates/test/test-renter-signup.html',
@@ -78,7 +79,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.testagent', {
+  .state('tab-a.testagent', {
     url: '/agent',
     views: {
       'tab-testAgent': {
@@ -88,7 +89,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.testrenterLogin', {
+  .state('tab-a.testrenterLogin', {
     url: '/renterLogin',
     views: {
       'tab-testRenterLogin': {
@@ -98,7 +99,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.testagentLogin', {
+  .state('tab-a.testagentLogin', {
     url: '/agentLogin',
     views: {
       'tab-testAgentLogin': {
@@ -123,7 +124,8 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.agent-newlisting', {
+
+  .state('tab-a.agent-newlisting', {
     url: '/newlisting',
     views: {
       'tab-newlisting': {
@@ -161,7 +163,8 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
         templateUrl: 'templates/tabs-renter/tab-my-enquiries.html',
         controller: 'RenterMyEnquiriesCtrl'
 
-  .state('tab.agent-listings', {
+
+  .state('tab-a.agent-listings', {:
     url: '/listings',
     views: {
       'tab-listings': {
@@ -171,7 +174,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.agent-appointments', {
+  .state('tab-a.agent-appointments', {
     url: '/appointments',
     views: {
       'tab-appointments': {
@@ -181,7 +184,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.agent-enquiries', {
+  .state('tab-a.agent-enquiries', {
     url: '/enquiries',
     views: {
       'tab-enquiries': {
@@ -191,7 +194,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.agent-chats', {
+  .state('tab-a.agent-chats', {
       url: '/chats',
       views: {
         'tab-agent-chats': {
@@ -200,7 +203,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
         }
       }
     })
-    .state('tab.agent-chat-detail', {
+    .state('tab-a.agent-chat-detail', {
       url: '/chats/:chatId',
       views: {
         'tab-agent-chats': {
@@ -251,7 +254,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.agent-account', {
+  .state('tab-a.agent-account', {
     url: '/account',
     views: {
       'tab-agent-account': {
