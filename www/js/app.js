@@ -251,7 +251,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
         }
       })
 
-  .state('tab.renter-chat', {
+  .state('tab.renter-chats', {
     url: '/renter-chats',
     views: {
       'tab-renter-chat': {
