@@ -252,7 +252,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
       })
 
   .state('tab.renter-chat', {
-    url: '/renter-chat',
+    url: '/renter-chats',
     views: {
       'tab-renter-chat': {
         templateUrl: 'templates/tabs-renter/tab-chats.html',
@@ -261,9 +261,14 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.renter-chat.detail', {
-    url: '/renter-chat/:chatId',
-    templateUrl: 'templates/tabs-renter/chat-detail.html',
+  .state('tab.renter-chat-detail', {
+    url: '/renter-chats/:chatId',
+    views: {
+      'tab-renter-chat': {
+        templateUrl: 'templates/tabs-renter/chat-detail.html',
+        controller: 'RenterChatDetailCtrl'
+      }
+    }
   })
 
   .state('tab.renter-chat.detail.listings', {

@@ -20,7 +20,7 @@ angular.module('simplyHome.controllers', [])
         templateUrl:'lib/angular-notify/angular-notify.html'
       })
     })
-  };
+  })
 
 // //for making the buttons in button bar act like radio buttons
 //   $scope.active = '';
