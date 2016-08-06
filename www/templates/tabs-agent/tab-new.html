@@ -93,13 +93,25 @@
 
     <div class="spacer" style="height: 30px;"></div>
 
+
+<!-- PAPERCLIP HERE!!!!! -->
+
+<!-- File upload button -->
+<div class="button button-block button-positive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true">Select</div>
+
+<!-- Image / file preview -->
+<img ng-repeat="picture in apartment_pictures.pictures" ngf-src="picture" width="200" height="200">
+
+<button type="submit" class="button button-block button-positive">Upload</button>
+
+
     <!-- Choose File -->
-    <form ng-submit="upload(files)" >
+<!--     <form ng-submit="upload(files)" >
       <input type="file" ng-model="files">
-    {{file}}
+    {{file}} -->
       <!-- Upload Button -->
-      <button type="submit" class="button button-block button-positive"> Upload </button>
-    </form>
+<!--       <button type="submit" class="button button-block button-positive"> Upload </button>
+    </form> -->
 
     <!-- List Button -->
     <button class="button button-block button-positive" ng-click="createListings()">List</button>
