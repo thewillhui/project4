@@ -1,6 +1,9 @@
 <ion-view view-title="New Listings">
   <ion-content class="padding">
 
+<form ng-submit="form.create()" ng-controller="NewCtrl">
+  <div class="form-group">
+
     <div class="list list-inset">
       <label class="item item-input">
         <input type="text" placeholder="Building Name, Block #"
@@ -96,24 +99,18 @@
 
 <!-- PAPERCLIP HERE!!!!! -->
 
+    <label>Title</label>
+    <input type="text" class="form-control" placeholder="Enter apartment name" ng-model="apartment.apt_name">
+  </div>
 <!-- File upload button -->
 <div class="button button-block button-positive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true">Select</div>
-
 <!-- Image / file preview -->
 <img ng-repeat="picture in apartment_pictures.pictures" ngf-src="picture" width="200" height="200">
-
+<!-- Upload Button -->
 <button type="submit" class="button button-block button-positive">Upload</button>
 
-
-    <!-- Choose File -->
-<!--     <form ng-submit="upload(files)" >
-      <input type="file" ng-model="files">
-    {{file}} -->
-      <!-- Upload Button -->
-<!--       <button type="submit" class="button button-block button-positive"> Upload </button>
-    </form> -->
-
-    <!-- List Button -->
-    <button class="button button-block button-positive" ng-click="createListings()">List</button>
+<!-- List Button -->
+<button class="button button-block button-positive" ng-click="createListings()">List</button>
+</form>
   </ion-content>
 </ion-view>
