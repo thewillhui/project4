@@ -31,7 +31,6 @@ angular.module('simplyHome.services', [])
 
 .factory('HkIsland', function() {
 
-
   var hkIsland = [
     { district: 'Aberdeen' },
     { district: 'Wan Chai' },

@@ -1,10 +1,26 @@
 angular.module('simplyHome.controllers', [])
 
 
+.controller('AgentAuthCtrl', function($scope, $auth, notify) {
 
-
-
-
+  $auth.submitRegistration({
+    email: $scope.registrationForm.email,
+    password: $scope.registrationForm.password,
+    password_confirmation: $scope.registrationForm. password_confirmation
+    }, {
+      config: 'agent'
+    }).then(function(resp){
+      notify('Thanks for your registration!');
+      console.log(resp);
+    }).catch(function(resp){
+      console.log(resp);
+      notify({
+        message: 'Some error appeared',
+        // duration: 1500,
+        templateUrl:'lib/angular-notify/angular-notify.html'
+      })
+    })
+  })
 
 // //for making the buttons in button bar act like radio buttons
 //   $scope.active = '';
@@ -28,19 +44,3 @@ angular.module('simplyHome.controllers', [])
 //     Chats.remove(chat);
 //   };
 // }])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -2,8 +2,7 @@ angular.module('simplyHome.controllers')
 
 .controller('RenterChatsCtrl', ['$scope', '$http', 'Chats', function($scope, $http, Chats) {
   // For front end
-  $scope.chats = Chats.all;
-  console.log($scope.chats);
+  $scope.chats = Chats.all();
   // // For back-end testing
   // $scope.chatsApi = {
   //   getChats: function () {
@@ -21,4 +20,5 @@ angular.module('simplyHome.controllers')
   //   }
   // }
   // $scope.chatsApi.init();
+  //
 }])

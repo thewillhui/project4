@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie', 'ngFileUpload'])
+angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie', 'ngFileUpload', 'angularMoment', 'cgNotify'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -251,8 +251,8 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
         }
       })
 
-  .state('tab.renter-chat', {
-    url: '/renter-chat',
+  .state('tab.renter-chats', {
+    url: '/renter-chats',
     views: {
       'tab-renter-chat': {
         templateUrl: 'templates/tabs-renter/tab-chats.html',
@@ -261,9 +261,14 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.renter-chat.detail', {
-    url: '/renter-chat/:chatId',
-    templateUrl: 'templates/tabs-renter/chat-detail.html',
+  .state('tab.renter-chat-detail', {
+    url: '/renter-chats/:chatId',
+    views: {
+      'tab-renter-chat': {
+        templateUrl: 'templates/tabs-renter/chat-detail.html',
+        controller: 'RenterChatDetailCtrl'
+      }
+    }
   })
 
   .state('tab.renter-chat.detail.listings', {
