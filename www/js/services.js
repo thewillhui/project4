@@ -1,5 +1,33 @@
 angular.module('simplyHome.services', [])
 
+// storing current chat room info
+// for passing info across states
+.factory('chat', function(){
+    var chat = {};
+    return {
+        setProperty: function(chatroom, messages){
+            chat.chatroom = chatroom;
+            chat.messages = messages;
+        },
+        getProperty: function(){
+            return chat;
+        }
+    }
+})
+
+// storing current enquiry info
+// for passing info across states
+.factory('currentEnquiry', function(){
+    var currentEnquiry = {};
+    return {
+        setProperty: function(enquiry){
+            currentEnquiry = enquiry;
+        },
+        getProperty: function(){
+            return currentEnquiry;
+        }
+    }
+})
 
 .factory('HkIsland', function() {
 

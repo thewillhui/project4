@@ -146,7 +146,17 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     views: {
       'tab-enquiries': {
         templateUrl: 'templates/tabs-agent/tab-enquiries.html',
-        controller: 'EnquiriesCtrl'
+        controller: 'AgentEnquiriesCtrl'
+      }
+    }
+  })
+
+  .state('tab.agent-enquiry', {
+    url: '/enquiry',
+    views: {
+      'tab-enquiries': {
+        templateUrl: 'templates/tabs-agent/tab-enquiry.html',
+        controller: 'AgentEnquiryCtrl'
       }
     }
   })
@@ -160,6 +170,15 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
         }
       }
     })
+
+  .state('tab.agent-chat', {
+    url: '/chat',
+    views: {
+      'tab-agent-chats': {
+        templateUrl: 'templates/tabs-agent/tab-chat.html'
+      }
+    }
+  })
 
   .state('tab.agent-account', {
     url: '/account',

@@ -1,9 +1,21 @@
-<ion-view view-title="Enquiries">
+<ion-view title="Matched Enquiries">
+  <ion-nav-buttons side="secondary">
+    <!-- <button class="button">
+      I'm a button on the primary of the navbar!
+    </button> -->
+  </ion-nav-buttons>
+
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+    <div class="list">
+      <div class="item item-button-right" ng-repeat="enquiry in enquiries">
+        <b>{{enquiry.enquiry.areas}}</b>
+        <p>submitted by {{enquiry.renter.email}}</p>
+        <button class="button button-positive" ng-click="showEnquiryDetails(enquiry)">
+        Details
+          <!-- <i class="icon ion-chatbubble-working"></i> -->
+          <!-- <a class="button icon ion-chatbubble-working" href="#/renter/chat/{{renter.id}}"></a> -->
+        </button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
