@@ -1,15 +1,18 @@
 angular.module('simplyHome.controllers')
-.controller('ChatCtrl', function(chat, $http, $scope, $ionicModal, currentEnquiry) {
-
+.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, currentEnquiry) {
     $scope.enquiry = currentEnquiry.getProperty();
     $scope.message = '';
     $scope.chatroom = chat.getProperty().chatroom;
+    console.log('scope.chatroom:')
+    console.log($scope.chatroom);
     $scope.chatroomId = $scope.chatroom.id
     $scope.messages = chat.getProperty().messages;
+    console.log('scope.messages');
+    console.log($scope.messages);
     $scope.apartments = [];
 
   // Property Modal
-  $ionicModal.fromTemplateUrl('templates/tabs/property-modal.html', {
+  $ionicModal.fromTemplateUrl('templates/tabs-agent/property-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal){
@@ -87,6 +90,7 @@ angular.module('simplyHome.controllers')
 
   // event listener for send message
   $scope.sendMessage = function(){
+    console.log('sendMessage function');
     if($scope.message.length>1){
       App.global_chat.send_message($scope.message);
       $scope.message = '';

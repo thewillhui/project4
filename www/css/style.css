@@ -88,7 +88,7 @@
   max-width: 80%;
 }
 
-.chat-bubble:before {
+/*.chat-bubble:before {
   content: "\00a0";
   display: block;
   height: 16px;
@@ -102,8 +102,8 @@
   float: left;
   margin-left: 55px;
 }
-
-.chat-bubble.left:before {
+*/
+/*.chat-bubble.left:before {
   background-color: #e6e5eb;
   left: 10px;
   -webkit-transform: rotate(70deg) skew(5deg);
@@ -121,7 +121,7 @@
   right: 10px;
   -webkit-transform: rotate(118deg) skew(-5deg);
 }
-
+*/
 .bar-footer {
   overflow: visible !important;
 }
@@ -133,9 +133,9 @@
 }
 
 /* fixes an ios bug bear */
-button.ion-android-send {
+/*button.ion-android-send {
   padding-top: 2px;
-}
+}*/
 
 /* add this to keep your footer buttons down
 at the bottom as the textarea resizes */

@@ -35,7 +35,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
       passwordResetPath: '/renter/password',
       passwordUpdatePath: '/renter/password',
       emailSignInPath: '/renter/sign_in',
-      storage: 'localStorage',
+      // storage: 'localStorage',
       validateOnPageLoad: true
     }
   }, {
@@ -49,7 +49,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
       passwordResetPath: '/agent/password',
       passwordUpdatePath: '/agent/password',
       emailSignInPath: '/agent/sign_in',
-      storage: 'localStorage',
+      // storage: 'localStorage',
       validateOnPageLoad: true
     }
   }]);
@@ -175,7 +175,8 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     url: '/chat',
     views: {
       'tab-agent-chats': {
-        templateUrl: 'templates/tabs-agent/tab-chat.html'
+        templateUrl: 'templates/tabs-agent/tab-chat.html',
+        controller: 'AgentChatCtrl'
       }
     }
   })
