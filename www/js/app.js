@@ -235,7 +235,6 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   .state('tab.renter-chat', {
     url: '/renter-chat',
     views: {
-
       'tab-renter-chat': {
         templateUrl: 'templates/tabs-renter/tab-chats.html',
         controller: 'RenterChatsCtrl'
