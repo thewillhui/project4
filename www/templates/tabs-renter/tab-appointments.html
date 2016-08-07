@@ -8,9 +8,13 @@
           {{appointment.appointment.start_date | date: "MM-dd-yyyy"}}
         </div>
         <div class="item item-text-wrap">
-          Appointment with {{appointment.renter.email}}
+          Appointment with {{appointment.agent.email}}
         </div>
         <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item" ng-click="confirmAppointments({{appointment.appointment.id}})">
+            <i class="icon ion-checkmark-round"></i>
+            Confirm
+          </a>
           <a class="tab-item" ng-click="cancelAppointments({{appointment.appointment.id}}, key)">
             <i class="icon ion-close-round"></i>
             Cancel

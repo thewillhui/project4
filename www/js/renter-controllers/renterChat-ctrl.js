@@ -1,24 +1,50 @@
 angular.module('simplyHome.controllers')
 
-.controller('RenterChatsCtrl', ['$scope', '$http', 'Chats', function($scope, $http, Chats) {
+.controller('RenterChatCtrl', ['chat', '$scope', '$http', 'Chats', function(chat, $scope, $http, Chats) {
   // For front end
-  $scope.chats = Chats.all();
-  // // For back-end testing
-  // $scope.chatsApi = {
-  //   getChats: function () {
-  //     $scope.chats = Chats.all;
-  //     // $http ({
-  //     //   url: 'http://localhost:3000/api/chats',
-  //     //   method: 'get'
-  //     // }).then(function (resp) {
-  //     //   console.log(resp.data)
-  //     //   // $scope.chats = resp.data.chats;
-  //     // })
-  //   },
-  //   init: function () {
-  //     this.getChats();
-  //   }
-  // }
-  // $scope.chatsApi.init();
-  //
+  $scope.message = '';
+  $scope.chatroom = chat.getProperty().chatroom;
+  $scope.messages = chat.getProperty().messages;
+  $scope.chatroomId = $scope.chatroom.id
+
+    // action cable
+  App.global_chat = App.cable.subscriptions.create(
+    {
+      channel: "ChatRoomsChannel",
+      chat_room_id: $scope.chatroomId
+    },
+    {
+      connected: function() {},
+      disconnected: function() {},
+      received: function(data) {
+        console.log('this is the data you are receiving');
+        console.log(data);
+        $scope.messages.push(data.message);
+        $scope.$apply();
+        console.log($scope.messages);
+      },
+      send_message: function(message) {
+        this.perform('send_message', {
+          message: message,
+          chat_room_id: $scope.chatroomId
+        });
+      },
+      send_listing: function(message){
+        this.perform('send_listing', {
+          message: message,
+          chat_room_id: $scope.chatroomId
+        })
+
+      }
+    }
+  );
+
+  $scope.sendMessage = function(){
+    console.log($scope.message);
+    console.log('inside sendmessage');
+    if($scope.message.length>1){
+      App.global_chat.send_message($scope.message);
+      $scope.message = '';
+    }
+  }
 }])

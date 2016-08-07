@@ -1,5 +1,5 @@
 angular.module('simplyHome.controllers')
-.controller('AgentAuthCtrl', function($scope, $auth) {
+.controller('AgentAuthCtrl', function(currentUser, $scope, $auth) {
 
   $scope.handleRegBtnClick = function() {
 
@@ -10,7 +10,10 @@ angular.module('simplyHome.controllers')
     }, {
       config: 'agent'
     }).then(function(resp) {
-      console.log(resp);
+        currentUser.setProperty(resp);
+        console.log('this is from factory:');
+        console.log(currentUser.getProperty());
+      // console.log(resp);
     }).catch(function(resp) {
       console.log(resp);
     })
@@ -21,6 +24,10 @@ angular.module('simplyHome.controllers')
     $auth.submitLogin($scope.loginForm, { config: 'agent' })
       .then(function(resp) {
         console.log(resp);
+        currentUser.setProperty(resp);
+        console.log('this is from factory:');
+        console.log(currentUser.getProperty());
+
         // handle success response
       })
       .catch(function(resp) {

@@ -15,6 +15,18 @@ angular.module('simplyHome.services', [])
     }
 })
 
+.factory('currentUser', function(){
+  var currentUser = {};
+  return {
+    setProperty: function(user){
+      currentUser = user;
+    },
+    getProperty: function(){
+      return currentUser;
+    }
+  }
+})
+
 // storing current enquiry info
 // for passing info across states
 .factory('currentEnquiry', function(){
