@@ -15,7 +15,6 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser) {
     }).then(function(resp) {
       console.log(resp);
       currentUser.setProperty = resp.data
-
     }).catch(function(resp) {
       console.log(resp);
     })

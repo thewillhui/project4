@@ -4,6 +4,7 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
   $scope.chatroom = chat.getProperty().chatroom;
   $scope.chatroomId = $scope.chatroom.id
   $scope.messages = chat.getProperty().messages;
+  $scope.message_html = [];
   $scope.apartments = [];
   $scope.appointment = {
     start_date: new Date(),
@@ -14,6 +15,7 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
     renter_id: $scope.chatroom.renter_id
   }
   $scope.enquiries = [];
+  $scope.currentUser = {};
 
   // Property Modal
   $ionicModal.fromTemplateUrl('templates/tabs-agent/property-modal.html', {
@@ -112,6 +114,34 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
       $scope.message = '';
     }
   }
+
+  var getCurrentUser = function(){
+    $http
+      .get('http://localhost:3000/api/userinfo')
+      .then(function(resp){
+        $scope.currentUser = resp.data
+        console.log('this is after get');
+        console.log($scope.currentUser)
+      })
+  }
+
+  var translateToHtml = function(){
+    // console.log($scope.messages);
+    getCurrentUser();
+    // console.log(currentUser.getProperty())
+    $scope.messages.forEach(function(message){
+      // if($scope.currentUser.type)
+      // console.log(message.imageable_type == currentUser.getProperty().type);
+      // console.log(message.message_type);
+      // console.log(message.imageable_type);
+      // if(message.imageable_type)
+      // if(message.message_type == 'text'){
+      //   var html = "<div>"
+      // }
+    })
+  }
+
+  translateToHtml();
 
   getApartments();
 })
