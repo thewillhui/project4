@@ -1,10 +1,8 @@
 angular.module('simplyHome.controllers')
 
-.controller('AccountCtrl', function($scope, $http, $auth) {
+.controller('RenterAccountCtrl', function($scope, currentUser) {
 
- $http
- .get('http://localhost:3000/api')
-
+  $scope.getCurrentUser = currentUser.getProperty;
 
 })
 

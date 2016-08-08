@@ -4,11 +4,11 @@
       <form ng-submit="handleLoginBtnClick()" role="form" ng-init="loginForm = {}">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Mobile number</span>
-          <input type="number" name="mobile" ng-model="loginForm.mobile_number" required="required" placeholder="Valid mobile number required for SMS verification" />
+          <input type="number" name="mobile" ng-model="loginForm.mobile_number" required ng-minlength="8" ng-maxlength="8" placeholder="Valid mobile number required for SMS verification" />
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Password</span>
-          <input type="password" name="password" ng-model="loginForm.password" required="required" placeholder="Enter a password" />
+          <input type="password" name="password" ng-model="loginForm.password" ng-minlength="6" required placeholder="Enter a password" />
         </label>
          <ion-toggle ng-model="loginForm.isAgent" toggle-class="toggle-positive">
           I am an agent</ion-toggle>
