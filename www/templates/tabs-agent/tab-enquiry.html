@@ -1,17 +1,17 @@
 <ion-view title="Enquiry detail">
 
   <ion-content>
-  <ion-list>
-    <ion-item>
+    <ion-list>
+<!--     <ion-item>
     <ul class="list">
       <li class="item">
-        Renter: {{enquiry.renter.email}}
+        Renter: {{enquiry.renter.email}} -->
         <!-- entire renter object is available, e.g. enquiry.renter.name, enquiry.renter.email -->
-      </li>
+<!--       </li>
       <li class="item">
-        Areas: {{enquiry.enquiry.areas}}
+        Areas: {{enquiry.enquiry.areas}} -->
         <!-- array -->
-      </li>
+<!--       </li>
       <li class="item">
         Property size: {{enquiry.enquiry.property_size_min}} to {{enquiry.enquiry.property_size_max}} ft2
       </li>
@@ -24,52 +24,55 @@
       <li class="item">
         Bedroom Number: {{enquiry.enquiry.bedroom_num}}
       </li>
-    </ul>
-  </ion-list>
+    </ul> -->
+      <div class="list">
+        <a class="item item-icon-left">
+          <i class="icon ion-email"></i>
+          {{enquiry.renter.email}}
+        </a>
 
+        <a class="item item-icon-left">
+          <i class="icon ion-ios-location"></i>
+          {{enquiry.enquiry.areas}}
+        </a>
 
-  <div class="list">
-    <a class="item item-icon-left">
-      <i class="icon ion-email"></i>
-      {{enquiry.renter.email}}
-    </a>
+        <a class="item item-icon-left">
+          <i class="icon ion-arrow-resize"></i>
+          {{enquiry.enquiry.property_size_min}} to{{enquiry.enquiry.property_size_max}} ft2
+         </a>
 
-    <a class="item item-icon-left">
-      <i class="icon ion-ios-location"></i>
-      {{enquiry.enquiry.areas}}
-    </a>
+        <a class="item item-icon-left">
+          <i class="icon ion-cash"></i>
+          ${{enquiry.enquiry.price_min}} to${{enquiry.enquiry.price_max}}
+        </a>
 
-    <a class="item item-icon-left">
-      <i class="icon ion-arrow-resize"></i>
-      {{enquiry.enquiry.property_size_min}} to{{enquiry.enquiry.property_size_max}} ft2
-     </a>
+        <a class="item item-icon-left">
+          <i class="icon icon-shower"></i>
+          {{enquiry.enquiry.bathroom_num}}
+        </a>
 
-    <a class="item item-icon-left">
-      <i class="icon ion-cash"></i>
-      ${{enquiry.enquiry.price_min}} to${{enquiry.enquiry.price_max}}
-    </a>
+        <a class="item item-icon-left">
+          <i class="icon icon-bed"></i>
+          {{enquiry.enquiry.bedroom_num}}
+        </a>
 
-    <a class="item item-icon-left">
-      <i class="icon .icon-shower "></i>
-      {{enquiry.enquiry.bathroom_num}}
-    </a>
+        <a class="item item-icon-left">
+          <i class="icon ion-ios-bolt-outline"></i>
+         {{enquiry.enquiry.urgent}}
+        </a>
 
-    <a class="item item-icon-left">
-      <i class="icon .icon-bed "></i>
-      {{enquiry.enquiry.bedroom_num}}
-    </a>
+        <a class="item item-icon-left">
+          <i class="icon icon-calendar"></i>
+         {{enquiry.enquiry.timeslot}}
+        </a>
 
-    <a class="item item-icon-left">
-      <i class="icon ion-ios-bolt-outline"></i>
-     {{enquiry.urgent}}
-    </a>
+        <a class="item item-icon-left">
+          <i class="icon ion-edit"></i>
+         {{enquiry.enquiry.remarks}}
+        </a>
 
-    <a class="item item-icon-left">
-      <i class="icon icon-calendar"></i>
-     {{enquiry.timeslot}}
-    </a>
-  </div>
-
+      </div>
+    </ion-list>
   </ion-content>
   <ion-footer-bar>
     <button class="button button-block button-positive" ng-click="getChatRoom(enquiry.chat_id, enquiry.enquiry.id, enquiry.enquiry.renter_id)">

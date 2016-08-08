@@ -99,15 +99,15 @@
 
 <!-- PAPERCLIP HERE!!!!! -->
 
-    <label>Title</label>
+<!--     <label>Title</label>
     <input type="text" class="form-control" placeholder="Enter apartment name" ng-model="apartment.apt_name">
-  </div>
+  </div> -->
 <!-- File upload button -->
-<div class="button button-block button-positive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true">Select</div>
+<div class="button button-block button-positive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true">Select Photos</div>
 <!-- Image / file preview -->
 <img ng-repeat="picture in apartment_pictures.pictures" ngf-src="picture" width="200" height="200">
 <!-- Upload Button -->
-<button type="submit" class="button button-block button-positive">Upload</button>
+<!-- <button type="submit" class="button button-block button-positive">Upload</button> -->
 
 <!-- List Button -->
 <button class="button button-block button-positive" ng-click="createListings()">List</button>

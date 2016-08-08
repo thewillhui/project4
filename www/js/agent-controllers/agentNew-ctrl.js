@@ -3,23 +3,7 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", 'SERVER', funct
 
 angular.module('simplyHome.controllers')
 
-  $scope.files = ''
- var files = $scope.files;
-  $scope.upload = function(files){
 
-    for (var i = 0; i < files.length; i++) {
-      var file = files[i];
-      Upload.upload({
-        url: SERVER.url + '/api/apartment_pictures',  //backend url goes
-        method: 'POST',
-        fields: {
-          user_id: currentUserId
-        },
-        file: file,
-        fileFormDataName: 'user_file[image]'
-      });
-    }
-  };
   $scope.petList = [
     { text: "Pets", checked: false }
   ];
@@ -31,10 +15,10 @@ angular.module('simplyHome.controllers')
       { number: '5+' }
   ]
   $scope.bathroomsBtns = [
-    {number: 'Any'},
     {number: '1'},
     {number: '2'},
-    {number: '3+'}
+    {number: '3'},
+    {number: '4+'}
   ]
 
   $scope.newListing = {
@@ -57,11 +41,24 @@ angular.module('simplyHome.controllers')
       method: 'Post',
       url: SERVER.url + '/api/apartments', //backend api goes here.
       data: $scope.newListing
+    var data = {
+      files: $scope.apartment_pictures.pictures,
+      apartment: $scope.newListing
+    }
+
+    console.log(data)
+
+    Upload.upload({
+      url: 'http://localhost:3000/api/apartments', //backend api goes here.
+      method: "POST",
+      data: data
     }).then(function(resp){
       console.log(resp);
     }, function(resp){
       console.log(resp);
-    })
+    }, function(evt){
+      console.log(Math.min(100, parseInt(100.0 * evt.loaded / evt.total)))
+    });
   }
 //for making the buttons in button bar act like radio buttons
     $scope.active = '';

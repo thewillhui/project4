@@ -9,6 +9,7 @@ app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, curre
         angular.forEach(data.data, function(enquiry){
           $scope.enquiries.push(enquiry);
         })
+        console.log($scope.enquiries)
       })
   }
   $scope.showEnquiryDetails = function(enquiry){
