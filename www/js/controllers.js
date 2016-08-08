@@ -23,7 +23,7 @@ angular.module('simplyHome.controllers', [])
         console.log(resp);
         // handle error response
       });
-  };
+  });
 
   $scope.handleSignOutClick = function() {
     $auth.signOut()

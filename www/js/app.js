@@ -44,6 +44,7 @@ app.run(function($ionicPlatform) {
       passwordUpdatePath: '/renter/password',
       emailSignInPath: '/renter/sign_in',
       // storage: 'localStorage',
+
       validateOnPageLoad: true
     }
   }, {

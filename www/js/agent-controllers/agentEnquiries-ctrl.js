@@ -14,6 +14,7 @@ app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, curre
   $scope.showEnquiryDetails = function(enquiry){
     // $scope.enquiry = enquiry;
     currentEnquiry.setProperty(enquiry);
+    console.log(currentEnquiry.getProperty());
     $state.go('tab.agent-enquiry')
   }
   getMatchedEnquiries();

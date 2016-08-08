@@ -1,6 +1,8 @@
 <ion-view title="Enquiry detail">
 
   <ion-content>
+  <ion-list>
+    <ion-item>
     <ul class="list">
       <li class="item">
         Renter: {{enquiry.renter.email}}
@@ -23,9 +25,16 @@
         Bedroom Number: {{enquiry.enquiry.bedroom_num}}
       </li>
     </ul>
+  </ion-list>
+
+  <label class="item item-input">
+      <i class="icon ion-email placeholder-icon"></i>
+      <input type="email" placeholder="Email" ng-model="user.email">
+  </label>
+
   </ion-content>
   <ion-footer-bar>
-    <button class="button button-block button-balanced" ng-click="getChatRoom(enquiry.chat_id, enquiry.enquiry.id, enquiry.enquiry.renter_id)">
+    <button class="button button-block button-positive" ng-click="getChatRoom(enquiry.chat_id, enquiry.enquiry.id, enquiry.enquiry.renter_id)">
     Start chatting
     </button>
   </ion-footer-bar>
