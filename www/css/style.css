@@ -20,22 +20,27 @@
 
 /*index is based on locations object in controller.js*/
 .location-0 {
-  background-image: url("img/hkisland.jpg");
+  background-image: url("../img/hkisland.jpg");
   background-size: auto 100%;
 }
 
 .location-1 {
-  background-image: url("img/kowloon.jpg");
+  background-image: url("../img/kowloon.jpg");
   background-size: 100%;
 }
 
 .location-2 {
-  background-image: url("img/nt.jpg");
+  background-image: url("../img/nt.jpg");
   background-size: auto 100%;
 }
 
 .button-bar > .button.dow-btn {
   min-width: 0 !important;
+}
+
+.button-bar.custom-width-bar .button:first-child{
+  width:25%;
+  min-width: 25%;
 }
 
 /*========================================*/
@@ -49,6 +54,10 @@
   padding: 0;
 }
 
+.title > .col {
+  padding: 0;
+}
+
 .tabform .item{
   border-width: 0;
 }
@@ -59,6 +68,10 @@
 
 form input.ng-dirty.ng-invalid {
     border:1px solid red;
+}
+
+.row.signup {
+  padding: 0;
 }
 /* =======simplyHome icon font ===========*/
 @font-face {
@@ -103,7 +116,7 @@ form input.ng-dirty.ng-invalid {
   max-width: 80%;
 }
 
-/*.chat-bubble:before {
+.chat-bubble:before {
   content: "\00a0";
   display: block;
   height: 16px;
@@ -116,8 +129,8 @@ form input.ng-dirty.ng-invalid {
   float: left;
   margin-left: 55px;
 }
-*/
-/*.chat-bubble.left:before {
+
+.chat-bubble.left:before {
   background-color: #e6e5eb;
   left: 10px;
   -webkit-transform: rotate(70deg) skew(5deg);
@@ -133,7 +146,7 @@ form input.ng-dirty.ng-invalid {
   right: 10px;
   -webkit-transform: rotate(118deg) skew(-5deg);
 }
-*/
+
 .bar-footer {
   overflow: visible !important;
 }
@@ -184,4 +197,9 @@ at the bottom as the textarea resizes */
 .dotmenu {
   z-index: 1;
   float: right;
+}
+
+.button-bar.custom-width-bar .button:first-child {
+  width: 25%;
+  min-width: 25%;
 }

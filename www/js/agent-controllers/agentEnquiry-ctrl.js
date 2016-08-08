@@ -4,6 +4,9 @@ app.controller('AgentEnquiryCtrl', function($state, chat, $http, $scope, current
   console.log($scope.enquiry);
 
   $scope.getChatRoom = function(chatId, enquiryId, renterId){
+    console.log('hi');
+    console.log(SERVER.url);
+    console.log(enquiryId, renterId, chatId);
 
     if (chatId){
       $http

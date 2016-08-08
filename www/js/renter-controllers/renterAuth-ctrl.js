@@ -15,17 +15,21 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser) {
       config: 'renter'
     }).then(function(resp) {
       console.log(resp);
-
-
+      currentUser.setProperty = resp.data
     }).catch(function(resp) {
       console.log(resp);
     })
   };
 
+
+  $scope.loginForm = {};
+
   $scope.handleLoginBtnClick = function() {
     $auth.submitLogin($scope.loginForm, { config: 'renter' })
       .then(function(resp) {
         console.log(resp);
+
+        currentUser.setProperty = resp.data
         // handle success response
       })
       .catch(function(resp) {
@@ -38,7 +42,7 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser) {
     $auth.signOut()
       .then(function(resp) {
         console.log(resp);
-
+        currentUser.setProperty = resp.data
         // handle success response
       })
       .catch(function(resp) {

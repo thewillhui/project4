@@ -1,38 +1,32 @@
-// New Listings controllers
-app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", 'SERVER', function(Upload, $scope, $state, $http, SERVER){
+// AGENT New Listings controllers
+app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", "SERVER", function(Upload, $scope, $state, $http, SERVER){
+  $scope.apartment_pictures = {};
 
-  $scope.files = ''
- var files = $scope.files;
-  $scope.upload = function(files){
 
-    for (var i = 0; i < files.length; i++) {
-      var file = files[i];
-      Upload.upload({
-        url: SERVER.url + '/api/apartment_pictures',  //backend url goes
-        method: 'POST',
-        fields: {
-          user_id: currentUserId
-        },
-        file: file,
-        fileFormDataName: 'user_file[image]'
-      });
-    }
-  };
   $scope.petList = [
     { text: "Pets", checked: false }
   ];
+
+    $scope.walkUp = [
+    { text: "Walk Up", checked: false }
+  ];
+
+    $scope.opnKitchen = [
+    { text: "Open Kitchen", checked: false }
+  ];
+
   $scope.bedroomsBtns = [
-      { number: '1' },
-      { number: '2' },
-      { number: '3' },
-      { number: '4' },
-      { number: '5+' }
+    { number: 'Studio' },
+    { number: '1' },
+    { number: '2' },
+    { number: '3' },
+    { number: '4+' }
   ]
   $scope.bathroomsBtns = [
-    {number: 'Any'},
     {number: '1'},
     {number: '2'},
-    {number: '3+'}
+    {number: '3'},
+    {number: '4+'}
   ]
 
   $scope.newListing = {
@@ -43,10 +37,11 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", 'SERVER', funct
     property_size_gross: "",
     property_size_net: "",
     description: "",
-    building_type: "",
     pet_friendly: "",
     bedroom_num: '',
-    bathroom_num: ''
+    bathroom_num: '',
+    walkup: '',
+    open_kitchen: ''
   }
 
   $scope.createListings = function() {
@@ -55,11 +50,24 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", 'SERVER', funct
       method: 'Post',
       url: SERVER.url + '/api/apartments', //backend api goes here.
       data: $scope.newListing
+    var data = {
+      files: $scope.apartment_pictures.pictures,
+      apartment: $scope.newListing
+    }
+
+    console.log(data)
+
+    Upload.upload({
+      url: 'http://localhost:3000/api/apartments', //backend api goes here.
+      method: "POST",
+      data: data
     }).then(function(resp){
       console.log(resp);
     }, function(resp){
       console.log(resp);
-    })
+    }, function(evt){
+      console.log(Math.min(100, parseInt(100.0 * evt.loaded / evt.total)))
+    });
   }
 //for making the buttons in button bar act like radio buttons
     $scope.active = '';

@@ -5,13 +5,16 @@
   The Friends service returns an array of friend data
 -->
 <ion-view title="Chat Room">
-  <!-- <ion-nav-buttons side="primary">
-    <button class="button" ng-click="doSomething()">
-      I'm a button on the primary of the navbar!
-    </button>
-  </ion-nav-buttons> -->
-
-  <ion-content class="padding col" deletegate-handle="userMessageScroll">
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button" ng-click="doSomething()">Left Button</button>
+    </div>
+    <h1 class="title">Title!</h1>
+    <div class="buttons">
+      <button class="button">Right Button</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="padding col" deletegate-handle="userMessageScroll" class="has-header has-footer">
     <button class="button" ng-click="propertyOpenModal()">
       Property
     </button>
@@ -19,7 +22,21 @@
       Appointment
     </button>
 
-  <div
+    <div ng-repeat="message in messages">
+      <!-- text -->
+      <div class="chat-bubble left" ng-if="message.message_type == 'text'">
+        <div class="message">
+          {{message.body}}
+        </div>
+        <div class="message-detail">
+          <span>{{message.imageable_id}} says:</span>
+          <span am-time-ago="message.created_at"></span>
+        </div>
+      </div>
+      <!--  -->
+    </div>
+
+  <!-- <div
     class="chat-bubble left"
     ng-repeat="message in messages"
     ng-class="{
@@ -30,10 +47,9 @@
       <span> {{message.imageable_id}} says:</span><br>
       {{message.body}}</p>
       <span am-time-ago="message.created_at"></span>
-    </p><!--
-        {{message.message_type}}
-        {{message.body}} -->
-  </div>
+    </p>
+  </div> -->
+
   </ion-content>
   <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
     <label class="item-input-wrapper">

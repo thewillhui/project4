@@ -5,8 +5,10 @@ app.controller('RenterChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER'
     $http
       .get(SERVER.url + '/api/chats')
       .then(function(resp){
-        console.log(resp);
+        // console.log(resp);
         $scope.chats = resp.data;
+        console.log('inside getChats');
+        console.log($scope.chats)
       })
   }
 

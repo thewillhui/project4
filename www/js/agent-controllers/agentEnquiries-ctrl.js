@@ -9,11 +9,13 @@ app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, curre
         angular.forEach(data.data, function(enquiry){
           $scope.enquiries.push(enquiry);
         })
+        console.log($scope.enquiries)
       })
   }
   $scope.showEnquiryDetails = function(enquiry){
     // $scope.enquiry = enquiry;
     currentEnquiry.setProperty(enquiry);
+    console.log(currentEnquiry.getProperty());
     $state.go('tab.agent-enquiry')
   }
   getMatchedEnquiries();
