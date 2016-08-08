@@ -94,7 +94,7 @@ app.run(function($ionicPlatform) {
     abstract: true,
     views: {
       'tab-renter-enquiry': {
-        templateUrl: 'templates/tabs-renter/enquiry.html',
+        templateUrl: 'templates/tabs-renter/abstract.html',
         controller: 'EnquiryCtrl'
       }
     }
