@@ -116,7 +116,7 @@ form input.ng-dirty.ng-invalid {
   max-width: 80%;
 }
 
-/*.chat-bubble:before {
+.chat-bubble:before {
   content: "\00a0";
   display: block;
   height: 16px;
@@ -129,8 +129,8 @@ form input.ng-dirty.ng-invalid {
   float: left;
   margin-left: 55px;
 }
-*/
-/*.chat-bubble.left:before {
+
+.chat-bubble.left:before {
   background-color: #e6e5eb;
   left: 10px;
   -webkit-transform: rotate(70deg) skew(5deg);
@@ -146,7 +146,7 @@ form input.ng-dirty.ng-invalid {
   right: 10px;
   -webkit-transform: rotate(118deg) skew(-5deg);
 }
-*/
+
 .bar-footer {
   overflow: visible !important;
 }

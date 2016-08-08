@@ -126,10 +126,10 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
   }
 
   var translateToHtml = function(){
-    // console.log($scope.messages);
+    console.log($scope.messages);
     getCurrentUser();
     // console.log(currentUser.getProperty())
-    $scope.messages.forEach(function(message){
+    // $scope.messages.forEach(function(message){
       // if($scope.currentUser.type)
       // console.log(message.imageable_type == currentUser.getProperty().type);
       // console.log(message.message_type);
@@ -138,7 +138,7 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
       // if(message.message_type == 'text'){
       //   var html = "<div>"
       // }
-    })
+    // })
   }
 
   translateToHtml();

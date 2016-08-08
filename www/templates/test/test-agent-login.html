@@ -3,10 +3,10 @@
     <div class="list">
       <section ng-app="simplyHome" ng-controller="AgentAuthCtrl">
         <h1>Agent Login</h1>
-      <form ng-submit="handleLoginBtnClick()" role="form" ng-init="loginForm = {}">
+      <form ng-submit="handleLoginBtnClick()" role="form">
         <div class="form-group">
-          <label>email</label>
-          <input type="email" name="email" ng-model="loginForm.email" required="required" class="form-control"/>
+          <label>mobile number</label>
+          <input type="text" name="mobile_number" ng-model="loginForm.mobile_number" required="required" class="form-control"/>
         </div>
 
         <div class="form-group">

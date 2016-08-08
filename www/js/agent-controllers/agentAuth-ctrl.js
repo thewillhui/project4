@@ -3,7 +3,7 @@ app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth) {
   $scope.handleRegBtnClick = function() {
 
     $auth.submitRegistration({
-      email: $scope.registrationForm.email,
+      mobile_number: $scope.registrationForm.mobile_number,
       password: $scope.registrationForm.password,
       password_confirmation: $scope.registrationForm.password_confirmation
     }, {

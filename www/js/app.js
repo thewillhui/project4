@@ -253,6 +253,7 @@ app.run(function($ionicPlatform) {
     }
   })
   .state('tab.agent-enquiries', {
+    cache: false,
     url: '/agent-enquiries',
     views: {
       'tab-enquiries': {
@@ -292,6 +293,15 @@ app.run(function($ionicPlatform) {
       }
     })
 
+  .state('tab.agent-chat', {
+    url: '/agent-chat',
+    views: {
+      'tab-agent-chats' :{
+        templateUrl: 'templates/tabs-agent/tab-chat.html',
+        controller: 'AgentChatCtrl'
+      }
+    }
+  })
 
   .state('tab.agent-ratings', {
     url: '/agent-ratings',
