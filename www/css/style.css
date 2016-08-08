@@ -38,6 +38,11 @@
   min-width: 0 !important;
 }
 
+.button-bar.custom-width-bar .button:first-child{
+  width:25%;
+  min-width: 25%;
+}
+
 /*========================================*/
 
 .enquiryLocation {
@@ -46,6 +51,10 @@
 }
 
 .title {
+  padding: 0;
+}
+
+.title > .col {
   padding: 0;
 }
 
@@ -59,6 +68,10 @@
 
 form input.ng-dirty.ng-invalid {
     border:1px solid red;
+}
+
+.row.signup {
+  padding: 0;
 }
 /* =======simplyHome icon font ===========*/
 @font-face {

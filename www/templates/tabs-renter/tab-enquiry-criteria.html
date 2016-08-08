@@ -2,7 +2,7 @@
   <ion-content class="padding">
     <ion-list>
       <h4>Bedrooms</h4>
-      <div class="button-bar bar-dark">
+      <div class="button-bar custom-width-bar bar-dark">
         <button ng-repeat="room in bedroomsBtns" ng-click="setActive('bed{{room.number}}'); enquiry.bedroom_num = room.number" ng-class="{'button-light': isActive('bed{{room.number}}')}" class="button button-block">{{room.number}}</button>
       </div>
       <h4>Bathrooms</h4>

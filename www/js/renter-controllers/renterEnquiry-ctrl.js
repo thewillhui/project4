@@ -1,11 +1,11 @@
 app.controller('EnquiryCtrl', function($scope, $state, $http) {
 
   $scope.bedroomsBtns = [
+    { number: 'Studio' },
     { number: '1' },
     { number: '2' },
     { number: '3' },
-    { number: '4' },
-    { number: '5+' }
+    { number: '4+' }
   ]
 
   $scope.bathroomsBtns = [

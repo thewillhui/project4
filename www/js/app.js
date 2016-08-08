@@ -82,11 +82,11 @@ app.run(function($ionicPlatform) {
   })
   .state('tab.renter-auth.signup', {
     url: '/signup',
-    templateUrl: 'templates/tabs-renter/tab-signup.html',
+    templateUrl: 'templates/tabs-renter/tab-signup.html'
   })
   .state('tab.renter-auth.login', {
     url: '/login',
-    templateUrl: 'templates/tabs-renter/login.html',
+    templateUrl: 'templates/tabs-renter/login.html'
   })
 
   .state('tab.renter-enquiry', {
