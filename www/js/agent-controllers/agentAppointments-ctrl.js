@@ -1,4 +1,4 @@
-app.controller('AgentAppointmentsCtrl', function($http, $scope){
+app.controller('AgentAppointmentsCtrl', function($http, $scope, SERVER){
   $scope.appointments = [];
 
   // $scope.confirmAppointments = function(id){
@@ -14,7 +14,7 @@ app.controller('AgentAppointmentsCtrl', function($http, $scope){
   $scope.cancelAppointments = function(id, key){
     console.log(id);
     $http
-      .delete('http://localhost:3000/api/appointments/' + id)
+      .delete(SERVER.url + '/api/appointments/' + id)
       .then(function(resp){
         console.log(resp)
         $scope.appointments.splice(key, 1)
@@ -22,7 +22,7 @@ app.controller('AgentAppointmentsCtrl', function($http, $scope){
   }
   var getAppointments = function(){
     $http
-      .get('http://localhost:3000/api/appointments')
+      .get(SERVER.url + '/api/appointments')
       .then(function(resp){
         // console.log(resp.data);
         $scope.appointments = resp.data;

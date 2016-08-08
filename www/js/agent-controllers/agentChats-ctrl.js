@@ -1,9 +1,9 @@
-app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', function($scope, $http, chat, $state) {
+app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER', function($scope, $http, chat, $state, SERVER) {
   $scope.chats = [];
 
   var getChats = function(){
     $http
-      .get('http://localhost:3000/api/chats')
+      .get(SERVER.url + '/api/chats')
       .then(function(resp){
         console.log(resp);
         $scope.chats = resp.data;

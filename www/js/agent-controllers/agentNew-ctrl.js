@@ -1,5 +1,5 @@
 // New Listings controllers
-app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", function(Upload, $scope, $state, $http){
+app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", 'SERVER', function(Upload, $scope, $state, $http, SERVER){
 
   $scope.files = ''
  var files = $scope.files;
@@ -8,7 +8,7 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", function(Upload
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
       Upload.upload({
-        url: 'http://localhost:3000/api/apartment_pictures',  //backend url goes
+        url: SERVER.url + '/api/apartment_pictures',  //backend url goes
         method: 'POST',
         fields: {
           user_id: currentUserId
@@ -53,7 +53,7 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", function(Upload
     console.log($scope)
     $http({
       method: 'Post',
-      url: 'http://localhost:3000/api/apartments', //backend api goes here.
+      url: SERVER.url + '/api/apartments', //backend api goes here.
       data: $scope.newListing
     }).then(function(resp){
       console.log(resp);

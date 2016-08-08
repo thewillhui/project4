@@ -1,4 +1,4 @@
-app.controller('EnquiryCtrl', function($scope, $state, $http) {
+app.controller('EnquiryCtrl', function($scope, $state, $http, SERVER) {
 
   $scope.bedroomsBtns = [
     { number: '1' },
@@ -150,7 +150,7 @@ app.controller('EnquiryCtrl', function($scope, $state, $http) {
     parseDate();
     // parseTime();
     $http
-      .post('http://localhost:3000/api/enquiries', $scope.enquiry)
+      .post(SERVER.url + '/api/enquiries', $scope.enquiry)
       .then(function(resp) {
         console.log(resp.status);
         console.log(resp.data);

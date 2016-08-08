@@ -1,6 +1,6 @@
 angular.module('simplyHome.controllers')
 
-.controller('RenterListingsCtrl', function(currentApartment, $scope, $auth, $http) {
+.controller('RenterListingsCtrl', function(currentApartment, $scope, $auth, $http, SERVER) {
   $scope.listings = [];
   $scope.search = '';
 
@@ -12,7 +12,7 @@ angular.module('simplyHome.controllers')
   }
   var getListings = function(){
     $http
-      .get('http://localhost:3000/api/property_listings')
+      .get(SERVER.url + '/api/property_listings')
       .then(function(resp){
         console.log(resp.data);
         $scope.listings = resp.data

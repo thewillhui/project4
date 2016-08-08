@@ -1,4 +1,4 @@
-app.controller('RenterChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ionicScrollDelegate', 'Chats', 'Messages', 'Listings', function($scope, $http, $stateParams, $ionicScrollDelegate, Chats, Messages, Listings) {
+app.controller('RenterChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ionicScrollDelegate', 'Chats', 'Messages', 'Listings', 'SERVER', function($scope, $http, $stateParams, $ionicScrollDelegate, Chats, Messages, Listings, SERVER) {
   // var ctrlInit = function (){
   $scope.messages = {};
   $scope.listings = {};
