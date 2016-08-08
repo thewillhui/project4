@@ -1,10 +1,10 @@
 <ion-view view-title="Log in">
   <ion-content class="padding">
-    <div class="list">
-      <form ng-submit="handleLoginBtnClick()" role="form" ng-init="loginForm = {}">
+    <div class="list tabform">
+      <form ng-submit="handleLoginBtnClick()" role="form">
         <label class="item item-input item-stacked-label">
           <span class="input-label">Mobile number</span>
-          <input type="number" name="mobile" ng-model="loginForm.mobile_number" required ng-minlength="8" ng-maxlength="8" placeholder="Valid mobile number required for SMS verification" />
+          <input type="text" name="mobile" ng-model="loginForm.mobile_number" required ng-minlength="8" ng-maxlength="8" placeholder="Valid mobile number required for SMS verification" />
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Password</span>
