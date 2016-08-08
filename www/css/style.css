@@ -198,3 +198,8 @@ at the bottom as the textarea resizes */
   z-index: 1;
   float: right;
 }
+
+.button-bar.custom-width-bar .button:first-child {
+  width: 25%;
+  min-width: 25%;
+}

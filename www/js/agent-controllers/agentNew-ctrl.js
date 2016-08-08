@@ -6,12 +6,21 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", "SERVER", funct
   $scope.petList = [
     { text: "Pets", checked: false }
   ];
+
+    $scope.walkUp = [
+    { text: "Walk Up", checked: false }
+  ];
+
+    $scope.opnKitchen = [
+    { text: "Open Kitchen", checked: false }
+  ];
+
   $scope.bedroomsBtns = [
+      { number: 'Studio' },
       { number: '1' },
       { number: '2' },
       { number: '3' },
-      { number: '4' },
-      { number: '5+' }
+      { number: '4+' }
   ]
   $scope.bathroomsBtns = [
     {number: '1'},
@@ -28,10 +37,11 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", "SERVER", funct
     property_size_gross: "",
     property_size_net: "",
     description: "",
-    building_type: "",
     pet_friendly: "",
     bedroom_num: '',
-    bathroom_num: ''
+    bathroom_num: '',
+    walkup: '',
+    open_kitchen: ''
   }
 
   $scope.createListings = function() {

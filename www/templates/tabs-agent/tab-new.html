@@ -51,12 +51,12 @@
     </div>
 
 
-    <div class="list list-inset">
+<!--     <div class="list list-inset">
       <label class="item item-input">
         <input type="text" placeholder="Building Type e.g. walk up, apartment"
         ng-model="newListing.building_type">
       </label>
-    </div>
+    </div> -->
 
 
     <div class="list list-inset">
@@ -66,9 +66,9 @@
       </label>
     </div>
 
-    <h3>Bedroom</h3>
+    <h3>Bedrooms</h3>
 
-    <div class="button-bar bar-positive">
+    <div class="button-bar bar-positive custom-width-bar">
       <button
         ng-repeat="room in bedroomsBtns"
         ng-click="setActive('bed{{room.number}}'); newListing.bedroom_num = room.number"
@@ -76,7 +76,7 @@
         class="button button-block">{{room.number}}</button>
     </div>
 
-    <h3>Bathroom</h3>
+    <h3>Bathrooms</h3>
 
     <div class="button-bar bar-positive">
       <button
@@ -90,6 +90,18 @@
 
     <ion-checkbox ng-model="newListing.pet_friendly"
                   ng-repeat="item in petList"
+                  ng-checked="item.checked">
+      {{item.text}}
+    </ion-checkbox>
+
+    <ion-checkbox ng-model="newListing.open_kitchen"
+                  ng-repeat="item in opnKitchen"
+                  ng-checked="item.checked">
+      {{item.text}}
+    </ion-checkbox>
+
+    <ion-checkbox ng-model="newListing.walkup"
+                  ng-repeat="item in walkUp"
                   ng-checked="item.checked">
       {{item.text}}
     </ion-checkbox>
