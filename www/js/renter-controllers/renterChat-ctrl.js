@@ -1,6 +1,5 @@
-angular.module('simplyHome.controllers')
+app.controller('RenterChatCtrl', ['chat', '$scope', '$http', 'Chats', function(chat, $scope, $http, Chats) {
 
-.controller('RenterChatCtrl', ['chat', '$scope', '$http', 'Chats', function(chat, $scope, $http, Chats) {
   // For front end
   $scope.message = '';
   $scope.chatroom = chat.getProperty().chatroom;

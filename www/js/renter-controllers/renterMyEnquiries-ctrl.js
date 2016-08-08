@@ -1,6 +1,4 @@
-angular.module('simplyHome.controllers')
-
-.controller('RenterMyEnquiriesCtrl', function($scope, $http, $ionicScrollDelegate) {
+app.controller('RenterMyEnquiriesCtrl', function($scope, $http, $ionicScrollDelegate) {
 
   $scope.changeDisplay = function(enquiry) {
     var showDetail = enquiry.showDetail;

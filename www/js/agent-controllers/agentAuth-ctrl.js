@@ -1,5 +1,4 @@
-angular.module('simplyHome.controllers')
-.controller('AgentAuthCtrl', function(currentUser, $scope, $auth) {
+app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth) {
 
   $scope.handleRegBtnClick = function() {
 

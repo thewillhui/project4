@@ -1,5 +1,4 @@
-angular.module('simplyHome.controllers')
-.controller('AgentEnquiryCtrl', function($state, chat, $http, $scope, currentEnquiry){
+app.controller('AgentEnquiryCtrl', function($state, chat, $http, $scope, currentEnquiry){
 
   $scope.enquiry = currentEnquiry.getProperty();
   console.log($scope.enquiry);
