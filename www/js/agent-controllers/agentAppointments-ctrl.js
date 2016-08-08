@@ -1,5 +1,4 @@
-angular.module('simplyHome.controllers')
-.controller('AgentAppointmentsCtrl', function($http, $scope){
+app.controller('AgentAppointmentsCtrl', function($http, $scope){
   $scope.appointments = [];
 
   // $scope.confirmAppointments = function(id){

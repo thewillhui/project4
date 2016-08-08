@@ -1,5 +1,8 @@
-app.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+angular.module('simplyHome.controllers')
+
+.controller('RenterAccountCtrl', function($scope, currentUser) {
+
+  $scope.getCurrentUser = currentUser.getProperty;
+
 })
+

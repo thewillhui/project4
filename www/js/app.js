@@ -94,7 +94,7 @@ app.run(function($ionicPlatform) {
     abstract: true,
     views: {
       'tab-renter-enquiry': {
-        templateUrl: 'templates/tabs-renter/enquiry.html',
+        templateUrl: 'templates/tabs-renter/abstract.html',
         controller: 'EnquiryCtrl'
       }
     }
@@ -154,6 +154,7 @@ app.run(function($ionicPlatform) {
     views: {
       'tab-renter-account': {
         templateUrl: 'templates/tabs-renter/tab-account.html',
+        controller: 'RenterAccountCtrl'
       }
     }
   })
@@ -235,7 +236,7 @@ app.run(function($ionicPlatform) {
   //////////////////////////////////////////////////////////
 
   .state('tab.agent-newlisting', {
-    url: '/newlisting',
+    url: '/agent-newlisting',
     views: {
       'tab-newlisting': {
         templateUrl: 'templates/tabs-agent/tab-new.html',
@@ -244,7 +245,7 @@ app.run(function($ionicPlatform) {
     }
   })
   .state('tab.agent-enquiries', {
-    url: '/enquiries',
+    url: '/agent-enquiries',
     views: {
       'tab-enquiries': {
         templateUrl: 'templates/tabs-agent/tab-enquiries.html',
@@ -254,7 +255,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.agent-enquiry', {
-    url: '/enquiry',
+    url: '/agent-enquiry',
     views: {
       'tab-enquiries': {
         templateUrl: 'templates/tabs-agent/tab-enquiry.html',
@@ -264,7 +265,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.agent-appointments', {
-    url: '/appointments',
+    url: '/agent-appointments',
     views: {
       'tab-appointments': {
         templateUrl: 'templates/tabs-agent/tab-appointments.html',
@@ -274,7 +275,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.agent-chats', {
-      url: '/chats',
+      url: '/agent-chats',
       views: {
         'tab-agent-chats': {
           templateUrl: 'templates/tabs-agent/tab-chats.html',
@@ -283,18 +284,9 @@ app.run(function($ionicPlatform) {
       }
     })
 
-  .state('tab.agent-chat', {
-    url: '/chat',
-    views: {
-      'tab-agent-chats': {
-        templateUrl: 'templates/tabs-agent/tab-chat.html',
-        controller: 'AgentChatCtrl'
-      }
-    }
-  })
 
   .state('tab.agent-ratings', {
-    url: '/ratings',
+    url: '/agent-ratings',
     views: {
       'tab-agent-ratings': {
         templateUrl: 'templates/tabs-agent/tab-ratings.html',
@@ -324,11 +316,11 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.agent-account', {
-    url: '/account',
+    url: '/agent-account',
     views: {
       'tab-agent-account': {
         templateUrl: 'templates/tabs-agent/tab-account.html',
-        controller: 'AccountCtrl'
+        controller: 'AgentAccountCtrl'
       }
     }
   })
@@ -342,6 +334,7 @@ app.run(function($ionicPlatform) {
   //     }
   //   }
   // })
+
 
   //
   // .state('tab.agent-listings', {

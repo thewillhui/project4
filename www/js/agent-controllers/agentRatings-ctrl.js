@@ -1,5 +1,4 @@
-angular.module('simplyHome.controllers')
-.controller('AgentRatingsCtrl', function($state, $http, $scope){
+app.controller('AgentRatingsCtrl', function($state, $http, $scope){
   $scope.ratingTasks = [];
   $scope.rating = {};
   $scope.rating.rate = 3;

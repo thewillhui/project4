@@ -1,6 +1,4 @@
-angular.module('simplyHome.controllers')
-
-.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', function($scope, $http, chat, $state) {
+app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', function($scope, $http, chat, $state) {
   $scope.chats = [];
 
   var getChats = function(){

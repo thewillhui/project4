@@ -57,6 +57,9 @@
   background-color: white;
 }
 
+form input.ng-dirty.ng-invalid {
+    border:1px solid red;
+}
 /* =======simplyHome icon font ===========*/
 @font-face {
     font-family: 'simplyhome';

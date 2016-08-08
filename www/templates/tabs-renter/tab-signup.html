@@ -1,7 +1,7 @@
 <ion-view view-title="Sign up/Log in">
   <ion-content class="padding">
     <div class="list tabform">
-      <form ng-submit="handleRegBtnClick()" role="form" ng-init="registrationForm = {}">
+      <form ng-submit="handleRegBtnClick()" role="form">
         <div class="row title">
           <ion-radio class="col" ng-model="registrationForm.salutation" ng-value="'Mr'">Mr</ion-radio>
           <ion-radio class="col" ng-model="registrationForm.salutation" ng-value="'Ms'">Ms</ion-radio>
@@ -11,27 +11,27 @@
           <div class="col-50">
             <label class="item item-input item-stacked-label">
               <span class="input-label">First name</span>
-              <input type="number" name="first_name" ng-model="registrationForm.first_name" required="required" placeholder="First name" />
+              <input type="text" name="first_name" ng-model="registrationForm.first_name" ng-model-options="{ updateOn: 'blur' }" required placeholder="First name" ng-minlength="2"/>
             </label>
           </div>
           <div class="col-50">
             <label class="item item-input item-stacked-label">
               <span class="input-label">Family name</span>
-              <input type="number" name="family_name" ng-model="registrationForm.family_name" required="required" placeholder="Family name" />
+              <input type="text" name="family_name" ng-model="registrationForm.family_name" required placeholder="Family name" ng-minlength="2"/>
             </label>
           </div>
         </div>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Mobile number</span>
-          <input type="number" name="mobile" ng-model="registrationForm.mobile_number" required="required" placeholder="Valid mobile number required for SMS verification" />
+          <input type="number" name="mobile" ng-model="registrationForm.mobile_number" required placeholder="Valid mobile number required for SMS verification" ng-minlength="8" ng-maxlength="8"/>
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Password</span>
-          <input type="password" name="password" ng-model="registrationForm.password" required="required" placeholder="Enter a password" />
+          <input type="password" name="password" ng-model="registrationForm.password" required placeholder="Enter a password" ng-minlength="6"/>
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Confirm password</span>
-          <input type="password" name="password_confirmation" ng-model="registrationForm.password_confirmation" required="required" placeholder="Confirm password" />
+          <input type="password" name="password_confirmation" ng-model="registrationForm.password_confirmation" required placeholder="Confirm password" ng-minlength="6"/>
         </label>
         <h5>Your number will not be shared with agents or any third party.</h5>
         <button type="submit" class="button button-positive button-large button-block">Register</button>
