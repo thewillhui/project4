@@ -1,20 +1,19 @@
-angular.module('simplyHome.controllers')
-.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, currentEnquiry, $rootScope) {
-    // $scope.enquiry = currentEnquiry.getProperty();
-    $scope.message = '';
-    $scope.chatroom = chat.getProperty().chatroom;
-    $scope.chatroomId = $scope.chatroom.id
-    $scope.messages = chat.getProperty().messages;
-    $scope.apartments = [];
-    $scope.appointment = {
-      start_date: new Date(),
-      start_time: new Date(),
-      end_time: new Date(),
-      location: '',
-      chat_id: $scope.chatroomId,
-      renter_id: $scope.chatroom.renter_id
-    }
-    $scope.enquiries = [];
+app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, currentEnquiry, $rootScope) {
+  // $scope.enquiry = currentEnquiry.getProperty();
+  $scope.message = '';
+  $scope.chatroom = chat.getProperty().chatroom;
+  $scope.chatroomId = $scope.chatroom.id
+  $scope.messages = chat.getProperty().messages;
+  $scope.apartments = [];
+  $scope.appointment = {
+    start_date: new Date(),
+    start_time: new Date(),
+    end_time: new Date(),
+    location: '',
+    chat_id: $scope.chatroomId,
+    renter_id: $scope.chatroom.renter_id
+  }
+  $scope.enquiries = [];
 
   // Property Modal
   $ionicModal.fromTemplateUrl('templates/tabs-agent/property-modal.html', {

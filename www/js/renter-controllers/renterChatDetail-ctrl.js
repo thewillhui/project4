@@ -1,6 +1,4 @@
-angular.module('simplyHome.controllers')
-
-.controller('RenterChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ionicScrollDelegate', 'Chats', 'Messages', 'Listings', function($scope, $http, $stateParams, $ionicScrollDelegate, Chats, Messages, Listings) {
+app.controller('RenterChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ionicScrollDelegate', 'Chats', 'Messages', 'Listings', function($scope, $http, $stateParams, $ionicScrollDelegate, Chats, Messages, Listings) {
   // var ctrlInit = function (){
   $scope.messages = {};
   $scope.listings = {};

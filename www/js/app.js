@@ -5,9 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie', 'ngFileUpload', 'angularMoment', 'cgNotify', 'ion-datetime-picker', 'ionic.rating'])
+var app = angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.services',  'ng-token-auth', 'ipCookie', 'ngFileUpload', 'angularMoment', 'cgNotify', 'ion-datetime-picker', 'ionic.rating'])
 
-.run(function($ionicPlatform) {
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -160,6 +160,38 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
+  //============ Renter states ==========================================
+
+  // .state('tab.renter-chat-detail-listings', {
+  //   url: '/renter-chats/:chatId/listings',
+  //   views: {
+  //     'tab-renter-chat': {
+  //       templateUrl: 'templates/tabs-renter/chat-listings.html',
+  //       controller: 'RenterChatListingsCtrl'
+  //     }
+  //   }
+  // })
+
+  // .state('tab.renter-my-appointments', {
+  //   url: '/renter-my-appointments',
+  //   views: {
+  //     'tab-renter-my-appointments': {
+  //       templateUrl: 'templates/tabs-renter/tab-my-appointments.html',
+  //       controller: 'RenterAppointmentsCtrl'
+  //     }
+  //   }
+  // })
+
+  // // renter-review
+  // .state('tab.renter-review', {
+  //   url: '/renter-my-appointments/:appointmentId/renter-review',
+  //   views: {
+  //     'review-to-agent': {
+  //       templateUrl: 'templates/tabs-renter/review-to-agent.html'
+  //     }
+  //   }
+  // })
+
   .state('tab.testrenter', {
     url: '/testrenter',
     views: {
@@ -223,16 +255,6 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  // .state('tab.agent-listings', {
-  //   url: '/listings',
-  //   views: {
-  //     'tab-listings': {
-  //       templateUrl: 'templates/tabs-agent/tab-listings.html',
-  //       controller: 'ListingsCtrl'
-  //     }
-  //   }
-  // })
-
   .state('tab.agent-chats', {
       url: '/chats',
       views: {
@@ -293,45 +315,46 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-    // .state('tab-a.agent-chat-detail', {
-    //   url: '/chats/:chatId',
-    //   views: {
-    //     'tab-agent-chats': {
-    //       templateUrl: 'templates/chat-detail.html',
-    //       controller: 'ChatDetailCtrl'
-    //     }
-    //   }
-    // })
-
-//============ Renter states ==========================================
-
-  // .state('tab', {
-  //   url: '/renter',
-  //   abstract: true,
-  //   templateUrl: 'templates/tabs-renter/tabs.html'
-  // })
-
-
-
-
-//only show if not logged in
-
-
-
-
-  // .state('tab.renter-chat-detail-listings', {
-  //   url: '/renter-chats/:chatId/listings',
+  // .state('tab-a.agent-chat-detail', {
+  //   url: '/chats/:chatId',
   //   views: {
-  //     'tab-renter-chat': {
-  //       templateUrl: 'templates/tabs-renter/chat-listings.html',
-  //       controller: 'RenterChatListingsCtrl'
+  //     'tab-agent-chats': {
+  //       templateUrl: 'templates/chat-detail.html',
+  //       controller: 'ChatDetailCtrl'
   //     }
   //   }
   // })
 
+  //
+  // .state('tab.agent-listings', {
+  //   url: '/listings',
+  //   views: {
+  //     'tab-listings': {
+  //       templateUrl: 'templates/tabs-agent/tab-listings.html',
+  //       controller: 'ListingsCtrl'
+  //     }
+  //   }
+  // })
 
+  // .state('tab.agent-my-appointments', {
+  //   url: '/agent-my-appointments',
+  //   views: {
+  //     'tab-agent-my-appointments': {
+  //       templateUrl: 'templates/tabs-agent/tab-my-appointments.html',
+  //       controller: 'AgentAppointmentsCtrl'
+  //     }
+  //   }
+  // })
 
-
+  // // agent-review state
+  // .state('tab.agent-review', {
+  //   url: '/agent-my-appointments/:appointmentId/agent-review',
+  //   views: {
+  //     'review-to-agent': {
+  //       templateUrl: 'templates/tabs-agent/review-to-renter.html'
+  //     }
+  //   }
+  // })
 
   // if none of the above states are matched, use this as the fallback
 

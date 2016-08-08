@@ -1,0 +1,24 @@
+<ion-view view-title="My Appointments" >
+  <ion-content padding="true" class="has-header">
+    <!-- ng-repeat="appointment in appointments" -->
+    <div class="list card">
+      <ion-item class="item-icon-left">
+        <i class="icon ion-ios-contact"></i>Agent A</ion-item>
+      <div style="margin: 0px; line-height: 250px; text-align: center; background-color: rgb(232, 235, 239);">
+        <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+      </div>
+      <ion-item>
+        <i class="icon ion-ios-home"></i>Apt_Name</ion-item>
+      <ion-item class="item-icon-left schedule" id="myAppointments-list-item18">
+        <i class="icon ion-android-calendar"></i>{{Date}} - {{Time}}</ion-item>
+      <div>
+        <button class="button button-positive  button-block">Accept</button>
+        <button style="color:#FF0000;" class=" button button-stable  button-block ">Reject</button>
+      </div>
+      <!-- Supposed to hide before review event riggered -->
+      <div>
+        <a class="button button-positive  button-block" href="#/tab/renter-my-appointments/{{appointment_id}}/renter-review">Review</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

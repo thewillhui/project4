@@ -1,7 +1,5 @@
-angular.module('simplyHome.controllers')
-
 // New Listings controllers
-.controller('NewCtrl', ['Upload','$scope', "$state", "$http", function(Upload, $scope, $state, $http){
+app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", function(Upload, $scope, $state, $http){
 
   $scope.files = ''
  var files = $scope.files;

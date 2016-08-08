@@ -1,6 +1,4 @@
-angular.module('simplyHome.controllers')
-
-.controller('AgentCtrl', function(currentUser, $scope, $auth) {
+app.controller('AgentCtrl', function(currentUser, $scope, $auth) {
   $scope.handleRegBtnClick = function() {
     $auth.submitRegistration($scope.registrationForm).then(function(resp) {
       console.log(resp);

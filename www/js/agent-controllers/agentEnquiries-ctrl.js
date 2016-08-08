@@ -1,6 +1,4 @@
-angular.module('simplyHome.controllers')
-
-.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, currentEnquiry){
+app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, currentEnquiry){
 
   function getMatchedEnquiries(){
     $scope.enquiries = [];
