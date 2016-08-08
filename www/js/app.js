@@ -44,6 +44,7 @@ app.run(function($ionicPlatform) {
       passwordUpdatePath: '/renter/password',
       emailSignInPath: '/renter/sign_in',
       // storage: 'localStorage',
+
       validateOnPageLoad: true
     }
   }, {
@@ -343,47 +344,16 @@ app.run(function($ionicPlatform) {
     }
   })
 
-  // .state('tab-a.agent-chat-detail', {
-  //   url: '/chats/:chatId',
-  //   views: {
-  //     'tab-agent-chats': {
-  //       templateUrl: 'templates/chat-detail.html',
-  //       controller: 'ChatDetailCtrl'
-  //     }
-  //   }
-  // })
 
-
-  //
-  // .state('tab.agent-listings', {
-  //   url: '/listings',
-  //   views: {
-  //     'tab-listings': {
-  //       templateUrl: 'templates/tabs-agent/tab-listings.html',
-  //       controller: 'ListingsCtrl'
-  //     }
-  //   }
-  // })
-
-  // .state('tab.agent-my-appointments', {
-  //   url: '/agent-my-appointments',
-  //   views: {
-  //     'tab-agent-my-appointments': {
-  //       templateUrl: 'templates/tabs-agent/tab-my-appointments.html',
-  //       controller: 'AgentAppointmentsCtrl'
-  //     }
-  //   }
-  // })
-
-  // // agent-review state
-  // .state('tab.agent-review', {
-  //   url: '/agent-my-appointments/:appointmentId/agent-review',
-  //   views: {
-  //     'review-to-agent': {
-  //       templateUrl: 'templates/tabs-agent/review-to-renter.html'
-  //     }
-  //   }
-  // })
+  .state('tab.agent-listings', {
+    url: '/listings',
+    views: {
+      'tab-listings': {
+        templateUrl: 'templates/tabs-agent/tab-listings.html',
+        controller: 'ListingsCtrl'
+      }
+    }
+  })
 
   // if none of the above states are matched, use this as the fallback
 
