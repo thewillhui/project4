@@ -27,10 +27,48 @@
     </ul>
   </ion-list>
 
-  <label class="item item-input">
-      <i class="icon ion-email placeholder-icon"></i>
-      <input type="email" placeholder="Email" ng-model="user.email">
-  </label>
+
+  <div class="list">
+    <a class="item item-icon-left">
+      <i class="icon ion-email"></i>
+      {{enquiry.renter.email}}
+    </a>
+
+    <a class="item item-icon-left">
+      <i class="icon ion-ios-location"></i>
+      {{enquiry.enquiry.areas}}
+    </a>
+
+    <a class="item item-icon-left">
+      <i class="icon ion-arrow-resize"></i>
+      {{enquiry.enquiry.property_size_min}} to{{enquiry.enquiry.property_size_max}} ft2
+     </a>
+
+    <a class="item item-icon-left">
+      <i class="icon ion-cash"></i>
+      ${{enquiry.enquiry.price_min}} to${{enquiry.enquiry.price_max}}
+    </a>
+
+    <a class="item item-icon-left">
+      <i class="icon .icon-shower "></i>
+      {{enquiry.enquiry.bathroom_num}}
+    </a>
+
+    <a class="item item-icon-left">
+      <i class="icon .icon-bed "></i>
+      {{enquiry.enquiry.bedroom_num}}
+    </a>
+
+    <a class="item item-icon-left">
+      <i class="icon ion-ios-bolt-outline"></i>
+     {{enquiry.urgent}}
+    </a>
+
+    <a class="item item-icon-left">
+      <i class="icon icon-calendar"></i>
+     {{enquiry.timeslot}}
+    </a>
+  </div>
 
   </ion-content>
   <ion-footer-bar>
