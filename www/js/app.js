@@ -119,7 +119,15 @@ app.run(function($ionicPlatform) {
       }
     }
   })
-
+  .state('tab.renter-chat', {
+    url: '/renter-chat',
+    views: {
+      'tab-renter-chat': {
+        templateUrl: 'templates/tabs-renter/tab-chat.html',
+        controller: 'RenterChatCtrl'
+      }
+    }
+  })
 
   .state('tab.renter-my-enquiries', {
     url: '/renter-myenquiries',
