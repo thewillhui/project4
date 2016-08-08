@@ -1,7 +1,6 @@
-// New Listings controllers
-app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", 'SERVER', function(Upload, $scope, $state, $http, SERVER){
-
-angular.module('simplyHome.controllers')
+// AGENT New Listings controllers
+app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", "SERVER", function(Upload, $scope, $state, $http, SERVER){
+  $scope.apartment_pictures = {};
 
 
   $scope.petList = [
