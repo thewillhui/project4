@@ -16,11 +16,11 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", "SERVER", funct
   ];
 
   $scope.bedroomsBtns = [
-      { number: 'Studio' },
-      { number: '1' },
-      { number: '2' },
-      { number: '3' },
-      { number: '4+' }
+    { number: 'Studio' },
+    { number: '1' },
+    { number: '2' },
+    { number: '3' },
+    { number: '4+' }
   ]
   $scope.bathroomsBtns = [
     {number: '1'},

@@ -344,16 +344,16 @@ app.run(function($ionicPlatform) {
     }
   })
 
-  //
-  // .state('tab.agent-listings', {
-  //   url: '/listings',
-  //   views: {
-  //     'tab-listings': {
-  //       templateUrl: 'templates/tabs-agent/tab-listings.html',
-  //       controller: 'ListingsCtrl'
-  //     }
-  //   }
-  // })
+
+  .state('tab.agent-listings', {
+    url: '/listings',
+    views: {
+      'tab-listings': {
+        templateUrl: 'templates/tabs-agent/tab-listings.html',
+        controller: 'ListingsCtrl'
+      }
+    }
+  })
 
   // if none of the above states are matched, use this as the fallback
 

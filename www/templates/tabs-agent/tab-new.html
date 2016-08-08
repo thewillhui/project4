@@ -51,14 +51,6 @@
     </div>
 
 
-<!--     <div class="list list-inset">
-      <label class="item item-input">
-        <input type="text" placeholder="Building Type e.g. walk up, apartment"
-        ng-model="newListing.building_type">
-      </label>
-    </div> -->
-
-
     <div class="list list-inset">
       <label class="item item-input">
         <input type="text" placeholder="Description"
@@ -115,7 +107,7 @@
     <input type="text" class="form-control" placeholder="Enter apartment name" ng-model="apartment.apt_name">
   </div> -->
 <!-- File upload button -->
-<div class="button button-block button-positive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true">Select Photos</div>
+<div class="button button-block button-assertive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true">Select Photos</div>
 <!-- Image / file preview -->
 <img ng-repeat="picture in apartment_pictures.pictures" ngf-src="picture" width="200" height="200">
 <!-- Upload Button -->
