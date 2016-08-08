@@ -6,3 +6,4 @@ platforms/
 plugins/
 lib/
 **.*/DS_Store
+fiona.md
