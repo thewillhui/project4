@@ -70,15 +70,23 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   //////////////////////////////////////////////////////////
   //====================== Renter ========================//
   //////////////////////////////////////////////////////////
-
-  .state('tab.renter-signup', {
-    url: '/renter-signup',
+  .state('tab.renter-auth', {
+    url: '/renter-auth',
+    abstract: true,
     views: {
       'tab-renter-signup': {
-        templateUrl: 'templates/tabs-renter/tab-signup.html',
+        templateUrl: 'templates/tabs-renter/abstract.html',
         controller: 'RenterAuthCtrl'
       }
     }
+  })
+  .state('tab.renter-auth.signup', {
+    url: '/signup',
+    templateUrl: 'templates/tabs-renter/tab-signup.html',
+  })
+  .state('tab.renter-auth.login', {
+    url: '/login',
+    templateUrl: 'templates/tabs-renter/login.html',
   })
 
   .state('tab.renter-enquiry', {
@@ -112,15 +120,6 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
     }
   })
 
-  .state('tab.renter-chat', {
-    url: '/renter-chat',
-    views: {
-      'tab-renter-chat': {
-        templateUrl: 'templates/tabs-renter/tab-chat.html',
-        controller: 'RenterChatCtrl'
-      }
-    }
-  })
 
   .state('tab.renter-my-enquiries', {
     url: '/renter-myenquiries',
@@ -138,6 +137,15 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
       'tab-renter-appointments': {
         templateUrl: 'templates/tabs-renter/tab-appointments.html',
         controller: 'RenterAppointmentsCtrl'
+      }
+    }
+  })
+
+    .state('tab.renter-account', {
+    url: '/renter-account',
+    views: {
+      'tab-renter-account': {
+        templateUrl: 'templates/tabs-renter/tab-account.html',
       }
     }
   })
@@ -322,14 +330,7 @@ angular.module('simplyHome', ['ionic', 'simplyHome.controllers', 'simplyHome.ser
   // })
 
 
-  .state('tab.renter-account', {
-    url: '/renter-account',
-    views: {
-      'tab-renter-account': {
-        templateUrl: 'templates/tabs-renter/tab-account.html',
-      }
-    }
-  })
+
 
 
   // if none of the above states are matched, use this as the fallback

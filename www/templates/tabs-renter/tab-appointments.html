@@ -1,6 +1,6 @@
-<ion-view view-title="Account">
+<ion-view view-title="My appointments">
   <ion-content>
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="getEnquiries()">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="getAppointments()">
     </ion-refresher>
 
       <div class="card" ng-repeat="(key, appointment) in appointments">

@@ -45,6 +45,18 @@
   text-shadow: 1px 1px 2px #000;
 }
 
+.title {
+  padding: 0;
+}
+
+.tabform .item{
+  border-width: 0;
+}
+
+.tabform .item-radio input:checked + .radio-content .item-content{
+  background-color: white;
+}
+
 /* =======simplyHome icon font ===========*/
 @font-face {
     font-family: 'simplyhome';
@@ -96,7 +108,6 @@
   position: absolute;
   bottom: -7.5px;
 }
-
 .chat-bubble.left {
   background-color: #e6e5eb;
   float: left;
@@ -108,14 +119,12 @@
   left: 10px;
   -webkit-transform: rotate(70deg) skew(5deg);
 }
-
 .chat-bubble.right {
   background-color: #158ffe;
   color: #fff;
   float: right;
   margin-right: 55px;
 }
-
 .chat-bubble.right:before {
   background-color: #158ffe;
   right: 10px;
