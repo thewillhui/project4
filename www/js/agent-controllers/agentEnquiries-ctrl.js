@@ -1,9 +1,9 @@
-app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, currentEnquiry){
+app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, currentEnquiry, SERVER){
 
   function getMatchedEnquiries(){
     $scope.enquiries = [];
     $http
-      .get('http://localhost:3000/api/enquiry_agents/')
+      .get(SERVER.url + '/api/enquiry_agents/')
       .then(function(data){
         // renters is in data.data
         angular.forEach(data.data, function(enquiry){

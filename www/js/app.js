@@ -23,10 +23,18 @@ app.run(function($ionicPlatform) {
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $authProvider) {
+.constant('SERVER', {
+  // if using local server
+  url: 'http://localhost:3000'
+
+  // if using our public heroku server
+  // url: 'https://simplyhome-dev-rails.herokuapp.com'
+})
+
+.config(function($stateProvider, $urlRouterProvider, $authProvider, SERVER) {
   $authProvider.configure([{
     renter: {
-      apiUrl: 'http://localhost:3000',
+      apiUrl: SERVER.url,
       tokenValidationPath: '/renter/validate_token',
       signOutUrl: '/renter/sign_out',
       emailRegistrationPath: '/renter',
@@ -40,7 +48,7 @@ app.run(function($ionicPlatform) {
     }
   }, {
     agent: {
-      apiUrl: 'http://localhost:3000',
+      apiUrl: SERVER.url,
       tokenValidationPath: '/agent/validate_token',
       signOutUrl: '/agent/sign_out',
       emailRegistrationPath: '/agent',

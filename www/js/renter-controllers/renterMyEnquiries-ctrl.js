@@ -1,4 +1,4 @@
-app.controller('RenterMyEnquiriesCtrl', function($scope, $http, $ionicScrollDelegate) {
+app.controller('RenterMyEnquiriesCtrl', function($scope, $http, $ionicScrollDelegate, SERVER) {
 
   $scope.changeDisplay = function(enquiry) {
     var showDetail = enquiry.showDetail;
@@ -16,7 +16,7 @@ app.controller('RenterMyEnquiriesCtrl', function($scope, $http, $ionicScrollDele
 
   $scope.getEnquiries = function() {
     $http
-      .get('http://localhost:3000/api/enquiries')
+      .get(SERVER.url + '/api/enquiries')
       .then(function(resp) {
         // inject virtual attributes to control display in front-end
         $scope.myEnquiries = resp.data.map(function(x, index) {

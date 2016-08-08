@@ -1,4 +1,4 @@
-app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, currentEnquiry, $rootScope) {
+app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER) {
   // $scope.enquiry = currentEnquiry.getProperty();
   $scope.message = '';
   $scope.chatroom = chat.getProperty().chatroom;
@@ -37,7 +37,7 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
 
   var getApartments = function(){
     $http
-      .get('http://localhost:3000/api/apartments/enquiry/' + $scope.chatroom.renter_id)
+      .get(SERVER.url + '/api/apartments/enquiry/' + $scope.chatroom.renter_id)
       .then(function(data){
         // console.log(data.data.enquiries);
         // console.log(data.data.apartments);
@@ -77,7 +77,7 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
     $scope.appointmentModal.hide();
     console.log($scope.appointment);
     $http
-      .post('http://localhost:3000/api/appointments', $scope.appointment)
+      .post(SERVER.url + '/api/appointments', $scope.appointment)
       .then(function(resp){
         console.log('success:');
         console.log(resp);
@@ -98,7 +98,7 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
       chat_id: $scope.chatroomId
     }
     $http
-      .post('http://localhost:3000/api/property_listings',propertyListing)
+      .post(SERVER.url + '/api/property_listings',propertyListing)
       .then(function(data){
         console.log(data.data.message);
       })

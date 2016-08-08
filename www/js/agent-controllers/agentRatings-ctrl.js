@@ -1,4 +1,4 @@
-app.controller('AgentRatingsCtrl', function($state, $http, $scope){
+app.controller('AgentRatingsCtrl', function($state, $http, $scope, SERVER){
   $scope.ratingTasks = [];
   $scope.rating = {};
   $scope.rating.rate = 3;

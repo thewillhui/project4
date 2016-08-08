@@ -1,11 +1,11 @@
 angular.module('simplyHome.controllers')
-.controller('RenterAppointmentsCtrl', function($http, $scope){
+.controller('RenterAppointmentsCtrl', function($http, $scope, SERVER){
   $scope.appointments = [];
 
   $scope.confirmAppointments = function(id){
     console.log(id);
     $http
-      .put('http://localhost:3000/api/appointments/confirm/' + id)
+      .put(SERVER.url + '/api/appointments/confirm/' + id)
       .then(function(resp){
         console.log(resp);
         $scope.confirm = "Confirmed"
@@ -15,7 +15,7 @@ angular.module('simplyHome.controllers')
   $scope.cancelAppointments = function(id, key){
     console.log(id);
     $http
-      .delete('http://localhost:3000/api/appointments/' + id)
+      .delete(SERVER.url + '/api/appointments/' + id)
       .then(function(resp){
         console.log(resp)
         $scope.appointments.splice(key, 1)
@@ -23,7 +23,7 @@ angular.module('simplyHome.controllers')
   }
   var getAppointments = function(){
     $http
-      .get('http://localhost:3000/api/appointments')
+      .get(SERVER.url + '/api/appointments')
       .then(function(resp){
         // console.log(resp.data);
         $scope.appointments = resp.data;
