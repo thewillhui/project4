@@ -150,6 +150,16 @@ app.run(function($ionicPlatform) {
     }
   })
 
+  .state('tab.renter-listings', {
+    url: '/renter-listings',
+    views: {
+      'tab-renter-listings': {
+        templateUrl: 'templates/tabs-renter/tab-listings.html',
+        controller: 'RenterListingsCtrl'
+      }
+    }
+  })
+
   .state('tab.renter-ratings', {
     url: '/renter-ratings',
     views: {

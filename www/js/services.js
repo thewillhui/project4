@@ -15,6 +15,19 @@ angular.module('simplyHome.services', [])
     }
 })
 
+// for viewing apartment details in property listing page
+.factory('currentApartment', function(){
+  var currentApartment = {};
+  return {
+    setProperty: function(apartment){
+      currentApartment = apartment;
+    },
+    getProperty: function(){
+      return currentApartment;
+    }
+  }
+})
+
 .factory('currentUser', function(){
   var currentUser = {};
   return {

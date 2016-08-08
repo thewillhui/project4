@@ -1,0 +1,30 @@
+<ion-view view-title="My Listings">
+  <ion-content>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="search">
+      </label>
+    </div>
+
+    <div class="list">
+      <ion-list ng-repeat="(key, listing) in listings">
+
+      <div class="item item-divider">
+        Agent: {{listing.agent.email}}
+      </div>
+      <div class="item item-icon-left" ng-repeat="(akey, apartment) in listing.properties | filter: search">
+        <!-- <i class="icon ion-email"></i> -->
+        {{apartment.area}}
+        <p>created at: {{apartment.created_at}}</p>
+        <button class="button button-positive" ng-click="viewApartment({{key}}, {{akey}})">
+          Details
+        </button>
+        <button class="button button-assertive" ng-click="">
+          Delete
+        </button>
+      </div>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>
