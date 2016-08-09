@@ -15,6 +15,9 @@ angular.module('simplyHome.controllers', [])
       $scope.renter = false;
       $scope.agent = true;
       $scope.guest = false;
+    }
+  })
+})
 
 .controller('AgentAuthCtrl', function($scope, $auth, notify) {
 
@@ -126,5 +129,5 @@ angular.module('simplyHome.controllers', [])
       $scope.agent = false;
       $scope.guest = true;
     }
-  });
-});
+  }
+})
