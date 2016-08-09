@@ -22,7 +22,7 @@
       Appointment
     </button>
 
-    <div ng-repeat="(key, message) in messages">
+    <div ng-repeat="(key, message) in messages track by $index">
       <!-- text -->
       <div class="chat-bubble left" ng-if="message.message_type == 'text'">
         <div class="message">
@@ -54,20 +54,6 @@
         </button>
       </div>
     </div>
-
-  <!-- <div
-    class="chat-bubble left"
-    ng-repeat="message in messages"
-    ng-class="{
-      'text': message.message_type == 'text',
-      'appointment': message.message_type == 'appointment',
-      'listing': message.message_type == 'listing'}">
-    <p>
-      <span> {{message.imageable_id}} says:</span><br>
-      {{message.body}}</p>
-      <span am-time-ago="message.created_at"></span>
-    </p>
-  </div> -->
 
   </ion-content>
   <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">

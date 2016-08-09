@@ -1,10 +1,30 @@
-app.controller('RenterChatCtrl', ['chat', '$scope', '$http', 'Chats', function(chat, $scope, $http, Chats) {
+app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'Chats', 'SERVER', function($ionicModal, chat, $scope, $http, Chats, SERVER) {
 
   // For front end
-  $scope.message = '';
   $scope.chatroom = chat.getProperty().chatroom;
   $scope.messages = chat.getProperty().messages;
+  $scope.message = '';
   $scope.chatroomId = $scope.chatroom.id
+  $scope.currentUser = {};
+
+  // Listing Modal
+  $ionicModal.fromTemplateUrl('templates/tabs-renter/listing-modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal){
+    $scope.listingModal = modal;
+  })
+
+  $scope.getListings = function(id){
+    $http
+      .get(SERVER.url + '/api/getlistings/' + id)
+      .then(function(resp){
+        $scope.listings = resp.data;
+        console.log('this is the listings you are getting');
+        console.log($scope.listings);
+        $scope.listingModal.show();
+      })
+  }
 
     // action cable
   App.global_chat = App.cable.subscriptions.create(
@@ -37,6 +57,26 @@ app.controller('RenterChatCtrl', ['chat', '$scope', '$http', 'Chats', function(c
       }
     }
   );
+
+  $scope.cancelAppointment = function(key, messageId){
+    $http
+      .delete(SERVER.url + '/api/appointments/' + messageId)
+      .then(function(resp){
+        console.log(resp);
+        $scope.messages[key].appointment_status == 'cancelled';
+        console.log($scope.messages[key].appointment_status)
+      })
+  }
+
+
+  $scope.confirmAppointment = function(key, messageId){
+    $http
+      .put(SERVER.url + '/api/appointments/confirm/' + messageId)
+      .then(function(resp){
+        $scope.messages[key].appointment_status == 'confirmed'
+        console.log(resp);
+      })
+  }
 
   $scope.sendMessage = function(){
     console.log($scope.message);

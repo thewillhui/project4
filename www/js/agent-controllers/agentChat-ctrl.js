@@ -1,10 +1,9 @@
 app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER) {
 
-  $scope.message = '';
   $scope.chatroom = chat.getProperty().chatroom;
   $scope.chatroomId = $scope.chatroom.id
   $scope.messages = chat.getProperty().messages;
-  $scope.message_html = [];
+  $scope.message = '';
   $scope.apartments = [];
   $scope.appointment = {
     start_date: new Date(),
@@ -162,12 +161,6 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
       })
   }
 
-  var translateToHtml = function(){
-    console.log($scope.messages);
-    getCurrentUser();
-  }
-
-  translateToHtml();
-
+  getCurrentUser();
   getApartments();
 })

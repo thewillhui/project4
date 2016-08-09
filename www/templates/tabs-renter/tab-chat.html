@@ -7,7 +7,7 @@
 <ion-view title="Chat Room">
 
   <ion-content class="padding col" deletegate-handle="userMessageScroll">
-    <div ng-repeat="(key, message) in messages">
+    <div ng-repeat="(key, message) in messages track by $index">
       <!-- text -->
       <div class="chat-bubble left" ng-if="message.message_type == 'text'">
         <div class="message">
@@ -34,7 +34,14 @@
         <div class="message">
           {{message.body}}
         </div>
-        <button class="button" ng-show="message.appointment_status != 'cancelled'" ng-click="cancelAppointment(key, message.id)">
+        <button class="button" ng-show="message.appointment_status=='unconfirmed'" ng-click="confirmAppointment(key, message.id)">
+          Confirm
+        </button>
+        <button class="button disabled" ng-show="message.appointment_status=='confirmed'">
+          Confirmed
+        </button>
+
+        <button class="button" ng-show="message.appointment_status != 'cancelled'" ng-hide="message.appointment_status == 'confirmed'" ng-click="cancelAppointment(key, message.id)">
           Cancel
         </button>
       </div>
