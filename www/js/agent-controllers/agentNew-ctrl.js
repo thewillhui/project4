@@ -1,7 +1,7 @@
 // AGENT New Listings controllers
 app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", "SERVER", function(Upload, $scope, $state, $http, SERVER){
-  $scope.apartment_pictures = {};
 
+  $scope.apartment_pictures = {};
 
   $scope.petList = [
     { text: "Pets", checked: false }
@@ -46,14 +46,17 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", "SERVER", funct
 
   $scope.createListings = function() {
     console.log($scope)
-    $http({
-      method: 'Post',
-      url: SERVER.url + '/api/apartments', //backend api goes here.
-      data: $scope.newListing
     var data = {
       files: $scope.apartment_pictures.pictures,
       apartment: $scope.newListing
     }
+    // $http({
+    //   method: 'Post',
+    //   url: SERVER.url + '/api/apartments', //backend api goes here.
+    //   data: data
+    // }).then(function(resp){
+    //   console.log(resp);
+    // })
 
     console.log(data)
 
@@ -86,3 +89,6 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", "SERVER", funct
       return typeB === $scope.activeB;
     };
 }])
+
+
+

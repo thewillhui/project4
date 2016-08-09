@@ -1,9 +1,10 @@
-<ion-view view-title="Listings">
+<ion-view view-title="My Listings">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Enable Friends
-    </ion-toggle>
-    </ion-list>
+    <div class="list">
+      <a class="item item-icon-left">
+        <i class="icon ion-email"></i>
+        {{enquiry.renter.email}}
+      </a>
   </ion-content>
 </ion-view>
