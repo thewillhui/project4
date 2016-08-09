@@ -33,17 +33,17 @@
 
 /*index is based on locations object in controller.js*/
 .location-0 {
-  background-image: url("../img/hkisland.jpg");
+  background-image: url();
   background-size: auto 100%;
 }
 
 .location-1 {
-  background-image: url("../img/kowloon.jpg");
+  background-image: url();
   background-size: 100%;
 }
 
 .location-2 {
-  background-image: url("../img/nt.jpg");
+  background-image: url();
   background-size: auto 100%;
 }
 
