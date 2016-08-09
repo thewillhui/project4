@@ -151,7 +151,7 @@ app.controller('EnquiryCtrl', ['$scope', '$state', '$http', 'SERVER', 'currentEn
     // parseTime();
     if (User.config_name === "Renter") {
       $http
-        .post(SERVER.url + '/api/enquiries', $scope.enquiry)
+        .post(SERVER.url + '/api/enquiries', {enquiry: $scope.enquiry})
         .then(function(resp) {
           console.log(resp.status);
           console.log(resp.data);
@@ -160,7 +160,6 @@ app.controller('EnquiryCtrl', ['$scope', '$state', '$http', 'SERVER', 'currentEn
         })
     } else {
       currentEnquiry.setProperty($scope.enquiry)
-        //add notification here - enquiry saved please sign up first
       $state.go('tab.renter-auth.signup');
       $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({

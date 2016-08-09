@@ -6,16 +6,16 @@
       <div class="item item-divider">
         <h3>Enquiry {{enquiry.index}}</h3>
       </div>
-      <div class="row">
-        <div class="col-90" ng-click="scrollResize(); changeDisplay(enquiry);">
+      <div class="row" ng-click="scrollResize(); changeDisplay(enquiry);">
+        <div class="col-90" >
           <ion-item class="item item-icon-left">
             <i class="icon ion-ios-location-outline"></i>
             <p ng-repeat="area in enquiry.areas | limitTo: enquiry.limitTo"> {{area}}</p>
           </ion-item>
         </div>
         <div class="col-10 col-center">
-          <i class="ion-chevron-right" ng-hide="enquiry.showDetail"></i>
-          <i class="ion-chevron-down" ng-hide="!enquiry.showDetail"></i>
+          <i class="ion-chevron-down" ng-hide="enquiry.showDetail"></i>
+          <i class="ion-chevron-up" ng-hide="!enquiry.showDetail"></i>
         </div>
       </div>
       <div ng-hide="!enquiry.showDetail">
@@ -59,11 +59,17 @@
         </div>
         <!-- to be updated with new fields. -->
         <div class="row">
-          <div class="col">
+          <div class="col-50">
             <ion-item class="item item-icon-left">
               <i class="icon icon-calendar"></i>
-              <p ng-repeat="days in enquiry.available_days">{{days | limitTo : 3}}</p>
-              {{enquiry.timeslot}}
+              <p ng-repeat="days in enquiry.available_days">{{days}}</p>
+            </ion-item>
+          </div>
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+            <i class="icon ion-ios-clock-outline"></i>
+              <p ng-repeat="time in enquiry.timeslot">
+              {{time}}</p>
             </ion-item>
           </div>
         </div>

@@ -50,11 +50,7 @@
   text-shadow: 1px 1px 2px #000;
 }
 
-.title {
-  padding: 0;
-}
-
-.title > .col {
+.title > .col, .row.signup, .title{
   padding: 0;
 }
 
@@ -70,9 +66,6 @@ form input.ng-dirty.ng-invalid {
     border:1px solid red;
 }
 
-.row.signup {
-  padding: 0;
-}
 /* =======simplyHome icon font ===========*/
 @font-face {
     font-family: 'simplyhome';

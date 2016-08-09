@@ -11,7 +11,7 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
       .then(function(resp) {
         console.log(resp.status);
         console.log(resp.data);
-        currentEnquiry.setProperty('');
+        currentEnquiry.setProperty(null);
       })
   }
 
@@ -28,16 +28,7 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
       config: 'renter'
     }).then(function(resp) {
       console.log(resp);
-      $scope.showAlert = function() {
-        var alertPopup = $ionicPopup.alert({
-          title: 'Thanks for registering with SimplyHome',
-          template: 'You may now create enquiries.'
-        });
-      }
-      $scope.showAlert();
-      $state.go('tab.renter-enquiry.location');
-
-      if (currentEnquiry.getProperty() !== {}) {
+      if (currentEnquiry.getProperty() !== null) {
         $scope.sendEnquiry();
         $scope.showAlert = function() {
           var alertPopup = $ionicPopup.alert({
@@ -46,10 +37,20 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
           });
         }
         $scope.showAlert();
+        $state.go('tab.renter-my-enquiries');
+      } else {
+        $scope.showAlert = function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Thanks for registering with SimplyHome',
+            template: 'You may now create enquiries.'
+          });
+        }
+        $state.go('tab.renter-enquiry.location');
       }
+      $scope.showAlert();
       User.config_name = "Renter";
-    }).catch(function(resp) {
-      console.log(resp);
+    }, function(error) {
+      console.log(error);
       $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
           title: 'Error',
@@ -57,6 +58,8 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
         });
       }
       $scope.showAlert();
+    }).catch(function(resp) {
+      console.log(resp)
     })
   };
 
@@ -74,6 +77,10 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
           });
         }
         $scope.showAlert();
+        $state.go('tab.renter-my-enquiries')
+          // if (currentEnquiry.getProperty() !== {}) {
+          //   $scope.sendEnquiry();
+          // }
       })
       .catch(function(resp) {
         console.log(resp);

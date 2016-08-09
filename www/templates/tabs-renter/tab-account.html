@@ -1,33 +1,30 @@
 <ion-view view-title="Update account">
   <ion-content class="padding">
-    <p> {{user}} </p>
-    {{user.first_name}}
-    {{user.family_name}}
     <div class="list tabform">
-      <div class="row title" ng-init="account.salutation = user.salutation">
-        <ion-radio class="col" ng-model="account.salutation" ng-value="'Mr'">Mr</ion-radio>
-        <ion-radio class="col" ng-model="account.salutation" ng-value="'Ms'">Ms</ion-radio>
-        <ion-radio class="col" ng-model="account.salutation" ng-value="'Mrs'">Mrs</ion-radio>
+      <div class="row title" ng-init="user.salutation = user.salutation">
+        <ion-radio class="col" ng-model="user.salutation" ng-value="'Mr'">Mr</ion-radio>
+        <ion-radio class="col" ng-model="user.salutation" ng-value="'Ms'">Ms</ion-radio>
+        <ion-radio class="col" ng-model="user.salutation" ng-value="'Mrs'">Mrs</ion-radio>
       </div>
-      <div class="row">
+      <div class="row title">
         <div class="col">
           <label class="item item-input item-stacked-label">
             <span class="input-label">Mobile number</span>
-            <input type="number" ng-model="account.mobile_number" placeholder="Mobile number" ng-minlength="8" ng-maxlength="8" value="{{user.mobile_number}}" />
+            <input type="number" ng-model="user.mobile_number" placeholder="Mobile number" ng-minlength="8" ng-maxlength="8" value="{{user.mobile_number}}" />
           </label>
         </div>
       </div>
-      <div class="row">
+      <div class="row title">
         <div class="col-50">
           <label class="item item-input item-stacked-label">
             <span class="input-label">First name</span>
-            <input type="text" ng-model="account.first_name" placeholder="First name" ng-minlength="2" value="{{user.first_name}}" />
+            <input type="text" ng-model="user.first_name" placeholder="First name" ng-minlength="2" value="{{user.first_name}}" />
           </label>
         </div>
         <div class="col-50">
           <label class="item item-input item-stacked-label">
             <span class="input-label">Family name</span>
-            <input type="text" ng-model="account.family_name" placeholder="Family name" ng-minlength="2" value="{{user.last_name}}" />
+            <input type="text" ng-model="user.family_name" placeholder="Family name" ng-minlength="2" value="{{user.last_name}}" />
           </label>
         </div>
       </div>
