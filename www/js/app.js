@@ -263,6 +263,25 @@ app.run(function($ionicPlatform) {
       }
     }
   })
+  .state('tab.agent-auth', {
+    url: '/agent-auth',
+    abstract: true,
+    views: {
+      'tab-agent-signup': {
+        templateUrl: 'templates/tabs-agent/abstract.html',
+        controller: 'AgentAuthCtrl'
+      }
+    }
+  })
+  .state('tab.agent-auth.signup', {
+    url: '/signup',
+    templateUrl: 'templates/tabs-agent/tab-signup.html'
+  })
+  .state('tab.agent-auth.login', {
+    url: '/login',
+    templateUrl: 'templates/tabs-agent/login.html'
+  })
+
   .state('tab.agent-enquiries', {
     cache: false,
     url: '/agent-enquiries',

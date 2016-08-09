@@ -71,8 +71,10 @@ navigation history that also transitions its views in and out.
  -->
 
 
-  <!-- Agent tabs -->
-
+  <!-- Agent signup -->
+  <ion-tab title="A Sign-up" icon-off="ion-person-add" icon-on="ion-person-add" ui-sref="tab.agent-auth.signup">
+    <ion-nav-view name="tab-agent-signup"></ion-nav-view>
+  </ion-tab>
   <!-- New Listings -->
   <ion-tab title="New Listings" icon-off="ion-ios-plus-outline" icon-on="ion-ios-plus" ui-sref="tab.agent-newlisting" ng-show="agent" hidden="{{guest || renter}}">
     <ion-nav-view name="tab-newlisting"></ion-nav-view>
