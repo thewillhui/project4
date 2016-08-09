@@ -26,7 +26,7 @@ app.controller('RenterChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ion
   //   getMessages: function () {
   //     console.log('getmessages')
   //     $http ({
-  //       url: 'http://localhost:3000/api/chats',
+  //       url: SERVER.url + '/api/chats',
   //       method: 'get'
   //     }).then(function (resp) {
   //       $scope.messages = resp.data.messages;
@@ -35,7 +35,7 @@ app.controller('RenterChatDetailCtrl', ['$scope', '$http', '$stateParams', '$ion
   //   createMessage: function () {
   //     console.log('sendmessage')
   //     $http({
-  //       url: 'http://localhost:3000/api/chats/create',
+  //       url: SERVER.url + '/api/chats/create',
   //       method: 'post',
   //       data: $scope.input
   //     }).then(function (res) {
