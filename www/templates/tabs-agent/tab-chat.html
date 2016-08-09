@@ -49,25 +49,17 @@
         <div class="message">
           {{message.body}}
         </div>
+        <button class="button" ng-show="message.appointment_status=='unconfirmed'" ng-click="confirmAppointment(key, message.id)">
+          Confirm
+        </button>
+        <button ng-show="message.appointment_status=='confirmed'">
+          Confirmed
+        </button>
         <button class="button" ng-show="message.appointment_status != 'cancelled'" ng-click="cancelAppointment(key, message.id)">
           Cancel
         </button>
       </div>
     </div>
-
-  <!-- <div
-    class="chat-bubble left"
-    ng-repeat="message in messages"
-    ng-class="{
-      'text': message.message_type == 'text',
-      'appointment': message.message_type == 'appointment',
-      'listing': message.message_type == 'listing'}">
-    <p>
-      <span> {{message.imageable_id}} says:</span><br>
-      {{message.body}}</p>
-      <span am-time-ago="message.created_at"></span>
-    </p>
-  </div> -->
 
   </ion-content>
   <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
