@@ -61,7 +61,7 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", "SERVER", funct
     console.log(data)
 
     Upload.upload({
-      url: 'http://localhost:3000/api/apartments', //backend api goes here.
+      url: SERVER.url + '/api/apartments', //backend api goes here.
       method: "POST",
       data: data
     }).then(function(resp){

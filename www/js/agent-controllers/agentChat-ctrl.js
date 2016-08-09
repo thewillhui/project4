@@ -154,7 +154,7 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
 
   var getCurrentUser = function(){
     $http
-      .get('http://localhost:3000/api/userinfo')
+      .get(SERVER.url + '/api/userinfo')
       .then(function(resp){
         $scope.currentUser = resp.data
         console.log('this is after get');
