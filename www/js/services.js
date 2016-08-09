@@ -51,7 +51,7 @@ angular.module('simplyHome.services', [])
 // storing current enquiry info
 // for passing info across states
 .factory('currentEnquiry', function(){
-    var currentEnquiry = {};
+    var currentEnquiry = null;
     return {
         setProperty: function(enquiry){
             currentEnquiry = enquiry;
