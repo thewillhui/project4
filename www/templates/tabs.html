@@ -16,15 +16,16 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-renter-enquiry"></ion-nav-view>
   </ion-tab>
 
+  <!-- My Enquiries Tab -->
+  <ion-tab title="My Enquiries" icon-off="ion-ios-list-outline" icon-on="ion-ios-list-outline" ui-sref="tab.renter-my-enquiries" hidden="{{guest || agent}}">
+    <ion-nav-view name="tab-renter-my-enquiries"></ion-nav-view>
+  </ion-tab>
+
   <!-- Chats Tab -->
   <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" ui-sref="tab.renter-chats" hidden="{{guest || agent}}">
     <ion-nav-view name="tab-renter-chat"></ion-nav-view>
   </ion-tab>
 
-  <!-- My Enquiries Tab -->
-  <ion-tab title="My Enquiries" icon-off="ion-ios-list-outline" icon-on="ion-ios-list-outline" ui-sref="tab.renter-my-enquiries" hidden="{{guest || agent}}">
-    <ion-nav-view name="tab-renter-my-enquiries"></ion-nav-view>
-  </ion-tab>
 
   <!-- Renter Appointments -->
   <ion-tab title="Appointments" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" ui-sref='tab.renter-appointments' hidden="{{guest || agent}}">
@@ -32,11 +33,11 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 
 
-  <ion-tab title="R Listings" icon-off="ion-clipboard" icon-on="ion-clipboard" ui-sref='tab.renter-listings' hidden="{{guest || agent}}">
+  <ion-tab title="R Listings" icon-off="ion-clipboard" icon-on="ion-clipboard" ui-sref='tab.renter-listings' hidden="true">
     <ion-nav-view name="tab-renter-listings"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="R Ratings" icon-off="ion-android-checkmark-circle" icon-on="ion-android-checkmark-circle" ui-sref='tab.renter-ratings' hidden="{{guest || agent}}">
+  <ion-tab title="R Ratings" icon-off="ion-android-checkmark-circle" icon-on="ion-android-checkmark-circle" ui-sref='tab.renter-ratings' hidden="true">
   <ion-nav-view name="tab-renter-ratings"></ion-nav-view>
   </ion-tab>
 

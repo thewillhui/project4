@@ -1,6 +1,6 @@
 <ion-view view-title="New enquiry">
   <ion-content class="padding">
-    <ion-list>
+    <ion-list class="criteria">
       <h4>Bedrooms</h4>
       <div class="button-bar custom-width-bar bar-dark">
         <button ng-repeat="room in bedroomsBtns" ng-click="setActive('bed{{room.number}}'); enquiry.bedroom_num = room.number" ng-class="{'button-light': isActive('bed{{room.number}}')}" class="button button-block">{{room.number}}</button>
@@ -50,12 +50,8 @@
       <label class="item item-input">
         <textarea rows="5" ng-model="enquiry.remarks"></textarea>
       </label>
-
-      <!-- if not logged in -->
-      <a class="button button-positive button-large button-block" ng-click="saveEnquiry()"> Send enquiry (Not Logged in)</a>
-
       <!-- if logged in -->
-      <a class="button button-positive button-large button-block" ng-click="sendEnquiry()"> Send enquiry (Logged in)</a>
+      <a class="button button-positive button-large button-block" ng-click="sendEnquiry()"> Send enquiry</a>
 
     </ion-list>
   </ion-content>

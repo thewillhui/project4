@@ -1,4 +1,4 @@
-app.controller('EnquiryCtrl', [ '$scope', '$state', '$http', 'SERVER', 'currentEnquiry', function($scope, $state, $http, SERVER, currentEnquiry) {
+app.controller('EnquiryCtrl', ['$scope', '$state', '$http', 'SERVER', 'currentEnquiry', 'User', '$ionicPopup', function($scope, $state, $http, SERVER, currentEnquiry, User, $ionicPopup) {
 
   $scope.bedroomsBtns = [
     { number: 'Studio' },
@@ -145,34 +145,39 @@ app.controller('EnquiryCtrl', [ '$scope', '$state', '$http', 'SERVER', 'currentE
     return $scope.shownGroup === regionName;
   };
 
-
-  // use this function when not logged in
-  $scope.saveEnquiry = function() {
-    parseDate();
-
-    currentEnquiry.setProperty($scope.enquiry);
-    // a = currentEnquiry.getProperty()
-    // console.log(a)
-  }
-
   // Use this function when logged in
   $scope.sendEnquiry = function() {
     parseDate();
     // parseTime();
-    $http
-      .post(SERVER.url + '/api/enquiries', $scope.enquiry)
-      .then(function(resp) {
-        console.log(resp.status);
-        console.log(resp.data);
-      })
+    if (User.config_name === "Renter") {
+      $http
+        .post(SERVER.url + '/api/enquiries', $scope.enquiry)
+        .then(function(resp) {
+          console.log(resp.status);
+          console.log(resp.data);
+          //add a notification here
+          $state.go('tab.renter-my-enquiries');
+        })
+    } else {
+      currentEnquiry.setProperty($scope.enquiry)
+        //add notification here - enquiry saved please sign up first
+      $state.go('tab.renter-auth.signup');
+      $scope.showAlert = function() {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Not logged in',
+          template: 'Please sign up or log in first. Your enquiry will then be sent to matching agents'
+        });
+      }
+      $scope.showAlert();
+    }
   }
 
   //if an area is selected the function checks if it's in the enquiry object, if it is then remove it if not then add it. mimicks the checkbox functionality
-  $scope.addAreaKey = function(area){
+  $scope.addAreaKey = function(area) {
     var areaArr = $scope.enquiry.areas;
     var areaIndex = areaArr.indexOf(area);
-    if (areaIndex>=0){
-      areaArr.splice(areaIndex,1);
+    if (areaIndex >= 0) {
+      areaArr.splice(areaIndex, 1);
     } else {
       areaArr.push(area);
     }
