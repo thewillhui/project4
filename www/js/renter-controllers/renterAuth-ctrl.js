@@ -1,4 +1,5 @@
-app.controller('RenterAuthCtrl', function($scope, $auth, currentUser, $http, currentEnquiry, SERVER) {
+app.controller('RenterAuthCtrl', function($scope, $auth, currentUser, $http, currentEnquiry, SERVER, User) {
+
   $scope.registrationForm = {};
   $scope.loginForm = {};
 
@@ -29,7 +30,7 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser, $http, cur
       if (currentEnquiry.getProperty() !== {}) {
         $scope.sendEnquiry();
       }
-
+      User.config_name = "Renter";
     }).catch(function(resp) {
       console.log(resp);
     })
@@ -40,6 +41,7 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser, $http, cur
     $auth.submitLogin($scope.loginForm, { config: 'renter' })
       .then(function(resp) {
         console.log(resp);
+        User.config_name = "Renter";
         // handle success response
 
         if (currentEnquiry.getProperty() !== {}) {
@@ -58,6 +60,7 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser, $http, cur
       .then(function(resp) {
         console.log(resp);
         // handle success response
+        User.config_name = null;
       })
       .catch(function(resp) {
         console.log(resp);

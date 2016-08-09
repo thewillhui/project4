@@ -40,6 +40,14 @@ angular.module('simplyHome.services', [])
   }
 })
 
+.factory('User', function(){
+  var user = {
+    config_name: null
+  };
+
+  return user;
+})
+
 // storing current enquiry info
 // for passing info across states
 .factory('currentEnquiry', function(){

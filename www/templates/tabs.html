@@ -36,17 +36,13 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-renter-listings"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="R Ratings" icon-off="ion-android-checkmark-circle" icon-on="ion-android-checkmark-circle" ui-sref='tab.renter-ratings' hidden="{{guest || agent}}"><ion-nav-view name="tab-renter-ratings"></ion-nav-view>
+  <ion-tab title="R Ratings" icon-off="ion-android-checkmark-circle" icon-on="ion-android-checkmark-circle" ui-sref='tab.renter-ratings' hidden="{{guest || agent}}">
+  <ion-nav-view name="tab-renter-ratings"></ion-nav-view>
   </ion-tab>
 
   <ion-tab title="Account" icon-off="ion-ios-person-outline" icon-on="ion-ios-person-outline" ui-sref="tab.renter-account" hidden="{{guest || agent}}">
-
-
     <ion-nav-view name="tab-renter-account"></ion-nav-view>
   </ion-tab>
-
-
-
 
     <!-- renter signup -->
   <ion-tab title="Signup" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="tab.testrenter">
