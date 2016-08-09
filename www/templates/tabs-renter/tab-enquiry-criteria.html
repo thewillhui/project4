@@ -12,12 +12,12 @@
       <h4>Price</h4>
       <ion-item class="range">
         <i class="ion-social-usd-outline"></i> &nbsp;Min&nbsp;
-        <input type="range" step="2000" min="0" max="200000" name="Price range" ng-model="enquiry.price_min">
+        <input type="range" step="2000" min="5000" max="100000" name="Price range" ng-model="enquiry.price_min">
         <i class="ion-social-usd"> {{enquiry.price_min | number:0}}</i>
       </ion-item>
       <ion-item class="range">
         <i class="ion-social-usd-outline"></i> &nbsp;Max
-        <input type="range" step="2000" min="0" max="200000" name="Price range" ng-model="enquiry.price_max">
+        <input type="range" step="2000" min="5000" max="200000" name="Price range" ng-model="enquiry.price_max">
         <i class="ion-social-usd"> {{enquiry.price_max | number:0}}</i>
       </ion-item>
       <h4>Size</h4>
@@ -33,7 +33,7 @@
       <div>
         <label class="item item-input item-icon-left">
           <i class="icon icon-move"></i>
-          <input style="text-align: center;" type="date" ng-model="movein">
+          <input style="text-align: center;" type="date" ng-model="movein" placeholder="DD/MM/YYYY">
         </label>
         <ion-toggle class="item-icon-left" ng-model="enquiry.urgent" toggle-class="toggle-positive" ng-true-value="'Urgent'" ng-false-value="'Non-urgent'">
           <i class="icon ion-ios-bolt-outline"></i> Urgent enquiry (

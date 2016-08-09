@@ -73,7 +73,8 @@ app.run(function($ionicPlatform) {
   .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    controller: 'TabsCtrl'
   })
 
   //////////////////////////////////////////////////////////

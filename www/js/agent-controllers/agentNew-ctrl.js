@@ -44,7 +44,7 @@ app.controller('NewCtrl', ['Upload','$scope', "$state", "$http", "SERVER", funct
     open_kitchen: ''
   }
 
-  $scope.createListings = function() {
+    $scope.createListings = function() {
     console.log($scope)
     var data = {
       files: $scope.apartment_pictures.pictures,
