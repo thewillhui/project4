@@ -1,50 +1,31 @@
 angular.module('simplyHome.services', [])
 
 .factory('chats', function(){
-  var record = {
-    chats: []
-  };
-  return {
+  var factory = {
+    chats: [],
     updateChats: function(chatId, messages){
+      // its current index
+      var index = factory.chats.map(function(chat){
+        return chat.chat.id;
+      }).indexOf(chatId);
 
+      // update the messages
+      factory.chats[index].messages = messages;
     },
     setChats: function(chats){
-      record.chats = chats;
+      factory.chats = chats;
     },
     pushToChats: function(chat){
-      record.chats.push(chat);
+      factory.chats.push(chat);
     },
     getChat: function(key){
-      return record.chats[key];
+      return factory.chats[key];
     },
     getChats: function(){
-      return record.chats;
+      return factory.chats;
     }
-  }
-})
-
-.factory('SurgeryList', function($http, $rootScope) {
-    var surgeryListService = {
-        days: []
-    };
-
-    surgeryListService.getDays = function() {
-        return surgeryListService.days;
-    };
-
-    surgeryListService.nextPage = function() {
-
-        var url = $rootScope.url + '/api/surgeries/day.json?surgery_date=' + nextDate + '&access_token=' + $rootScope.accessToken + '&callback=JSON_CALLBACK';
-
-        $http.jsonp(url)
-            .success(function(response, status, headers, config) {
-                surgeryListService.days.push(response.day);
-            });
-
-        return surgeryListService.days;
-    };
-
-    return surgeryListService;
+  };
+  return factory;
 })
 
 // storing current chat room info

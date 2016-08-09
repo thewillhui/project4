@@ -1,4 +1,4 @@
-app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER) {
+app.controller('AgentChatCtrl', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER) {
 
   $scope.chatroom = chat.getProperty().chatroom;
   $scope.chatroomId = $scope.chatroom.id
@@ -108,6 +108,9 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
         console.log(data);
         $scope.messages.push(data.message);
         sortMessages();
+
+        // update CHATS factory
+        chats.updateChats($scope.chatroomId, $scope.messages);
         $scope.$apply();
         console.log($scope.messages);
       },
