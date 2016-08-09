@@ -5,10 +5,21 @@ app.controller('RenterChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER'
     $http
       .get(SERVER.url + '/api/chats')
       .then(function(resp){
-        // console.log(resp);
-        $scope.chats = resp.data;
-        console.log('inside getChats');
-        console.log($scope.chats)
+
+        // only show chatroom that has messages
+        resp.data.forEach(function(chat){
+          if(chat.messages.length){
+            // sort chat messages
+            chat.messages.sort(function(a,b){
+              if (a.created_at < b.created_at)
+                return -1;
+              if (a.created_at > b.created_at)
+                return 1;
+              return 0;
+            })
+            $scope.chats.push(chat)
+          }
+        })
       })
   }
 
@@ -16,7 +27,6 @@ app.controller('RenterChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER'
     chat.setProperty($scope.chats[key].chat, $scope.chats[key].messages)
     console.log(chat.getProperty())
     $state.go('tab.renter-chat');
-
   }
 
   getChats();

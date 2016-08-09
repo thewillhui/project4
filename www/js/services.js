@@ -1,5 +1,52 @@
 angular.module('simplyHome.services', [])
 
+.factory('chats', function(){
+  var record = {
+    chats: []
+  };
+  return {
+    updateChats: function(chatId, messages){
+
+    },
+    setChats: function(chats){
+      record.chats = chats;
+    },
+    pushToChats: function(chat){
+      record.chats.push(chat);
+    },
+    getChat: function(key){
+      return record.chats[key];
+    },
+    getChats: function(){
+      return record.chats;
+    }
+  }
+})
+
+.factory('SurgeryList', function($http, $rootScope) {
+    var surgeryListService = {
+        days: []
+    };
+
+    surgeryListService.getDays = function() {
+        return surgeryListService.days;
+    };
+
+    surgeryListService.nextPage = function() {
+
+        var url = $rootScope.url + '/api/surgeries/day.json?surgery_date=' + nextDate + '&access_token=' + $rootScope.accessToken + '&callback=JSON_CALLBACK';
+
+        $http.jsonp(url)
+            .success(function(response, status, headers, config) {
+                surgeryListService.days.push(response.day);
+            });
+
+        return surgeryListService.days;
+    };
+
+    return surgeryListService;
+})
+
 // storing current chat room info
 // for passing info across states
 .factory('chat', function(){
