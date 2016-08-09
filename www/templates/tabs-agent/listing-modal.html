@@ -1,0 +1,31 @@
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Listing</h1>
+       <button class="button button-primary" ng-click="listingModal.hide()">Cancel</button>
+    </ion-header-bar>
+    <ion-content padding="true" class="has-header">
+      <div class="list card" id="chat-listings-card1" ng-repeat="listing in listings">
+        <ion-item class="listing-description">
+          <b>{{listing.apartment.apt_name}}</b>
+        </ion-item>
+        <div class="item item-image">
+          <img src="img/Iq6RfARtQS2bcY26YyKU_home.jpg" width="25" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+        <ion-item class="item-icon-left dark">
+          <i class="icon ion-home"></i>
+          {{listing.apartment.street}}, {{listing.apartment.area}}
+        </ion-item>
+        <ion-item class="item-icon-left dark">
+          <i class="icon ion-ios-alarm-outline"></i>
+          {{listing.apartment.bedroom_num}}
+        </ion-item>
+        <ion-item class="item-icon-left dark">
+          <i class="icon ion-waterdrop"></i>
+          {{listing.apartment.bathroom_num}}
+        </ion-item>
+      </div>
+    </ion-content>
+    <ion-footer-bar>
+    </ion-footer-bar>
+  </ion-modal-view>
+

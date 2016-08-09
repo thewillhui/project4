@@ -4,20 +4,25 @@
        <button class="button button-primary" ng-click="propertyModal.hide()">Cancel</button>
     </ion-header-bar>
     <ion-content>
+
       <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">Listing Title</span>
+          <input type="text" ng-model="propertyListing.title">
+        </label>
         <label class="item item-input">
           <i class="icon ion-search placeholder-icon"></i>
           <input type="text" placeholder="Search" ng-model="search">
         </label>
       </div>
       <ion-list>
-        <ion-checkbox ng-repeat="(key, apartment) in apartments | filter: search" ng-click="apartments[key].checked = !apartment.checked ">{{apartment.area}}</ion-checkbox>
+        <ion-checkbox ng-repeat="(key, apartment) in apartments | filter: search" ng-click="apartments[key].checked = !apartment.checked ">
+          {{apartment.area}}
+        </ion-checkbox>
       </ion-list>
-<!--     <div class="bar bar-footer">
-    </div> -->
     </ion-content>
     <ion-footer-bar>
-      <button class="button button-full button-balanced" ng-click="sendApartments()">
+      <button class="button button-full button-balanced" ng-click="sendListings()">
         Send
       </button>
     </ion-footer-bar>

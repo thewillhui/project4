@@ -116,7 +116,7 @@ form input.ng-dirty.ng-invalid {
   max-width: 80%;
 }
 
-.chat-bubble:before {
+/*.chat-bubble:before {
   content: "\00a0";
   display: block;
   height: 16px;
@@ -155,7 +155,7 @@ form input.ng-dirty.ng-invalid {
   resize: none;
   height: 25px;
   width: 100%;
-}
+}*/
 
 /* fixes an ios bug bear */
 /*button.ion-android-send {
