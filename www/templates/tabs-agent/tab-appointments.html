@@ -3,21 +3,55 @@
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="getAppointments()">
     </ion-refresher>
 
-    <div class="list" ng-repeat="(key, appointment_list) in appointments">
+    <div class="list">
+      <div class="item item-divider">
+        Upcoming appointment
+      </div>
+      <a class="item" ng-repeat="(akey, appointment) in appointments['confirmed_upcoming']">
+        <p>{{appointment.location}} on {{appointment.start_time | date: "MM-dd-yyyy"}} with {{appointment.renter.first_name}} {{appointment.renter.family_name}}</p>
+      </a>
+    </div>
+
+    <div class="list">
+      <div class="item item-divider">
+        Appointment waiting to be confirmed
+      </div>
+      <a class="item" ng-repeat="(akey, appointment) in appointments['unconfirmed_upcoming']">
+        <p>{{appointment.location}} on {{appointment.start_time | date: "MM-dd-yyyy"}} with {{appointment.renter.first_name}} {{appointment.renter.family_name}}</p>
+      </a>
+    </div>
+
+    <div class="list">
+      <div class="item item-divider">
+        Past appointment
+      </div>
+      <a class="item" ng-repeat="(akey, appointment) in appointments['confirmed_past']">
+        <p>{{appointment.location}} on {{appointment.start_time | date: "MM-dd-yyyy"}} with {{appointment.renter.first_name}} {{appointment.renter.family_name}}</p>
+      </a>
+      <button class='button' ng-show="!appointment.renter_rating.done" ng-click="enterRating('confirmed_past', akey)">
+        Rate
+      </button>
+      <button class='button' ng-show="appointment.renter_rating.done" ng-click="showRating('confirmed_past', akey)">
+        Rating history
+      </button>
+    </div>
+
+
+   <!--  <div class="list" ng-repeat="(key, appointment_list) in appointments">
 
       <div class="item item-divider">
         {{key}}
       </div>
-      <div class="item" ng-repeat="appointment in appointment_list">
+      <div class="item" ng-repeat="(akey, appointment) in appointment_list">
         <p>{{appointment.location}} on {{appointment.start_time | date: "MM-dd-yyyy"}} with {{appointment.renter.first_name}} {{appointment.renter.family_name}}</p>
-        <button class='button' ng-show="!appointment.renter_rating.done" ng-click="enterRating()">
+        <button class='button' ng-show="!appointment.renter_rating.done" ng-click="enterRating(key, akey)">
           Rate
         </button>
-        <button class='button' ng-show="appointment.renter_rating.done" ng-click="showRating()">
+        <button class='button' ng-show="appointment.renter_rating.done" ng-click="showRating(key, akey)">
           Rating history
         </button>
       </div>
-    </div>
+    </div> -->
 <!--
       <div class="card" ng-repeat="(key, appointment) in appointments">
         <div class="item item-divider">

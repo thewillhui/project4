@@ -1,0 +1,42 @@
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Rate this appointment</h1>
+       <button class="button button-primary" ng-click="propertyModal.hide()">Cancel</button>
+    </ion-header-bar>
+    <ion-content>
+
+      <div class="list list-inset">
+        <label class="item item-input">
+          <span class="input-label">Listing Title</span>
+          <input type="text" ng-model="propertyListing.title">
+        </label>
+        <label class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" placeholder="Search" ng-model="search">
+        </label>
+      </div>
+      <ion-list>
+        <ion-checkbox ng-repeat="(key, apartment) in apartments | filter: search" ng-click="apartments[key].checked = !apartment.checked ">
+          {{apartment.area}}
+        </ion-checkbox>
+      </ion-list>
+    </ion-content>
+    <ion-footer-bar>
+      <button class="button button-full button-balanced" ng-click="sendRating()">
+        Rate User
+      </button>
+    </ion-footer-bar>
+  </ion-modal-view>
+
+<!-- create_table "renter_ratings", force: :cascade do |t|
+    t.integer  "rr_overall_star"
+    t.text     "rr_comment"
+    t.boolean  "no_show"
+    t.boolean  "spy"
+    t.integer  "agent_id"
+    t.integer  "renter_id"
+    t.integer  "appointment_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "done",            default: false
+  end -->
