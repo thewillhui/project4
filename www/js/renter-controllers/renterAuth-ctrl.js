@@ -74,9 +74,6 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
           });
         }
         $scope.showAlert();
-        // if (currentEnquiry.getProperty() !== {}) {
-        //   $scope.sendEnquiry();
-        // }
       })
       .catch(function(resp) {
         console.log(resp);

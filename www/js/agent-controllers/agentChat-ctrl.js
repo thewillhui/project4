@@ -6,7 +6,6 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
   $scope.message = '';
   $scope.apartments = [];
   $scope.appointment = {
-    start_date: new Date(),
     start_time: new Date(),
     end_time: new Date(),
     location: '',
@@ -134,9 +133,9 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
   $scope.sendAppointment = function(date){
     $scope.appointmentModal.hide();
     console.log($scope.appointment);
-    $scope.start_time = JSON.stringify($scope.start_time);
-    $scope.start_date = JSON.stringify($scope.start_date);
-    $scope.end_time = JSON.stringify($scope.end_time);
+    // $scope.start_time = JSON.stringify($scope.start_time);
+    // $scope.start_date = JSON.stringify($scope.start_date);
+    // $scope.end_time = JSON.stringify($scope.end_time);
     $http
       .post(SERVER.url + '/api/appointments', $scope.appointment)
       .then(function(resp){

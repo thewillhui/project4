@@ -5,7 +5,23 @@
   </ion-header-bar>
   <ion-content>
     <ion-list>
-      <div class="item item-icon-left" ion-datetime-picker date ng-model="appointment.start_date">
+      <div class="item item-icon-left" ion-datetime-picker ng-model="appointment.start_time">
+        <i class="icon ion-ios-grid-view-outline positive">
+        </i>
+          Start time:
+        <strong>
+          {{appointment.start_time| date: "yyyy-MM-dd H:mm"}}
+        </strong>
+      </div>
+      <div class="item item-icon-left" ion-datetime-picker ng-model="appointment.end_time">
+        <i class="icon ion-ios-grid-view-outline positive">
+        </i>
+          End time:
+        <strong>
+          {{appointment.end_time| date: "yyyy-MM-dd H:mm"}}
+        </strong>
+      </div>
+     <!--  <div class="item item-icon-left" ion-datetime-picker date ng-model="appointment.start_date">
         <i class="icon ion-ios-calendar positive"></i>
         Meeting Date:
         <strong>{{appointment.start_date| date: "yyyy-MM-dd"}}</strong>
@@ -19,7 +35,7 @@
         <i class="icon ion-ios-clock-outline positive"></i>
         End time:
         <strong>{{appointment.end_time| date: "h:mm a"}}</strong>
-      </div>
+      </div> -->
       <div class="item item-icon-left">
         <i class="icon ion-ios-location positive"></i>
         <input type="text" placeholder="Meeting Location" ng-model="appointment.location">

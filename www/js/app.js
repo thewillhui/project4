@@ -44,7 +44,6 @@ app.run(function($ionicPlatform) {
       passwordUpdatePath: '/renter/password',
       emailSignInPath: '/renter/sign_in',
       // storage: 'localStorage',
-
       validateOnPageLoad: true
     }
   }, {
@@ -121,6 +120,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.renter-chats', {
+    cache: false,
     url: '/renter-chats',
     views: {
       'tab-renter-chat': {
@@ -155,6 +155,15 @@ app.run(function($ionicPlatform) {
       'tab-renter-appointments': {
         templateUrl: 'templates/tabs-renter/tab-appointments.html',
         controller: 'RenterAppointmentsCtrl'
+      }
+    },
+    resolve: {
+      auth: function($auth, $state) {
+        return $auth.validateUser().catch(function(){
+          setTimeout(function(){
+            $state.go('tab.renter-enquiry.location')
+          }, 1)
+        });
       }
     }
   })
@@ -286,6 +295,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.agent-chats', {
+      cache: false,
       url: '/agent-chats',
       views: {
         'tab-agent-chats': {

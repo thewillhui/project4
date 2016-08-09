@@ -8,13 +8,15 @@
       <div class="item item-divider">
         {{key}}
       </div>
-
       <div class="item" ng-repeat="appointment in appointment_list">
-        {{appointment.location}}
-        <p>on {{appointment.start_date | date: "MM-dd-yyyy"}}<p>
-        <p>with {{appointment.renter.first_name}} {{appointment.renter.family_name}}</p>
+        <p>{{appointment.location}} on {{appointment.start_time | date: "MM-dd-yyyy"}} with {{appointment.renter.first_name}} {{appointment.renter.family_name}}</p>
+        <button class='button' ng-show="!appointment.renter_rating.done" ng-click="enterRating()">
+          Rate
+        </button>
+        <button class='button' ng-show="appointment.renter_rating.done" ng-click="showRating()">
+          Rating history
+        </button>
       </div>
-
     </div>
 <!--
       <div class="card" ng-repeat="(key, appointment) in appointments">

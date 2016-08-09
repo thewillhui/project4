@@ -2,6 +2,7 @@ angular.module('simplyHome.controllers')
 .controller('AgentAppointmentsCtrl', function($http, $scope, SERVER){
   $scope.appointments = [];
 
+  $
   var getAppointments = function(){
     $http
       .get(SERVER.url + '/api/appointments')

@@ -11,7 +11,7 @@
 
       <div class="item" ng-repeat="appointment in appointment_list">
         {{appointment.location}}
-        <p>on {{appointment.start_date | date: "MM-dd-yyyy"}}<p>
+        <p>on {{appointment.start_time | date: "MM-dd-yyyy"}}<p>
         <p>with {{appointment.agent.first_name}} {{appointment.agent.family_name}}</p>
       </div>
 
