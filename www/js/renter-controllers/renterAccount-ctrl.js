@@ -10,6 +10,7 @@ app.controller('RenterAccountCtrl', function($scope, $http, currentUser, SERVER)
       })
   };
 
+
   $scope.account = {};
 
   $scope.updateUser = function(user) {
@@ -18,19 +19,19 @@ app.controller('RenterAccountCtrl', function($scope, $http, currentUser, SERVER)
 
     if ($scope.userType === "Renter") {
       $http
-        .put(SERVER.url + '/api/renters/' + id, $scope.account)
+        .patch(SERVER.url + '/api/renters/' + id, $scope.account)
         .then(function(resp) {
           $scope.user = resp.data;
         })
     } else if ($scope.userType === "Agent"){
       $http
-        .put(SERVER.url + '/api/agents/' + id, $scope.account)
+        .patch(SERVER.url + '/api/agents/' + id, $scope.account)
         .then(function(resp) {
           $scope.user = resp.data;
         })
     }
   }
-
   $scope.getUser();
 
 })
+

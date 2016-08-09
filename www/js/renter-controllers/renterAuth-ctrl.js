@@ -1,10 +1,13 @@
-app.controller('RenterAuthCtrl', function($scope, $auth, currentUser, $http, currentEnquiry, SERVER) {
+app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'currentEnquiry', 'SERVER', 'User', '$ionicPopup', '$state', function($scope, $auth, currentUser, $http, currentEnquiry, SERVER, User, $ionicPopup, $state) {
+
   $scope.registrationForm = {};
   $scope.loginForm = {};
 
   $scope.sendEnquiry = function() {
     $http
-      .post(SERVER.url + '/api/enquiries', currentEnquiry.getProperty())
+      .post(SERVER.url + '/api/enquiries', {
+        enquiry: currentEnquiry.getProperty()
+      })
       .then(function(resp) {
         console.log(resp.status);
         console.log(resp.data);
@@ -25,14 +28,35 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser, $http, cur
       config: 'renter'
     }).then(function(resp) {
       console.log(resp);
-      currentUser.setProperty = resp.data
+      $scope.showAlert = function() {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Thanks for registering with SimplyHome',
+          template: 'You may now create enquiries.'
+        });
+      }
+      $scope.showAlert();
+      $state.go('tab.renter-enquiry.location');
 
       if (currentEnquiry.getProperty() !== {}) {
         $scope.sendEnquiry();
+        $scope.showAlert = function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Thanks for registering with SimplyHome',
+            template: 'Your enquiry has now been sent to relevant agents! You will be notified when matching agents reach out to you.'
+          });
+        }
+        $scope.showAlert();
       }
-
+      User.config_name = "Renter";
     }).catch(function(resp) {
       console.log(resp);
+      $scope.showAlert = function() {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Error',
+          template: 'Sorry the mobile number is already registered or your password does not match.'
+        });
+      }
+      $scope.showAlert();
     })
   };
 
@@ -41,17 +65,28 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser, $http, cur
     $auth.submitLogin($scope.loginForm, { config: 'renter' })
       .then(function(resp) {
         console.log(resp);
-
-        currentUser.setProperty = resp.data
+        User.config_name = "Renter";
         // handle success response
-
-        if (currentEnquiry.getProperty() !== {}) {
-        $scope.sendEnquiry();
-
-      }
+        $scope.showAlert = function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Welcome',
+            template: 'You are now logged in.'
+          });
+        }
+        $scope.showAlert();
+        // if (currentEnquiry.getProperty() !== {}) {
+        //   $scope.sendEnquiry();
+        // }
       })
       .catch(function(resp) {
         console.log(resp);
+        $scope.showAlert = function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Error',
+            template: 'Oops! Your mobile_number/password is invalid. Please try again.'
+          });
+        }
+        $scope.showAlert();
         // handle error response
       });
   };
@@ -60,12 +95,12 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser, $http, cur
     $auth.signOut()
       .then(function(resp) {
         console.log(resp);
-        currentUser.setProperty = resp.data
         // handle success response
+        User.config_name = null;
       })
       .catch(function(resp) {
         console.log(resp);
         // handle error response
       });
   };
-})
+}])

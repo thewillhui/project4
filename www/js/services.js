@@ -40,6 +40,14 @@ angular.module('simplyHome.services', [])
   }
 })
 
+.factory('User', function(){
+  var user = {
+    config_name: null
+  };
+
+  return user;
+})
+
 // storing current enquiry info
 // for passing info across states
 .factory('currentEnquiry', function(){
@@ -54,118 +62,6 @@ angular.module('simplyHome.services', [])
     }
 })
 
-.factory('HkIsland', function() {
-
-  var hkIsland = [
-    { district: 'Aberdeen' },
-    { district: 'Wan Chai' },
-    { district: 'Tin Hau' },
-    { district: 'Tai Hang' },
-    { district: 'Tai Koo' },
-    { district: 'Shau Kei Wan' },
-    { district: 'Heng Fa Chuen' },
-    { district: 'Sai Wan Ho' },
-    { district: 'Quarry Bay' },
-    { district: 'North Point' },
-    { district: 'Fortress Hill' },
-    { district: 'Mid-Levels'},
-    { district: 'Island West' },
-    { district: 'Island South' },
-    { district: 'Chai Wan' },
-    { district: 'Shek O' },
-    { district: 'Central' },
-    { district: 'Sheung Wan' },
-    { district: 'Causeway Bay' }
-  ]
-
-  return {
-    all: function() {
-      return hkIsland;
-    }
-  };
-})
-
-
-// .factory('Kowloon', function() {
-
-//   var kowloon = [
-//     { district: 'Yau Tong' },
-//     { district: 'Lam Tin' },
-//     { district: 'Tsim Sha Tsui' },
-//     { district: 'Jordon' },
-//     { district: 'To Kwa Wan' },
-//     { district: 'Kowloon City' },
-//     { district: 'Tai Kok Tsui' },
-//     { district: 'Olympic' },
-//     { district: 'Kowloon Station' },
-//     { district: 'Sham Shui Po' },
-//     { district: 'Shek Kip Mei' },
-//     { district: 'San Po Kong' },
-//     { district: 'Wong Tai Sin' },
-//     { district: 'Prince Edward' },
-//     { district: 'Mong Kok' },
-//     { district: 'Yau Ma Tei' },
-//     { district: 'Lai Chi Kok' },
-//     { district: 'Cheung Sha Wan' },
-//     { district: 'Mei Foo' },
-//     { district: 'Lai King' },
-//     { district: 'Kwun Tong' },
-//     { district: 'Ngau Tau Kok' },
-//     { district: 'Kowloon Tong' },
-//     { district: 'Ho Man Tin' },
-//     { district: 'Yau Yat Tsuen' },
-//     { district: 'Kowloon Bay' },
-//     { district: 'Ngau Chi Wan' },
-//     { district: 'Hung Hom' },
-//     { district: 'Whampoa' },
-//     { district: 'Diamond Hill' },
-//     { district: 'Lok Fu' }
-//   ]
-//   return {
-//     all: function() {
-//       return kowloon;
-//     }
-//   };
-// })
-
-// .factory('NewTerritories', function() {
-
-//   var newTerritories = [
-//     { district: 'Yuen Long' },
-//     { district: 'Tin Shui Wai' },
-//     { district: 'Tuen Mun' },
-//     { district: 'Tsuen Wan' },
-//     { district: 'Tai Wo Hau' },
-//     { district: 'Tsing Yi' },
-//     { district: 'Tseung Kwan O' },
-//     { district: 'Tai Po' },
-//     { district: 'Tai Wo' },
-//     { district: 'Sha Tin' },
-//     { district: 'Tai Wai' },
-//     { district: 'Fo Tan' },
-//     { district: 'Sham Tseng' },
-//     { district: 'Sai Kung' },
-//     { district: 'Clear Water Bay' },
-//     { district: 'Ma On Shan' },
-//     { district: 'Kwai Chung' },
-//     { district: 'Kwai Fong' },
-//     { district: 'Fan Ling' },
-//     { district: 'Sheung Shui' },
-//     { district: 'Tung Chung' },
-//     { district: 'Ma Wan' },
-//     { district: 'Discovery Bay' },
-//     { district: 'Lantau Island' },
-//     { district: 'Peng Chau' },
-//     { district: 'Lamma Island' },
-//     { district: 'Cheung Chau' },
-//     { district: 'Other Islands' }
-//   ]
-//   return {
-//     all: function() {
-//       return newTerritories;
-//     }
-//   };
-// })
 
 
 .factory('Chats', function() {
