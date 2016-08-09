@@ -1,0 +1,70 @@
+<ion-view view-title="Sign up/Log in">
+  <ion-nav-buttons side="secondary">
+    <a class="button button-clear button-positive" ui-sref="tab.agent-auth.login">
+        Log in
+      </a>
+  </ion-nav-buttons>
+  <ion-content class="padding">
+    <div class="list tabform">
+      <form ng-submit="handleRegBtnClick()" role="form">
+        <div class="row title">
+          <ion-radio class="col" ng-model="registrationForm.salutation" ng-value="'Mr'">Mr</ion-radio>
+          <ion-radio class="col" ng-model="registrationForm.salutation" ng-value="'Ms'">Ms</ion-radio>
+          <ion-radio class="col" ng-model="registrationForm.salutation" ng-value="'Mrs'">Mrs</ion-radio>
+        </div>
+        <div class="row signup">
+          <div class="col-50">
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">First name</span>
+              <input type="text" name="first_name" ng-model="registrationForm.first_name" ng-model-options="{ updateOn: 'blur' }" required placeholder="First name" ng-minlength="2"/>
+            </label>
+          </div>
+          <div class="col-50">
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Family name</span>
+              <input type="text" name="family_name" ng-model="registrationForm.family_name" required placeholder="Family name" ng-minlength="2"/>
+            </label>
+          </div>
+        </div>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Mobile number</span>
+          <input type="number" name="mobile" ng-model="registrationForm.mobile_number" required placeholder="Valid mobile number required for SMS verification" ng-minlength="8" ng-maxlength="8"/>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Password</span>
+          <input type="password" name="password" ng-model="registrationForm.password" required placeholder="Enter a password" ng-minlength="6"/>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Confirm password</span>
+          <input type="password" name="password_confirmation" ng-model="registrationForm.password_confirmation" required placeholder="Confirm password" ng-minlength="6"/>
+        </label>
+        <ion-list>
+        <h5>Please choose your area</h5>
+    <div ng-repeat="(regionName,value) in region track by $index" >
+      <ion-item
+      class="item-dark item-icon-right"
+      ng-click="toggleGroup(regionName)"
+      ng-class="{active: isGroupShown(regionName), 'location-{{$index}}': true}"
+      >
+        <i
+        class="icon"
+        ng-class="isGroupShown(regionName) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'">
+        </i> &nbsp; <h1 class="enquiryLocation">{{regionName}}</h1>
+      </ion-item>
+      <ion-checkbox
+      class="item-accordion item-checkbox-right"
+      ng-repeat="area in region[regionName] | orderBy"
+      ng-show="isGroupShown(regionName)"
+      ng-click="addAreaKey(area, regionName)"
+      >
+        {{area}}
+      </ion-checkbox>
+    </div>
+  </ion-list>
+
+        <h5>Your number will not be shared with any third party.</h5>
+        <button type="submit" class="button button-positive button-large button-block">Register</button>
+      </form>
+    </div>
+  </ion-content>
+</ion-view>
