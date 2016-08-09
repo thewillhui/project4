@@ -2,10 +2,6 @@ app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state) {
   $scope.registrationForm = {areas: []};
   $scope.loginForm = {};
 
-  $scope.registrationForm = {};
-  $scope.loginForm = {};
-
-
   $scope.handleRegBtnClick = function() {
     $auth.submitRegistration({
       mobile_number: $scope.registrationForm.mobile_number,
