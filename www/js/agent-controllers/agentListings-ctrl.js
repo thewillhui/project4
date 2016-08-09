@@ -17,7 +17,7 @@ app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScr
     $http
       .get(SERVER.url + '/api/apartments')
       .then(function successCallback(response) {
-        $scope.myListings = response.data.map(function(x, index) {
+        $scope.listings = response.data.map(function(x, index) {
           x.index = index + 1;
           x.limitTo = 3;
           x.showDetail = false;
