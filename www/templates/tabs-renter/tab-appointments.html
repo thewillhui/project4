@@ -3,38 +3,38 @@
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="getAppointments()">
     </ion-refresher>
 
-    <div class="list" ng-repeat="(key, appointment_list) in appointments">
-
+    <div class="list">
       <div class="item item-divider">
-        {{key}}
+        Upcoming appointment
       </div>
-
-      <div class="item" ng-repeat="appointment in appointment_list">
-        {{appointment.location}}
-        <p>on {{appointment.start_time | date: "MM-dd-yyyy"}}<p>
-        <p>with {{appointment.agent.first_name}} {{appointment.agent.family_name}}</p>
-      </div>
-
+      <a class="item" ng-repeat="(akey, appointment) in appointments['confirmed_upcoming']">
+        <p>{{appointment.location}} on {{appointment.start_time | date: "MM-dd-yyyy"}} with {{appointment.agent.first_name}} {{appointment.agent.family_name}}</p>
+      </a>
     </div>
-<!--
-      <div class="card" ng-repeat="(key, appointment) in appointments">
-        <div class="item item-divider">
-          {{appointment.appointment.start_date | date: "MM-dd-yyyy"}}
-        </div>
-        <div class="item item-text-wrap">
-          Appointment with {{appointment.agent.email}}
-        </div>
-        <div class="item tabs tabs-secondary tabs-icon-left">
-          <a class="tab-item" ng-click="confirmAppointments({{appointment.appointment.id}})">
-            <i class="icon ion-checkmark-round"></i>
-            Confirm
-          </a>
-          <a class="tab-item" ng-click="">
-            <i class="icon ion-close-round"></i>
-            Cancel
-          </a>
-        </div>
-      </div> -->
+
+    <div class="list">
+      <div class="item item-divider">
+        Appointment waiting to be confirmed
+      </div>
+      <a class="item" ng-repeat="(akey, appointment) in appointments['unconfirmed_upcoming']">
+        <p>{{appointment.location}} on {{appointment.start_time | date: "MM-dd-yyyy"}} with {{appointment.agent.first_name}} {{appointment.agent.family_name}}</p>
+      </a>
+    </div>
+
+    <div class="list">
+      <div class="item item-divider">
+        Past appointment
+      </div>
+      <a class="item" ng-repeat="(akey, appointment) in appointments['confirmed_past']">
+        <p>{{appointment.location}} on {{appointment.start_time | date: "MM-dd-yyyy"}} with {{appointment.agent.first_name}} {{appointment.agent.family_name}}</p>
+      </a>
+      <button class='button' ng-show="!appointment.renter_rating.done" ng-click="enterRating('confirmed_past', akey)">
+        Rate
+      </button>
+      <button class='button' ng-show="appointment.renter_rating.done" ng-click="showRating('confirmed_past', akey)">
+        Rating history
+      </button>
+    </div>
 
   </ion-content>
 </ion-view>
