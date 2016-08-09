@@ -108,6 +108,7 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
         console.log('this is the data you are receiving');
         console.log(data);
         $scope.messages.push(data.message);
+        sortMessages();
         $scope.$apply();
         console.log($scope.messages);
       },
@@ -161,6 +162,18 @@ app.controller('AgentChatCtrl', function(chat, $http, $scope, $ionicModal, curre
       })
   }
 
+  // sort messages by created_at
+  var sortMessages = function(){
+    $scope.messages.sort(function(a, b){
+      if (a.created_at < b.created_at)
+        return -1;
+      if (a.created_at > b.created_at)
+        return 1;
+      return 0;
+    })
+  }
+
   getCurrentUser();
   getApartments();
+  sortMessages();
 })

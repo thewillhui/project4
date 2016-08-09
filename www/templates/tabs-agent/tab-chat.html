@@ -49,7 +49,7 @@
         <div class="message">
           {{message.body}}
         </div>
-        <button class="button" ng-show="message.appointment_status != 'cancelled'" ng-click="cancelAppointment(key, message.id)">
+        <button class="button" ng-show="message.appointment_status != 'cancelled'" ng-hide="message.appointment_status == 'confirmed'" ng-click="cancelAppointment(key, message.id)">
           Cancel
         </button>
       </div>

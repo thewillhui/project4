@@ -1,22 +1,40 @@
-<ion-view view-title="Account">
+<ion-view view-title="My appointments">
   <ion-content>
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="getEnquiries()">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="getAppointments()">
     </ion-refresher>
 
+    <div class="list" ng-repeat="(key, appointment_list) in appointments">
+
+      <div class="item item-divider">
+        {{key}}
+      </div>
+
+      <div class="item" ng-repeat="appointment in appointment_list">
+        {{appointment.location}}
+        <p>on {{appointment.start_date | date: "MM-dd-yyyy"}}<p>
+        <p>with {{appointment.renter.first_name}} {{appointment.renter.family_name}}</p>
+      </div>
+
+    </div>
+<!--
       <div class="card" ng-repeat="(key, appointment) in appointments">
         <div class="item item-divider">
           {{appointment.appointment.start_date | date: "MM-dd-yyyy"}}
         </div>
         <div class="item item-text-wrap">
-          Appointment with {{appointment.renter.email}}
+          Appointment with {{appointment.agent.email}}
         </div>
         <div class="item tabs tabs-secondary tabs-icon-left">
-          <a class="tab-item" ng-click="cancelAppointments({{appointment.appointment.id}}, key)">
+          <a class="tab-item" ng-click="confirmAppointments({{appointment.appointment.id}})">
+            <i class="icon ion-checkmark-round"></i>
+            Confirm
+          </a>
+          <a class="tab-item" ng-click="">
             <i class="icon ion-close-round"></i>
             Cancel
           </a>
         </div>
-      </div>
+      </div> -->
 
   </ion-content>
 </ion-view>

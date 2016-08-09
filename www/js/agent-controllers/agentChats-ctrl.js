@@ -5,8 +5,9 @@ app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER',
     $http
       .get(SERVER.url + '/api/chats')
       .then(function(resp){
-        console.log(resp);
         $scope.chats = resp.data;
+        console.log('this is $scope.chats')
+        console.log($scope.chats)
       })
   }
 
