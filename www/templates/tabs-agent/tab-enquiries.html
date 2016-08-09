@@ -4,7 +4,9 @@
       I'm a button on the primary of the navbar!
     </button> -->
   </ion-nav-buttons>
-
+<ion-content class="padding">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="getMatchedEnquiries()">
+    </ion-refresher>
   <ion-content>
     <div class="list">
       <div class="item item-button-right" ng-repeat="enquiry in enquiries">

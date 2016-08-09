@@ -1,21 +1,25 @@
-app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state) {
-  $scope.registrationForm = {areas: []};
+app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state, User, $ionicPopup) {
+  $scope.registrationForm = {
+                              areas: [],
+                              first_name: '',
+                              family_name: '',
+                              mobile_number: '',
+                              password: '',
+                              password_confirmation: ''
+                              };
   $scope.loginForm = {};
 
   $scope.handleRegBtnClick = function() {
-    $auth.submitRegistration({
-      mobile_number: $scope.registrationForm.mobile_number,
-      password: $scope.registrationForm.password,
-      password_confirmation: $scope.registrationForm.password_confirmation,
-      areas: $scope.registrationForm.areas
-
-    }, {
+    $auth.submitRegistration(
+      $scope.registrationForm
+    , {
       config: 'agent'
     }).then(function(resp) {
       console.log(resp)
-        currentUser.setProperty(resp);
-        console.log('this is from factory:');
-        console.log(currentUser.getProperty());
+      currentUser.setProperty(resp);
+      console.log('this is from factory:');
+      console.log(currentUser.getProperty());
+      User.config_name = "Agent";
       // console.log(resp);
     }).catch(function(resp) {
       console.log(resp);
@@ -31,8 +35,23 @@ app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state) {
         currentUser.setProperty(resp);
         console.log('this is from factory:');
         console.log(currentUser.getProperty());
-
+        User.config_name = "Agent";
         // handle success response
+        $scope.showAlert = function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Welcome',
+            template: 'You are now logged in.'
+          });
+        }
+        $scope.showAlert();
+      }, function(error) {
+        $scope.showAlert = function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Error',
+            template: 'Oops! Your mobile_number/password is invalid. Please try again.'
+          });
+        }
+        $scope.showAlert();
       })
       .catch(function(resp) {
         console.log(resp);
@@ -44,6 +63,7 @@ app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state) {
     $auth.signOut()
       .then(function(resp) {
         console.log(resp);
+        User.config_name = null;
         // handle success response
       })
       .catch(function(resp) {
@@ -70,14 +90,13 @@ app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state) {
     return $scope.shownGroup === regionName;
   };
   //if an area is selected the function checks if it's in the enquiry object, if it is then remove it if not then add it. mimicks the checkbox functionality
-  $scope.addAreaKey = function(area){
+  $scope.addAreaKey = function(area) {
     var areaArr = $scope.registrationForm.areas;
     var areaIndex = areaArr.indexOf(area);
-    if (areaIndex>=0){
-      areaArr.splice(areaIndex,1);
+    if (areaIndex >= 0) {
+      areaArr.splice(areaIndex, 1);
     } else {
       areaArr.push(area);
     }
   };
 })
-
