@@ -15,6 +15,10 @@ angular.module('simplyHome.controllers', [])
       $scope.renter = false;
       $scope.agent = true;
       $scope.guest = false;
+    } else {
+      $scope.renter = false;
+      $scope.agent = false;
+      $scope.guest = true;
     }
   })
 })

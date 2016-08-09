@@ -69,21 +69,27 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
       .then(function(resp) {
         console.log(resp);
         User.config_name = "Renter";
-        // handle success response
-        $scope.showAlert = function() {
-          var alertPopup = $ionicPopup.alert({
-            title: 'Welcome',
-            template: 'You are now logged in.'
-          });
+        if (currentEnquiry.getProperty() !== null) {
+          $scope.sendEnquiry();
+          $scope.showAlert = function() {
+            var alertPopup = $ionicPopup.alert({
+              title: 'Thanks for logging in',
+              template: 'Your enquiry has now been sent to relevant agents! You will be notified when matching agents reach out to you.'
+            });
+          }
+          $scope.showAlert();
+          $state.go('tab.renter-my-enquiries');
+        } else {
+          $scope.showAlert = function() {
+            var alertPopup = $ionicPopup.alert({
+              title: 'Welcome',
+              template: 'You are now logged in.'
+            });
+          }
+          $scope.showAlert();
+          $state.go('tab.renter-my-enquiries')
         }
-        $scope.showAlert();
-        $state.go('tab.renter-my-enquiries')
-          // if (currentEnquiry.getProperty() !== {}) {
-          //   $scope.sendEnquiry();
-          // }
-      })
-      .catch(function(resp) {
-        console.log(resp);
+      }, function(error) {
         $scope.showAlert = function() {
           var alertPopup = $ionicPopup.alert({
             title: 'Error',
@@ -91,6 +97,10 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
           });
         }
         $scope.showAlert();
+      })
+      .catch(function(resp) {
+        console.log(resp);
+
         // handle error response
       });
   };

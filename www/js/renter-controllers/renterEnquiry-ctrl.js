@@ -55,6 +55,20 @@ app.controller('EnquiryCtrl', ['$scope', '$state', '$http', 'SERVER', 'currentEn
     remarks: ''
   };
 
+  var clearEnquiry = {
+    areas: [],
+    bedroom_num: '',
+    bathroom_num: '',
+    price_min: 5000,
+    price_max: 5000,
+    property_size_min: 100,
+    property_size_max: 100,
+    movein_date: '',
+    urgent: 'Non-urgent',
+    available_days: [],
+    timeslot: [],
+    remarks: ''
+  };
 
   //only need to parse when sending to the backend
   var parseDate = function() {
@@ -157,6 +171,7 @@ app.controller('EnquiryCtrl', ['$scope', '$state', '$http', 'SERVER', 'currentEn
           console.log(resp.data);
           //add a notification here
           $state.go('tab.renter-my-enquiries');
+          $scope.enquiry = clearEnquiry;
         })
     } else {
       currentEnquiry.setProperty($scope.enquiry)
@@ -167,6 +182,8 @@ app.controller('EnquiryCtrl', ['$scope', '$state', '$http', 'SERVER', 'currentEn
           template: 'Please sign up or log in first. Your enquiry will then be sent to matching agents'
         });
       }
+      $scope.enquiry = clearEnquiry;
+      console.log($scope.enquiry)
       $scope.showAlert();
     }
   }
