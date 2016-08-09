@@ -1,4 +1,6 @@
 app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth) {
+  $scope.registrationForm = {};
+  $scope.loginForm = {};
 
   $scope.handleRegBtnClick = function() {
 
@@ -18,6 +20,7 @@ app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth) {
     })
   };
 
+  // comment this out when auth.js works
   $scope.handleLoginBtnClick = function() {
 
     $auth.submitLogin($scope.loginForm, { config: 'agent' })

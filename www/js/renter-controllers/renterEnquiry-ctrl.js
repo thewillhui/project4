@@ -1,4 +1,4 @@
-app.controller('EnquiryCtrl', function($scope, $state, $http, SERVER) {
+app.controller('EnquiryCtrl', [ '$scope', '$state', '$http', 'SERVER', 'currentEnquiry', function($scope, $state, $http, SERVER, currentEnquiry) {
 
   $scope.bedroomsBtns = [
     { number: 'Studio' },
@@ -146,6 +146,16 @@ app.controller('EnquiryCtrl', function($scope, $state, $http, SERVER) {
   };
 
 
+  // use this function when not logged in
+  $scope.saveEnquiry = function() {
+    parseDate();
+
+    currentEnquiry.setProperty($scope.enquiry);
+    // a = currentEnquiry.getProperty()
+    // console.log(a)
+  }
+
+  // Use this function when logged in
   $scope.sendEnquiry = function() {
     parseDate();
     // parseTime();
@@ -156,6 +166,7 @@ app.controller('EnquiryCtrl', function($scope, $state, $http, SERVER) {
         console.log(resp.data);
       })
   }
+
   //if an area is selected the function checks if it's in the enquiry object, if it is then remove it if not then add it. mimicks the checkbox functionality
   $scope.addAreaKey = function(area){
     var areaArr = $scope.enquiry.areas;
@@ -166,4 +177,4 @@ app.controller('EnquiryCtrl', function($scope, $state, $http, SERVER) {
       areaArr.push(area);
     }
   };
-})
+}])

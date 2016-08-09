@@ -1,6 +1,16 @@
-app.controller('RenterAuthCtrl', function($scope, $auth, currentUser) {
+app.controller('RenterAuthCtrl', function($scope, $auth, currentUser, $http, currentEnquiry, SERVER) {
   $scope.registrationForm = {};
   $scope.loginForm = {};
+
+  $scope.sendEnquiry = function() {
+    $http
+      .post(SERVER.url + '/api/enquiries', currentEnquiry.getProperty())
+      .then(function(resp) {
+        console.log(resp.status);
+        console.log(resp.data);
+        currentEnquiry.setProperty('');
+      })
+  }
 
   $scope.handleRegBtnClick = function() {
 
@@ -16,14 +26,17 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser) {
     }).then(function(resp) {
       console.log(resp);
       currentUser.setProperty = resp.data
+
+      if (currentEnquiry.getProperty() !== {}) {
+        $scope.sendEnquiry();
+      }
+
     }).catch(function(resp) {
       console.log(resp);
     })
   };
 
-
-  $scope.loginForm = {};
-
+  // comment this out when auth.js works
   $scope.handleLoginBtnClick = function() {
     $auth.submitLogin($scope.loginForm, { config: 'renter' })
       .then(function(resp) {
@@ -31,6 +44,11 @@ app.controller('RenterAuthCtrl', function($scope, $auth, currentUser) {
 
         currentUser.setProperty = resp.data
         // handle success response
+
+        if (currentEnquiry.getProperty() !== {}) {
+        $scope.sendEnquiry();
+
+      }
       })
       .catch(function(resp) {
         console.log(resp);

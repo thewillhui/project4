@@ -13,7 +13,8 @@
     "ng-file-upload": "^12.0.4",
     "angular-notify": "^2.5.0",
     "ion-datetime-picker": "^0.3.1",
-    "ionic-rating": "^0.3.0"
+    "ionic-rating": "^0.3.0",
+    "angular": "^1.5.8"
   },
   "resolutions": {
     "angular": "1.5.8",
