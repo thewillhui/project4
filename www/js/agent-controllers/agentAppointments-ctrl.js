@@ -13,6 +13,15 @@ angular.module('simplyHome.controllers')
     {number: 5}
   ]
 
+  // $scope.confirmAppointments = function(id){
+  //   console.log(id);
+  //   $http
+  //     .put(SERVER.url + '/api/appointments/confirm/' + id)
+  //     .then(function(resp){
+  //       console.log(resp);
+  //       $scope.confirm = "Confirmed"
+  //     })
+
   $scope.renter_ratings = {
     rr_overall_star: '',
     rr_comment: '',
