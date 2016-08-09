@@ -28,7 +28,8 @@ app.run(function($ionicPlatform) {
   // url: 'http://localhost:3000'
 
   // if using our public heroku server
-  url: 'https://simplyhome-dev-rails.herokuapp.com'
+  url: 'http://localhost:3000'
+  // url: 'https://simplyhome-dev-rails.herokuapp.com'
 })
 
 .config(function($stateProvider, $urlRouterProvider, $authProvider, SERVER) {
