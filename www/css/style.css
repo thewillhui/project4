@@ -1,4 +1,18 @@
-/* Empty. Add your own CSS if you like */
+
+/*
+$light:                           #fff;
+$stable:                          #f8f8f8;
+$positive:                        #387ef5;
+$calm:                            #11c1f3;
+$balanced:                        #33cd5f;
+$energized:                       #ffc900;
+$assertive:                       #ef473a;
+$royal:                           #886aea;
+$dark:                            #444;
+*/
+
+
+
 /* CORE */
 .list .item.item-accordion {
   line-height: 38px;
@@ -240,22 +254,24 @@ at the bottom as the textarea resizes */
   float: left;
   background-color: #EEEEEE;
   color: #212121;
+  min-width: 15%;
   max-width: 90%;
-  padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding: 10px;
 }
 
 .sent {
   float: right;
   background-color: #387ef5;
   color: #FAFAFA;
+  min-width: 15%;
   max-width: 90%;
-  padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding: 10px;
 }
 
 .appointment {
@@ -277,22 +293,14 @@ at the bottom as the textarea resizes */
 }
 
 
-.viewlisting {
-  background-color: #4CAF50;
-  color: #FAFAFA;
-  margin: 15px 0;
-  font-weight: bold;
-}
-
 .agentlisting {
-  background-color: #29B6F6;
-  color: #FAFAFA;
+  background-color: #EEE;
+  color: #333;
   margin-left: 40%;
   width: 60%;
   padding: 10px;
   border-radius: 10px;
   margin: 20px 0;
-  text-align: center;
 }
 .renterlisting {
   background-color: #EEEEEE;
@@ -308,11 +316,19 @@ at the bottom as the textarea resizes */
 .chatTimestampSent {
   color: #BBB;
   margin: 0;
+  font-size: 0.8em;
+  text-align: right;
 }
 
 .chatTimestampRec {
   color: #888;
   margin: 0;
+  font-size: 0.8em;
+  text-align: right;
+}
+
+.bar-footer {
+  height: 60px;
 }
 
 /*agent chat popover*/

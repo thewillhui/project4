@@ -6,7 +6,7 @@
 -->
 <ion-view title="{{agent.first_name}} {{agent.family_name}}">
 
-  <ion-content class="padding col" deletegate-handle="userMessageScroll">
+  <ion-content class="padding" deletegate-handle="userMessageScroll">
     <div ng-repeat="(key, message) in messages track by $index" class="chat-container">
       <!-- text -->
       <div class="chat-bubble left"
@@ -21,7 +21,6 @@
           <p class="chatTimestampRec">{{parseTime(message.created_at)}}</p>
         </div>
       </div>
-
       <!-- property listings -->
       <div class="chat-bubble left renterlisting" ng-if="message.message_type == 'listing'">
         <div class="message">

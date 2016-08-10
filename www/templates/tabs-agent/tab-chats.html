@@ -1,14 +1,17 @@
 <ion-view view-title="Chats">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right"
+      <ion-item class="item-remove-animate item-icon-right"
       ng-repeat = "(key, chat) in chats track by $index"
       type = "item-text-wrap"
       ng-click="getChat({{key}})"
       ng-show="chat.messages.length">
-        <h2>{{chat.renter.mobile_number}}</h2>
+      <i class="icon ion-ios-arrow-right"></i>
+        <h2>{{chat.renter.first_name}} {{chat.renter.family_name}}</h2>
         <p>{{chat.messages[chat.messages.length-1].body}}</p>
+        <h3 am-time-ago="chat.messages[chat.messages.length-1].created_at"></h3>
       </ion-item>
     </ion-list>
+
   </ion-content>
 </ion-view>

@@ -124,6 +124,7 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
           chat_room_id: $scope.chatroomId,
           uid: $auth.user.uid
         });
+        $ionicScrollDelegate.scrollBottom();
       }
     }
   );
