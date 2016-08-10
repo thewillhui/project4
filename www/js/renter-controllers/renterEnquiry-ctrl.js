@@ -165,13 +165,28 @@ app.controller('EnquiryCtrl', ['$scope', '$state', '$http', 'SERVER', 'currentEn
     // parseTime();
     if (User.config_name === "Renter") {
       $http
-        .post(SERVER.url + '/api/enquiries', {enquiry: $scope.enquiry})
+        .post(SERVER.url + '/api/enquiries', { enquiry: $scope.enquiry })
         .then(function(resp) {
           console.log(resp.status);
           console.log(resp.data);
+          $scope.showAlert = function() {
+            var alertPopup = $ionicPopup.alert({
+              title: 'Thanks for your enquiry',
+              template: 'Your enquiry has now been sent to relevant agents! You will be notified when matching agents reach out to you.'
+            });
+          }
+          $scope.showAlert();
           //add a notification here
           $state.go('tab.renter-my-enquiries');
           $scope.enquiry = clearEnquiry;
+        }, function(error) {
+          $scope.showAlert = function() {
+            var alertPopup = $ionicPopup.alert({
+              title: 'Error',
+              template: 'Oops! Something went wrong, please try again.'
+            });
+          }
+          $scope.showAlert();
         })
     } else {
       currentEnquiry.setProperty($scope.enquiry)
