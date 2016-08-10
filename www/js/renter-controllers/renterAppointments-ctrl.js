@@ -1,8 +1,17 @@
 angular.module('simplyHome.controllers')
-.controller('RenterAppointmentsCtrl', function($http, $scope, SERVER, $ionicModal){
+.controller('RenterAppointmentsCtrl', ['$http', '$scope', 'SERVER', '$ionicModal', '$ionicPopup', function($http, $scope, SERVER, $ionicModal, $ionicPopup){
   $scope.appointments = [];
   $scope.agent_ratings = {};
   $scope.currentRating = '';
+  $scope.ratings = [];
+
+  $scope.ratings = [
+    {number: 1},
+    {number: 2},
+    {number: 3},
+    {number: 4},
+    {number: 5}
+  ]
 
   $scope.agent_ratings = {
     ar_overall_start: '',
@@ -43,6 +52,8 @@ angular.module('simplyHome.controllers')
         console.log(resp)
       });
 
+    // $scope.cancelRating();
+
     // $scope.showAlert = function() {
     //   var alertPopup = $ionicPopup.alert({
     //     title: 'Review completed',
@@ -76,4 +87,21 @@ angular.module('simplyHome.controllers')
   }
   getAppointments();
 
-})
+  //for making the buttons in button bar act like radio buttons
+  $scope.active = '';
+  $scope.setActive = function(type) {
+    $scope.active = type;
+  };
+  $scope.isActive = function(type) {
+    return type === $scope.active;
+  };
+
+  $scope.activeB = '';
+  $scope.setActiveB = function(typeB) {
+    $scope.activeB = typeB;
+  };
+  $scope.isActiveB = function(typeB) {
+    return typeB === $scope.activeB;
+  };
+
+}])

@@ -6,16 +6,26 @@
     <ion-content>
 
       <div class="list list-inset">
-        <label class="item item-input">
-          <span class="input-label">{{currentRating.agent.first_name}}</span>
-        </label>
+        <h2>{{currentRating.agent.first_name}} {{currentRating.agent.family_name}}</h2>
 
-        <label class="item item-input">
+
+        <!-- <label class="item item-input">
           <input type="number" ng-model="agent_ratings.ar_overall_star" required placeholder="from 1 to 5" ng-minlength="1" ng-maxlength="1"/>
-        </label>
+        </label> -->
 
-        <label class="item item-input item-stacked-label">
-          <input type="text" placeholder="comment here" ng-model="agent_ratings.ar_comment">
+        <div class="button-bar bar-dark">
+          <button
+            ng-repeat="rating in ratings"
+            ng-click="setActive('r{{rating.number}}'); agent_ratings.rr_overall_star = rating.number"
+            ng-class="{'button-light': isActive('r{{rating.number}}')}"
+            class="button button-block">{{rating.number}}
+            <i class="ion-ios-star"></i>
+          </button>
+       </div>
+
+        <h4>Comment</h4>
+        <label class="item item-input">
+          <textarea rows="5" placeholder="comment here" ng-model="agent_ratings.ar_comment"></textarea>
         </label>
       </div>
 
