@@ -1,4 +1,4 @@
-app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDeletegate', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDelegate) {
+app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDelegate', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDelegate) {
 
   var chat_page = true;
   var chats_page = false;
@@ -39,26 +39,22 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
       disconnected: function() {},
       received: function(data) {
         if (chat_page){
-          // console.log('this is the data you are receiving');
-          // console.log('inside renterChat ChaT received')
-          // console.log(data);
-          // $scope.messages.push(data.message);
-          // update CHATS factory
-          // chats.updateChats($scope.chatroomId, $scope.messages);
-          // console.log('this is after setting CHATS factory in chat');
-          // console.log(chats.getChats());
+          console.log('received, before push');
+          console.log($scope.messages);
+          $scope.messages.push(data.message);
+          console.log('received, after push');
+          console.log($scope.messages);
+          sortMessages();
           $ionicScrollDelegate.scrollBottom();
           $scope.$apply();
-          // ionicScrollDeletegate.scrollBottom();
-          // console.log($scope.messages);
         } else if (chats_page){
-          console.log('inside renterChat Chatsssss received')
-          var index = $scope.chats.map(function(chat){
-            return chat.chat.id;
-          }).indexOf(data.message.chat_id);
-          $scope.chats[index].messages.push(data.message);
-          $scope.chats = sortChatrooms($scope.chats);
-          $scope.$apply();
+            console.log('inside agentChat Chatsssss received')
+            var index = $scope.chats.map(function(chat){
+              return chat.chat.id;
+            }).indexOf(data.message.chat_id);
+            $scope.chats[index].messages.push(data.message);
+            $scope.chats = sortChatrooms($scope.chats);
+            $scope.$apply();
         }
       },
       send_message: function(message) {
@@ -111,5 +107,5 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
 
   sortMessages();
   $ionicScrollDelegate.scrollBottom();
-  $scope.$apply();
+  // $scope.$apply();
 }])
