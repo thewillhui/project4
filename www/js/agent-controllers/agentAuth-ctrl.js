@@ -14,7 +14,9 @@ app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state, Use
       $scope.registrationForm, {
         config: 'agent'
       }).then(function(resp) {
-      // console.log(resp)
+      console.log('success registration');
+      console.log(resp)
+      // resp.data
       currentUser.setProperty(resp);
       // console.log('this is from factory:');
       // console.log(currentUser.getProperty());

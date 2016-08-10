@@ -25,13 +25,21 @@ app.run(function($ionicPlatform) {
 
 .constant('SERVER', {
   // if using local server
-  // url: 'http://localhost:3000'
+  // url:  'http://localhost:3000',
+  // ws:   'ws://localhost:3000'
 
   // if using our public heroku server
-  url: 'http://simplyhome-dev-rails.herokuapp.com'
+  url:  'http://simplyhome-dev-rails.herokuapp.com',
+  ws:   'ws://simplyhome-dev-rails.herokuapp.com'
 })
 
 .config(function($stateProvider, $urlRouterProvider, $authProvider, SERVER) {
+  (function() {
+    this.App || (this.App = {});
+
+    App.cable = ActionCable.createConsumer(SERVER.ws + "/cable");
+  }).call(window);
+
   $authProvider.configure([{
     renter: {
       apiUrl: SERVER.url,
@@ -252,7 +260,7 @@ app.run(function($ionicPlatform) {
     url: '/agent-enquiries',
     views: {
       'tab-agent-enquiries': {
-        templateUrl: 'templates/tabs-renter/abstract.html',
+        templateUrl: 'templates/tabs-agent/abstract.html',
         controller: 'AgentEnquiriesCtrl'
       }
     }
