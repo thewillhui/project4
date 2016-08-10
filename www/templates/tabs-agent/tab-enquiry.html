@@ -1,51 +1,82 @@
 <ion-view title="Enquiry detail">
   <ion-content class="padding">
-      <div class="list">
-        <ion-item class="item item-icon-left">
-          <i class="icon ion-ios-location-outline"></i>
-          {{enquiry.enquiry.areas}}
-        </ion-item>
-
-        <ion-item  class="item item-icon-left">
-          <i class="icon icon-plan2 "></i>
-          {{enquiry.enquiry.property_size_min}} to {{enquiry.enquiry.property_size_max}} ft2
-         </ion-item >
-
-        <ion-item  class="item item-icon-left">
-          <i class="icon ion-cash"></i>
-          ${{enquiry.enquiry.price_min}} to${{enquiry.enquiry.price_max}}
-        </ion-item >
-
-
-        <ion-item class="item item-icon-left">
-          <i class="icon icon-shower"></i>
-          {{enquiry.enquiry.bathroom_num}}
-        </ion-item>
-        <ion-item  class="item item-icon-left">
-          <i class="icon icon-bed"></i>
-          {{enquiry.enquiry.bedroom_num}}
-        </ion-item>
-
-
-        <a class="item item-icon-left">
-          <i class="icon ion-ios-bolt-outline"></i>
-         {{enquiry.enquiry.urgent}}
-        </a>
-
-        <a class="item item-icon-left">
-          <i class="icon icon-calendar"></i>
-         {{enquiry.timeslot}}
-        </a>
-
-        <a class="item item-icon-left">
-          <i class="icon ion-edit"></i>
-         {{enquiry.enquiry.remarks}}
-        </a>
-
+    <div class="list tabform">
+      <ion-item class="item item-icon-left">
+        <i class="icon ion-ios-location-outline"></i>
+        <h3 ng-repeat="areas in enquiries[0].enquiry.areas">{{areas}}</h3>
+      </ion-item>
+      <div class="row title">
+        <div class="col">
+          <ion-item class="item item-icon-left">
+          <i class="icon ion-ios-person-outline"></i>
+          <p><b>{{enquiries[0].renter.salutation}} {{enquiries[0].renter.first_name}} {{enquiries[0].renter.family_name}}</b></p>
+          </ion-item>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon icon-bed"></i> {{enquiries[0].enquiry.bedroom_num}}
+          </ion-item>
+        </div>
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon icon-shower"></i> {{enquiries[0].enquiry.bathroom_num}}
+          </ion-item>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon icon-plan2 "></i> {{enquiries[0].enquiry.property_size_min}}
+            <br /> {{enquiries[0].enquiry.property_size_max}} ft<sup>2</sup>
+          </ion-item>
+        </div>
+        <div class="col50">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-social-usd-outline"></i> {{enquiries[0].enquiry.price_min | number:0}}
+            <br />{{enquiries[0].enquiry.price_max | number:0}}
+          </ion-item>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon icon-move"></i> {{enquiries[0].enquiry.movein_date}}
+          </ion-item>
+        </div>
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-ios-bolt-outline"></i> {{enquiries[0].enquiry.urgent}}
+          </ion-item>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon icon-calendar"></i>
+            <p ng-repeat="days in enquiries[0].enquiry.available_days">{{days}}</p>
+          </ion-item>
+        </div>
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-ios-clock-outline"></i>
+            <p ng-repeat="time in enquiries[0].enquiry.timeslot">
+              {{time}}</p>
+          </ion-item>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <ion-item class="item">
+            <h4>Remarks</h4>
+            <p>{{enquiries[0].enquiry.remarks}}</p>
+          </ion-item>
+        </div>
+      </div>
+    </div>
     <button class="button button-block button-positive" ng-click="getChatRoom(enquiry.chat_id, enquiry.enquiry.id, enquiry.enquiry.renter_id)">
-    Chat to {{enquiry.enquiry.first_name}}
+      Chat to {{enquiries[0].renter.first_name}}
     </button>
   </ion-content>
 </ion-view>
-

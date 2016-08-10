@@ -233,24 +233,23 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.agent-enquiries', {
-    cache: false,
+    abstract: true,
     url: '/agent-enquiries',
     views: {
-      'tab-enquiries': {
-        templateUrl: 'templates/tabs-agent/tab-enquiries.html',
+      'tab-agent-enquiries': {
+        templateUrl: 'templates/tabs-renter/abstract.html',
         controller: 'AgentEnquiriesCtrl'
       }
     }
   })
-
-  .state('tab.agent-enquiry', {
-    url: '/agent-enquiry',
-    views: {
-      'tab-enquiries': {
-        templateUrl: 'templates/tabs-agent/tab-enquiry.html',
-        controller: 'AgentEnquiryCtrl'
-      }
-    }
+  .state('tab.agent-enquiries.matched-enquiries', {
+    cache: false,
+    url: '/matched-enquiries',
+    templateUrl: 'templates/tabs-agent/tab-enquiries.html',
+  })
+  .state('tab.agent-enquiries.enquiry-detail', {
+    url: '/enquiry-detail',
+    templateUrl: 'templates/tabs-agent/tab-enquiry.html',
   })
 
   .state('tab.agent-appointments', {
