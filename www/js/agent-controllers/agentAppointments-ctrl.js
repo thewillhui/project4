@@ -53,6 +53,7 @@ angular.module('simplyHome.controllers')
     console.log(id)
 
     console.log($scope.renter_ratings)
+    $scope.ratingModal.hide();
 
     $http
       .put(SERVER.url + '/api/renter_ratings/' + id, $scope.renter_ratings)

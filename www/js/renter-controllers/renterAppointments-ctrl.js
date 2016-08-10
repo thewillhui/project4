@@ -42,6 +42,7 @@ angular.module('simplyHome.controllers')
     console.log(id)
 
     console.log($scope.agent_ratings)
+    $scope.ratingModal.hide();
 
     $http
       .put(SERVER.url + '/api/agent_ratings/' + id, $scope.agent_ratings)
