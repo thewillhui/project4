@@ -43,7 +43,7 @@ app.run(function($ionicPlatform) {
       passwordResetPath: '/renter/password',
       passwordUpdatePath: '/renter/password',
       emailSignInPath: '/renter/sign_in',
-      storage: 'localStorage',
+      // storage: 'localStorage',
       validateOnPageLoad: true
     }
   }, {
@@ -57,7 +57,7 @@ app.run(function($ionicPlatform) {
       passwordResetPath: '/agent/password',
       passwordUpdatePath: '/agent/password',
       emailSignInPath: '/agent/sign_in',
-      storage: 'localStorage',
+      // storage: 'localStorage',
       validateOnPageLoad: true
     }
   }]);
