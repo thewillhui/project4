@@ -1,14 +1,14 @@
 <ion-view view-title="Edit Listings">
   <ion-content class="padding">
 
-<form ng-submit="form.create()" ng-controller="NewCtrl">
+<form ng-submit="form.create()">
   <div class="form-group">
 
     <div class="list list-inset">
       <label class="item item-input item-stacked-label">
       <span class="input-label"> Building Name, Block #</span>
         <input type="text" placeholder="Building Name, Block #"
-        ng-model="newListing.apt_name">
+        ng-model="apartment.apt_name">
       </label>
     </div>
 
@@ -16,7 +16,7 @@
       <label class="item item-input item-stacked-label">
       <span class="input-label"> Street </span>
         <input type="text" placeholder="Street"
-        ng-model="newListing.street">
+        ng-model="apartment.street">
       </label>
     </div>
 
@@ -25,7 +25,7 @@
       <label class="item item-input item-stacked-label">
       <span class="input-label"> Area </span>
         <input type="text" placeholder="Area"
-        ng-model="newListing.area">
+        ng-model="apartment.area">
       </label>
     </div>
 
@@ -34,7 +34,7 @@
       <label class="item item-input item-stacked-label">
       <span class="input-label"> Price </span>
         <input type="text" placeholder="Price"
-        ng-model="newListing.price">
+        ng-model="apartment.price">
       </label>
     </div>
 
@@ -43,7 +43,7 @@
       <label class="item item-input item-stacked-label">
       <span class="input-label"> Gross Sqft</span>
         <input type="text" placeholder="Gross Sqft"
-        ng-model="newListing.property_size_gross">
+        ng-model="apartment.property_size_gross">
       </label>
     </div>
 
@@ -52,7 +52,7 @@
       <label class="item item-input item-stacked-label">
       <span class="input-label"> Net Sqft</span>
         <input type="text" placeholder="Net Sqft"
-        ng-model="newListing.property_size_net">
+        ng-model="apartment.property_size_net">
       </label>
     </div>
 
@@ -61,7 +61,7 @@
       <label class="item item-input item-stacked-label">
       <span class="input-label"> Description </span>
         <input type="text" placeholder="Description"
-        ng-model="newListing.description">
+        ng-model="apartment.description">
       </label>
     </div>
 
@@ -70,7 +70,7 @@
     <div class="button-bar bar-dark custom-width-bar">
       <button
         ng-repeat="room in bedroomsBtns"
-        ng-click="setActive('bed{{room.number}}'); newListing.bedroom_num = room.number"
+        ng-click="setActive('bed{{room.number}}'); apartment.bedroom_num = room.number"
         ng-class="{'button-light': isActive('bed{{room.number}}')}"
         class="button button-block">{{room.number}}</button>
     </div>
@@ -79,27 +79,29 @@
 
     <div class="button-bar bar-dark">
       <button
+        ng-init="activeB = {{apartment.bathroom_num}}"
         ng-repeat="room in bathroomsBtns"
-        ng-click="setActiveB('bath{{room.number}}'); newListing.bathroom_num = room.number"
+        ng-click="setActiveB('bath{{room.number}}'); apartment.bathroom_num = room.number"
         class="button button-block"
-        ng-class="{'button-light': isActiveB('bath{{room.number}}')}">{{room.number}}</button>
+        ng-class="{'button-light': isActiveB({{apartment.bathroom_num}})}">{{room.number}}</button>
     </div>
-
+<!--         ng-class="{'button-light': isActiveB('bath{{room.number}}')}">{{room.number}}</button>
+ -->
     <div class="spacer" style="height: 30px;"></div>
 
-    <ion-checkbox ng-model="newListing.pet_friendly"
+    <ion-checkbox ng-model="apartment.pet_friendly"
                   ng-repeat="item in petList"
                   ng-checked="item.checked">
       {{item.text}}
     </ion-checkbox>
 
-    <ion-checkbox ng-model="newListing.open_kitchen"
+    <ion-checkbox ng-model="apartment.open_kitchen"
                   ng-repeat="item in opnKitchen"
                   ng-checked="item.checked">
       {{item.text}}
     </ion-checkbox>
 
-    <ion-checkbox ng-model="newListing.walkup"
+    <ion-checkbox ng-model="apartment.walkup"
                   ng-repeat="item in walkUp"
                   ng-checked="item.checked">
       {{item.text}}
@@ -121,7 +123,7 @@
 <!-- <button type="submit" class="button button-block button-positive">Upload</button> -->
 
 <!-- List Button -->
-<button class="button button-block button-positive" ng-click="createListings()">List</button>
+<button class="button button-block button-positive" ng-click="updateListings()">Update</button>
 </form>
   </ion-content>
 </ion-view>

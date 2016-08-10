@@ -6,7 +6,7 @@
     <div class="card" ng-repeat="listing in listings | orderBy: listing.created_at : true" >
 
       <div class="item item-divider">
-          <a class="button button-clear button-positive" ui-sref="tab.agent-listings.edit">Edit</a>
+          <button class="button button-clear button-positive" ui-sref="tab.agent-listings.edit" ng-click="getApartment({{listing.id}})">Edit</button>
         <h3>Listings {{listing.index}}</h3>
       </div>
 
