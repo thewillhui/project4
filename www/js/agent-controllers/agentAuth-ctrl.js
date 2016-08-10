@@ -48,6 +48,7 @@ app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state, Use
           });
         }
         $scope.showAlert();
+        $state.go('tab.agent-enquiries.matched-enquiries')
       }, function(error) {
         $scope.showAlert = function() {
           var alertPopup = $ionicPopup.alert({
