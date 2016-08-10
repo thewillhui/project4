@@ -3,7 +3,6 @@
 <!-- Pull to Refresh -->
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="getListing()"></ion-refresher>
     <div class="card" ng-repeat="listing in listings | orderBy: listing.created_at : true">
-<!--        {{listing}} -->
       <div class="item item-divider">
         <h3>Listings {{listing.index}}</h3>
       </div>
