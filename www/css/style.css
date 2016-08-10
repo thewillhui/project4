@@ -31,6 +31,9 @@
   font-size: 0.9em;
 }
 
+.agent-area {
+  border-bottom: 1px solid black;
+}
 /*index is based on locations object in controller.js*/
 .location-0 {
   background-image: url("../img/hkisland.jpg");
