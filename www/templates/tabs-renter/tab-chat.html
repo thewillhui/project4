@@ -18,8 +18,7 @@
           {{message.body}}
         </div>
         <div class="message-detail">
-          <span>{{message.imageable_id}} says:</span>
-          <span am-time-ago="message.created_at"></span>
+          <p class="chatTimestampRec">{{parseTime(message.created_at)}}</p>
         </div>
       </div>
 

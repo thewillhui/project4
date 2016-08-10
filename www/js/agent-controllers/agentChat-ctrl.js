@@ -177,6 +177,10 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
     })
   }
 
+  $scope.parseTime = function(time) {
+    return moment(time).format('HH:mm')
+  }
+
 //popover menu
 
   var template = '<ion-popover-view class="agentPop"><ion-content><div class="list"><a class="item" ng-click="propertyOpenModal()">Property</a><a class="item" ng-click="appointmentOpenModal()">Appointment</a></div></ion-content></ion-popover-view>'

@@ -98,6 +98,10 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
     })
   }
 
+ $scope.parseTime = function(time) {
+    return moment(time).format('HH:mm')
+  }
+
   sortMessages();
   $ionicScrollDelegate.scrollBottom();
   // $scope.$apply();
