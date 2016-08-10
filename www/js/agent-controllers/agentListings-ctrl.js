@@ -46,7 +46,6 @@ app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScr
   $scope.apartment_id = '';
   $scope.apartment = {};
 
-
   $scope.getApartment = function(id){
     console.log(id)
     $scope.apartment_id = id;
@@ -57,6 +56,41 @@ app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScr
       $scope.apartment = angular.copy(resp.data);
     })
   }
+
+  $scope.updateApartment = function(apartment){
+    console.log(apartment)
+    $http
+    .put(SERVER.url + '/api/apartments/' + apartment.id, $scope.apartment)
+    .then(function(resp) {
+      console.log(resp)
+    }, function (resp) {
+      console.log(resp)
+    })
+  }
+
+  // PhotoUpload?
+  // $scope.updateListings = function() {
+  //   console.log($scope)
+
+  //   var data = {
+  //     files: $scope.apartment_pictures.pictures,
+  //     apartment: $scope.newListing
+  //   }
+  //   console.log(data)
+  //   id = $scope.apartment_id
+  //   Upload.upload({
+  //     url: SERVER.url + '/api/apartments/' + id, //backend api goes here.
+  //     method: "PUT",
+  //     data: data
+  //   }).then(function(resp){
+  //     console.log(resp);
+  //   }, function(resp){
+  //     console.log(resp);
+  //   }, function(evt){
+  //     console.log(Math.min(100, parseInt(100.0 * evt.loaded / evt.total)))
+  //   });
+  // }
+
 
   //for making the buttons in button bar act like radio buttons
   $scope.active = '';
@@ -112,9 +146,4 @@ app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScr
   $scope.scrollResize = function() {
     $ionicScrollDelegate.resize();
   };
-
-
-
-
-
 })
