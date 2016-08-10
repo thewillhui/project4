@@ -305,3 +305,6 @@ at the bottom as the textarea resizes */
   background-size: auto 100%;
 }
 
+.button.button-positive.button-clear{
+  float:right;
+}

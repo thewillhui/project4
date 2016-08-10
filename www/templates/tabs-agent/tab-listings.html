@@ -2,10 +2,14 @@
   <ion-content class="padding">
 <!-- Pull to Refresh -->
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="getListing()"></ion-refresher>
-    <div class="card" ng-repeat="listing in listings | orderBy: listing.created_at : true">
+
+    <div class="card" ng-repeat="listing in listings | orderBy: listing.created_at : true" >
+
       <div class="item item-divider">
+          <a class="button button-clear button-positive" ui-sref="tab.agent-listings.edit">Edit</a>
         <h3>Listings {{listing.index}}</h3>
       </div>
+
       <div class="row" ng-click="scrollResize(); changeDisplay(listing);">
         <div class="col-90">
           <ion-item class="item item-icon-left">

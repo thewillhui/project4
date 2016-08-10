@@ -1,0 +1,127 @@
+<ion-view view-title="Edit Listings">
+  <ion-content class="padding">
+
+<form ng-submit="form.create()" ng-controller="NewCtrl">
+  <div class="form-group">
+
+    <div class="list list-inset">
+      <label class="item item-input item-stacked-label">
+      <span class="input-label"> Building Name, Block #</span>
+        <input type="text" placeholder="Building Name, Block #"
+        ng-model="newListing.apt_name">
+      </label>
+    </div>
+
+    <div class="list list-inset">
+      <label class="item item-input item-stacked-label">
+      <span class="input-label"> Street </span>
+        <input type="text" placeholder="Street"
+        ng-model="newListing.street">
+      </label>
+    </div>
+
+
+    <div class="list list-inset">
+      <label class="item item-input item-stacked-label">
+      <span class="input-label"> Area </span>
+        <input type="text" placeholder="Area"
+        ng-model="newListing.area">
+      </label>
+    </div>
+
+
+    <div class="list list-inset">
+      <label class="item item-input item-stacked-label">
+      <span class="input-label"> Price </span>
+        <input type="text" placeholder="Price"
+        ng-model="newListing.price">
+      </label>
+    </div>
+
+
+    <div class="list list-inset">
+      <label class="item item-input item-stacked-label">
+      <span class="input-label"> Gross Sqft</span>
+        <input type="text" placeholder="Gross Sqft"
+        ng-model="newListing.property_size_gross">
+      </label>
+    </div>
+
+
+    <div class="list list-inset">
+      <label class="item item-input item-stacked-label">
+      <span class="input-label"> Net Sqft</span>
+        <input type="text" placeholder="Net Sqft"
+        ng-model="newListing.property_size_net">
+      </label>
+    </div>
+
+
+    <div class="list list-inset">
+      <label class="item item-input item-stacked-label">
+      <span class="input-label"> Description </span>
+        <input type="text" placeholder="Description"
+        ng-model="newListing.description">
+      </label>
+    </div>
+
+    <h3>Bedrooms</h3>
+
+    <div class="button-bar bar-dark custom-width-bar">
+      <button
+        ng-repeat="room in bedroomsBtns"
+        ng-click="setActive('bed{{room.number}}'); newListing.bedroom_num = room.number"
+        ng-class="{'button-light': isActive('bed{{room.number}}')}"
+        class="button button-block">{{room.number}}</button>
+    </div>
+
+    <h3>Bathrooms</h3>
+
+    <div class="button-bar bar-dark">
+      <button
+        ng-repeat="room in bathroomsBtns"
+        ng-click="setActiveB('bath{{room.number}}'); newListing.bathroom_num = room.number"
+        class="button button-block"
+        ng-class="{'button-light': isActiveB('bath{{room.number}}')}">{{room.number}}</button>
+    </div>
+
+    <div class="spacer" style="height: 30px;"></div>
+
+    <ion-checkbox ng-model="newListing.pet_friendly"
+                  ng-repeat="item in petList"
+                  ng-checked="item.checked">
+      {{item.text}}
+    </ion-checkbox>
+
+    <ion-checkbox ng-model="newListing.open_kitchen"
+                  ng-repeat="item in opnKitchen"
+                  ng-checked="item.checked">
+      {{item.text}}
+    </ion-checkbox>
+
+    <ion-checkbox ng-model="newListing.walkup"
+                  ng-repeat="item in walkUp"
+                  ng-checked="item.checked">
+      {{item.text}}
+    </ion-checkbox>
+
+    <div class="spacer" style="height: 30px;"></div>
+
+
+<!-- PAPERCLIP HERE!!!!! -->
+
+<!--     <label>Title</label>
+    <input type="text" class="form-control" placeholder="Enter apartment name" ng-model="apartment.apt_name">
+  </div> -->
+<!-- File upload button -->
+<div class="button button-block button-assertive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true">Select Photos</div>
+<!-- Image / file preview -->
+<img ng-repeat="picture in apartment_pictures.pictures" ngf-src="picture" width="200" height="200">
+<!-- Upload Button -->
+<!-- <button type="submit" class="button button-block button-positive">Upload</button> -->
+
+<!-- List Button -->
+<button class="button button-block button-positive" ng-click="createListings()">List</button>
+</form>
+  </ion-content>
+</ion-view>
