@@ -1,4 +1,82 @@
 app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScrollDelegate){
+
+  $scope.apartment_pictures = {};
+
+  $scope.petList = [
+    { text: "Pets", checked: false }
+  ];
+
+    $scope.walkUp = [
+    { text: "Walk Up", checked: false }
+  ];
+
+    $scope.opnKitchen = [
+    { text: "Open Kitchen", checked: false }
+  ];
+
+  $scope.bedroomsBtns = [
+    { number: 'Studio' },
+    { number: '1' },
+    { number: '2' },
+    { number: '3' },
+    { number: '4+' }
+  ]
+  $scope.bathroomsBtns = [
+    {number: '1'},
+    {number: '2'},
+    {number: '3'},
+    {number: '4+'}
+  ]
+
+  $scope.newListing = {
+    apt_name: "",
+    street:"",
+    area: "",
+    price: "",
+    property_size_gross: "",
+    property_size_net: "",
+    description: "",
+    pet_friendly: "",
+    bedroom_num: '',
+    bathroom_num: '',
+    walkup: '',
+    open_kitchen: ''
+  }
+
+  $scope.apartment_id = '';
+  $scope.apartment = {};
+
+
+  $scope.getApartment = function(id){
+    console.log(id)
+    $scope.apartment_id = id;
+    $http
+    .get(SERVER.url + '/api/apartments/'+ $scope.apartment_id)
+    .then(function(resp) {
+      console.log(resp)
+      $scope.apartment = angular.copy(resp.data);
+    })
+  }
+
+  //for making the buttons in button bar act like radio buttons
+  $scope.active = '';
+  $scope.setActive = function(type) {
+    $scope.active = type;
+  };
+  $scope.isActive = function(type) {
+    return type === $scope.active;
+  };
+
+  $scope.activeB = '';
+  $scope.setActiveB = function(typeB) {
+    $scope.activeB = typeB;
+  };
+  $scope.isActiveB = function(typeB) {
+    return typeB === $scope.activeB;
+  };
+
+  // functions for listings tab
+
   $scope.changeDisplay = function(listing) {
     var showDetail = listing.showDetail;
     console.log(listing)
@@ -12,7 +90,7 @@ app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScr
       listing.limitTo = listing.area.length;
     }
 };
-  $scope.getListing = function() {
+  $scope.getListings = function() {
     $http
       .get(SERVER.url + '/api/apartments')
       .then(function successCallback(response) {
@@ -29,9 +107,14 @@ app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScr
             })
         };
 
-  $scope.getListing();
+  $scope.getListings();
 
   $scope.scrollResize = function() {
     $ionicScrollDelegate.resize();
   };
+
+
+
+
+
 })
