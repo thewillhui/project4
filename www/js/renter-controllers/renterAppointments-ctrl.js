@@ -75,6 +75,11 @@ angular.module('simplyHome.controllers')
 
   $scope.showRating = function(key, akey){
     $scope.rateHistModal.show();
+    $scope.currentRating = $scope.appointments[key][akey];
+  }
+
+  $scope.hideRateHist = function(){
+    $scope.rateHistModal.hide();
   }
 
   var getAppointments = function(){
@@ -86,6 +91,10 @@ angular.module('simplyHome.controllers')
       })
   }
   getAppointments();
+
+  $scope.getNumber = function(num) {
+    return new Array(num);
+  }
 
   //for making the buttons in button bar act like radio buttons
   $scope.active = '';

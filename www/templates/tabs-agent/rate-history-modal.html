@@ -1,0 +1,33 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Rating History</h1>
+     <button class="button button-primary" ng-click="hideRateHist()">Cancel</button>
+  </ion-header-bar>
+  <ion-content>
+
+    <div class="list card">
+      <h3> {{currentRating.renter.first_name}} {{currentRating.renter.family_name}} </h3>
+
+      <p>
+        <span class="item"><i class="icon ion-ios-star" ng-repeat="i in getNumber(currentRating.renter_rating.rr_overall_star) track by $index"> </i></span>
+      </p>
+
+      <div class="item" ng-show="currentRating.renter_rating.no_show || currentRating.renter_rating.spy">
+        <span ng-show="currentRating.renter_rating.no_show" ng-model="renter_ratings.no_show">
+          <i class="icon ion-flag"> NO SHOW</i>
+        </span>
+
+        <span ng-show="currentRating.renter_rating.spy" ng-model="renter_ratings.spy">
+          <i class="icon ion-flag"> SPY</i>
+        </span>
+      </div>
+
+      <div class="item" ng-show="currentRating.renter_rating.rr_comment != '' " ng-model="currentRating.renter_rating.rr_comment">
+        <h2>Your Review</h2>
+
+        <p>{{currentRating.renter_rating.rr_comment}}</p>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-modal-view>
