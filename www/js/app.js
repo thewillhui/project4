@@ -80,6 +80,7 @@ app.run(function($ionicPlatform) {
   //====================== Renter ========================//
   //////////////////////////////////////////////////////////
   .state('tab.renter-auth', {
+    cache: false,
     url: '/renter-auth',
     abstract: true,
     views: {
@@ -90,15 +91,18 @@ app.run(function($ionicPlatform) {
     }
   })
   .state('tab.renter-auth.signup', {
+    cache: false,
     url: '/signup',
     templateUrl: 'templates/tabs-renter/tab-signup.html'
   })
   .state('tab.renter-auth.login', {
+    cache: false,
     url: '/login',
     templateUrl: 'templates/tabs-renter/login.html'
   })
 
   .state('tab.renter-enquiry', {
+    cache: false,
     url: '/renter-enquiry',
     abstract: true,
     views: {
@@ -110,11 +114,13 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.renter-enquiry.location', {
+    cache: false,
     url: '/location',
     templateUrl: 'templates/tabs-renter/tab-enquiry.html'
   })
 
   .state('tab.renter-enquiry.criteria', {
+    cache: false,
     url: '/criteria',
     templateUrl: 'templates/tabs-renter/tab-enquiry-criteria.html'
   })
@@ -141,6 +147,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.renter-my-enquiries', {
+    cache: false,
     url: '/renter-myenquiries',
     views: {
       'tab-renter-my-enquiries': {
@@ -171,6 +178,7 @@ app.run(function($ionicPlatform) {
   })
 
     .state('tab.renter-account', {
+    cache: false,
     url: '/renter-account',
     views: {
       'tab-renter-account': {
@@ -181,6 +189,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.renter-listings', {
+    cache: false,
     url: '/renter-listings',
     views: {
       'tab-renter-listings': {
@@ -191,6 +200,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.renter-ratings', {
+    cache: false,
     url: '/renter-ratings',
     views: {
       'tab-renter-ratings': {
@@ -205,6 +215,7 @@ app.run(function($ionicPlatform) {
   //////////////////////////////////////////////////////////
 
   .state('tab.agent-newlisting', {
+    cache: false,
     url: '/agent-newlisting',
     views: {
       'tab-newlisting': {
@@ -214,6 +225,7 @@ app.run(function($ionicPlatform) {
     }
   })
   .state('tab.agent-auth', {
+    cache: false,
     url: '/agent-auth',
     abstract: true,
     views: {
@@ -224,15 +236,18 @@ app.run(function($ionicPlatform) {
     }
   })
   .state('tab.agent-auth.signup', {
+    cache: false,
     url: '/signup',
     templateUrl: 'templates/tabs-agent/tab-signup.html'
   })
   .state('tab.agent-auth.login', {
+    cache: false,
     url: '/login',
     templateUrl: 'templates/tabs-agent/login.html'
   })
 
   .state('tab.agent-enquiries', {
+    cache: false,
     abstract: true,
     url: '/agent-enquiries',
     views: {
@@ -275,6 +290,7 @@ app.run(function($ionicPlatform) {
     })
 
   .state('tab.agent-chat', {
+    cache: false,
     url: '/agent-chat',
     views: {
       'tab-agent-chats' :{
@@ -285,6 +301,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.agent-ratings', {
+    cache: false,
     url: '/agent-ratings',
     views: {
       'tab-agent-ratings': {
@@ -293,6 +310,32 @@ app.run(function($ionicPlatform) {
       }
     }
   })
+
+  .state('tab.agent-account', {
+    cache: false,
+    url: '/agent-account',
+    views: {
+      'tab-agent-account': {
+        templateUrl: 'templates/tabs-agent/tab-account.html',
+        controller: 'AgentAccountCtrl'
+      }
+    }
+  })
+
+  .state('tab.agent-listings', {
+    cache: false,
+    url: '/listings',
+    views: {
+      'tab-listings': {
+        templateUrl: 'templates/tabs-agent/tab-listings.html',
+        controller: 'ListingsCtrl'
+      }
+    }
+  })
+
+  //////////////////////////////////////////////////////////
+  //====================== Test ==========================//
+  //////////////////////////////////////////////////////////
 
   .state('tab.testagent', {
     url: '/testagent',
@@ -314,26 +357,7 @@ app.run(function($ionicPlatform) {
     }
   })
 
-  .state('tab.agent-account', {
-    url: '/agent-account',
-    views: {
-      'tab-agent-account': {
-        templateUrl: 'templates/tabs-agent/tab-account.html',
-        controller: 'AgentAccountCtrl'
-      }
-    }
-  })
 
-
-  .state('tab.agent-listings', {
-    url: '/listings',
-    views: {
-      'tab-listings': {
-        templateUrl: 'templates/tabs-agent/tab-listings.html',
-        controller: 'ListingsCtrl'
-      }
-    }
-  })
   // if none of the above states are matched, use this as the fallback
 
   // $urlRouterProvider.otherwise('/renter/enquiry/location');

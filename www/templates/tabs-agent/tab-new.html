@@ -60,7 +60,7 @@
 
     <h3>Bedrooms</h3>
 
-    <div class="button-bar bar-positive custom-width-bar">
+    <div class="button-bar bar-dark custom-width-bar">
       <button
         ng-repeat="room in bedroomsBtns"
         ng-click="setActive('bed{{room.number}}'); newListing.bedroom_num = room.number"
@@ -70,7 +70,7 @@
 
     <h3>Bathrooms</h3>
 
-    <div class="button-bar bar-positive">
+    <div class="button-bar bar-dark">
       <button
         ng-repeat="room in bathroomsBtns"
         ng-click="setActiveB('bath{{room.number}}'); newListing.bathroom_num = room.number"

@@ -39,28 +39,16 @@
           <input type="password" name="password_confirmation" ng-model="registrationForm.password_confirmation" required placeholder="Confirm password" ng-minlength="6" />
         </label>
         <ion-list>
-        <h5>Please choose your area</h5>
-    <div ng-repeat="(regionName,value) in region track by $index" >
-      <ion-item
-      class="item-positive item-icon-right"
-      ng-click="toggleGroup(regionName)"
-      ng-class="{active: isGroupShown(regionName), 'city-{{$index}}': true}"
-      >
-        <i
-        class="icon"
-        ng-class="isGroupShown(regionName) ? 'ion-ios-arrow-down' : 'ion-ios-arrow-right'">
-        </i> &nbsp; <h1 class="enquiryLocation">{{regionName}}</h1>
-      </ion-item>
-      <ion-checkbox
-      class="item-accordion item-checkbox-right"
-      ng-repeat="area in region[regionName] | orderBy"
-      ng-show="isGroupShown(regionName)"
-      ng-click="addAreaKey(area, regionName)"
-      > {{area}}
-      </ion-checkbox>
-    </div>
-  </ion-list>
-
+          <h5>Please choose your area</h5>
+          <div ng-repeat="(regionName,value) in region track by $index">
+            <ion-item class="item item-icon-right agent-area" ng-click="toggleGroup(regionName)" ng-class="{active: isGroupShown(regionName)}">
+              <i class="icon" ng-class="isGroupShown(regionName) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'"></i>
+              <h3>{{regionName}}</h3>
+            </ion-item>
+            <ion-checkbox class="item-accordion item-checkbox-right" ng-repeat="area in region[regionName] | orderBy" ng-show="isGroupShown(regionName)" ng-click="addAreaKey(area, regionName)"> {{area}}
+            </ion-checkbox>
+          </div>
+        </ion-list>
         <h5>Your number will not be shared with any third party.</h5>
         <button type="submit" class="button button-positive button-large button-block">Register</button>
       </form>
