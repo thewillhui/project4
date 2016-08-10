@@ -25,7 +25,15 @@ app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state, Use
         });
       }
       $scope.showAlert();
-      $state.go('tab.tab.agent-enquiries')
+      $state.go('tab.agent-enquiries.matched-enquiries')
+    }, function(error) {
+      $scope.showAlert = function() {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Error',
+          template: 'Oops! Your mobile_number/password is invalid. Please try again.'
+        });
+      }
+      $scope.showAlert();
     }).catch(function(resp) {
       console.log(resp);
     })
