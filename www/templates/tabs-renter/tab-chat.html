@@ -4,10 +4,10 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view title="Chat Room">
+<ion-view title="{{agent.first_name}} {{agent.family_name}}">
 
   <ion-content class="padding col" deletegate-handle="userMessageScroll">
-    <div ng-repeat="(key, message) in messages track by $index">
+    <div ng-repeat="(key, message) in messages track by $index" class="chat-container">
       <!-- text -->
       <div class="chat-bubble left"
       ng-class="[

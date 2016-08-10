@@ -231,11 +231,16 @@ at the bottom as the textarea resizes */
 
 /* chat */
 
+.chat-container {
+  display: block;
+  clear: both;
+}
+
 .received {
+  float: left;
   background-color: #EEEEEE;
   color: #212121;
-  margin-right: 60%;
-  width: 40%;
+  max-width: 90%;
   padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
@@ -243,10 +248,10 @@ at the bottom as the textarea resizes */
 }
 
 .sent {
-  background-color: #29B6F6;
+  float: right;
+  background-color: #387ef5;
   color: #FAFAFA;
-  margin-left: 60%;
-  width: 40%;
+  max-width: 90%;
   padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
@@ -300,27 +305,3 @@ at the bottom as the textarea resizes */
   text-align: center;
 }
 
-/*text {
-  width: 40%;
-  padding: 10px;
-  border-radius: 10px;
-}*/
-/*index is based on locations object in controller.js*/
-.city-0 {
-
-  background-size: auto 100%;
-}
-
-.city-1 {
-
-  background-size: 100%;
-}
-
-.city-2 {
-
-  background-size: auto 100%;
-}
-
-.button.button-positive.button-clear{
-  float:right;
-}

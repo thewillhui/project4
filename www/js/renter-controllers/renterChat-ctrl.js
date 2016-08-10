@@ -5,6 +5,8 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
   // For front end
   $scope.chatroom = chat.getProperty().chatroom;
   $scope.messages = chat.getProperty().messages;
+  $scope.agent = chat.getProperty().agent;
+  $scope.renter = chat.getProperty().renter;
   $scope.message = '';
   $scope.chatroomId = $scope.chatroom.id
   $scope.currentUser = {};

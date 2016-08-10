@@ -1,10 +1,13 @@
-app.controller('AgentChatCtrl', ['chat', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', '$auth', function(chat, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate, $auth) {
+app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate, $ionicPopover) {
+// app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDeletegate', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDeletegate) {
 
   var chat_page = true;
   var chats_page = false;
   $scope.chatroom = chat.getProperty().chatroom;
-  $scope.chatroomId = $scope.chatroom.id
+  $scope.chatroomId = $scope.chatroom.id;
   $scope.messages = chat.getProperty().messages;
+  $scope.agent = chat.getProperty().agent;
+  $scope.renter = chat.getProperty().renter;
   $scope.message = '';
   $scope.apartments = [];
   $scope.appointment = {
@@ -173,6 +176,7 @@ app.controller('AgentChatCtrl', ['chat', '$http', '$scope', '$ionicModal', 'curr
       return 0;
     })
   }
+
   getCurrentUser();
   getApartments();
   sortMessages();

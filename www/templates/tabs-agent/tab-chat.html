@@ -1,10 +1,4 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
-<ion-view title="Chat Room">
+<ion-view title="{{renter.first_name}} {{renter.family_name}}">
   <ion-header-bar align-title="left" class="bar-positive">
     <div class="buttons">
       <button class="button" ng-click="doSomething()">Left Button</button>
