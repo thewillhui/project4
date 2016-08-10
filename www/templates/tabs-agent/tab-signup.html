@@ -42,7 +42,7 @@
         <h5>Please choose your area</h5>
     <div ng-repeat="(regionName,value) in region track by $index" >
       <ion-item
-      class="item-dark item-icon-right"
+      class="item-positive item-icon-right"
       ng-click="toggleGroup(regionName)"
       ng-class="{active: isGroupShown(regionName), 'city-{{$index}}': true}"
       >
@@ -56,7 +56,7 @@
       ng-repeat="area in region[regionName] | orderBy"
       ng-show="isGroupShown(regionName)"
       ng-click="addAreaKey(area, regionName)"
-      >
+      > {{area}}
       </ion-checkbox>
     </div>
   </ion-list>

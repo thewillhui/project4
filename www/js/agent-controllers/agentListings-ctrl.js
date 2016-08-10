@@ -1,16 +1,15 @@
 app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScrollDelegate){
-  $scope.myListings = [];
   $scope.changeDisplay = function(listing) {
     var showDetail = listing.showDetail;
-
-    $scope.myListings.map(function(x) {
+    console.log(listing)
+    $scope.listings.map(function(x) {
       x.showDetail = false;
       x.limitTo = 3;
     });
 
     if (showDetail === false) {
       listing.showDetail = !listing.showDetail;
-      listing.limitTo = listing.areas.length;
+      listing.limitTo = listing.area.length;
     }
 };
   $scope.getListing = function() {
