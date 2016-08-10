@@ -1,20 +1,8 @@
 <ion-view title="{{renter.first_name}} {{renter.family_name}}">
-  <ion-header-bar align-title="left" class="bar-positive">
-    <div class="buttons">
-      <button class="button" ng-click="doSomething()">Left Button</button>
-    </div>
-    <h1 class="title">Title!</h1>
-    <div class="buttons">
-      <button class="button">Right Button</button>
-    </div>
-  </ion-header-bar>
+  <ion-nav-buttons side="secondary">
+    <a class="button button-clear button-positive" ng-click="openPopover($event)">Attach</a>
+  </ion-nav-buttons>
   <ion-content class="padding col" class="has-header has-footer">
-    <button class="button" ng-click="propertyOpenModal()">
-      Property
-    </button>
-    <button class="button" ng-click="appointmentOpenModal()">
-      Appointment
-    </button>
 
     <div ng-repeat="message in messages track by $index" class="messages">
       <!-- text -->

@@ -305,3 +305,7 @@ at the bottom as the textarea resizes */
   text-align: center;
 }
 
+/*agent chat popover*/
+.agentPop {
+  height: 120px;
+}
