@@ -108,7 +108,9 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
       chat_room_id: $scope.chatroomId
     },
     {
-      connected: function() {},
+      connected: function() {
+        $ionicScrollDelegate.scrollBottom();
+      },
       disconnected: function() {},
       received: function(data) {
         if (chat_page){
@@ -188,7 +190,6 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
       return 0;
     })
   }
-
   getCurrentUser();
   getApartments();
   sortMessages();
