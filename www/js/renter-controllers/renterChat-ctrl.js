@@ -1,4 +1,4 @@
-app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDelegate', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDelegate) {
+app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDelegate', '$auth', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDelegate, $auth) {
 
   var chat_page = true;
   var chats_page = false;
@@ -60,7 +60,8 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
       send_message: function(message) {
         this.perform('send_message', {
           message: message,
-          chat_room_id: $scope.chatroomId
+          chat_room_id: $scope.chatroomId,
+          uid: $auth.user.uid
         });
       }
     }

@@ -1,4 +1,5 @@
-app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, currentEnquiry, SERVER){
+app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, currentEnquiry, SERVER, $auth){
+  window.auth = $auth;
 
   $scope.getMatchedEnquiries = function(){
     $scope.enquiries = [];

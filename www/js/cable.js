@@ -235,6 +235,7 @@
         if (this.webSocket != null) {
           this.uninstallEventHandlers();
         }
+        console.log("protocals", protocols)
         this.webSocket = new WebSocket(this.consumer.url, protocols);
         this.installEventHandlers();
         this.monitor.start();

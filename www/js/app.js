@@ -26,7 +26,8 @@ app.run(function($ionicPlatform) {
 .constant('SERVER', {
   // if using local server
   // url:  'http://localhost:3000',
-  // ws:   'ws://localhost:3000'
+  // ws:   'ws://localhost:3000',
+  // domain: 'localhost'
 
   // if using our public heroku server
   url:  'http://simplyhome-dev-rails.herokuapp.com',

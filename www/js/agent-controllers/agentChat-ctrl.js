@@ -1,4 +1,4 @@
-app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate) {
+app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', '$auth', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate, $auth) {
 // app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDeletegate', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDeletegate) {
 
   var chat_page = true;
@@ -13,7 +13,9 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
     end_time: new Date(),
     location: '',
     chat_id: $scope.chatroomId,
-    renter_id: $scope.chatroom.renter_id
+    renter_id: $scope.chatroom.renter_id,
+    uid: $auth.user.uid,
+    type: 'agent'
   }
   $scope.enquiries = [];
   $scope.currentUser = {};
@@ -22,7 +24,9 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
     renter_id: $scope.chatroom.renter_id,
     chat_id: $scope.chatroomId,
     title: '',
-    apartments: []
+    apartments: [],
+    uid: $auth.user.uid,
+    type: 'agent'
   }
   $scope.listings = [];
 
@@ -129,7 +133,8 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
       send_message: function(message) {
         this.perform('send_message', {
           message: message,
-          chat_room_id: $scope.chatroomId
+          chat_room_id: $scope.chatroomId,
+          uid: $auth.user.uid
         });
       }
     }
