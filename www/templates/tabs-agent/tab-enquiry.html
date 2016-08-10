@@ -1,38 +1,31 @@
 <ion-view title="Enquiry detail">
-
-  <ion-content>
-    <ion-list>
+  <ion-content class="padding">
       <div class="list">
-        <a class="item item-icon-left">
-          <i class="icon ion-email"></i>
-          {{enquiry.renter.email}}
-        </a>
-
-        <a class="item item-icon-left">
+        <ion-item class="item item-icon-left">
           <i class="icon ion-ios-location-outline"></i>
           {{enquiry.enquiry.areas}}
-        </a>
+        </ion-item>
 
-        <a class="item item-icon-left">
+        <ion-item  class="item item-icon-left">
           <i class="icon icon-plan2 "></i>
           {{enquiry.enquiry.property_size_min}} to {{enquiry.enquiry.property_size_max}} ft2
-         </a>
+         </ion-item >
 
-        <a class="item item-icon-left">
+        <ion-item  class="item item-icon-left">
           <i class="icon ion-cash"></i>
           ${{enquiry.enquiry.price_min}} to${{enquiry.enquiry.price_max}}
-        </a>
+        </ion-item >
 
-      <div class="item item-input-inset">
-        <a class="item item-icon-left">
+
+        <ion-item class="item item-icon-left">
           <i class="icon icon-shower"></i>
           {{enquiry.enquiry.bathroom_num}}
-        </a>
-        <a class="item item-icon-left">
+        </ion-item>
+        <ion-item  class="item item-icon-left">
           <i class="icon icon-bed"></i>
           {{enquiry.enquiry.bedroom_num}}
-        </a>
-      </div>
+        </ion-item>
+
 
         <a class="item item-icon-left">
           <i class="icon ion-ios-bolt-outline"></i>
@@ -50,12 +43,9 @@
         </a>
 
       </div>
-    </ion-list>
-  </ion-content>
-  <ion-footer-bar>
     <button class="button button-block button-positive" ng-click="getChatRoom(enquiry.chat_id, enquiry.enquiry.id, enquiry.enquiry.renter_id)">
-    Start chatting
+    Chat to {{enquiry.enquiry.first_name}}
     </button>
-  </ion-footer-bar>
+  </ion-content>
 </ion-view>
 
