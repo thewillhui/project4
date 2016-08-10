@@ -6,8 +6,6 @@ angular.module('simplyHome.controllers', [])
     return User;
   }, function(newVal, oldVal){
     var config_name = newVal.config_name;
-    console.log(newVal)
-    console.log(oldVal)
     if (config_name === "Renter") {
       $scope.renter = true;
       $scope.agent = false;

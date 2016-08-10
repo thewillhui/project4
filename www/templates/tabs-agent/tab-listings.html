@@ -1,30 +1,30 @@
 <ion-view view-title="My Listings">
   <ion-content class="padding">
 <!-- Pull to Refresh -->
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="getListing()">
-    </ion-refresher>
-
-    <div class="card" ng-repeat="listing in myListings | orderBy: myListings.created_at : true">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="getListing()"></ion-refresher>
+    <div class="card" ng-repeat="listing in listings | orderBy: listing.created_at : true">
+<!--        {{listing}} -->
       <div class="item item-divider">
-        <h3>Listings {{myListings.index}}</h3>
+        <h3>Listings {{listing.index}}</h3>
       </div>
-      <div class="row">
-        <div class="col-90" ng-click="scrollResize(); changeDisplay(myListings);">
+      <div class="row" ng-click="scrollResize(); changeDisplay(listing);">
+        <div class="col-90">
           <ion-item class="item item-icon-left">
             <i class="icon ion-ios-location-outline"></i>
-            <p ng-repeat="area in myListings.areas | limitTo: myListings.limitTo"> {{myListings.area}}</p>
+            <p>{{listing.area}}</p>
+            <!-- ng-repeat="area in listing.areas | limitTo: listings.limitTo"> -->
           </ion-item>
         </div>
         <div class="col-10 col-center">
-          <i class="ion-chevron-right" ng-hide="myListings.showDetail"></i>
-          <i class="ion-chevron-down" ng-hide="!myListings.showDetail"></i>
+          <i class="ion-chevron-right" ng-hide="listing.showDetail"></i>
+          <i class="ion-chevron-down" ng-hide="!listing.showDetail"></i>
         </div>
       </div>
-      <!-- <div ng-hide="!listing.showDetail"> -->
+      <div ng-hide="!listing.showDetail">
         <div class="row">
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon icon-bed"></i> {{myListings.bedroom_num}}
+              <i class="icon icon-bed"></i> {{listing.bedroom_num}}
             </ion-item>
           </div>
           <div class="col-50">
@@ -36,13 +36,13 @@
         <div class="row">
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon icon-scale"></i> {{property_size_gross}} ft<sup>2</sup> (gross)
-              <br/> {{property_size_net}} ft<sup>2</sup> (net)
+              <i class="icon icon-scale"></i> {{listing.property_size_gross}} ft<sup>2</sup> (gross)
+              <br/> {{listing.property_size_net}} ft<sup>2</sup> (net)
             </ion-item>
           </div>
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon ion-social-usd-outline"></i> <!-- {{enquiry.price_min | number:0}} -->
+              <i class="icon ion-social-usd-outline"></i> {{listing.price | number:0}}
               <br/> <!-- {{enquiry.price_max | number:0}} -->
             </ion-item>
           </div>
@@ -51,23 +51,35 @@
         <div class="row">
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon ion-ios-home-outline"></i> {{mylistings.apt_name}}
+              <i class="icon ion-ios-home-outline"></i> {{listing.apt_name}}
             </ion-item>
           </div>
           <!-- urgent change field -->
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon ion-map"></i> <!-- {{enquiry.urgent}} -->
+              <i class="icon ion-map"></i>
+              {{listing.street}}
             </ion-item>
           </div>
         </div>
-        <!-- to be updated with new fields. -->
         <div class="row">
-          <div class="col">
+          <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon icon-calendar"></i>
-              <p ng-repeat="days in enquiry.available_days">{{days | limitTo : 3}}</p>
-              {{enquiry.timeslot}}
+              <i class="icon ion-android-walk"></i> {{listing.walkup}}
+            </ion-item>
+          </div>
+          <!-- urgent change field -->
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <i class="icon ion-ios-paw-outline"></i>
+              {{listing.pet_friendly}}
+            </ion-item>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <i class="icon ion-spoon"></i> {{listing.open_kitchen}}
             </ion-item>
           </div>
         </div>
@@ -75,18 +87,13 @@
           <div class="col">
             <ion-item class="item">
             <h4>Description</h4>
-              <p>{{listing.description}}</p>
+            <p>{{listing.description}}</p>
             </ion-item>
           </div>
         </div>
-      </div>
-      </div>
+        <div class="item item-image" ng-repeat="pictures in listing.apartment_pictures ">
+            <img ng-src="{{pictures.url}}">
+        </div>
     </div>
   </ion-content>
 </ion-view>
-<!--  <div class="col-33">
-          <ion-item class="item item-icon-left">
-            <i class="icon ion-ios-home-outline"></i>
-            {{enquiry.building_type}} walk up
-          </ion-item>
-        </div> -->

@@ -286,3 +286,19 @@ at the bottom as the textarea resizes */
   padding: 10px;
   border-radius: 10px;
 }*/
+/*index is based on locations object in controller.js*/
+.city-0 {
+
+  background-size: auto 100%;
+}
+
+.city-1 {
+
+  background-size: 100%;
+}
+
+.city-2 {
+
+  background-size: auto 100%;
+}
+
