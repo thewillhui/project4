@@ -31,8 +31,6 @@ app.controller('EnquiryCtrl', ['$scope', '$state', '$http', 'SERVER', 'currentEn
     'Evening'
   ]
 
-
-
   $scope.region = {
     'Hong Kong Island': ['Aberdeen', 'Admiralty', 'Wan Chai', 'Tin Hau', 'Tai Hang', 'Tai Koo', 'Shau Kei Wan', 'Heng Fa Chuen', 'Sai Wan Ho', 'Quarry Bay', 'North Point', 'Fortress Hill', 'Mid-Levels', 'Island West', 'Island South', 'Chai Wan', 'Shek O', 'Central', 'Sheung Wan', 'Causeway Bay'],
     'Kowloon': ['Yau Tong', 'Lam Tin', 'Tsim Sha Tsui', 'Jordon', 'To Kwa Wan', 'Kowloon City', 'Tai Kok Tsui', 'Olympic', 'Kowloon Station', 'Sham Shui Po', 'Shek Kip Mei', 'San Po Kong', 'Wong Tai Sin', 'Prince Edward', 'Mong Kok', 'Yau Ma Tei', 'Lai Chi Kok', 'Cheung Sha Wan', 'Mei Foo', 'Lai King', 'Kwun Tong', 'Ngau Tau Kok', 'Kowloon Tong', 'Ho Man Tin', 'Yau Yat Tsuen', 'Kowloon Bay', 'Ngau Chi Wan', 'Hung Hom', 'Whampoa', 'Diamond Hill', 'Lok Fu'],
@@ -165,29 +163,28 @@ app.controller('EnquiryCtrl', ['$scope', '$state', '$http', 'SERVER', 'currentEn
     // parseTime();
     if (User.config_name === "Renter") {
       $http
-        .post(SERVER.url + '/api/enquiries', { enquiry: $scope.enquiry })
-        .then(function(resp) {
-          console.log(resp.status);
-          console.log(resp.data);
-          $scope.showAlert = function() {
-            var alertPopup = $ionicPopup.alert({
-              title: 'Thanks for your enquiry',
-              template: 'Your enquiry has now been sent to relevant agents! You will be notified when matching agents reach out to you.'
-            });
-          }
-          $scope.showAlert();
-          //add a notification here
-          $state.go('tab.renter-my-enquiries');
-          $scope.enquiry = clearEnquiry;
-        }, function(error) {
-          $scope.showAlert = function() {
-            var alertPopup = $ionicPopup.alert({
-              title: 'Error',
-              template: 'Oops! Something went wrong, please try again.'
-            });
-          }
-          $scope.showAlert();
-        })
+      .post(SERVER.url + '/api/enquiries', { enquiry: $scope.enquiry })
+      .then(function(resp) {
+        console.log(resp.data);
+        $scope.showAlert = function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Thanks for your enquiry',
+            template: 'Your enquiry has now been sent to relevant agents! You will be notified when matching agents reach out to you.'
+          });
+        }
+        $scope.showAlert();
+        //add a notification here
+        $state.go('tab.renter-my-enquiries');
+        $scope.enquiry = clearEnquiry;
+      }, function(error) {
+        $scope.showAlert = function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Error',
+            template: 'Oops! Something went wrong, please try again.'
+          });
+        }
+        $scope.showAlert();
+      })
     } else {
       currentEnquiry.setProperty($scope.enquiry)
       $state.go('tab.renter-auth.signup');

@@ -2,10 +2,14 @@
   <ion-content class="padding">
 <!-- Pull to Refresh -->
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="getListing()"></ion-refresher>
-    <div class="card" ng-repeat="listing in listings | orderBy: listing.created_at : true">
+
+    <div class="card" ng-repeat="listing in listings | orderBy: listing.created_at : true" >
+
       <div class="item item-divider">
+          <button class="button button-clear button-positive" ui-sref="tab.agent-listings.edit" ng-click="getApartment({{listing.id}})">Edit</button>
         <h3>Listings {{listing.index}}</h3>
       </div>
+
       <div class="row" ng-click="scrollResize(); changeDisplay(listing);">
         <div class="col-90">
           <ion-item class="item item-icon-left">
@@ -32,34 +36,18 @@
             </ion-item>
           </div>
         </div>
-        <div class="row">
-          <div class="col-50">
-            <ion-item class="item item-icon-left">
-              <i class="icon icon-scale"></i> {{listing.property_size_gross}} ft<sup>2</sup> (gross)
-              <br/> {{listing.property_size_net}} ft<sup>2</sup> (net)
-            </ion-item>
-          </div>
-          <div class="col-50">
-            <ion-item class="item item-icon-left">
-              <i class="icon ion-social-usd-outline"></i> {{listing.price | number:0}}
-              <br/> <!-- {{enquiry.price_max | number:0}} -->
-            </ion-item>
-          </div>
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon icon-bathtub"></i> {{listing.bathroom_num}}
+          </ion-item>
         </div>
-        <!-- move in date change -->
-        <div class="row">
-          <div class="col-50">
-            <ion-item class="item item-icon-left">
-              <i class="icon ion-ios-home-outline"></i> {{listing.apt_name}}
-            </ion-item>
-          </div>
-          <!-- urgent change field -->
-          <div class="col-50">
-            <ion-item class="item item-icon-left">
-              <i class="icon ion-map"></i>
-              {{listing.street}}
-            </ion-item>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon icon-scale"></i> {{listing.property_size_gross}} ft<sup>2</sup> (gross)
+            <br/> {{listing.property_size_net}} ft<sup>2</sup> (net)
+          </ion-item>
         </div>
         <div class="row">
           <div class="col-50">
@@ -91,8 +79,9 @@
           </div>
         </div>
         <div class="item item-image" ng-repeat="pictures in listing.apartment_pictures ">
-            <img ng-src="{{pictures.url}}">
+          <img ng-src="{{pictures.url}}">
         </div>
+      </div>
     </div>
   </ion-content>
 </ion-view>

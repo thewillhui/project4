@@ -15,10 +15,83 @@
           <input type="text" placeholder="Search" ng-model="search">
         </label>
       </div>
-      <ion-list>
-        <ion-checkbox ng-repeat="(key, apartment) in apartments | filter: search" ng-click="apartments[key].checked = !apartment.checked ">
-          {{apartment.area}}
+
+      <ion-list class="card"
+                ng-repeat="(key, apartment) in apartments | filter: search"
+                ng-click="apartments[key].checked = !apartment.checked">
+        <ion-checkbox>
+          {{apartment.apt_name}}
         </ion-checkbox>
+        <div class="row" ng-click="scrollResize(); changeDisplay(listing);">
+          <div class="col-90">
+            <ion-item class="item item-icon-left">
+              <i class="icon ion-ios-location-outline"></i>
+              <p>{{apartment.area}}</p>
+              <!-- ng-repeat="area in apartment.areas | limitTo: apartments.limitTo"> -->
+            </ion-item>
+          </div>
+          <div class="col-10 col-center">
+            <i class="ion-chevron-right" ng-hide="apartment.showDetail"></i>
+            <i class="ion-chevron-down" ng-hide="!apartment.showDetail"></i>
+          </div>
+        </div>
+          <div ng-hide="!apartment.showDetail">
+            <div class="row">
+              <div class="col-50">
+                <ion-item class="item item-icon-left">
+                  <i class="icon icon-bed"></i> {{apartment.bedroom_num}}
+                </ion-item>
+              </div>
+              <div class="col-50">
+                <ion-item class="item item-icon-left">
+                  <i class="icon icon-bathtub"></i> {{apartment.bathroom_num}}
+                </ion-item>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-50">
+              <ion-item class="item item-icon-left">
+                <i class="icon icon-scale"></i> {{apartment.property_size_gross}} ft<sup>2</sup> (gross)
+                <br/> {{apartment.property_size_net}} ft<sup>2</sup> (net)
+              </ion-item>
+            </div>
+            <div class="row">
+              <div class="col-50">
+                <ion-item class="item item-icon-left">
+                  <i class="icon ion-android-walk"></i>
+                  <i class="icon ion-checkmark"></i>{{apartment.walkup}}
+                </ion-item>
+              </div>
+              <!-- urgent change field -->
+              <div class="col-50">
+                <ion-item class="item item-icon-left">
+                  <i class="icon ion-ios-paw-outline"></i>
+                  <i class="icon ion-checkmark"></i>{{apartment.pet_friendly}}
+                </ion-item>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-50">
+                <ion-item class="item item-icon-left">
+                  <i class="icon ion-spoon"></i>
+                  <i class="icon ion-checkmark"></i>{{apartment.open_kitchen}}
+                </ion-item>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <ion-item class="item">
+                <h4>Description</h4>
+                <p>{{apartment.description}}</p>
+                </ion-item>
+              </div>
+            </div>
+<!--             <div class="item item-image" ng-repeat="pictures in apartment.apartment_pictures ">
+              <img ng-src="{{pictures.url}}">
+            </div> -->
+          </div>
+        </div>
       </ion-list>
     </ion-content>
     <ion-footer-bar>
@@ -27,4 +100,3 @@
       </button>
     </ion-footer-bar>
   </ion-modal-view>
-

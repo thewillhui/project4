@@ -35,7 +35,10 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
       chat_room_id: $scope.chatroomId
     },
     {
-      connected: function() {},
+      connected: function() {
+        // same code as agent but it doesn't work
+        // $ionicScrollDelegate.scrollBottom();
+      },
       disconnected: function() {},
       received: function(data) {
         if (chat_page){
@@ -63,6 +66,7 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
           chat_room_id: $scope.chatroomId,
           uid: $auth.user.uid
         });
+        $ionicScrollDelegate.scrollBottom();
       }
     }
   );

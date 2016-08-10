@@ -1,0 +1,119 @@
+<ion-view view-title="Edit Listings">
+  <ion-content class="padding">
+    <form ng-init="apartment">
+      <div class="form-group">
+
+        <div class="list list-inset">
+          <label class="item item-input item-stacked-label">
+          <span class="input-label"> Building Name, Block #</span>
+            <input type="text" placeholder="Building Name, Block #"
+            ng-model="apartment.apt_name">
+          </label>
+        </div>
+
+        <div class="list list-inset">
+          <label class="item item-input item-stacked-label">
+          <span class="input-label"> Street </span>
+            <input type="text" placeholder="Street"
+            ng-model="apartment.street">
+          </label>
+        </div>
+
+        <div class="list list-inset">
+          <label class="item item-input item-stacked-label">
+          <span class="input-label"> Area </span>
+            <input type="text" placeholder="Area"
+            ng-model="apartment.area">
+          </label>
+        </div>
+
+        <div class="list list-inset">
+          <label class="item item-input item-stacked-label">
+          <span class="input-label"> Price </span>
+            <input type="text" placeholder="Price"
+            ng-model="apartment.price">
+          </label>
+        </div>
+
+        <div class="list list-inset">
+          <label class="item item-input item-stacked-label">
+          <span class="input-label"> Gross Sqft</span>
+            <input type="text" placeholder="Gross Sqft"
+            ng-model="apartment.property_size_gross">
+          </label>
+        </div>
+
+        <div class="list list-inset">
+          <label class="item item-input item-stacked-label">
+          <span class="input-label"> Net Sqft</span>
+            <input type="text" placeholder="Net Sqft"
+            ng-model="apartment.property_size_net">
+          </label>
+        </div>
+
+        <div class="list list-inset">
+          <label class="item item-input item-stacked-label">
+          <span class="input-label"> Description </span>
+            <input type="text" placeholder="Description"
+            ng-model="apartment.description">
+          </label>
+        </div>
+
+        <h3>Bedrooms</h3>
+
+        <div class="button-bar bar-dark custom-width-bar">
+          <button
+            ng-repeat="bedroom in bedroomsBtns"
+            ng-click="setActive('bed{{bedroom.number}}'); apartment.bedroom_num = bedroom.number"
+            ng-class="{'button-light': isActive('bed{{bedroom.number}}')}"
+            class="button button-block">{{bedroom.number}}</button>
+        </div>
+
+        <h3>Bathrooms</h3>
+
+        <div class="button-bar bar-dark">
+        <!-- this function run after angular tags populated? -->
+          <button
+            ng-repeat="bathroom in bathroomsBtns"
+            ng-click="setActiveB('bath{{bathroom.number}}');
+            apartment.bathroom_num = bathroom.number"
+            ng-class="{
+            'button-light': isActiveB('bath{{bathroom.number}}')
+            }"
+            class="button button-block">{{bathroom.number}}</button>
+        </div>
+
+        <div class="spacer" style="height: 30px;"></div>
+
+        <ion-checkbox ng-model="apartment.pet_friendly"
+                      ng-repeat="item in petList"
+                      ng-checked="item.checked">
+          {{item.text}}
+        </ion-checkbox>
+
+        <ion-checkbox ng-model="apartment.open_kitchen"
+                      ng-repeat="item in opnKitchen"
+                      ng-checked="item.checked">
+          {{item.text}}
+        </ion-checkbox>
+
+        <ion-checkbox ng-model="apartment.walkup"
+                      ng-repeat="item in walkUp"
+                      ng-checked="item.checked">
+          {{item.text}}
+        </ion-checkbox>
+        <div class="spacer" style="height: 30px;"></div>
+        <!-- PAPERCLIP HERE!!!!! -->
+        <!-- File upload button -->
+        <div class="button button-block button-assertive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true">Select Photos</div>
+        <!-- Image / file preview -->
+        <img ng-repeat="picture in apartment_pictures.pictures" ngf-src="picture" width="200" height="200">
+        <!-- Upload Button -->
+        <!-- <button type="submit" class="button button-block button-positive">Upload</button> -->
+
+        <!-- List Button -->
+        <button class="button button-block button-positive" ng-click="updateApartment(apartment)">Update</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

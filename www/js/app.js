@@ -25,13 +25,13 @@ app.run(function($ionicPlatform) {
 
 .constant('SERVER', {
   // if using local server
-  // url:  'http://localhost:3000',
-  // ws:   'ws://localhost:3000',
-  // domain: 'localhost'
+  url:  'http://localhost:3000',
+  ws:   'ws://localhost:3000',
+  domain: 'localhost'
 
   // if using our public heroku server
-  url:  'http://simplyhome-dev-rails.herokuapp.com',
-  ws:   'ws://simplyhome-dev-rails.herokuapp.com'
+  // url:  'http://simplyhome-dev-rails.herokuapp.com',
+  // ws:   'ws://simplyhome-dev-rails.herokuapp.com'
 })
 
 .config(function($stateProvider, $urlRouterProvider, $authProvider, SERVER) {
@@ -331,16 +331,26 @@ app.run(function($ionicPlatform) {
       }
     }
   })
-
   .state('tab.agent-listings', {
     cache: false,
-    url: '/listings',
+    url: '/agent-listings',
+    abstract: true,
     views: {
       'tab-listings': {
-        templateUrl: 'templates/tabs-agent/tab-listings.html',
+        templateUrl: 'templates/tabs-agent/abstract.html',
         controller: 'ListingsCtrl'
       }
     }
+  })
+  .state('tab.agent-listings.mylistings', {
+    cache: false,
+    url: '/listings',
+    templateUrl: 'templates/tabs-agent/tab-listings.html'
+  })
+  .state('tab.agent-listings.edit', {
+    cache: false,
+    url: '/edit',
+    templateUrl: 'templates/tabs-agent/edit.html'
   })
 
   //////////////////////////////////////////////////////////
