@@ -22,7 +22,7 @@ app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, curre
     // $scope.enquiry = enquiry;
     currentEnquiry.setProperty(enquiry);
     console.log(currentEnquiry.getProperty());
-    $state.go('tab.agent-enquiry')
+    $state.go('tab.agent-enquiries.enquiry-detail')
   }
   $scope.getMatchedEnquiries();
 
