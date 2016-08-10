@@ -4,20 +4,19 @@
       I'm a button on the primary of the navbar!
     </button> -->
   </ion-nav-buttons>
-<ion-content class="padding">
+<!-- <ion-content class="padding"> -->
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="getMatchedEnquiries()">
     </ion-refresher>
-  <ion-content>
-    <div class="list">
-      <div class="item item-button-right" ng-repeat="enquiry in enquiries">
-        <b>{{enquiry.enquiry.areas}}</b>
-        <p>submitted by {{enquiry.renter.email}}</p>
-        <button class="button button-positive" ng-click="showEnquiryDetails(enquiry)">
-          Details
-        </button>
-          <!-- <i class="icon ion-chatbubble-working"></i> -->
-          <!-- <a class="button icon ion-chatbubble-working" href="#/renter/chat/{{renter.id}}"></a> -->
-      </div>
+
+  <div class="list">
+    <div class="item item-button-right" ng-repeat="enquiry in enquiries">
+      <b>{{enquiry.enquiry.areas}}</b>
+      <p>submitted by {{enquiry.renter.email}}</p>
+      <button class="button button-positive" ng-click="showEnquiryDetails(enquiry)">
+        Details
+      </button>
+        <!-- <i class="icon ion-chatbubble-working"></i> -->
+        <!-- <a class="button icon ion-chatbubble-working" href="#/renter/chat/{{renter.id}}"></a> -->
     </div>
-  </ion-content>
+  </div>
 </ion-view>

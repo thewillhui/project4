@@ -1,25 +1,32 @@
   <ion-modal-view>
     <ion-header-bar>
       <h1 class="title">Rate this appointment</h1>
-       <button class="button button-primary" ng-click="propertyModal.hide()">Cancel</button>
+       <button class="button button-primary" ng-click="cancelRating()">Cancel</button>
     </ion-header-bar>
     <ion-content>
 
       <div class="list list-inset">
         <label class="item item-input">
-          <span class="input-label">Listing Title</span>
-          <input type="text" ng-model="propertyListing.title">
+          <span class="input-label">{{currentRating.renter.first_name}}</span>
         </label>
+
+        <ion-toggle ng-model="renter_ratings.no_show" toggle-class="toggle-negative">
+          no show
+        </ion-toggle>
+
+        <ion-toggle ng-model="renter_ratings.spy" toggle-class="toggle-negative">
+          spy
+        </ion-toggle>
+
         <label class="item item-input">
-          <i class="icon ion-search placeholder-icon"></i>
-          <input type="text" placeholder="Search" ng-model="search">
+          <input type="number" ng-model="renter_ratings.rr_overall_star" required placeholder="from 1 to 5" ng-minlength="1" ng-maxlength="1"/>
+        </label>
+
+        <label class="item item-input item-stacked-label">
+          <input type="text" placeholder="comment here" ng-model="renter_ratings.rr_comment">
         </label>
       </div>
-      <ion-list>
-        <ion-checkbox ng-repeat="(key, apartment) in apartments | filter: search" ng-click="apartments[key].checked = !apartment.checked ">
-          {{apartment.area}}
-        </ion-checkbox>
-      </ion-list>
+
     </ion-content>
     <ion-footer-bar>
       <button class="button button-full button-balanced" ng-click="sendRating()">
