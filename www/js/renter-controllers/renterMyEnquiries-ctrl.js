@@ -16,20 +16,20 @@ app.controller('RenterMyEnquiriesCtrl', function($scope, $http, $ionicScrollDele
 
   $scope.getEnquiries = function() {
     $http
-      .get(SERVER.url + '/api/enquiries')
-      .then(function(resp) {
-        // inject virtual attributes to control display in front-end
-        $scope.myEnquiries = resp.data.map(function(x, index) {
-          x.index = index + 1;
-          x.limitTo = 3;
-          x.showDetail = false;
-          return x;
-        })
+    .get(SERVER.url + '/api/enquiries')
+    .then(function(resp) {
+      // inject virtual attributes to control display in front-end
+      $scope.myEnquiries = resp.data.map(function(x, index) {
+        x.index = index + 1;
+        x.limitTo = 3;
+        x.showDetail = false;
+        return x;
       })
-      .finally(function() {
-        // Stop the ion-refresher from spinning
-        $scope.$broadcast('scroll.refreshComplete');
-      })
+    })
+    .finally(function() {
+      // Stop the ion-refresher from spinning
+      $scope.$broadcast('scroll.refreshComplete');
+    })
   };
   $scope.getEnquiries();
 

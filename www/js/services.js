@@ -99,6 +99,8 @@ angular.module('simplyHome.services', [])
 
 
 
+
+// Raw data only for testings, when work. safe to remove
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
