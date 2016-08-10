@@ -1,35 +1,10 @@
 app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER', 'chats', function($scope, $http, chat, $state, SERVER, chats) {
-
-  // variables for chats
   $scope.chats = [];
   var emptyChats = [];
+  var chat_page = false;
+  var chats_page = true;
 
-  // variables for chat
-  $scope.chatroom = {};
-  $scope.chatroomId = '';
-  $scope.messages = [];
-  $scope.message = '';
-  $scope.apartments = [];
-  $scope.appointment = {
-    start_time: new Date(),
-    end_time: new Date(),
-    location: '',
-    chat_id: '',
-    renter_id: ''
-  };
-  $scope.enquiries = [];
-  $scope.currentUser = {};
-  $scope.title = '';
-  $scope.propertyListing = {
-    renter_id: '',
-    chat_id: '',
-    title: '',
-    apartments: []
-  }
-  $scope.listings = [];
-
-
-  // function for chats
+  // sort messages
   var sortMessages = function(){
     $scope.chats.forEach(function(chat){
       chat.messages.sort(function(a,b){
@@ -42,6 +17,7 @@ app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER',
     })
   }
 
+  // sort chatrooms
   var sortChatrooms = function(arr){
     var emptyChats = [];
     var nonEmptyChats = [];
@@ -69,47 +45,6 @@ app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER',
       completeChats.push(obj);
     })
     return completeChats;
-  }
-
-  var subscribeChats = function(){
-    $scope.chats.forEach(function(chat){
-      console.log('start setting up App Cable: ' + chat.chat.id);
-      console.log(chat.chat.id)
-      App.global_chat = App.cable.subscriptions.create(
-      {
-        channel: "ChatRoomsChannel",
-        chat_room_id: chat.chat.id
-      },
-      {
-        connected: function(){},
-        disconnected: function(){},
-        received: function(data){
-            console.log('this is the data you are receiving');
-            console.log('inside agentChat ChaT received')
-            console.log(data);
-            $scope.messages.push(data.message);
-            sortMessages();
-            chats.updateChats($scope.chatroomId, $scope.messages);
-            $scope.$apply();
-            console.log('this is after setting CHATS factory in chat');
-            console.log(chats.getChats());
-            console.log($scope.messages);
-            console.log('inside agentChat Chatsssss received')
-            var index = $scope.chats.map(function(chat){
-              return chat.chat.id;
-            }).indexOf(data.message.chat_id);
-            $scope.chats[index].messages.push(data.message);
-            $scope.chats = sortChatrooms($scope.chats);
-            $scope.apply();
-        },
-        send_message: function(message) {
-          this.perform('send_message', {
-            message: message,
-            chat_room_id: $scope.chatroomId
-          });
-        }
-      })
-    })
   }
 
   var getChats = function(cb){
@@ -140,124 +75,97 @@ app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER',
 
       })
   }
-
-  // function for chat
-
-  $scope.getListings = function(id){
-    $http
-      .get(SERVER.url + '/api/getlistings/' + id)
-      .then(function(resp){
-        $scope.listings = resp.data;
-        console.log('this is the listings you are getting');
-        console.log($scope.listings);
-        $scope.listingModal.show();
+  var subscribeChats = function(){
+    $scope.chats.forEach(function(chat){
+      console.log('start setting up App Cable: ' + chat.chat.id);
+      console.log(chat.chat.id)
+      App.cable.subscriptions.create(
+      {
+        channel: "ChatRoomsChannel",
+        chat_room_id: chat.chat.id
+      },
+      {
+        connected: function(){},
+        disconnected: function(){},
+        received: function(data){
+          if (chat_page){
+            // console.log('this is the data you are receiving');
+            // console.log('inside agentChat ChaT received')
+            // console.log(data);
+            console.log('received, before push');
+            console.log($scope.messages);
+            $scope.messages.push(data.message);
+            console.log('received, after push');
+            console.log($scope.messages);
+            sortMessages();
+            // chats.updateChats($scope.chatroomId, $scope.messages);
+            // $scope.$apply();
+            // console.log('this is after setting CHATS factory in chat');
+            // console.log(chats.getChats());
+            // console.log($scope.messages);
+          } else if (chats_page){
+            console.log('inside agentChat Chatsssss received')
+            var index = $scope.chats.map(function(chat){
+              return chat.chat.id;
+            }).indexOf(data.message.chat_id);
+            $scope.chats[index].messages.push(data.message);
+            $scope.chats = sortChatrooms($scope.chats);
+            $scope.$apply();
+          }
+        }
       })
-  }
-
-  $scope.sendListings = function(){
-    $scope.propertyModal.hide();
-    var selectedApartments = [];
-    $scope.apartments.forEach(function(apartment){
-      if (apartment.checked == true){
-        selectedApartments.push(apartment.id);
-      }
-    })
-    $scope.propertyListing.apartments = selectedApartments;
-    console.log('this is the data you are sending')
-    console.log($scope.propertyListing);
-    $http
-      .post(SERVER.url + '/api/property_listings',$scope.propertyListing)
-      .then(function(data){
-        console.log('this is success function:')
-        console.log(data);
-      })
-  }
-
-  var getApartments = function(){
-    $http
-      .get(SERVER.url + '/api/apartments/enquiry/' + $scope.chatroom.renter_id)
-      .then(function(data){
-        $scope.apartments = data.data.apartments;
-        $scope.enquiries = data.data.enquiries;
-        console.log($scope.apartments);
-        console.log($scope.enquiries);
-      })
-  }
-
-  $scope.cancelAppointment = function(key, messageId){
-    $http
-      .delete(SERVER.url + '/api/appointments/' + messageId)
-      .then(function(resp){
-        console.log(resp);
-        $scope.messages[key].appointment_status == 'cancelled';
-        console.log($scope.messages[key].appointment_status)
-      })
-  }
-
-  $scope.sendAppointment = function(date){
-    $scope.appointmentModal.hide();
-    console.log($scope.appointment);
-    $http
-      .post(SERVER.url + '/api/appointments', $scope.appointment)
-      .then(function(resp){
-        console.log(resp);
-      })
-  }
-
-  $scope.sendMessage = function(){
-    console.log('sendMessage function');
-    if($scope.message.length>1){
-      App.global_chat.send_message($scope.message);
-      $scope.message = '';
-    }
-  }
-
-  var getCurrentUser = function(){
-    $http
-      .get(SERVER.url + '/api/userinfo')
-      .then(function(resp){
-        $scope.currentUser = resp.data
-        console.log('this is after get');
-        console.log($scope.currentUser)
-      })
-  }
-
-  var sortMessagesInChat = function(){
-    $scope.messages.sort(function(a, b){
-      if (a.created_at < b.created_at)
-        return -1;
-      if (a.created_at > b.created_at)
-        return 1;
-      return 0;
     })
   }
 
 
-  // routing and init
+
+  // chats.each, subscribe to a it with chatroom Id
+  // received, use message.chat_id, find key of that chat room
+  // push newly received message to that chatroom's messages
+  // sort Chatroom function
+  // $scope.apply
+
+  // var testIndex = function(){
+  //   var index = $scope.chats.map(function(chat){
+  //     return chat.chat.id;
+
+  //   }).indexOf(4);
+  //   console.log('this is index of');
+  //   console.log(index);
+
+  //   console.log('this is the chat object you are looking for');
+  //   console.log($scope.chats[index].messages)
+  // }
+
+  // sort messages
+  // sort chatroom
+  // put all chatrooms inside CHATS factory
+  // put all chatrooms inside $scope.chats
+  // put the chosen chatroom inside CHAT factory
+  // when changed, use chat.id in CHAT to locate changed chatroom in CHATS
+  // pass in $scope.messages to the changed chatroom in CHATS
+
+  // $scope.$watch look for changes in CHATS chats
+  // if changed, put to $scope.chats, sort chatroom and messages again
+
+  // $scope.$watch(function(){
+  //   return chats.chats;
+  // }, function(newChats, oldChats){
+  //   $scope.chats = sortChatrooms(newChats);
+  //   console.log('this is the new chats from watch');
+  //   console.log(newChats);
+  // })
+
+  // $scope.$watch(function(){
+  //    return MenuFactory.Control;
+  // }, function(NewValue, OldValue){
+  //     console.log(NewValue + ' ' + OldValue);
+  //     console.log(MenuFactory.Control);
+  // });
 
   $scope.getChat = function(key){
     chat.setProperty($scope.chats[key].chat, $scope.chats[key].messages)
     $state.go('tab.agent-chat');
-    // variables init
-    $scope.chatroom = chat.getProperty().chatroom;
-    $scope.chatroomId = $scope.chatroom.id
-    $scope.messages = chat.getProperty().messages;
-    $scope.appointment = {
-      start_time: new Date(),
-      end_time: new Date(),
-      location: '',
-      chat_id: $scope.chatroomId,
-      renter_id: $scope.chatroom.renter_id
-    }
-    $scope.propertyListing = {
-      renter_id: $scope.chatroom.renter_id,
-      chat_id: $scope.chatroomId,
-      title: '',
-      apartments: []
-    }
-    getCurrentUser();
-    getApartments();
-    sortMessagesInChat();
   }
 
   getChats(subscribeChats);
