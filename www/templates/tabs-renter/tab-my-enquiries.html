@@ -34,8 +34,8 @@
         <div class="row">
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon icon-scale"></i> {{enquiry.property_size_min | number:0}} ft<sup>2</sup> (net)
-              <br/> {{enquiry.property_size_max | number:0}} ft<sup>2</sup> (net)
+              <i class="icon icon-scale"></i> {{enquiry.property_size_min | number:0}} ft<sup>2</sup>
+              <br/> {{enquiry.property_size_max | number:0}} ft<sup>2</sup>
             </ion-item>
           </div>
           <div class="col-50">
@@ -84,9 +84,9 @@
       </div>
       <div class="item item-divider" ng-init="dateTime = enquiry.created_at">
         <h4>Your enquiry was sent {{parseDateTime(dateTime)}}</h4>
-        <button class="button button-block button-positive">
+<!--         <button class="button button-block button-positive">
           View matched agents
-        </button>
+        </button> -->
       </div>
     </div>
   </ion-content>

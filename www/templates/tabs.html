@@ -45,15 +45,6 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-renter-account"></ion-nav-view>
   </ion-tab>
 
-    <!-- renter signup -->
-  <ion-tab title="Signup" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="tab.testrenter">
-    <ion-nav-view name="tab-testRenter"></ion-nav-view>
-  </ion-tab>
-
-    <!-- renter signup -->
-  <ion-tab title="Login" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="tab.testrenterLogin">
-    <ion-nav-view name="tab-testRenterLogin"></ion-nav-view>
-  </ion-tab>
 
  <!-- Account Tab -->
 
@@ -72,7 +63,7 @@ navigation history that also transitions its views in and out.
 
 
   <!-- Agent signup -->
-  <ion-tab title="A Sign-up" icon-off="ion-person-add" icon-on="ion-person-add" ui-sref="tab.agent-auth.signup" >
+  <ion-tab title="A Sign-up" icon-off="ion-person-add" icon-on="ion-person-add" ui-sref="tab.agent-auth.signup" hidden="{{agent || renter}}">
     <ion-nav-view name="tab-agent-signup"></ion-nav-view>
   </ion-tab>
   <!-- New Listings -->
@@ -95,27 +86,18 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 
 
-  <!-- Account Tab -->
+  <!-- Appointments Tab -->
   <ion-tab title="Appointments" icon-off="ion-ios-calendar-outline" icon-on="ion-ios-calendar" ui-sref='tab.agent-appointments' hidden="{{guest || renter}}">
       <ion-nav-view name="tab-appointments"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Ratings" icon-off="ion-android-checkmark-circle" icon-on="ion-android-checkmark-circle" ui-sref='tab.agent-ratings' hidden="{{guest || renter}}">
+  <ion-tab title="Ratings" icon-off="ion-android-checkmark-circle" icon-on="ion-android-checkmark-circle" ui-sref='tab.agent-ratings' hidden="true">
     <ion-nav-view name="tab-agent-ratings"></ion-nav-view>
   </ion-tab>
 
-  <!-- agent signup -->
-  <ion-tab title="Signup" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="tab.testagent">
-    <ion-nav-view name="tab-testAgent"></ion-nav-view>
-  </ion-tab>
-
-  <!-- agent signup -->
-  <ion-tab title="Login" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="tab.testagentLogin">
-    <ion-nav-view name="tab-testAgentLogin"></ion-nav-view>
-  </ion-tab>
 
   <!-- Account Tab -->
-  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref='tab.agent-account' hidden="{{guest || renter}}">
+  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref='tab.agent-account' hidden="true">
     <ion-nav-view name="tab-agent-account"></ion-nav-view>
   </ion-tab>
 
