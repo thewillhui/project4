@@ -6,7 +6,6 @@
   </ion-nav-buttons>
   <ion-content class="padding">
     <div class="list tabform">
-    {{registrationForm}}
       <form ng-submit="handleRegBtnClick()" role="form">
         <div class="row title">
           <ion-radio class="col" ng-model="registrationForm.salutation" ng-value="'Mr'">Mr</ion-radio>
@@ -17,7 +16,7 @@
           <div class="col-50">
             <label class="item item-input item-stacked-label">
               <span class="input-label">First name</span>
-              <input type="text" name="first_name" ng-model="registrationForm.first_name" ng-model-options="{ updateOn: 'blur' }" required placeholder="First name" ng-minlength="2" />
+              <input type="text" name="first_name" ng-model="registrationForm.first_name" required placeholder="First name" ng-minlength="2" />
             </label>
           </div>
           <div class="col-50">

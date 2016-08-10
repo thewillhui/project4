@@ -43,7 +43,7 @@ app.run(function($ionicPlatform) {
       passwordResetPath: '/renter/password',
       passwordUpdatePath: '/renter/password',
       emailSignInPath: '/renter/sign_in',
-      // storage: 'localStorage',
+      storage: 'localStorage',
       validateOnPageLoad: true
     }
   }, {
@@ -57,7 +57,7 @@ app.run(function($ionicPlatform) {
       passwordResetPath: '/agent/password',
       passwordUpdatePath: '/agent/password',
       emailSignInPath: '/agent/sign_in',
-      // storage: 'localStorage',
+      storage: 'localStorage',
       validateOnPageLoad: true
     }
   }]);
@@ -196,58 +196,6 @@ app.run(function($ionicPlatform) {
       'tab-renter-ratings': {
         templateUrl: 'templates/tabs-renter/tab-ratings.html',
         controller: 'RenterRatingsCtrl'
-      }
-    }
-  })
-
-  //============ Renter states ==========================================
-
-  // .state('tab.renter-chat-detail-listings', {
-  //   url: '/renter-chats/:chatId/listings',
-  //   views: {
-  //     'tab-renter-chat': {
-  //       templateUrl: 'templates/tabs-renter/chat-listings.html',
-  //       controller: 'RenterChatListingsCtrl'
-  //     }
-  //   }
-  // })
-
-  // .state('tab.renter-my-appointments', {
-  //   url: '/renter-my-appointments',
-  //   views: {
-  //     'tab-renter-my-appointments': {
-  //       templateUrl: 'templates/tabs-renter/tab-my-appointments.html',
-  //       controller: 'RenterAppointmentsCtrl'
-  //     }
-  //   }
-  // })
-
-  // // renter-review
-  // .state('tab.renter-review', {
-  //   url: '/renter-my-appointments/:appointmentId/renter-review',
-  //   views: {
-  //     'review-to-agent': {
-  //       templateUrl: 'templates/tabs-renter/review-to-agent.html'
-  //     }
-  //   }
-  // })
-
-  .state('tab.testrenter', {
-    url: '/testrenter',
-    views: {
-      'tab-testRenter': {
-        templateUrl: 'templates/test/test-renter-signup.html',
-        controller: 'RenterAuthCtrl'
-      }
-    }
-  })
-
-  .state('tab.testrenterLogin', {
-    url: '/renterLogin',
-    views: {
-      'tab-testRenterLogin': {
-        templateUrl: 'templates/test/test-renter-login.html',
-        controller: 'RenterAuthCtrl'
       }
     }
   })

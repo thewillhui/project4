@@ -1,7 +1,4 @@
-angular.module('simplyHome.controllers')
-
-.controller('RenterAppointmentsCtrl', function($scope, $state, $http, SERVER) {
-
+app.controller('RenterAppointmentsCtrl', function($scope, $state, $http, SERVER) {
   $scope.getAppointments = function() {
 
     $http
@@ -9,8 +6,12 @@ angular.module('simplyHome.controllers')
       .then(function(resp) {
         $scope.appointments = resp.data;
       })
+      .finally(function() {
+        // Stop the ion-refresher from spinning
+        $scope.$broadcast('scroll.refreshComplete');
+      })
   }
 
-
+  $scope.getAppointments();
 
 })

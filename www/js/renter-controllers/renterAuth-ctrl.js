@@ -12,6 +12,16 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
         console.log(resp.status);
         console.log(resp.data);
         currentEnquiry.setProperty(null);
+        if (User.config_name === "Renter") {
+          $scope.showAlert = function() {
+            var alertPopup = $ionicPopup.alert({
+              title: 'Thanks for your enquiry',
+              template: 'Your enquiry has now been sent to relevant agents! You will be notified when matching agents reach out to you.'
+            });
+          }
+          $scope.showAlert();
+          $state.go('tab.renter-my-enquiries');
+        }
       })
   }
 
@@ -82,8 +92,7 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
         } else {
           $scope.showAlert = function() {
             var alertPopup = $ionicPopup.alert({
-              title: 'Welcome',
-              template: 'You are now logged in.'
+              title: 'Welcome'
             });
           }
           $scope.showAlert();
