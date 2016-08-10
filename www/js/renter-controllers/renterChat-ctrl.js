@@ -1,8 +1,13 @@
-app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'Chats', 'SERVER', function($ionicModal, chat, $scope, $http, Chats, SERVER) {
+app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', function($ionicModal, chat, $scope, $http, chats, SERVER) {
 
+  var chat_page = true;
+  var chats_page = false;
   // For front end
   $scope.chatroom = chat.getProperty().chatroom;
   $scope.messages = chat.getProperty().messages;
+  // console.log('this is $scope.chatroom')
+  // console.log($scope.chatroom);
+  // console.log($scope.chatroom.id);
   $scope.message = '';
   $scope.chatroomId = $scope.chatroom.id
   $scope.currentUser = {};
@@ -36,12 +41,26 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'Cha
       connected: function() {},
       disconnected: function() {},
       received: function(data) {
-        console.log('this is the data you are receiving');
-        console.log(data);
-        $scope.messages.push(data.message);
-        sortMessages();
-        $scope.$apply();
-        console.log($scope.messages);
+        if (chat_page){
+          console.log('this is the data you are receiving');
+          console.log('inside renterChat ChaT received')
+          console.log(data);
+          $scope.messages.push(data.message);
+          sortMessages();
+          chats.updateChats($scope.chatroomId, $scope.messages);
+          $scope.$apply();
+          console.log('this is after setting CHATS factory in chat');
+          console.log(chats.getChats());
+          console.log($scope.messages);
+        } else if (chats_page){
+          console.log('inside renterChat Chatsssss received')
+          var index = $scope.chats.map(function(chat){
+            return chat.chat.id;
+          }).indexOf(data.message.chat_id);
+          $scope.chats[index].messages.push(data.message);
+          $scope.chats = sortChatrooms($scope.chats);
+          $scope.$apply();
+        }
       },
       send_message: function(message) {
         this.perform('send_message', {

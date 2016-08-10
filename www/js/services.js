@@ -5,9 +5,16 @@ angular.module('simplyHome.services', [])
     chats: [],
     updateChats: function(chatId, messages){
       // its current index
+      console.log('from services.js')
+      console.log('chatId')
+      console.log(chatId)
       var index = factory.chats.map(function(chat){
+        console.log('chat.chat.id')
+        console.log(chat.chat.id);
         return chat.chat.id;
       }).indexOf(chatId);
+      console.log('index');
+      console.log(index);
 
       // update the messages
       factory.chats[index].messages = messages;

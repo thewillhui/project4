@@ -1,6 +1,8 @@
 app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER', 'chats', function($scope, $http, chat, $state, SERVER, chats) {
   $scope.chats = [];
   var emptyChats = [];
+  var chat_page = false;
+  var chats_page = true;
 
   // sort messages
   var sortMessages = function(){
@@ -27,9 +29,9 @@ app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER',
       return chat.messages.length == 0;
     })
     nonEmptyChats.sort(function(a,b){
-     if (a.messages[a.messages.length-1].updated_at < b.messages[b.messages.length-1].updated_at)
+     if (a.messages[a.messages.length-1].updated_at > b.messages[b.messages.length-1].updated_at)
         return -1;
-      if (a.messages[a.messages.length-1].updated_at > b.messages[b.messages.length-1].updated_at)
+      if (a.messages[a.messages.length-1].updated_at < b.messages[b.messages.length-1].updated_at)
         return 1;
       return 0;
     })
@@ -45,7 +47,7 @@ app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER',
     return completeChats;
   }
 
-  var getChats = function(){
+  var getChats = function(cb){
     $http
       .get(SERVER.url + '/api/chats')
       .then(function(resp){
@@ -64,25 +66,72 @@ app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER',
         // dummy = chats.getChats();
         // console.log(dummy[0].chat)
         console.log(chats.getChats());
-        testIndex();
+
+        console.log('ready to run subscription');
+        console.log('$scope.chats: ');
+        console.log($scope.chats);
+
+        cb();
+
       })
   }
-
-  var testIndex = function(){
-    // console.log('this is testIndex function');
-    // console.log($scope.chats);
-    var index = $scope.chats.map(function(chat){
-      return chat.chat.id;
-      // console.log(chat.id);
-      // console.log(chat.chat.id);
-    }).indexOf(4);
-    console.log('this is index of');
-    console.log(index);
-
-    console.log('this is the chat object you are looking for');
-    console.log($scope.chats[index].messages)
-
+  var subscribeChats = function(){
+    $scope.chats.forEach(function(chat){
+      console.log('start setting up App Cable: ' + chat.chat.id);
+      console.log(chat.chat.id)
+      App.cable.subscriptions.create(
+      {
+        channel: "ChatRoomsChannel",
+        chat_room_id: chat.chat.id
+      },
+      {
+        connected: function(){},
+        disconnected: function(){},
+        received: function(data){
+          if (chat_page){
+            console.log('this is the data you are receiving');
+            console.log('inside agentChat ChaT received')
+            console.log(data);
+            $scope.messages.push(data.message);
+            sortMessages();
+            chats.updateChats($scope.chatroomId, $scope.messages);
+            $scope.$apply();
+            console.log('this is after setting CHATS factory in chat');
+            console.log(chats.getChats());
+            console.log($scope.messages);
+          } else if (chats_page){
+            console.log('inside agentChat Chatsssss received')
+            var index = $scope.chats.map(function(chat){
+              return chat.chat.id;
+            }).indexOf(data.message.chat_id);
+            $scope.chats[index].messages.push(data.message);
+            $scope.chats = sortChatrooms($scope.chats);
+            $scope.apply();
+          }
+        }
+      })
+    })
   }
+
+
+
+  // chats.each, subscribe to a it with chatroom Id
+  // received, use message.chat_id, find key of that chat room
+  // push newly received message to that chatroom's messages
+  // sort Chatroom function
+  // $scope.apply
+
+  // var testIndex = function(){
+  //   var index = $scope.chats.map(function(chat){
+  //     return chat.chat.id;
+
+  //   }).indexOf(4);
+  //   console.log('this is index of');
+  //   console.log(index);
+
+  //   console.log('this is the chat object you are looking for');
+  //   console.log($scope.chats[index].messages)
+  // }
 
   // sort messages
   // sort chatroom
@@ -95,13 +144,13 @@ app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER',
   // $scope.$watch look for changes in CHATS chats
   // if changed, put to $scope.chats, sort chatroom and messages again
 
-  $scope.$watch(function(){
-    return chats.chats;
-  }, function(newChats, oldChats){
-    $scope.chats = sortChatrooms(newChats);
-    console.log('this is the new chats from watch');
-    console.log(newChats);
-  })
+  // $scope.$watch(function(){
+  //   return chats.chats;
+  // }, function(newChats, oldChats){
+  //   $scope.chats = sortChatrooms(newChats);
+  //   console.log('this is the new chats from watch');
+  //   console.log(newChats);
+  // })
 
   // $scope.$watch(function(){
   //    return MenuFactory.Control;
@@ -115,6 +164,6 @@ app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER',
     $state.go('tab.agent-chat');
   }
 
-  getChats();
+  getChats(subscribeChats);
 
 }])

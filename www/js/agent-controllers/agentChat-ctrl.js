@@ -1,5 +1,7 @@
 app.controller('AgentChatCtrl', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER) {
 
+  var chat_page = true;
+  var chats_page = false;
   $scope.chatroom = chat.getProperty().chatroom;
   $scope.chatroomId = $scope.chatroom.id
   $scope.messages = chat.getProperty().messages;
@@ -95,33 +97,43 @@ app.controller('AgentChatCtrl', function(chat, chats, $http, $scope, $ionicModal
   }
 
   // action cable
-  App.global_chat = App.cable.subscriptions.create(
-    {
-      channel: "ChatRoomsChannel",
-      chat_room_id: $scope.chatroomId
-    },
-    {
-      connected: function() {},
-      disconnected: function() {},
-      received: function(data) {
-        console.log('this is the data you are receiving');
-        console.log(data);
-        $scope.messages.push(data.message);
-        sortMessages();
-
-        // update CHATS factory
-        chats.updateChats($scope.chatroomId, $scope.messages);
-        $scope.$apply();
-        console.log($scope.messages);
-      },
-      send_message: function(message) {
-        this.perform('send_message', {
-          message: message,
-          chat_room_id: $scope.chatroomId
-        });
-      }
-    }
-  );
+  // App.global_chat = App.cable.subscriptions.create(
+  //   {
+  //     channel: "ChatRoomsChannel",
+  //     chat_room_id: $scope.chatroomId
+  //   },
+  //   {
+  //     connected: function() {},
+  //     disconnected: function() {},
+  //     received: function(data) {
+  //       if (chat_page){
+  //         console.log('this is the data you are receiving');
+  //         console.log('inside agentChat ChaT received')
+  //         console.log(data);
+  //         $scope.messages.push(data.message);
+  //         sortMessages();
+  //         chats.updateChats($scope.chatroomId, $scope.messages);
+  //         $scope.$apply();
+  //         console.log('this is after setting CHATS factory in chat');
+  //         console.log(chats.getChats());
+  //         console.log($scope.messages);
+  //       } else if (chats_page){
+  //         console.log('inside agentChat Chatsssss received')
+  //         var index = $scope.chats.map(function(chat){
+  //           return chat.chat.id;
+  //         }).indexOf(data.message.chat_id);
+  //         $scope.chats[index].messages.push(data.message);
+  //         $scope.chats = sortChatrooms($scope.chats);
+  //       }
+  //     },
+  //     send_message: function(message) {
+  //       this.perform('send_message', {
+  //         message: message,
+  //         chat_room_id: $scope.chatroomId
+  //       });
+  //     }
+  //   }
+  // );
 
   $scope.cancelAppointment = function(key, messageId){
     $http

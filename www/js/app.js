@@ -130,6 +130,7 @@ app.run(function($ionicPlatform) {
     }
   })
   .state('tab.renter-chat', {
+    cache: false,
     url: '/renter-chat',
     views: {
       'tab-renter-chat': {
@@ -150,6 +151,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.renter-appointments', {
+    cache: false,
     url: '/renter-appointments',
     views: {
       'tab-renter-appointments': {
@@ -304,6 +306,7 @@ app.run(function($ionicPlatform) {
   })
 
   .state('tab.agent-appointments', {
+    cache: false,
     url: '/agent-appointments',
     views: {
       'tab-appointments': {
