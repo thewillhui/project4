@@ -332,7 +332,7 @@ app.run(function($ionicPlatform) {
     views: {
       'tab-agent-chats' :{
         templateUrl: 'templates/tabs-agent/tab-chat.html',
-        controller: 'AgentChatCtrl'
+        controller: 'AgentChatsCtrl'
       }
     }
   })
