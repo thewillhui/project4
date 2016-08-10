@@ -209,3 +209,80 @@ at the bottom as the textarea resizes */
   width: 25%;
   min-width: 25%;
 }
+
+/* chat */
+
+.received {
+  background-color: #EEEEEE;
+  color: #212121;
+  margin-right: 60%;
+  width: 40%;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sent {
+  background-color: #29B6F6;
+  color: #FAFAFA;
+  margin-left: 60%;
+  width: 40%;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.appointment {
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #EEEEEE;
+}
+
+.cancel {
+  background-color: #e53935;
+  color: #FAFAFA;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+
+.viewlisting {
+  background-color: #4CAF50;
+  color: #FAFAFA;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+.agentlisting {
+  background-color: #29B6F6;
+  color: #FAFAFA;
+  margin-left: 40%;
+  width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px 0;
+  text-align: center;
+}
+.renterlisting {
+  background-color: #EEEEEE;
+  color: #212121;
+  margin-right: 40%;
+  width: 60%;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/*text {
+  width: 40%;
+  padding: 10px;
+  border-radius: 10px;
+}*/

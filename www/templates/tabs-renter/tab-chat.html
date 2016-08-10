@@ -9,7 +9,11 @@
   <ion-content class="padding col" deletegate-handle="userMessageScroll">
     <div ng-repeat="(key, message) in messages track by $index">
       <!-- text -->
-      <div class="chat-bubble left" ng-if="message.message_type == 'text'">
+      <div class="chat-bubble left"
+      ng-class="[
+          {received: message.imageable_type == 'Agent'&&message.message_type =='text'},
+          {sent: message.imageable_type == 'Renter'&&message.message_type =='text'}]"
+      ng-if="message.message_type == 'text'">
         <div class="message">
           {{message.body}}
         </div>
@@ -20,7 +24,7 @@
       </div>
 
       <!-- property listings -->
-      <div class="chat-bubble left" ng-if="message.message_type == 'listing'">
+      <div class="chat-bubble left renterlisting" ng-if="message.message_type == 'listing'">
         <div class="message">
           {{message.body}}
         </div>
@@ -30,7 +34,7 @@
       </div>
 
       <!-- appointment -->
-      <div class="chat-bubble left" ng-if="message.message_type == 'appointment'">
+      <div class="chat-bubble left appointment" ng-if="message.message_type == 'appointment'">
         <div class="message">
           {{message.body}}
         </div>

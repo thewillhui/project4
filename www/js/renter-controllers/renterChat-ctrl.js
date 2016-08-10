@@ -1,4 +1,4 @@
-app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', function($ionicModal, chat, $scope, $http, chats, SERVER) {
+app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDeletegate', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDelegate) {
 
   var chat_page = true;
   var chats_page = false;
@@ -47,7 +47,9 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
           // chats.updateChats($scope.chatroomId, $scope.messages);
           // console.log('this is after setting CHATS factory in chat');
           // console.log(chats.getChats());
+          $ionicScrollDelegate.scrollBottom();
           $scope.$apply();
+          // ionicScrollDeletegate.scrollBottom();
           // console.log($scope.messages);
         } else if (chats_page){
           console.log('inside renterChat Chatsssss received')
@@ -108,4 +110,6 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
   }
 
   sortMessages();
+  $ionicScrollDelegate.scrollBottom();
+  $scope.$apply();
 }])

@@ -1,4 +1,5 @@
-app.controller('AgentChatCtrl', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER) {
+app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate) {
+// app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDeletegate', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDeletegate) {
 
   var chat_page = true;
   var chats_page = false;
@@ -117,6 +118,7 @@ app.controller('AgentChatCtrl', function(chat, chats, $http, $scope, $ionicModal
           // chats.updateChats($scope.chatroomId, $scope.messages);
           // console.log('this is after setting CHATS factory in chat');
           // console.log(chats.getChats());
+          $ionicScrollDelegate.scrollBottom();
           $scope.$apply();
           // console.log($scope.messages);
         } else if (chats_page){
@@ -190,4 +192,5 @@ app.controller('AgentChatCtrl', function(chat, chats, $http, $scope, $ionicModal
   getCurrentUser();
   getApartments();
   sortMessages();
-})
+  $ionicScrollDelegate.scrollBottom();
+}])

@@ -1,4 +1,4 @@
-app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER', 'chats', function($scope, $http, chat, $state, SERVER, chats) {
+app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER', 'chats', '$ionicScrollDelegate', function($scope, $http, chat, $state, SERVER, chats, $ionicScrollDeletegate) {
   $scope.chats = [];
   var emptyChats = [];
   var chat_page = false;
@@ -98,6 +98,7 @@ app.controller('AgentChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER',
             console.log('received, after push');
             console.log($scope.messages);
             sortMessages();
+            $ionicScrollDeletegate.scrollBottom();
             // chats.updateChats($scope.chatroomId, $scope.messages);
             // $scope.$apply();
             // console.log('this is after setting CHATS factory in chat');

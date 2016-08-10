@@ -1,4 +1,4 @@
-app.controller('RenterChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER', 'chats', function($scope, $http, chat, $state, SERVER, chats) {
+app.controller('RenterChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER', 'chats', '$ionicScrollDeletegate', function($scope, $http, chat, $state, SERVER, chats, $ionicScrollDeletegate) {
   $scope.chats = [];
   var emptyChats = [];
   var chat_page = false;
@@ -100,6 +100,7 @@ app.controller('RenterChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER'
             console.log('received, after push');
             console.log($scope.messages);
             sortMessages();
+            $ionicScrollDeletegate.scrollBottom();
             // chats.updateChats($scope.chatroomId, $scope.messages);
             // $scope.$apply();
             // console.log('this is after setting CHATS factory in chat');
@@ -168,6 +169,7 @@ app.controller('RenterChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER'
   $scope.getChat = function(key){
     chat.setProperty($scope.chats[key].chat, $scope.chats[key].messages)
     $state.go('tab.renter-chat');
+    $ionicScrollDelegate.scrollBottom();
   }
 
   getChats(subscribeChats);
