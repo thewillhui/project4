@@ -1,26 +1,31 @@
 app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state, User, $ionicPopup) {
   $scope.registrationForm = {
-                              areas: [],
-                              first_name: '',
-                              family_name: '',
-                              mobile_number: '',
-                              password: '',
-                              password_confirmation: ''
-                              };
+    areas: [],
+    first_name: '',
+    family_name: '',
+    mobile_number: '',
+    password: '',
+    password_confirmation: ''
+  };
   $scope.loginForm = {};
 
   $scope.handleRegBtnClick = function() {
     $auth.submitRegistration(
-      $scope.registrationForm
-    , {
-      config: 'agent'
-    }).then(function(resp) {
-      console.log(resp)
+      $scope.registrationForm, {
+        config: 'agent'
+      }).then(function(resp) {
+      // console.log(resp)
       currentUser.setProperty(resp);
-      console.log('this is from factory:');
-      console.log(currentUser.getProperty());
+      // console.log('this is from factory:');
+      // console.log(currentUser.getProperty());
       User.config_name = "Agent";
-      // console.log(resp);
+      $scope.showAlert = function() {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Thanks for registering with SimplyHome'
+        });
+      }
+      $scope.showAlert();
+      $state.go('tab.tab.agent-enquiries')
     }).catch(function(resp) {
       console.log(resp);
     })
@@ -40,7 +45,6 @@ app.controller('AgentAuthCtrl', function(currentUser, $scope, $auth, $state, Use
         $scope.showAlert = function() {
           var alertPopup = $ionicPopup.alert({
             title: 'Welcome',
-            template: 'You are now logged in.'
           });
         }
         $scope.showAlert();

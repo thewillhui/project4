@@ -18,6 +18,19 @@
   font-size: 24px;
 }
 
+.item.item-slim {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.small-icon {
+  font-size: 20px;
+}
+
+.areas {
+  font-size: 0.9em;
+}
+
 /*index is based on locations object in controller.js*/
 .location-0 {
   background-image: url("../img/hkisland.jpg");

@@ -1,6 +1,6 @@
 app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, currentEnquiry, SERVER){
 
-  function getMatchedEnquiries(){
+  $scope.getMatchedEnquiries = function(){
     $scope.enquiries = [];
     $http
       .get(SERVER.url + '/api/enquiry_agents/')
@@ -17,12 +17,17 @@ app.controller('AgentEnquiriesCtrl', function(chat, $state, $http, $scope, curre
         $scope.$broadcast('scroll.refreshComplete');
       })
   }
+
   $scope.showEnquiryDetails = function(enquiry){
     // $scope.enquiry = enquiry;
     currentEnquiry.setProperty(enquiry);
     console.log(currentEnquiry.getProperty());
     $state.go('tab.agent-enquiry')
   }
-  getMatchedEnquiries();
+  $scope.getMatchedEnquiries();
 
+
+ $scope.parseDateTime = function(dateTime) {
+    return moment(dateTime).fromNow();
+  };
 })

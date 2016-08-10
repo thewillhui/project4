@@ -1,23 +1,36 @@
 <ion-view title="Matched Enquiries">
-  <ion-nav-buttons side="secondary">
-    <!-- <button class="button">
-      I'm a button on the primary of the navbar!
-    </button> -->
-  </ion-nav-buttons>
-
-<ion-content class="padding">
-
+  <ion-content class="padding">
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="getMatchedEnquiries()">
     </ion-refresher>
-    <div class="list">
-      <div class="item item-button-right" ng-repeat="enquiry in enquiries">
-        <b>{{enquiry.enquiry.areas}}</b>
-        <p>submitted by {{enquiry.renter.first_name}} {{enquiry.renter.family_name}}</p>
-        <button class="button button-positive" ng-click="showEnquiryDetails(enquiry)">
-          Details
-        </button>
+    <div class="card" ng-repeat="enquiry in enquiries | orderBy: enquiry.created_at : true" ng-click="showEnquiryDetails(enquiry)">
+      <div class="item item-divider">
+        <h3>Enquiry from {{enquiry.renter.first_name}} {{enquiry.renter.family_name}}, ${{enquiry.enquiry.price_min | number:0}}+</h3>
       </div>
-
+        <div class="row">
+          <div class="col-90">
+            <ion-item class="item item-slim">
+              <b class="areas" ng-repeat="areas in enquiry.enquiry.areas | limitTo: 5">{{areas}}{{$last ? '' : ', '}} </b>
+              <div class="row iconsRow">
+                <div class="col">
+                  <ion-item class="item item-slim item-icon-left">
+                    <i class="icon icon-bed"></i> {{enquiry.enquiry.bedroom_num}}
+                  </ion-item>
+                </div>
+                <div class="col">
+                  <ion-item class="item item-slim item-icon-left">
+                    <i class="icon icon-bathtub"></i> {{enquiry.enquiry.bathroom_num}}
+                  </ion-item>
+                </div>
+              </div>
+            </ion-item>
+          </div>
+          <div class="col-10 col-center">
+            <i class="icon ion-chevron-right"></i>
+          </div>
+        </div>
+      <div class="item item-divider item-icon-right" ng-init="dateTime = enquiry.enquiry.created_at">
+        <h4>Enquiry received {{parseDateTime(dateTime)}}</h4>
+      </div>
     </div>
-  </div>
+  </ion-content>
 </ion-view>
