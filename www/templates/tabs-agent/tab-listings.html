@@ -15,7 +15,6 @@
           <ion-item class="item item-icon-left">
             <i class="icon ion-ios-location-outline"></i>
             <p>{{listing.area}}</p>
-            <!-- ng-repeat="area in listing.areas | limitTo: listings.limitTo"> -->
           </ion-item>
         </div>
         <div class="col-10 col-center">
@@ -24,17 +23,12 @@
         </div>
       </div>
       <div ng-hide="!listing.showDetail">
-        <div class="row">
-          <div class="col-50">
-            <ion-item class="item item-icon-left">
-              <i class="icon icon-bed"></i> {{listing.bedroom_num}}
-            </ion-item>
-          </div>
-          <div class="col-50">
-            <ion-item class="item item-icon-left">
-              <i class="icon icon-bathtub"></i> {{listing.bathroom_num}}
-            </ion-item>
-          </div>
+
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon icon-bed"></i> {{listing.bedroom_num}}
+          </ion-item>
         </div>
         <div class="col-50">
           <ion-item class="item item-icon-left">
@@ -42,6 +36,7 @@
           </ion-item>
         </div>
       </div>
+
       <div class="row">
         <div class="col-50">
           <ion-item class="item item-icon-left">
@@ -49,38 +44,37 @@
             <br/> {{listing.property_size_net}} ft<sup>2</sup> (net)
           </ion-item>
         </div>
-        <div class="row">
-          <div class="col-50">
-            <ion-item class="item item-icon-left">
-              <i class="icon ion-android-walk"></i> {{listing.walkup}}
-            </ion-item>
-          </div>
-          <!-- urgent change field -->
-          <div class="col-50">
-            <ion-item class="item item-icon-left">
-              <i class="icon ion-ios-paw-outline"></i>
-              {{listing.pet_friendly}}
-            </ion-item>
-          </div>
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-android-walk"></i> {{listing.walkup}}
+          </ion-item>
         </div>
-        <div class="row">
+      </div>
+
+      <div class="row">
+        <div class="col-50">
+          <ion-item class="item item-icon-left">
+            <i class="icon ion-ios-paw-outline"></i>
+            {{listing.pet_friendly}}
+          </ion-item>
+        </div>
           <div class="col-50">
             <ion-item class="item item-icon-left">
               <i class="icon ion-spoon"></i> {{listing.open_kitchen}}
             </ion-item>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <ion-item class="item">
-            <h4>Description</h4>
-            <p>{{listing.description}}</p>
-            </ion-item>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <ion-item class="item">
+          <h4>Description</h4>
+          <p>{{listing.description}}</p>
+          </ion-item>
         </div>
-        <div class="item item-image" ng-repeat="pictures in listing.apartment_pictures ">
-          <img ng-src="{{pictures.url}}">
-        </div>
+      </div>
+      <div class="item item-image" ng-repeat="pictures in listing.apartment_pictures ">
+      <img ng-src="{{pictures.url}}">
       </div>
     </div>
   </ion-content>
