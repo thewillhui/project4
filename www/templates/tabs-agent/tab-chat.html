@@ -22,7 +22,7 @@
       Appointment
     </button>
 
-    <div ng-repeat="(key, message) in messages track by $index" class="messages">
+    <div ng-repeat="message in messages track by $index" class="messages">
       <!-- text -->
       <div class="chat-bubble left"
           ng-class="[
@@ -53,7 +53,7 @@
         <div class="message">
           {{message.body}}
         </div>
-        <button class="button cancel" ng-show="message.appointment_status != 'cancelled'" ng-hide="message.appointment_status == 'confirmed'" ng-click="cancelAppointment(key, message.id)">
+        <button class="button cancel" ng-hide="message.appointment_status == 'confirmed' || message.appointment_status == 'cancelled'" ng-click="cancelAppointment($index, message.id)">
           Cancel
         </button>
       </div>

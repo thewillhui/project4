@@ -38,10 +38,10 @@
         <div class="message">
           {{message.body}}
         </div>
-        <button class="button" ng-show="message.appointment_status=='unconfirmed'" ng-click="confirmAppointment(key, message.id)">
+        <button class="button" ng-hide="message.appointment_status!='unconfirmed'" ng-click="confirmAppointment(key, message.id)">
           Confirm
         </button>
-        <button class="button disabled" ng-show="message.appointment_status=='confirmed'">
+        <button class="button disabled" ng-hide="message.appointment_status!='confirmed' &&message.appointment_status!='cancelled'">
           Confirmed
         </button>
 

@@ -1,5 +1,4 @@
-app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', '$auth', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate, $auth) {
-// app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDeletegate', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDeletegate) {
+app.controller('AgentChatCtrl', ['chat', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', '$auth', function(chat, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate, $auth) {
 
   var chat_page = true;
   var chats_page = false;
@@ -13,9 +12,7 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
     end_time: new Date(),
     location: '',
     chat_id: $scope.chatroomId,
-    renter_id: $scope.chatroom.renter_id,
-    uid: $auth.user.uid,
-    type: 'agent'
+    renter_id: $scope.chatroom.renter_id
   }
   $scope.enquiries = [];
   $scope.currentUser = {};
@@ -24,9 +21,7 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
     renter_id: $scope.chatroom.renter_id,
     chat_id: $scope.chatroomId,
     title: '',
-    apartments: [],
-    uid: $auth.user.uid,
-    type: 'agent'
+    apartments: []
   }
   $scope.listings = [];
 
@@ -65,8 +60,8 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
       .get(SERVER.url + '/api/getlistings/' + id)
       .then(function(resp){
         $scope.listings = resp.data;
-        console.log('this is the listings you are getting');
-        console.log($scope.listings);
+        // console.log('this is the listings you are getting');
+        // console.log($scope.listings);
         $scope.listingModal.show();
       })
   }
@@ -80,13 +75,13 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
       }
     })
     $scope.propertyListing.apartments = selectedApartments;
-    console.log('this is the data you are sending')
-    console.log($scope.propertyListing);
+    // console.log('this is the data you are sending')
+    // console.log($scope.propertyListing);
     $http
       .post(SERVER.url + '/api/property_listings',$scope.propertyListing)
       .then(function(data){
-        console.log('this is success function:')
-        console.log(data);
+        // console.log('this is success function:')
+        // console.log(data);
       })
   }
 
@@ -96,8 +91,8 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
       .then(function(data){
         $scope.apartments = data.data.apartments;
         $scope.enquiries = data.data.enquiries;
-        console.log($scope.apartments);
-        console.log($scope.enquiries);
+        // console.log($scope.apartments);
+        // console.log($scope.enquiries);
       })
   }
 
@@ -113,24 +108,12 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
       },
       disconnected: function() {},
       received: function(data) {
-        if (chat_page){
-          console.log('received, before push');
-          console.log($scope.messages);
+        if ($scope.messages[$scope.messages.length-1].id != data.message.id){
           $scope.messages.push(data.message);
-          console.log('received, after push');
-          console.log($scope.messages);
           sortMessages();
           $ionicScrollDelegate.scrollBottom();
-          $scope.$apply();
-        } else if (chats_page){
-            console.log('inside agentChat Chatsssss received')
-            var index = $scope.chats.map(function(chat){
-              return chat.chat.id;
-            }).indexOf(data.message.chat_id);
-            $scope.chats[index].messages.push(data.message);
-            $scope.chats = sortChatrooms($scope.chats);
-            $scope.$apply();
         }
+        $scope.$apply();
       },
       send_message: function(message) {
         this.perform('send_message', {
@@ -142,13 +125,13 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
     }
   );
 
-  $scope.cancelAppointment = function(key, messageId){
+  $scope.cancelAppointment = function(index, messageId){
     $http
       .delete(SERVER.url + '/api/appointments/' + messageId)
       .then(function(resp){
         console.log(resp);
-        $scope.messages[key].appointment_status == 'cancelled';
-        console.log($scope.messages[key].appointment_status)
+        $scope.messages[index].appointment_status = 'cancelled';
+        console.log($scope.messages[index].appointment_status)
       })
   }
 
@@ -163,7 +146,7 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
   }
 
   $scope.sendMessage = function(){
-    console.log('sendMessage function');
+    // console.log('sendMessage function');
     if($scope.message.length>1){
       App.global_chat.send_message($scope.message);
       $scope.message = '';

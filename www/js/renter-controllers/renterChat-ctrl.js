@@ -35,30 +35,16 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
       chat_room_id: $scope.chatroomId
     },
     {
-      connected: function() {
-        // same code as agent but it doesn't work
-        // $ionicScrollDelegate.scrollBottom();
+      connected: function() {},
+      disconnected: function() {
       },
-      disconnected: function() {},
       received: function(data) {
-        if (chat_page){
-          console.log('received, before push');
-          console.log($scope.messages);
+        if ($scope.messages[$scope.messages.length-1].id != data.message.id){
           $scope.messages.push(data.message);
-          console.log('received, after push');
-          console.log($scope.messages);
           sortMessages();
           $ionicScrollDelegate.scrollBottom();
-          $scope.$apply();
-        } else if (chats_page){
-            console.log('inside agentChat Chatsssss received')
-            var index = $scope.chats.map(function(chat){
-              return chat.chat.id;
-            }).indexOf(data.message.chat_id);
-            $scope.chats[index].messages.push(data.message);
-            $scope.chats = sortChatrooms($scope.chats);
-            $scope.$apply();
         }
+        $scope.$apply();
       },
       send_message: function(message) {
         this.perform('send_message', {
@@ -76,7 +62,7 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
       .delete(SERVER.url + '/api/appointments/' + messageId)
       .then(function(resp){
         console.log(resp);
-        $scope.messages[key].appointment_status == 'cancelled';
+        $scope.messages[key].appointment_status = 'cancelled';
         console.log($scope.messages[key].appointment_status)
       })
   }
@@ -86,7 +72,7 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
     $http
       .put(SERVER.url + '/api/appointments/confirm/' + messageId)
       .then(function(resp){
-        $scope.messages[key].appointment_status == 'confirmed'
+        $scope.messages[key].appointment_status = 'confirmed';
         console.log(resp);
       })
   }

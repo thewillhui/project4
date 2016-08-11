@@ -3,6 +3,7 @@ app.controller('RenterChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER'
   var emptyChats = [];
   var chat_page = false;
   var chats_page = true;
+  var channels = [];
 
   // sort messages
   var sortMessages = function(){
@@ -79,50 +80,29 @@ app.controller('RenterChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER'
     $scope.chats.forEach(function(chat){
       console.log('start setting up App Cable: ' + chat.chat.id);
       console.log(chat.chat.id)
-      App.cable.subscriptions.create(
-      {
-        channel: "ChatRoomsChannel",
-        chat_room_id: chat.chat.id
-      },
-      {
-        connected: function(){},
-        disconnected: function(){},
-        received: function(data){
-        }
-      })
+      channels.push(App.cable.subscriptions.create(
+        {
+          channel: "ChatRoomsChannel",
+          chat_room_id: chat.chat.id
+        },
+        {
+          connected: function(){},
+          disconnected: function(){
+            this.perform('unsubscribed');
+
+          },
+          received: function(data){
+            var index = $scope.chats.map(function(chat){
+              return chat.chat.id;
+            }).indexOf(data.message.chat_id);
+            $scope.chats[index].messages.push(data.message);
+            $scope.chats = sortChatrooms($scope.chats);
+            $scope.$apply();
+          }
+        })
+      )
     })
   }
-
-
-
-  // chats.each, subscribe to a it with chatroom Id
-  // received, use message.chat_id, find key of that chat room
-  // push newly received message to that chatroom's messages
-  // sort Chatroom function
-  // $scope.apply
-
-  // var testIndex = function(){
-  //   var index = $scope.chats.map(function(chat){
-  //     return chat.chat.id;
-
-  //   }).indexOf(4);
-  //   console.log('this is index of');
-  //   console.log(index);
-
-  //   console.log('this is the chat object you are looking for');
-  //   console.log($scope.chats[index].messages)
-  // }
-
-  // sort messages
-  // sort chatroom
-  // put all chatrooms inside CHATS factory
-  // put all chatrooms inside $scope.chats
-  // put the chosen chatroom inside CHAT factory
-  // when changed, use chat.id in CHAT to locate changed chatroom in CHATS
-  // pass in $scope.messages to the changed chatroom in CHATS
-
-  // $scope.$watch look for changes in CHATS chats
-  // if changed, put to $scope.chats, sort chatroom and messages again
 
   // $scope.$watch(function(){
   //   return chats.chats;
@@ -141,6 +121,9 @@ app.controller('RenterChatsCtrl', ['$scope', '$http', 'chat', '$state', 'SERVER'
 
   $scope.getChat = function(key){
     chat.setProperty($scope.chats[key].chat, $scope.chats[key].messages)
+    // channels.forEach(function(channel){
+    //   channel.disconnected();
+    // })
     $state.go('tab.renter-chat');
     $ionicScrollDelegate.scrollBottom();
   }
