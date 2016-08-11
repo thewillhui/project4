@@ -82,6 +82,22 @@ form input.ng-dirty.ng-invalid {
     border:1px solid red;
 }
 
+/* Rating */
+.ion-ios-star {
+  color: #F5D247;
+  font-size: 20px;
+  min-width: 7%;
+}
+
+.ion-flag {
+  color: #DE3C3C;
+  margin: 0 3% 0 3%;
+}
+
+.rating>strong {
+  font-size: 0.8em;
+}
+
 /* =======simplyHome icon font ===========*/
 @font-face {
     font-family: 'simplyhome';

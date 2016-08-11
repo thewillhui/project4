@@ -6,24 +6,22 @@
   <ion-content>
 
     <div class="list card">
-      <h3> {{currentRating.renter.first_name}} {{currentRating.renter.family_name}} </h3>
-
-      <p>
-        <span class="item"><i class="icon ion-ios-star" ng-repeat="i in getNumber(currentRating.renter_rating.rr_overall_star) track by $index"> </i></span>
-      </p>
+      <h3 class="item"> {{currentRating.renter.first_name}} {{currentRating.renter.family_name}}
+        <i class="icon ion-ios-star" style="float:right" ng-repeat="i in getNumber(currentRating.renter_rating.rr_overall_star) track by $index"> </i>
+      </h3>
 
       <div class="item" ng-show="currentRating.renter_rating.no_show || currentRating.renter_rating.spy">
-        <span ng-show="currentRating.renter_rating.no_show" ng-model="renter_ratings.no_show">
-          <i class="icon ion-flag"> NO SHOW</i>
+        <span class="rating"ng-show="currentRating.renter_rating.no_show" ng-model="renter_ratings.no_show">
+          <i class="icon ion-flag"> </i><strong>NO SHOW</strong>
         </span>
 
-        <span ng-show="currentRating.renter_rating.spy" ng-model="renter_ratings.spy">
-          <i class="icon ion-flag"> SPY</i>
+        <span class="rating" ng-show="currentRating.renter_rating.spy" ng-model="renter_ratings.spy">
+          <i class="icon ion-flag"> </i><strong>SPY</strong>
         </span>
       </div>
 
       <div class="item" ng-show="currentRating.renter_rating.rr_comment != '' " ng-model="currentRating.renter_rating.rr_comment">
-        <h2>Your Review</h2>
+        <h2>Review</h2>
 
         <p>{{currentRating.renter_rating.rr_comment}}</p>
       </div>

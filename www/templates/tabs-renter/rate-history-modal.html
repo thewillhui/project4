@@ -6,19 +6,17 @@
   <ion-content>
 
     <div class="list card">
-      <h3> {{currentRating.agent.first_name}} {{currentRating.agent.family_name}} </h3>
-
-      <p>
-        <span class="item"><i class="icon ion-ios-star" ng-repeat="i in getNumber(currentRating.agent_rating.ar_overall_star) track by $index"> </i></span>
-      </p>
+      <h3 class="item"> {{currentRating.agent.first_name}} {{currentRating.agent.family_name}}
+        <i class="icon ion-ios-star" style="float:right" ng-repeat="i in getNumber(currentRating.agent_rating.ar_overall_star) track by $index"> </i>
+      </h3>
 
       <div class="item" ng-show="currentRating.agent_rating.no_show || currentRating.agent_rating.spy">
         <span ng-show="currentRating.agent_rating.no_show" ng-model="agent_ratings.no_show">
-          <i class="icon ion-flag"> NO SHOW</i>
+          <i class="icon ion-flag"> </i><strong>NO SHOW</strong>
         </span>
 
         <span ng-show="currentRating.agent_rating.spy" ng-model="agent_ratings.spy">
-          <i class="icon ion-flag"> SPY</i>
+          <i class="icon ion-flag"> </i><strong>SPY</strong>
         </span>
       </div>
 
