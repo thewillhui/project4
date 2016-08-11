@@ -25,13 +25,13 @@ app.run(function($ionicPlatform) {
 
 .constant('SERVER', {
   // if using local server
-  // url:  'http://localhost:3000',
-  // ws:   'ws://localhost:3000',
+  url:  'http://localhost:3000',
+  ws:   'ws://localhost:3000',
   // domain: 'localhost'
 
   // if using our public heroku server
-  url:  'http://simplyhome-dev-rails.herokuapp.com',
-  ws:   'ws://simplyhome-dev-rails.herokuapp.com'
+  // url:  'http://simplyhome-dev-rails.herokuapp.com',
+  // ws:   'ws://simplyhome-dev-rails.herokuapp.com'
 })
 
 .config(function($stateProvider, $urlRouterProvider, $authProvider, SERVER) {
@@ -141,7 +141,16 @@ app.run(function($ionicPlatform) {
       'tab-renter-chat': {
         templateUrl: 'templates/tabs-renter/tab-chats.html',
         controller: 'RenterChatsCtrl'
+      },
+    resolve: {
+      auth: function($auth, $state) {
+        return $auth.validateUser().catch(function(){
+          setTimeout(function(){
+            $state.go('tab.renter-enquiry.location')
+          }, 1)
+        });
       }
+    }
     }
   })
   .state('tab.renter-chat', {
@@ -151,7 +160,16 @@ app.run(function($ionicPlatform) {
       'tab-renter-chat': {
         templateUrl: 'templates/tabs-renter/tab-chat.html',
         controller: 'RenterChatCtrl'
+      },
+    resolve: {
+      auth: function($auth, $state) {
+        return $auth.validateUser().catch(function(){
+          setTimeout(function(){
+            $state.go('tab.renter-enquiry.location')
+          }, 1)
+        });
       }
+    }
     }
   })
 
@@ -162,6 +180,15 @@ app.run(function($ionicPlatform) {
       'tab-renter-my-enquiries': {
         templateUrl: 'templates/tabs-renter/tab-my-enquiries.html',
         controller: 'RenterMyEnquiriesCtrl'
+      }
+    },
+    resolve: {
+      auth: function($auth, $state) {
+        return $auth.validateUser().catch(function(){
+          setTimeout(function(){
+            $state.go('tab.renter-enquiry.location')
+          }, 1)
+        });
       }
     }
   })
@@ -194,6 +221,15 @@ app.run(function($ionicPlatform) {
         templateUrl: 'templates/tabs-renter/tab-account.html',
         controller: 'RenterAccountCtrl'
       }
+    },
+    resolve: {
+      auth: function($auth, $state) {
+        return $auth.validateUser().catch(function(){
+          setTimeout(function(){
+            $state.go('tab.renter-enquiry.location')
+          }, 1)
+        });
+      }
     }
   })
 
@@ -205,6 +241,15 @@ app.run(function($ionicPlatform) {
         templateUrl: 'templates/tabs-renter/tab-listings.html',
         controller: 'RenterListingsCtrl'
       }
+    },
+    resolve: {
+      auth: function($auth, $state) {
+        return $auth.validateUser().catch(function(){
+          setTimeout(function(){
+            $state.go('tab.renter-enquiry.location')
+          }, 1)
+        });
+      }
     }
   })
 
@@ -215,6 +260,15 @@ app.run(function($ionicPlatform) {
       'tab-renter-ratings': {
         templateUrl: 'templates/tabs-renter/tab-ratings.html',
         controller: 'RenterRatingsCtrl'
+      }
+    },
+    resolve: {
+      auth: function($auth, $state) {
+        return $auth.validateUser().catch(function(){
+          setTimeout(function(){
+            $state.go('tab.renter-enquiry.location')
+          }, 1)
+        });
       }
     }
   })
