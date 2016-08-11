@@ -40,11 +40,9 @@ angular.module('simplyHome.services', [])
 .factory('chat', function(){
     var chat = {};
     return {
-        setProperty: function(chatroom, messages, agent, renter){
+        setProperty: function(chatroom, messages){
             chat.chatroom = chatroom;
             chat.messages = messages;
-            chat.agent = agent;
-            chat.renter = renter;
         },
         getProperty: function(){
             return chat;

@@ -114,7 +114,7 @@
     <input type="text" class="form-control" placeholder="Enter apartment name" ng-model="apartment.apt_name">
   </div> -->
 <!-- File upload button -->
-<div class="button button-block button-assertive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true" ngf-capture="'camera'" ngf-no-object-url="true" ng-disabled="permissions.inspections_update == false">Select Photos</div>
+<div class="button button-block button-assertive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true">Select Photos</div>
 <!-- Image / file preview -->
 <img ng-repeat="picture in apartment_pictures.pictures" ngf-src="picture" width="200" height="200">
 <!-- Upload Button -->

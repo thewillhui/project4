@@ -1,40 +1,64 @@
-<ion-view title="{{renter.first_name}} {{renter.family_name}}">
-  <ion-nav-buttons side="secondary">
-    <a class="button button-clear button-positive" ng-click="openPopover($event)">Attach</a>
-  </ion-nav-buttons>
-  <ion-content class="padding chatContainer" class="has-header has-footer">
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view title="Chat Room">
+  <ion-header-bar align-title="left" class="bar-positive">
+    <div class="buttons">
+      <button class="button" ng-click="doSomething()">Left Button</button>
+    </div>
+    <h1 class="title">Title!</h1>
+    <div class="buttons">
+      <button class="button">Right Button</button>
+    </div>
+  </ion-header-bar>
+  <ion-content class="padding col" class="has-header has-footer">
+    <button class="button" ng-click="propertyOpenModal()">
+      Property
+    </button>
+    <button class="button" ng-click="appointmentOpenModal()">
+      Appointment
+    </button>
 
     <div ng-repeat="message in messages track by $index" class="messages">
       <!-- text -->
-      <div class="chat-bubble left" ng-class="[
+      <div class="chat-bubble left"
+          ng-class="[
           {received: message.imageable_type == 'Renter'&&message.message_type =='text'},
-          {sent: message.imageable_type == 'Agent'&&message.message_type =='text'}]" ng-if="message.message_type == 'text'">
-          <div class="message">
-            {{message.body}}
-          </div>
-          <div class="message-detail">
-            <p class="chatTimestampSent">{{parseTime(message.created_at)}}</p>
-          </div>
+          {sent: message.imageable_type == 'Agent'&&message.message_type =='text'}]"
+          ng-if="message.message_type == 'text'">
+        <div class="message">
+          {{message.body}}
+        </div>
+        <div class="message-detail">
+          <span>{{message.imageable_id}} says:</span>
+          <span am-time-ago="message.created_at"></span>
+        </div>
       </div>
+
       <!-- property listings -->
       <div class="chat-bubble left agentlisting" ng-if="message.message_type == 'listing'">
         <div class="message">
           {{message.body}}
         </div>
-        <button class="button button button-assertive button-block" ng-click="getListings(message.id)">
+        <button class="button viewlisting" ng-click="getListings(message.id)">
           View Listing
         </button>
       </div>
+
       <!-- appointment -->
       <div class="chat-bubble left appointment" ng-if="message.message_type == 'appointment'">
         <div class="message">
           {{message.body}}
         </div>
-        <button class="button button-assertive button-clear" ng-hide="message.appointment_status == 'confirmed' || message.appointment_status == 'cancelled'" ng-click="cancelAppointment($index, message.id)">
+        <button class="button cancel" ng-hide="message.appointment_status == 'confirmed' || message.appointment_status == 'cancelled'" ng-click="cancelAppointment($index, message.id)">
           Cancel
         </button>
       </div>
     </div>
+
   </ion-content>
   <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
     <label class="item-input-wrapper">

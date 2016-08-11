@@ -1,18 +1,4 @@
-
-/*
-$light:                           #fff;
-$stable:                          #f8f8f8;
-$positive:                        #387ef5;
-$calm:                            #11c1f3;
-$balanced:                        #33cd5f;
-$energized:                       #ffc900;
-$assertive:                       #ef473a;
-$royal:                           #886aea;
-$dark:                            #444;
-*/
-
-
-
+/* Empty. Add your own CSS if you like */
 /* CORE */
 .list .item.item-accordion {
   line-height: 38px;
@@ -245,33 +231,26 @@ at the bottom as the textarea resizes */
 
 /* chat */
 
-.chat-container {
-  display: block;
-  clear: both;
-}
-
 .received {
-  float: left;
-  background-color: #FFF;
+  background-color: #EEEEEE;
   color: #212121;
-  min-width: 15%;
-  max-width: 90%;
+  margin-right: 60%;
+  width: 40%;
+  padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 10px;
 }
 
 .sent {
-  float: right;
-  background-color: #387ef5;
+  background-color: #29B6F6;
   color: #FAFAFA;
-  min-width: 15%;
-  max-width: 90%;
+  margin-left: 60%;
+  width: 40%;
+  padding: 10px;
   border-radius: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 10px;
 }
 
 .appointment {
@@ -282,7 +261,7 @@ at the bottom as the textarea resizes */
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
-  background-color: #fff;
+  background-color: #EEEEEE;
 }
 
 .cancel {
@@ -293,48 +272,55 @@ at the bottom as the textarea resizes */
 }
 
 
+.viewlisting {
+  background-color: #4CAF50;
+  color: #FAFAFA;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
 .agentlisting {
-  background-color: #fff;
-  color: #333;
-  margin: 0 auto;
-  width: 70%;
+  background-color: #29B6F6;
+  color: #FAFAFA;
+  margin-left: 40%;
+  width: 60%;
   padding: 10px;
   border-radius: 10px;
   margin: 20px 0;
+  text-align: center;
 }
 .renterlisting {
-  background-color: #fff;
+  background-color: #EEEEEE;
   color: #212121;
-  margin: 0 auto;
-  width: 70%;
+  margin-right: 40%;
+  width: 60%;
   padding: 10px;
   border-radius: 10px;
+  margin: 20px 0;
   text-align: center;
 }
 
-.chatTimestampSent {
-  color: #BBB;
-  margin: 0;
-  font-size: 0.8em;
-  text-align: right;
+/*text {
+  width: 40%;
+  padding: 10px;
+  border-radius: 10px;
+}*/
+/*index is based on locations object in controller.js*/
+.city-0 {
+
+  background-size: auto 100%;
 }
 
-.chatTimestampRec {
-  color: #BBB;
-  margin: 0;
-  font-size: 0.8em;
-  text-align: right;
+.city-1 {
+
+  background-size: 100%;
 }
 
-.bar-footer {
-  height: 60px;
+.city-2 {
+
+  background-size: auto 100%;
 }
 
-.chatContainer {
-  background-color: #eee;
-}
-
-/*agent chat popover*/
-.agentPop {
-  height: 120px;
+.button.button-positive.button-clear{
+  float:right;
 }
