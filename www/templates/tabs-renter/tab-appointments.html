@@ -11,9 +11,9 @@
         <p> {{appointment.location}} on {{appointment.start_time | date: "MM-dd-yyyy"}} with {{appointment.agent.first_name}} {{appointment.agent.family_name}}
         </p>
 
-        <button class='button button-full' ng-show="!appointment.agent_rating.done" ng-click="enterRating('confirmed_upcoming', akey)">
+        <!-- <button class='button button-full' ng-show="!appointment.agent_rating.done" ng-click="enterRating('confirmed_upcoming', akey)">
           Rate Agent
-        </button>
+        </button> -->
       </div>
     </div>
 
