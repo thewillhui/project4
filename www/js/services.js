@@ -1,14 +1,14 @@
 angular.module('simplyHome.services', [])
 
-.factory('chats', function(){
+.factory('chats', function() {
   var factory = {
     chats: [],
-    updateChats: function(chatId, messages){
+    updateChats: function(chatId, messages) {
       // its current index
       console.log('from services.js')
       console.log('chatId')
       console.log(chatId)
-      var index = factory.chats.map(function(chat){
+      var index = factory.chats.map(function(chat) {
         console.log('chat.chat.id')
         console.log(chat.chat.id);
         return chat.chat.id;
@@ -19,16 +19,16 @@ angular.module('simplyHome.services', [])
       // update the messages
       factory.chats[index].messages = messages;
     },
-    setChats: function(chats){
+    setChats: function(chats) {
       factory.chats = chats;
     },
-    pushToChats: function(chat){
+    pushToChats: function(chat) {
       factory.chats.push(chat);
     },
-    getChat: function(key){
+    getChat: function(key) {
       return factory.chats[key];
     },
-    getChats: function(){
+    getChats: function() {
       return factory.chats;
     }
   };
@@ -37,45 +37,47 @@ angular.module('simplyHome.services', [])
 
 // storing current chat room info
 // for passing info across states
-.factory('chat', function(){
-    var chat = {};
-    return {
-        setProperty: function(chatroom, messages){
-            chat.chatroom = chatroom;
-            chat.messages = messages;
-        },
-        getProperty: function(){
-            return chat;
-        }
+.factory('chat', function() {
+  var chat = {};
+  return {
+    setProperty: function(chatroom, messages, agent, renter) {
+      chat.chatroom = chatroom;
+      chat.messages = messages;
+      chat.agent = agent;
+      chat.renter = renter;
+    },
+    getProperty: function() {
+      return chat;
     }
+  }
 })
 
 // for viewing apartment details in property listing page
-.factory('currentApartment', function(){
+.factory('currentApartment', function() {
   var currentApartment = {};
   return {
-    setProperty: function(apartment){
+    setProperty: function(apartment) {
       currentApartment = apartment;
     },
-    getProperty: function(){
+    getProperty: function() {
       return currentApartment;
     }
   }
 })
 
-.factory('currentUser', function(){
+.factory('currentUser', function() {
   var currentUser = {};
   return {
-    setProperty: function(user){
+    setProperty: function(user) {
       currentUser = user;
     },
-    getProperty: function(){
+    getProperty: function() {
       return currentUser;
     }
   }
 })
 
-.factory('User', function(){
+.factory('User', function() {
   var user = {
     config_name: null
   };
@@ -85,16 +87,16 @@ angular.module('simplyHome.services', [])
 
 // storing current enquiry info
 // for passing info across states
-.factory('currentEnquiry', function(){
-    var currentEnquiry = null;
-    return {
-        setProperty: function(enquiry){
-            currentEnquiry = enquiry;
-        },
-        getProperty: function(){
-            return currentEnquiry;
-        }
+.factory('currentEnquiry', function() {
+  var currentEnquiry = null;
+  return {
+    setProperty: function(enquiry) {
+      currentEnquiry = enquiry;
+    },
+    getProperty: function() {
+      return currentEnquiry;
     }
+  }
 })
 
 
@@ -150,14 +152,14 @@ angular.module('simplyHome.services', [])
   }
 })
 
-.factory('Renters', function(){
+.factory('Renters', function() {
   var renters = [{
     id: 24,
     name: "Ben Sparrow"
   }];
 
   return {
-    all: function () {
+    all: function() {
       return renters;
     },
     get: function(renterId) {
@@ -171,14 +173,14 @@ angular.module('simplyHome.services', [])
   }
 })
 
-.factory('Agents', function(){
+.factory('Agents', function() {
   var agents = [{
     id: 20,
     name: "Jason Bourne"
   }]
 
   return {
-    all: function () {
+    all: function() {
       return agents;
     },
     get: function(agentId) {
@@ -193,92 +195,92 @@ angular.module('simplyHome.services', [])
 })
 
 .factory('Messages', function() {
-  // Might use a resource here that returns a JSON array
+    // Might use a resource here that returns a JSON array
 
-  // Some fake testing data
-  var messages = [{
-    id: 0,
-    chat_id: 0,
-    renter_id: 24,
-    body: 'You on your way?',
-    date: "2016.08.03 12:32:21"
-  }, {
-    id: 1,
-    chat_id: 0,
-    agent_id: 20,
-    body: 'Yes! in 5 mins',
-    date: "2016.08.03 12:45:21"
-  }, {
-    id: 2,
-    chat_id: 0,
-    renter_id: 24,
-    body: 'great! see you there',
-    date: "2016.08.03 12:50:21"
-  }, {
-    id: 3,
-    chat_id: 0,
-    agent_id: 20,
-    body: 'gotcha',
-    date: "2016.08.03 12:55:24"
-  }];
+    // Some fake testing data
+    var messages = [{
+      id: 0,
+      chat_id: 0,
+      renter_id: 24,
+      body: 'You on your way?',
+      date: "2016.08.03 12:32:21"
+    }, {
+      id: 1,
+      chat_id: 0,
+      agent_id: 20,
+      body: 'Yes! in 5 mins',
+      date: "2016.08.03 12:45:21"
+    }, {
+      id: 2,
+      chat_id: 0,
+      renter_id: 24,
+      body: 'great! see you there',
+      date: "2016.08.03 12:50:21"
+    }, {
+      id: 3,
+      chat_id: 0,
+      agent_id: 20,
+      body: 'gotcha',
+      date: "2016.08.03 12:55:24"
+    }];
 
-  return {
-    all: function() {
-      return messages;
-    },
-    remove: function(message) {
-      messages.splice(messages.indexOf(message), 1);
-    },
-    get: function(messageId) {
-      for (var i = 0; i < messages.length; i++) {
-        if (messages[i].id === parseInt(messageId)) {
-          return messages[i];
+    return {
+      all: function() {
+        return messages;
+      },
+      remove: function(message) {
+        messages.splice(messages.indexOf(message), 1);
+      },
+      get: function(messageId) {
+        for (var i = 0; i < messages.length; i++) {
+          if (messages[i].id === parseInt(messageId)) {
+            return messages[i];
+          }
         }
+        return null;
       }
-      return null;
     }
-  }
-})
-.factory('Listings', function() {
-  // Might use a resource here that returns a JSON array
+  })
+  .factory('Listings', function() {
+    // Might use a resource here that returns a JSON array
 
-  // Some fake testing data
-  var listings = [{
-    apt_name: 'Island Crest Tower 1',
-    street: '8 First Street, Sai Ying Pun, Hong Kong',
-    area: 'Sai Ying Pun',
-    property_size_gross_max: 1036,
-    property_size_net_max: 764,
-    price: 38000,
-    bedroom_num: '3',
-    bathroom_num: '2',
-    pet_friendly: true
-  }, {
-    apt_name: 'Chung King Court',
-    street: '83 First Street, Sai Ying Pun, Hong Kong Island',
-    area: 'Sai Ying Pun',
-    property_size_gross_max: 1477,
-    property_size_net_max: 911,
-    price: 58000,
-    bedroom_num: '1',
-    bathroom_num: '1',
-    pet_friendly: false
-  }];
+    // Some fake testing data
+    var listings = [{
+      apt_name: 'Island Crest Tower 1',
+      street: '8 First Street, Sai Ying Pun, Hong Kong',
+      area: 'Sai Ying Pun',
+      property_size_gross_max: 1036,
+      property_size_net_max: 764,
+      price: 38000,
+      bedroom_num: '3',
+      bathroom_num: '2',
+      pet_friendly: true
+    }, {
+      apt_name: 'Chung King Court',
+      street: '83 First Street, Sai Ying Pun, Hong Kong Island',
+      area: 'Sai Ying Pun',
+      property_size_gross_max: 1477,
+      property_size_net_max: 911,
+      price: 58000,
+      bedroom_num: '1',
+      bathroom_num: '1',
+      pet_friendly: false
+    }];
 
-  return {
-    all: function() {
-      return listings;
-    },
-    remove: function(listing) {
-      listings.splice(listings.indexOf(listing), 1);
-    },
-    get: function(listingId) {
-      for (var i = 0; i < listings.length; i++) {
-        if (listings[i].id === parseInt(listingId)) {
-          return listings[i];
+    return {
+      all: function() {
+        return listings;
+      },
+      remove: function(listing) {
+        listings.splice(listings.indexOf(listing), 1);
+      },
+      get: function(listingId) {
+        for (var i = 0; i < listings.length; i++) {
+          if (listings[i].id === parseInt(listingId)) {
+            return listings[i];
+          }
         }
+        return null;
       }
-      return null;
     }
-  }
-})
+  })

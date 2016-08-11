@@ -46,6 +46,10 @@ app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScr
   $scope.apartment_id = '';
   $scope.apartment = {};
 
+  $scope.isTrue = function (e) {
+    return !e ? true : false;
+  }
+
   $scope.getApartment = function(id){
     console.log(id)
     $scope.apartment_id = id;
@@ -57,40 +61,34 @@ app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScr
     })
   }
 
+  $scope.destroyImage = function () {
+    $http
+    .put(SERVER.url + '/api/apartments/' + apartment.id, $scope.apartment.apartment_pictures)
+  }
+
+
   $scope.updateApartment = function(apartment){
-    console.log(apartment)
+
     $http
     .put(SERVER.url + '/api/apartments/' + apartment.id, $scope.apartment)
+    // .put(SERVER.url + '/api/apartments/' + apartment.id, data)
     .then(function(resp) {
-      console.log(resp)
+      console.log(resp.data)
     }, function (resp) {
       console.log(resp)
     })
   }
 
-  // PhotoUpload?
-  // $scope.updateListings = function() {
-  //   console.log($scope)
-
-  //   var data = {
-  //     files: $scope.apartment_pictures.pictures,
-  //     apartment: $scope.newListing
-  //   }
-  //   console.log(data)
-  //   id = $scope.apartment_id
-  //   Upload.upload({
-  //     url: SERVER.url + '/api/apartments/' + id, //backend api goes here.
-  //     method: "PUT",
-  //     data: data
-  //   }).then(function(resp){
-  //     console.log(resp);
-  //   }, function(resp){
-  //     console.log(resp);
-  //   }, function(evt){
-  //     console.log(Math.min(100, parseInt(100.0 * evt.loaded / evt.total)))
-  //   });
+  // var data = {
+  //   files: $scope.apartment_pictures.pictures,
+  //   apartment: $scope.apartment
   // }
-
+  // console.log(data)
+  // Upload.upload({
+  //   url: SERVER.url + '/api/apartments/' + apartment.id,
+  //   method: "PUT",
+  //   data: data
+  // })
 
   //for making the buttons in button bar act like radio buttons
   $scope.active = '';
