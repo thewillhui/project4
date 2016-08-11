@@ -1,4 +1,4 @@
-app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', '$ionicPopover', '$ionicPopover', '$auth', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate, $ionicPopover, $auth) {
+app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', '$ionicPopover', '$auth', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate, $ionicPopover, $auth) {
   // app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDeletegate', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDeletegate) {
 
   var chat_page = true;
