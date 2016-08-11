@@ -59,20 +59,20 @@ angular.module('simplyHome.controllers')
       .put(SERVER.url + '/api/renter_ratings/' + id, $scope.renter_ratings)
       .then(function(resp) {
         console.log(resp)
-        // $scope.renter_ratings = resp.data;
+
+        $scope.showAlert = function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Review completed',
+            template: 'Thank you for your input'
+          });
+        }
+        $scope.showAlert();
+
+        $scope.cancelRating();
+
       }, function (resp) {
         console.log(resp)
       });
-
-    // $scope.cancelRating();
-
-    // $scope.showAlert = function() {
-    //   var alertPopup = $ionicPopup.alert({
-    //     title: 'Review completed',
-    //     template: 'Thank you for your input'
-    //   });
-    // }
-    // $scope.showAlert();
 
   }
 
