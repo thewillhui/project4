@@ -6,7 +6,7 @@
     <div class="card" ng-repeat="listing in listings | orderBy: listing.created_at : true" >
 
       <div class="item item-divider">
-          <button class="button button-clear button-positive" ui-sref="tab.agent-listings.edit" ng-click="getApartment({{listing.id}})">Edit</button>
+        <button class="button button-clear button-positive" ui-sref="tab.agent-listings.edit" ng-click="getApartment({{listing.id}})">Edit</button>
         <h3>Listings {{listing.index}}</h3>
       </div>
 
@@ -23,64 +23,64 @@
         </div>
       </div>
       <div ng-hide="!listing.showDetail">
-      <div class="item item-image" ng-repeat="pictures in listing.apartment_pictures ">
-      <img ng-src="{{pictures.url}}">
-      </div>
-      <div class="row">
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon icon-bed"></i> {{listing.bedroom_num}}
-          </ion-item>
+        <div class="item item-image" ng-repeat="pictures in listing.apartment_pictures ">
+          <img ng-src="{{pictures.url}}">
         </div>
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon icon-bathtub"></i> {{listing.bathroom_num}}
-          </ion-item>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon icon-scale"></i> {{listing.property_size_gross}} ft<sup>2</sup> (gross)
-            <br/> {{listing.property_size_net}} ft<sup>2</sup> (net)
-          </ion-item>
-        </div>
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <p ng-hide="isWalkUp()">
-              Walk Up
-            </p>
-          </ion-item>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <p ng-hide="isPetFriendly()">
-              Pet Allowed
-            </p>
-          </ion-item>
-        </div>
+        <div class="row">
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <p ng-hide="isOpenKitchen()">
-                Open Kitchen
-              </p>
+              <i class="icon icon-bed"></i> {{listing.bedroom_num}}
+            </ion-item>
+          </div>
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <i class="icon icon-bathtub"></i> {{listing.bathroom_num}}
+            </ion-item>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <i class="icon icon-scale"></i> {{listing.property_size_gross}} ft<sup>2</sup> (gross)
+              <br/> {{listing.property_size_net}} ft<sup>2</sup> (net)
+            </ion-item>
+          </div>
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <h2 ng-hide="isTrue(listing.walkup)">
+                Walk Up
+              </h2>
+            </ion-item>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-50">
+            <ion-item class="item item-icon-left">
+              <h2 ng-hide="isTrue(listing.pet_friendly)">
+                Pet Allowed
+              </h2>
+            </ion-item>
+          </div>
+            <div class="col-50">
+              <ion-item class="item item-icon-left">
+                <h2 ng-hide="isTrue(listing.open_kitchen)">
+                  Open Kitchen
+                </h2>
+              </ion-item>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <ion-item class="item">
+            <h2>Description</h4>
+            <p>{{listing.description}}</p>
             </ion-item>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <ion-item class="item">
-          <h4>Description</h4>
-          <p>{{listing.description}}</p>
-          </ion-item>
-        </div>
-      </div>
-
     </div>
   </ion-content>
 </ion-view>

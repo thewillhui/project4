@@ -46,16 +46,8 @@ app.controller('ListingsCtrl', function($scope, $http, $state, SERVER, $ionicScr
   $scope.apartment_id = '';
   $scope.apartment = {};
 
-  $scope.isWalkUp = function () {
-    return !$scope.listings.walkup ? true : false;
-  }
-
-  $scope.isPetFriendly = function () {
-    return !$scope.listings.pet_friendly ? true : false;
-  }
-
-  $scope.isOpenKitchen = function () {
-    return !$scope.listings.open_kitchen ? true : false;
+  $scope.isTrue = function (e) {
+    return !e ? true : false;
   }
 
   $scope.getApartment = function(id){
