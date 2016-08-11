@@ -1,5 +1,5 @@
-angular.module('simplyHome.controllers')
-.controller('RenterAppointmentsCtrl', ['$http', '$scope', 'SERVER', '$ionicModal', '$ionicPopup', function($http, $scope, SERVER, $ionicModal, $ionicPopup){
+app.controller('RenterAppointmentsCtrl', ['$http', '$scope', 'SERVER', '$ionicModal', '$ionicPopup', function($http, $scope, SERVER, $ionicModal, $ionicPopup){
+
   $scope.appointments = [];
   $scope.agent_ratings = {};
   $scope.currentRating = '';
@@ -14,7 +14,7 @@ angular.module('simplyHome.controllers')
   ]
 
   $scope.agent_ratings = {
-    ar_overall_start: '',
+    ar_overall_star: '',
     ar_comment: ''
   }
 
@@ -25,9 +25,7 @@ angular.module('simplyHome.controllers')
   }).then(function(modal){
     $scope.ratingModal = modal;
   })
-  // $scope.propertyOpenModal = function(){
-  //   $scope.propertyModal.show();
-  // }
+
 
   // Rate history Modal
   $ionicModal.fromTemplateUrl('templates/tabs-renter/rate-history-modal.html', {
@@ -66,6 +64,8 @@ angular.module('simplyHome.controllers')
   }
 
   $scope.enterRating = function(key, akey){
+    console.log('entering rating')
+    console.log(key, akey)
     $scope.ratingModal.show();
     $scope.currentRating = $scope.appointments[key][akey];
   }

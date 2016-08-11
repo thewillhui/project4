@@ -77,6 +77,8 @@ angular.module('simplyHome.controllers')
   }
 
   $scope.enterRating = function(key, akey){
+    console.log('entering rating')
+
     $scope.ratingModal.show();
     $scope.currentRating = $scope.appointments[key][akey];
   }

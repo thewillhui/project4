@@ -1,41 +1,41 @@
-  <ion-modal-view>
-    <ion-header-bar>
-      <h1 class="title">Rate this appointment</h1>
-       <button class="button button-primary" ng-click="cancelRating()">Cancel</button>
-    </ion-header-bar>
-    <ion-content>
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Rate this appointment</h1>
+     <button class="button button-primary" ng-click="cancelRating()">Cancel</button>
+  </ion-header-bar>
+  <ion-content>
 
-      <div class="list list-inset">
-        <h2>{{currentRating.agent.first_name}} {{currentRating.agent.family_name}}</h2>
+    <div class="list list-inset">
+      <h2>{{currentRating.agent.first_name}} {{currentRating.agent.family_name}}</h2>
 
 
-        <!-- <label class="item item-input">
-          <input type="number" ng-model="agent_ratings.ar_overall_star" required placeholder="from 1 to 5" ng-minlength="1" ng-maxlength="1"/>
-        </label> -->
+      <!-- <label class="item item-input">
+        <input type="number" ng-model="agent_ratings.ar_overall_star" required placeholder="from 1 to 5" ng-minlength="1" ng-maxlength="1"/>
+      </label> -->
 
-        <div class="button-bar bar-dark">
-          <button
-            ng-repeat="rating in ratings"
-            ng-click="setActive('r{{rating.number}}'); agent_ratings.rr_overall_star = rating.number"
-            ng-class="{'button-light': isActive('r{{rating.number}}')}"
-            class="button button-block">{{rating.number}}
-            <i class="ion-ios-star"></i>
-          </button>
-       </div>
+      <div class="button-bar bar-dark">
+        <button
+          ng-repeat="rating in ratings"
+          ng-click="setActive('r{{rating.number}}'); agent_ratings.ar_overall_star = rating.number"
+          ng-class="{'button-light': isActive('r{{rating.number}}')}"
+          class="button button-block">{{rating.number}}
+          <i class="ion-ios-star"></i>
+        </button>
+     </div>
 
-        <h4>Comment</h4>
-        <label class="item item-input">
-          <textarea rows="5" placeholder="comment here" ng-model="agent_ratings.ar_comment"></textarea>
-        </label>
-      </div>
+      <h4>Comment</h4>
+      <label class="item item-input">
+        <textarea rows="5" placeholder="comment here" ng-model="agent_ratings.ar_comment"></textarea>
+      </label>
+    </div>
 
-    </ion-content>
-    <ion-footer-bar>
-      <button class="button button-full button-balanced" ng-click="sendRating()">
-        Rate User
-      </button>
-    </ion-footer-bar>
-  </ion-modal-view>
+  </ion-content>
+  <ion-footer-bar>
+    <button class="button button-full button-balanced" ng-click="sendRating()">
+      Rate User
+    </button>
+  </ion-footer-bar>
+</ion-modal-view>
 
 <!-- create_table "renter_ratings", force: :cascade do |t|
     t.integer  "rr_overall_star"
