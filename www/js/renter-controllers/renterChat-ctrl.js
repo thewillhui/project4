@@ -5,8 +5,6 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
   // For front end
   $scope.chatroom = chat.getProperty().chatroom;
   $scope.messages = chat.getProperty().messages;
-  $scope.agent = chat.getProperty().agent;
-  $scope.renter = chat.getProperty().renter;
   $scope.message = '';
   $scope.chatroomId = $scope.chatroom.id
   $scope.currentUser = {};
@@ -96,10 +94,6 @@ app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'cha
         return 1;
       return 0;
     })
-  }
-
- $scope.parseTime = function(time) {
-    return moment(time).format('HH:mm')
   }
 
   sortMessages();

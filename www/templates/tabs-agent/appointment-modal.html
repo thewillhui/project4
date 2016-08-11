@@ -1,25 +1,27 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">Create an appointment</h1>
-    <button class="button button-clear button-positive" ng-click="appointmentModal.hide()">Cancel</button>
+    <h1 class="title">Create an appointment:</h1>
+     <button class="button button-primary" ng-click="appointmentModal.hide()">Cancel</button>
   </ion-header-bar>
   <ion-content>
     <ion-list>
       <div class="item item-icon-left" ion-datetime-picker ng-model="appointment.start_time">
         <i class="icon ion-ios-grid-view-outline positive">
-        </i> Start time:
+        </i>
+          Start time:
         <strong>
-          {{appointment.start_time| date: "dd/MM/yyyy HH:mm"}}
+          {{appointment.start_time| date: "yyyy-MM-dd H:mm"}}
         </strong>
       </div>
       <div class="item item-icon-left" ion-datetime-picker ng-model="appointment.end_time">
         <i class="icon ion-ios-grid-view-outline positive">
-        </i> End time:
+        </i>
+          End time:
         <strong>
-          {{appointment.end_time| date: "dd/MM/yyyy HH:mm"}}
+          {{appointment.end_time| date: "yyyy-MM-dd H:mm"}}
         </strong>
       </div>
-      <!--  <div class="item item-icon-left" ion-datetime-picker date ng-model="appointment.start_date">
+     <!--  <div class="item item-icon-left" ion-datetime-picker date ng-model="appointment.start_date">
         <i class="icon ion-ios-calendar positive"></i>
         Meeting Date:
         <strong>{{appointment.start_date| date: "yyyy-MM-dd"}}</strong>
@@ -41,8 +43,9 @@
     </ion-list>
   </ion-content>
   <ion-footer-bar>
-    <button class="button button-block button-positive" ng-click="sendAppointment()">
+    <button class="button button-full button-balanced" ng-click="sendAppointment()">
       Send
     </button>
   </ion-footer-bar>
 </ion-modal-view>
+

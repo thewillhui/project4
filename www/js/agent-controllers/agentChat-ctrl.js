@@ -1,13 +1,10 @@
-app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', '$ionicPopover', '$ionicPopover', '$auth', function(chat, chats, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate, $ionicPopover, $auth) {
-// app.controller('RenterChatCtrl', ['$ionicModal', 'chat', '$scope', '$http', 'chats', 'SERVER', '$ionicScrollDeletegate', function($ionicModal, chat, $scope, $http, chats, SERVER, $ionicScrollDeletegate) {
+app.controller('AgentChatCtrl', ['chat', '$http', '$scope', '$ionicModal', 'currentEnquiry', '$rootScope', 'SERVER', '$ionicScrollDelegate', '$auth', function(chat, $http, $scope, $ionicModal, currentEnquiry, $rootScope, SERVER, $ionicScrollDelegate, $auth) {
 
   var chat_page = true;
   var chats_page = false;
   $scope.chatroom = chat.getProperty().chatroom;
-  $scope.chatroomId = $scope.chatroom.id;
+  $scope.chatroomId = $scope.chatroom.id
   $scope.messages = chat.getProperty().messages;
-  $scope.agent = chat.getProperty().agent;
-  $scope.renter = chat.getProperty().renter;
   $scope.message = '';
   $scope.apartments = [];
   $scope.appointment = {
@@ -124,7 +121,6 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
           chat_room_id: $scope.chatroomId,
           uid: $auth.user.uid
         });
-        $ionicScrollDelegate.scrollBottom();
       }
     }
   );
@@ -177,40 +173,6 @@ app.controller('AgentChatCtrl', ['chat', 'chats', '$http', '$scope', '$ionicModa
       return 0;
     })
   }
-
-  $scope.parseTime = function(time) {
-    return moment(time).format('HH:mm')
-  }
-
-//popover menu
-
-  var template = '<ion-popover-view class="agentPop"><ion-content><div class="list"><a class="item" ng-click="propertyOpenModal()">Property</a><a class="item" ng-click="appointmentOpenModal()">Appointment</a></div></ion-content></ion-popover-view>'
-
-  $scope.popover = $ionicPopover.fromTemplate(template, {
-    scope: $scope
-  });
-
-  $scope.openPopover = function($event) {
-    $scope.popover.show($event);
-  };
-  $scope.closePopover = function() {
-    $scope.popover.hide();
-  };
-  //Cleanup the popover when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.popover.remove();
-  });
-  // Execute action on hide popover
-  $scope.$on('popover.hidden', function() {
-    // Execute action
-  });
-  // Execute action on remove popover
-  $scope.$on('popover.removed', function() {
-    // Execute action
-  });
-
-
-
   getCurrentUser();
   getApartments();
   sortMessages();
