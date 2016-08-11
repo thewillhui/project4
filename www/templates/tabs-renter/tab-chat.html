@@ -4,10 +4,10 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view title="Chat Room">
+<ion-view title="{{agent.first_name}} {{agent.family_name}}">
 
-  <ion-content class="padding col" deletegate-handle="userMessageScroll">
-    <div ng-repeat="(key, message) in messages track by $index">
+  <ion-content class="padding chat-content" deletegate-handle="userMessageScroll">
+    <div ng-repeat="(key, message) in messages track by $index" class="chat-container">
       <!-- text -->
       <div class="chat-bubble left"
       ng-class="[
@@ -18,8 +18,7 @@
           {{message.body}}
         </div>
         <div class="message-detail">
-          <span>{{message.imageable_id}} says:</span>
-          <span am-time-ago="message.created_at"></span>
+          <p class="chatTimestampSent">{{parseTime(message.created_at)}}</p>
         </div>
       </div>
 
@@ -38,14 +37,14 @@
         <div class="message">
           {{message.body}}
         </div>
-        <button class="button" ng-hide="message.appointment_status!='unconfirmed'" ng-click="confirmAppointment(key, message.id)">
+        <button class="button button-positive button-clear" ng-hide="message.appointment_status!='unconfirmed'" ng-click="confirmAppointment(key, message.id)">
           Confirm
         </button>
-        <button class="button disabled" ng-hide="message.appointment_status!='confirmed' &&message.appointment_status!='cancelled'">
+        <button class="button button-positive button-clear" ng-hide="message.appointment_status!='confirmed' &&message.appointment_status!='cancelled'">
           Confirmed
         </button>
 
-        <button class="button" ng-show="message.appointment_status != 'cancelled'" ng-hide="message.appointment_status == 'confirmed'" ng-click="cancelAppointment(key, message.id)">
+        <button class="button button-assertive button-clear" ng-show="message.appointment_status != 'cancelled'" ng-hide="message.appointment_status == 'confirmed'" ng-click="cancelAppointment(key, message.id)">
           Cancel
         </button>
       </div>
@@ -53,9 +52,9 @@
   </ion-content>
   <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
     <label class="item-input-wrapper">
-      <input type="text" placeholder="Type your message" on-return="sendMessage(); closeKeyboard()" ng-model="message" on-focus="inputUp()" on-blur="inputDown()" />
+      <input type="text" placeholder="Type your message here" on-return="sendMessage(); closeKeyboard()" ng-model="message" on-focus="inputUp()" on-blur="inputDown()" />
     </label>
-    <button class="button button-clear" ng-click="sendMessage()">
+    <button class="button button-positive button-clear" ng-click="sendMessage()">
       Send
     </button>
   </ion-footer-bar>

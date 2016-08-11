@@ -1,8 +1,7 @@
 <ion-view view-title="Chats">
   <ion-content>
     <ion-list>
-
-      <ion-item class="item-remove-animate item-avatar item-icon-right"
+      <ion-item class="item-remove-animate item-icon-right"
       ng-repeat = "(key, chat) in chats track by $index"
       type = "item-text-wrap"
       ng-click="getChat({{key}})">

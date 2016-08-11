@@ -7,23 +7,13 @@
   </ion-nav-buttons>
   <ion-content>
     <ion-list>
-      <div ng-repeat="(regionName,value) in region track by $index" >
-        <ion-item
-        class="item-dark item-icon-right"
-        ng-click="toggleGroup(regionName)"
-        ng-class="{active: isGroupShown(regionName), 'location-{{$index}}': true}"
-        >
-          <i
-          class="icon"
-          ng-class="isGroupShown(regionName) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'">
-          </i> &nbsp; <h1 class="enquiryLocation">{{regionName}}</h1>
+      <div ng-repeat="(regionName,value) in region track by $index">
+        <ion-item class="item-dark item-icon-right" ng-click="toggleGroup(regionName)" ng-class="{active: isGroupShown(regionName), 'location-{{$index}}': true}">
+          <i class="icon" ng-class="isGroupShown(regionName) ? 'ion-ios-arrow-up' : 'ion-ios-arrow-down'">
+          </i> &nbsp;
+          <h1 class="enquiryLocation">{{regionName}}</h1>
         </ion-item>
-        <ion-checkbox
-        class="item-accordion item-checkbox-right"
-        ng-repeat="area in region[regionName] | orderBy"
-        ng-show="isGroupShown(regionName)"
-        ng-click="addAreaKey(area, regionName)"
-        >
+        <ion-checkbox class="item-accordion item-checkbox-right" ng-repeat="area in region[regionName] | orderBy" ng-show="isGroupShown(regionName)" ng-click="addAreaKey(area, regionName)">
           {{area}}
         </ion-checkbox>
       </div>
