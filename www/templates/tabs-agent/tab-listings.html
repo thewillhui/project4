@@ -23,7 +23,9 @@
         </div>
       </div>
       <div ng-hide="!listing.showDetail">
-
+      <div class="item item-image" ng-repeat="pictures in listing.apartment_pictures ">
+      <img ng-src="{{pictures.url}}">
+      </div>
       <div class="row">
         <div class="col-50">
           <ion-item class="item item-icon-left">
@@ -46,7 +48,9 @@
         </div>
         <div class="col-50">
           <ion-item class="item item-icon-left">
-            <i class="icon ion-android-walk"></i> {{listing.walkup}}
+            <p ng-hide="isWalkUp()">
+              Walk Up
+            </p>
           </ion-item>
         </div>
       </div>
@@ -54,13 +58,16 @@
       <div class="row">
         <div class="col-50">
           <ion-item class="item item-icon-left">
-            <i class="icon ion-ios-paw-outline"></i>
-            {{listing.pet_friendly}}
+            <p ng-hide="isPetFriendly()">
+              Pet Allowed
+            </p>
           </ion-item>
         </div>
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon ion-spoon"></i> {{listing.open_kitchen}}
+              <p ng-hide="isOpenKitchen()">
+                Open Kitchen
+              </p>
             </ion-item>
           </div>
         </div>
@@ -73,9 +80,7 @@
           </ion-item>
         </div>
       </div>
-      <div class="item item-image" ng-repeat="pictures in listing.apartment_pictures ">
-      <img ng-src="{{pictures.url}}">
-      </div>
+
     </div>
   </ion-content>
 </ion-view>
