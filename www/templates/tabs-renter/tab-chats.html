@@ -2,25 +2,11 @@
   <ion-content>
     <ion-list>
 
-<!--       <ion-item class="item-remove-animate item-avatar item-icon-right"
-                ng-repeat="chat in chats"
-                type="item-text-wrap"
-                href="#/tab/renter-chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.title}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-
--->
       <ion-item class="item-remove-animate item-avatar item-icon-right"
       ng-repeat = "(key, chat) in chats track by $index"
       type = "item-text-wrap"
       ng-click="getChat({{key}})">
-        <h2>{{chat.agent.email}}</h2>
+        <h2>{{chat.agent.first_name}} {{chat.agent.family_name}}</h2>
         <p>{{chat.messages[chat.messages.length-1].body}}</p>
       </ion-item>
     </ion-list>

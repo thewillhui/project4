@@ -98,6 +98,11 @@ form input.ng-dirty.ng-invalid {
   font-size: 0.8em;
 }
 
+.ion-record {
+  color: #DE3C3C;
+  font-size: 20px;
+}
+
 /* =======simplyHome icon font ===========*/
 @font-face {
     font-family: 'simplyhome';
