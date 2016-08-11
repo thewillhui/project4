@@ -30,7 +30,7 @@
         <div class="message">
           {{message.body}}
         </div>
-        <button class="button cancel" ng-hide="message.appointment_status == 'confirmed' || message.appointment_status == 'cancelled'" ng-click="cancelAppointment($index, message.id)">
+        <button class="button button button-assertive button-block" ng-hide="message.appointment_status == 'confirmed' || message.appointment_status == 'cancelled'" ng-click="cancelAppointment($index, message.id)">
           Cancel
         </button>
       </div>
