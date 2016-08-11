@@ -4,7 +4,7 @@
     </ion-refresher>
     <div class="card" ng-repeat="enquiry in enquiries | orderBy: enquiry.created_at : true" ng-click="showEnquiryDetails(enquiry)">
       <div class="item item-divider">
-        <h3>Enquiry from {{enquiry.renter.first_name}} {{enquiry.renter.family_name}}, ${{enquiry.enquiry.price_min | number:0}}+</h3>
+        <h3>Enquiry from {{enquiry.renter.salutation}} {{enquiry.renter.first_name}} {{enquiry.renter.family_name}}, ${{enquiry.enquiry.price_min | number:0}}+</h3>
       </div>
         <div class="row">
           <div class="col-90">

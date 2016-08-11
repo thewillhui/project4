@@ -2,17 +2,18 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
 
   $scope.registrationForm = {};
   $scope.loginForm = {};
+  var justRegistered = false;
 
   $scope.sendEnquiry = function() {
-    $http
-      .post(SERVER.url + '/api/enquiries', {
-        enquiry: currentEnquiry.getProperty()
-      })
-      .then(function(resp) {
-        console.log(resp.status);
-        console.log(resp.data);
-        currentEnquiry.setProperty(null);
-        if (User.config_name === "Renter") {
+    if (User.config_name === "Renter" && justRegistered === true) {
+      $http
+        .post(SERVER.url + '/api/enquiries', {
+          enquiry: currentEnquiry.getProperty()
+        })
+        .then(function(resp) {
+          console.log(resp.status);
+          console.log(resp.data);
+          currentEnquiry.setProperty(null);
           $scope.showAlert = function() {
             var alertPopup = $ionicPopup.alert({
               title: 'Thanks for your enquiry',
@@ -21,8 +22,8 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
           }
           $scope.showAlert();
           $state.go('tab.renter-my-enquiries');
-        }
-      })
+        })
+    }
   }
 
   $scope.handleRegBtnClick = function() {
@@ -37,8 +38,9 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
     }, {
       config: 'renter'
     }).then(function(resp) {
+        justRegistered = true;
       console.log(resp);
-      if (currentEnquiry.getProperty() !== null) {
+      if (currentEnquiry.getProperty() !== null && justRegistered) {
         $scope.sendEnquiry();
         $scope.showAlert = function() {
           var alertPopup = $ionicPopup.alert({
@@ -48,7 +50,7 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
         }
         $scope.showAlert();
         $state.go('tab.renter-my-enquiries');
-      } else {
+      } else if (currentEnquiry.getProperty() === null && justRegistered) {
         $scope.showAlert = function() {
           var alertPopup = $ionicPopup.alert({
             title: 'Thanks for registering with SimplyHome',
@@ -58,32 +60,14 @@ app.controller('RenterAuthCtrl', ['$scope', '$auth', 'currentUser', '$http', 'cu
         $state.go('tab.renter-enquiry.location');
       }
       $scope.showAlert();
-      $scope.showAlert = function() {
-        var alertPopup = $ionicPopup.alert({
-          title: 'Thanks for registering with SimplyHome',
-          template: 'You may now create enquiries.'
-        });
-      }
-      $scope.showAlert();
       $state.go('tab.renter-enquiry.location');
-
-      // if (currentEnquiry.getProperty() !== {}) {
-      //   $scope.sendEnquiry();
-      //   $scope.showAlert = function() {
-      //     var alertPopup = $ionicPopup.alert({
-      //       title: 'Thanks for registering with SimplyHome',
-      //       template: 'Your enquiry has now been sent to relevant agents! You will be notified when matching agents reach out to you.'
-      //     });
-      //   }
-      //   $scope.showAlert();
-      // }
       User.config_name = "Renter";
     }, function(error) {
       console.log(error);
       $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
           title: 'Error',
-          template: 'Sorry the mobile number is already registered or your password does not match.'
+          template: 'Sorry the mobile number is already registered or your passwords do not match.'
         });
       }
       $scope.showAlert();
