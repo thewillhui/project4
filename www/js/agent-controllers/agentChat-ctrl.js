@@ -108,12 +108,14 @@ app.controller('AgentChatCtrl', ['chat', '$http', '$scope', '$ionicModal', 'curr
       },
       disconnected: function() {},
       received: function(data) {
-        if ($scope.messages[$scope.messages.length-1].id != data.message.id){
-          $scope.messages.push(data.message);
-          sortMessages();
-          $ionicScrollDelegate.scrollBottom();
+        if($scope.messages.length>0){
+          if ($scope.messages[$scope.messages.length-1].id != data.message.id){
+            $scope.messages.push(data.message);
+            sortMessages();
+            $ionicScrollDelegate.scrollBottom();
+          }
+          $scope.$apply();
         }
-        $scope.$apply();
       },
       send_message: function(message) {
         this.perform('send_message', {
