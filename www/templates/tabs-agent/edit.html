@@ -65,7 +65,7 @@
           <button
             ng-repeat="bedroom in bedroomsBtns"
             ng-click="setActive('bed{{bedroom.number}}'); apartment.bedroom_num = bedroom.number"
-            ng-class="{'button-light': isActive('bed{{bedroom.number}}')}"
+            ng-class="button-light: isActive('bed{{bedroom.number}}')"
             class="button button-block">{{bedroom.number}}</button>
         </div>
 
@@ -77,9 +77,8 @@
             ng-repeat="bathroom in bathroomsBtns"
             ng-click="setActiveB('bath{{bathroom.number}}');
             apartment.bathroom_num = bathroom.number"
-            ng-class="{
-            'button-light': isActiveB('bath{{bathroom.number}}')
-            }"
+            ng-class="
+            button-light: isActiveB('bath{{bathroom.number}}')"
             class="button button-block">{{bathroom.number}}</button>
         </div>
 
@@ -105,11 +104,15 @@
         <div class="spacer" style="height: 30px;"></div>
         <!-- PAPERCLIP HERE!!!!! -->
         <!-- File upload button -->
-        <div class="button button-block button-assertive" ngf-select ng-model="apartment_pictures.pictures" ngf-multiple="true">Select Photos</div>
-        <!-- Image / file preview -->
-        <img ng-repeat="picture in apartment_pictures.pictures" ngf-src="picture" width="200" height="200">
-        <!-- Upload Button -->
-        <!-- <button type="submit" class="button button-block button-positive">Upload</button> -->
+        <div class="button button-block button-assertive" ngf-select ng-model="apartment_pictures" ngf-multiple="true">Select Photos</div>
+
+        <!-- Show existing images -->
+        <img ng-repeat="apartment_picture in apartment.apartment_pictures" ngf-src="apartment_picture.url" width="200" height="200">
+
+        <!-- <div ng-click="destroyImage()">Remove all Images</div> -->
+
+        <!-- New Image / file preview -->
+        <img ng-repeat="apartment_picture in apartment_pictures" ngf-src="apartment_picture" width="200" height="200">
 
         <!-- List Button -->
         <button class="button button-block button-positive" ng-click="updateApartment(apartment)">Update</button>

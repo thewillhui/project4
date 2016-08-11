@@ -6,7 +6,7 @@
     <div class="card" ng-repeat="listing in listings | orderBy: listing.created_at : true" >
 
       <div class="item item-divider">
-          <button class="button button-clear button-positive" ui-sref="tab.agent-listings.edit" ng-click="getApartment({{listing.id}})">Edit</button>
+        <button class="button button-clear button-positive" ui-sref="tab.agent-listings.edit" ng-click="getApartment({{listing.id}})">Edit</button>
         <h3>Listings {{listing.index}}</h3>
       </div>
 
@@ -15,7 +15,6 @@
           <ion-item class="item item-icon-left">
             <i class="icon ion-ios-location-outline"></i>
             <p>{{listing.area}}</p>
-            <!-- ng-repeat="area in listing.areas | limitTo: listings.limitTo"> -->
           </ion-item>
         </div>
         <div class="col-10 col-center">
@@ -24,6 +23,9 @@
         </div>
       </div>
       <div ng-hide="!listing.showDetail">
+        <div class="item item-image" ng-repeat="pictures in listing.apartment_pictures ">
+          <img ng-src="{{pictures.url}}">
+        </div>
         <div class="row">
           <div class="col-50">
             <ion-item class="item item-icon-left">
@@ -36,38 +38,38 @@
             </ion-item>
           </div>
         </div>
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon icon-bathtub"></i> {{listing.bathroom_num}}
-          </ion-item>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-50">
-          <ion-item class="item item-icon-left">
-            <i class="icon icon-scale"></i> {{listing.property_size_gross}} ft<sup>2</sup> (gross)
-            <br/> {{listing.property_size_net}} ft<sup>2</sup> (net)
-          </ion-item>
-        </div>
+
         <div class="row">
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon ion-android-walk"></i> {{listing.walkup}}
+              <i class="icon icon-scale"></i> {{listing.property_size_gross}} ft<sup>2</sup> (gross)
+              <br/> {{listing.property_size_net}} ft<sup>2</sup> (net)
             </ion-item>
           </div>
-          <!-- urgent change field -->
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon ion-ios-paw-outline"></i>
-              {{listing.pet_friendly}}
+              <h2 ng-hide="isTrue(listing.walkup)">
+                Walk Up
+              </h2>
             </ion-item>
           </div>
         </div>
+
         <div class="row">
           <div class="col-50">
             <ion-item class="item item-icon-left">
-              <i class="icon ion-spoon"></i> {{listing.open_kitchen}}
+              <h2 ng-hide="isTrue(listing.pet_friendly)">
+                Pet Allowed
+              </h2>
             </ion-item>
+          </div>
+            <div class="col-50">
+              <ion-item class="item item-icon-left">
+                <h2 ng-hide="isTrue(listing.open_kitchen)">
+                  Open Kitchen
+                </h2>
+              </ion-item>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -77,9 +79,6 @@
             <p>{{listing.description}}</p>
             </ion-item>
           </div>
-        </div>
-        <div class="item item-image" ng-repeat="pictures in listing.apartment_pictures ">
-          <img ng-src="{{pictures.url}}">
         </div>
       </div>
     </div>
