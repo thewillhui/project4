@@ -2,7 +2,7 @@
   <ion-nav-buttons side="secondary">
     <a class="button button-clear button-positive" ng-click="openPopover($event)">Attach</a>
   </ion-nav-buttons>
-  <ion-content class="padding col" class="has-header has-footer">
+  <ion-content class="padding chatContainer" class="has-header has-footer">
 
     <div ng-repeat="message in messages track by $index" class="messages">
       <!-- text -->
@@ -30,7 +30,7 @@
         <div class="message">
           {{message.body}}
         </div>
-        <button class="button button button-assertive button-block" ng-hide="message.appointment_status == 'confirmed' || message.appointment_status == 'cancelled'" ng-click="cancelAppointment($index, message.id)">
+        <button class="button button-assertive button-clear" ng-hide="message.appointment_status == 'confirmed' || message.appointment_status == 'cancelled'" ng-click="cancelAppointment($index, message.id)">
           Cancel
         </button>
       </div>

@@ -36,14 +36,14 @@
         <div class="message">
           {{message.body}}
         </div>
-        <button class="button button-assertive" ng-hide="message.appointment_status!='unconfirmed'" ng-click="confirmAppointment(key, message.id)">
+        <button class="button button-positive button-clear" ng-hide="message.appointment_status!='unconfirmed'" ng-click="confirmAppointment(key, message.id)">
           Confirm
         </button>
-        <button class="button button-assertive" ng-hide="message.appointment_status!='confirmed' &&message.appointment_status!='cancelled'">
+        <button class="button button-positive button-clear" ng-hide="message.appointment_status!='confirmed' &&message.appointment_status!='cancelled'">
           Confirmed
         </button>
 
-        <button class="button button-positive button-clear" ng-show="message.appointment_status != 'cancelled'" ng-hide="message.appointment_status == 'confirmed'" ng-click="cancelAppointment(key, message.id)">
+        <button class="button button-assertive button-clear" ng-show="message.appointment_status != 'cancelled'" ng-hide="message.appointment_status == 'confirmed'" ng-click="cancelAppointment(key, message.id)">
           Cancel
         </button>
       </div>
